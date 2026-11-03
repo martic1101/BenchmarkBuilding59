@@ -1,0 +1,18 @@
+columns in scope: occ_fourth_south, occ_third_south, rtu_003_oa_temp, zone_069_heating_sp
+vav=UTF_G-22 :: columns: zone_069_heating_sp
+rtu=RTU04 :: columns: zone_069_heating_sp
+unit=/ :: columns: occ_fourth_south, occ_third_south
+unit=°F :: columns: rtu_003_oa_temp, zone_069_heating_sp
+sampling=1 min :: columns: occ_fourth_south, occ_third_south, rtu_003_oa_temp
+sampling=5 min :: columns: zone_069_heating_sp
+class=Heating_Temperature_Setpoint :: columns: zone_069_heating_sp
+class=Occupant_Count :: columns: occ_fourth_south, occ_third_south
+floor=Building :: columns: occ_fourth_south, occ_third_south
+floor=Floor_S :: columns: zone_069_heating_sp
+zone=Floor_G :: columns: occ_third_south
+zone=Floor_S :: columns: occ_fourth_south
+zone=zone_069 :: columns: zone_069_heating_sp
+desc=Heating temperature setpoint of Zone * :: columns: zone_069_heating_sp
+desc=Occupant counts in the south half of forth floor :: columns: occ_fourth_south
+desc=Occupant counts in the south half of third floor :: columns: occ_third_south
+desc=Roof Top Unit * outdoor air temperature (*: 001, 002, 003, 004) :: columns: rtu_003_oa_temp

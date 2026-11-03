@@ -1,0 +1,12 @@
+columns in scope: rtu_004_rf_vfd_spd_fbk_tn, rtu_004_sf_vfd_spd_fbk_tn, wifi_second_south
+zone=RTU04 :: columns: rtu_004_rf_vfd_spd_fbk_tn, rtu_004_sf_vfd_spd_fbk_tn
+rtu=RTU04 :: columns: rtu_004_rf_vfd_spd_fbk_tn, rtu_004_sf_vfd_spd_fbk_tn
+unit=% :: columns: rtu_004_rf_vfd_spd_fbk_tn, rtu_004_sf_vfd_spd_fbk_tn
+unit=/ :: columns: wifi_second_south
+sampling=1 min :: columns: rtu_004_rf_vfd_spd_fbk_tn, rtu_004_sf_vfd_spd_fbk_tn
+sampling=10 min :: columns: wifi_second_south
+class=Return_Air_Fan_Speed :: columns: rtu_004_rf_vfd_spd_fbk_tn
+class=Supply_Air_Fan_Speed :: columns: rtu_004_sf_vfd_spd_fbk_tn
+desc=Roof Top Unit * return fan speed (*: 001, 002, 003, 004) :: columns: rtu_004_rf_vfd_spd_fbk_tn
+desc=Roof Top Unit * supply fan speed (*: 001, 002, 003, 004) :: columns: rtu_004_sf_vfd_spd_fbk_tn
+desc=Wifi connection counts in the south half of second floor :: columns: wifi_second_south

@@ -1,0 +1,130 @@
+{
+  "id": "T2-030",
+  "family": "T2",
+  "source_files": [
+    "zone_temp_interior.csv"
+  ],
+  "target_schema": [
+    {
+      "name": "timestamp",
+      "dtype": "string 'YYYY-MM-DD HH:MM:SS'",
+      "description": "start of interval"
+    },
+    {
+      "name": "cerc_templogger_1_c",
+      "dtype": "float",
+      "unit": "°C",
+      "description": "Zone temperature of interior zone (°C), 30-minute interval"
+    },
+    {
+      "name": "cerc_templogger_3_c",
+      "dtype": "float",
+      "unit": "°C",
+      "description": "Zone temperature of interior zone (°C), 30-minute interval"
+    }
+  ],
+  "example_day": "2018-08-17",
+  "test_days": [
+    "2018-03-11",
+    "2018-03-12"
+  ],
+  "source_dates_example": {
+    "zone_temp_interior": [
+      "2018-08-17"
+    ]
+  },
+  "source_dates_test": {
+    "zone_temp_interior": [
+      "2018-03-11",
+      "2018-03-12"
+    ]
+  },
+  "n_target_rows_example": 48,
+  "n_target_rows_test": 96,
+  "nl_instruction": "Aggregate cerc_templogger_1, cerc_templogger_3 from zone_temp_interior.csv to 30-minute averages and keep the values in °C (no conversion needed). Timestamp = start of interval.",
+  "needs": [
+    "unit",
+    "conversion",
+    "aggregation",
+    "metadata_conflict"
+  ],
+  "knowledge": [
+    {
+      "kind": "sampling_interval",
+      "file": "zone_temp_interior.csv",
+      "value_min": 10.0,
+      "dict_freq": "10 min"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "zone_temp_interior.csv",
+      "column": "cerc_templogger_1",
+      "description": "Zone temperature of interior zone",
+      "quantity_kind": "temperature"
+    },
+    {
+      "kind": "unit",
+      "file": "zone_temp_interior.csv",
+      "column": "cerc_templogger_1",
+      "true_unit": "°C",
+      "dict_unit": "°F"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "zone_temp_interior.csv",
+      "column": "cerc_templogger_3",
+      "description": "Zone temperature of interior zone",
+      "quantity_kind": "temperature"
+    },
+    {
+      "kind": "unit",
+      "file": "zone_temp_interior.csv",
+      "column": "cerc_templogger_3",
+      "true_unit": "°C",
+      "dict_unit": "°F"
+    }
+  ],
+  "discriminates_against": [
+    "agg_max",
+    "no_or_wrong_conversion"
+  ],
+  "spec": {
+    "family": "T2",
+    "file": "zone_temp_interior",
+    "columns": [
+      "cerc_templogger_1",
+      "cerc_templogger_3"
+    ],
+    "freq": "30min",
+    "agg": "mean",
+    "conversion": "none",
+    "rename": {
+      "cerc_templogger_1": "cerc_templogger_1_c",
+      "cerc_templogger_3": "cerc_templogger_3_c"
+    },
+    "out_columns": [
+      "cerc_templogger_1_c",
+      "cerc_templogger_3_c"
+    ],
+    "target_units": {
+      "cerc_templogger_1_c": "°C",
+      "cerc_templogger_3_c": "°C"
+    },
+    "conflict_note": "dictionary says °F but values are already °C",
+    "source_units": {
+      "cerc_templogger_1": "°C",
+      "cerc_templogger_3": "°C"
+    },
+    "dict_units": {
+      "cerc_templogger_1": "°F",
+      "cerc_templogger_3": "°F"
+    }
+  },
+  "shown_rows": [
+    0,
+    12,
+    24,
+    35,
+    47
+  ]
+}

@@ -1,0 +1,6 @@
+columns in scope: air_temp_set_2
+desc=Outdoor air temperature from sensor 2 :: columns: ALL
+unit=°C :: columns: ALL
+sampling=15 min :: columns: ALL
+class=Outdoor_Air_Temperature_Sensor :: columns: ALL
+zone=Building :: columns: ALL

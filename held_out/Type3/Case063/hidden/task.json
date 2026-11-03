@@ -1,0 +1,232 @@
+{
+  "id": "T3-069",
+  "family": "T3",
+  "source_files": [
+    "ashp_meter.csv",
+    "wifi.csv",
+    "zone_co2.csv"
+  ],
+  "target_schema": [
+    {
+      "name": "timestamp",
+      "dtype": "string 'YYYY-MM-DD HH:MM:SS'",
+      "description": "start of interval"
+    },
+    {
+      "name": "aru_001_power_mbtuph",
+      "dtype": "float",
+      "unit": "mbtuph",
+      "description": "Heat meter for air source heat pump (mbtuph), 15-minute interval"
+    },
+    {
+      "name": "wifi_fourth_south",
+      "dtype": "float",
+      "unit": "/",
+      "description": "Wifi connection counts in the south half of forth floor (/), 15-minute interval"
+    },
+    {
+      "name": "wifi_third_south",
+      "dtype": "float",
+      "unit": "/",
+      "description": "Wifi connection counts in the south half of third floor (/), 15-minute interval"
+    },
+    {
+      "name": "zone_028_co2",
+      "dtype": "float",
+      "unit": "ppm",
+      "description": "CO2 concentration of each zone (ppm), 15-minute interval"
+    },
+    {
+      "name": "zone_033_co2",
+      "dtype": "float",
+      "unit": "ppm",
+      "description": "CO2 concentration of each zone (ppm), 15-minute interval"
+    }
+  ],
+  "example_day": "2020-11-12",
+  "test_days": [
+    "2020-12-27",
+    "2020-12-28"
+  ],
+  "source_dates_example": {
+    "ashp_meter": [
+      "2020-11-12"
+    ],
+    "wifi": [
+      "2020-11-12"
+    ],
+    "zone_co2": [
+      "2020-11-12",
+      "2020-11-13"
+    ]
+  },
+  "source_dates_test": {
+    "ashp_meter": [
+      "2020-12-27",
+      "2020-12-28"
+    ],
+    "wifi": [
+      "2020-12-27",
+      "2020-12-28"
+    ],
+    "zone_co2": [
+      "2020-12-26",
+      "2020-12-27",
+      "2020-12-28"
+    ]
+  },
+  "n_target_rows_example": 96,
+  "n_target_rows_test": 192,
+  "nl_instruction": "Join ashp_meter.csv, wifi.csv, zone_co2.csv on timestamp (inner join) after aggregating each to 15-minute intervals using the minimum; keep only aru_001_power_mbtuph, wifi_fourth_south, wifi_third_south, zone_028_co2, zone_033_co2. Timestamp = start of interval.",
+  "needs": [
+    "sampling_interval",
+    "time_alignment",
+    "join",
+    "aggregation"
+  ],
+  "knowledge": [
+    {
+      "kind": "sampling_interval",
+      "file": "ashp_meter.csv",
+      "value_min": 5.0,
+      "dict_freq": "5 min"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "ashp_meter.csv",
+      "column": "aru_001_power_mbtuph",
+      "description": "Heat meter for air source heat pump",
+      "quantity_kind": "thermal_power"
+    },
+    {
+      "kind": "unit",
+      "file": "ashp_meter.csv",
+      "column": "aru_001_power_mbtuph",
+      "true_unit": "mbtuph",
+      "dict_unit": "mbtuph"
+    },
+    {
+      "kind": "sampling_interval",
+      "file": "wifi.csv",
+      "value_min": 5.0,
+      "dict_freq": "10 min"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "wifi.csv",
+      "column": "wifi_fourth_south",
+      "description": "Wifi connection counts in the south half of forth floor",
+      "quantity_kind": "wifi_connection_count"
+    },
+    {
+      "kind": "unit",
+      "file": "wifi.csv",
+      "column": "wifi_fourth_south",
+      "true_unit": "/",
+      "dict_unit": "/"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "wifi.csv",
+      "column": "wifi_third_south",
+      "description": "Wifi connection counts in the south half of third floor",
+      "quantity_kind": "wifi_connection_count"
+    },
+    {
+      "kind": "unit",
+      "file": "wifi.csv",
+      "column": "wifi_third_south",
+      "true_unit": "/",
+      "dict_unit": "/"
+    },
+    {
+      "kind": "sampling_interval",
+      "file": "zone_co2.csv",
+      "value_min": 1.0,
+      "dict_freq": "1 min"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "zone_co2.csv",
+      "column": "zone_028_co2",
+      "description": "CO2 concentration of each zone",
+      "quantity_kind": "co2_concentration"
+    },
+    {
+      "kind": "unit",
+      "file": "zone_co2.csv",
+      "column": "zone_028_co2",
+      "true_unit": "ppm",
+      "dict_unit": "ppm"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "zone_co2.csv",
+      "column": "zone_033_co2",
+      "description": "CO2 concentration of each zone",
+      "quantity_kind": "co2_concentration"
+    },
+    {
+      "kind": "unit",
+      "file": "zone_co2.csv",
+      "column": "zone_033_co2",
+      "true_unit": "ppm",
+      "dict_unit": "ppm"
+    }
+  ],
+  "discriminates_against": [
+    "outer_join",
+    "agg_mean",
+    "agg_max"
+  ],
+  "spec": {
+    "family": "T3",
+    "sources": [
+      {
+        "file": "ashp_meter",
+        "columns": [
+          "aru_001_power_mbtuph"
+        ]
+      },
+      {
+        "file": "wifi",
+        "columns": [
+          "wifi_fourth_south",
+          "wifi_third_south"
+        ]
+      },
+      {
+        "file": "zone_co2",
+        "columns": [
+          "zone_028_co2",
+          "zone_033_co2"
+        ]
+      }
+    ],
+    "freq": "15min",
+    "agg": "min",
+    "how": "inner",
+    "out_columns": [
+      "aru_001_power_mbtuph",
+      "wifi_fourth_south",
+      "wifi_third_south",
+      "zone_028_co2",
+      "zone_033_co2"
+    ],
+    "target_units": {
+      "aru_001_power_mbtuph": "mbtuph",
+      "wifi_fourth_south": "/",
+      "wifi_third_south": "/",
+      "zone_028_co2": "ppm",
+      "zone_033_co2": "ppm"
+    }
+  },
+  "benchmark_version": "holdout_v2",
+  "shown_rows": [
+    0,
+    24,
+    48,
+    71,
+    95
+  ]
+}

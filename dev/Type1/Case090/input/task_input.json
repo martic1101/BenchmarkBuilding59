@@ -1,0 +1,31 @@
+{
+ "source_files": [
+  "site_weather.csv"
+ ],
+ "example_day": "2018-09-18",
+ "target_schema": [
+  {
+   "name": "timestamp",
+   "dtype": "string 'YYYY-MM-DD HH:MM:SS'"
+  },
+  {
+   "name": "air_temp_set_2",
+   "dtype": "float",
+   "unit": "°C"
+  }
+ ],
+ "n_example_day_target_rows": 48,
+ "n_example_day_source_rows": {
+  "site_weather.csv": 96
+ },
+ "source_blocks": {
+  "site_weather.csv": [
+   2,
+   2,
+   2,
+   2,
+   2
+  ]
+ },
+ "note": "source_example/ holds only the source rows inside the time intervals of the shown target rows; source_blocks gives the sizes of the contiguous runs (shown as '...' between runs in the prompt)."
+}

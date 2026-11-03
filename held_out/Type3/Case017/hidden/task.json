@@ -1,0 +1,167 @@
+{
+  "id": "T3-018",
+  "family": "T3",
+  "source_files": [
+    "uft_fan_spd.csv",
+    "uft_hw_valve.csv"
+  ],
+  "target_schema": [
+    {
+      "name": "timestamp",
+      "dtype": "string 'YYYY-MM-DD HH:MM:SS'",
+      "description": "start of interval"
+    },
+    {
+      "name": "zone_026_fan_spd",
+      "dtype": "float",
+      "unit": "%",
+      "description": "Supply air fan speed of Zone * (%), 1-hour interval"
+    },
+    {
+      "name": "zone_052_hw_valve",
+      "dtype": "float",
+      "unit": "%",
+      "description": "Heating water valve position of Zone * (%), 1-hour interval"
+    },
+    {
+      "name": "zone_055_hw_valve",
+      "dtype": "float",
+      "unit": "%",
+      "description": "Heating water valve position of Zone * (%), 1-hour interval"
+    }
+  ],
+  "example_day": "2019-07-07",
+  "test_days": [
+    "2019-05-20",
+    "2019-05-21"
+  ],
+  "source_dates_example": {
+    "uft_fan_spd": [
+      "2019-07-07"
+    ],
+    "uft_hw_valve": [
+      "2019-07-06",
+      "2019-07-07"
+    ]
+  },
+  "source_dates_test": {
+    "uft_fan_spd": [
+      "2019-05-20",
+      "2019-05-21"
+    ],
+    "uft_hw_valve": [
+      "2019-05-19",
+      "2019-05-20",
+      "2019-05-21"
+    ]
+  },
+  "n_target_rows_example": 24,
+  "n_target_rows_test": 48,
+  "nl_instruction": "Join uft_fan_spd.csv, uft_hw_valve.csv on timestamp (inner join) after aggregating each to 1-hour intervals using the minimum; keep only zone_026_fan_spd, zone_052_hw_valve, zone_055_hw_valve. Timestamp = start of interval.",
+  "needs": [
+    "sampling_interval",
+    "time_alignment",
+    "join",
+    "aggregation"
+  ],
+  "knowledge": [
+    {
+      "kind": "sampling_interval",
+      "file": "uft_fan_spd.csv",
+      "value_min": 1.0,
+      "dict_freq": "1 min"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "uft_fan_spd.csv",
+      "column": "zone_026_fan_spd",
+      "description": "Supply air fan speed of Zone *",
+      "quantity_kind": "fan_speed"
+    },
+    {
+      "kind": "unit",
+      "file": "uft_fan_spd.csv",
+      "column": "zone_026_fan_spd",
+      "true_unit": "%",
+      "dict_unit": "%"
+    },
+    {
+      "kind": "sampling_interval",
+      "file": "uft_hw_valve.csv",
+      "value_min": 1.0,
+      "dict_freq": "1 min"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "uft_hw_valve.csv",
+      "column": "zone_052_hw_valve",
+      "description": "Heating water valve position of Zone *",
+      "quantity_kind": "valve_position"
+    },
+    {
+      "kind": "unit",
+      "file": "uft_hw_valve.csv",
+      "column": "zone_052_hw_valve",
+      "true_unit": "%",
+      "dict_unit": "%"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "uft_hw_valve.csv",
+      "column": "zone_055_hw_valve",
+      "description": "Heating water valve position of Zone *",
+      "quantity_kind": "valve_position"
+    },
+    {
+      "kind": "unit",
+      "file": "uft_hw_valve.csv",
+      "column": "zone_055_hw_valve",
+      "true_unit": "%",
+      "dict_unit": "%"
+    }
+  ],
+  "discriminates_against": [
+    "outer_join",
+    "agg_mean",
+    "agg_max"
+  ],
+  "spec": {
+    "family": "T3",
+    "sources": [
+      {
+        "file": "uft_fan_spd",
+        "columns": [
+          "zone_026_fan_spd"
+        ]
+      },
+      {
+        "file": "uft_hw_valve",
+        "columns": [
+          "zone_052_hw_valve",
+          "zone_055_hw_valve"
+        ]
+      }
+    ],
+    "freq": "1h",
+    "agg": "min",
+    "how": "inner",
+    "out_columns": [
+      "zone_026_fan_spd",
+      "zone_052_hw_valve",
+      "zone_055_hw_valve"
+    ],
+    "target_units": {
+      "zone_026_fan_spd": "%",
+      "zone_052_hw_valve": "%",
+      "zone_055_hw_valve": "%"
+    }
+  },
+  "benchmark_version": "holdout_v2",
+  "shown_rows": [
+    0,
+    6,
+    12,
+    17,
+    23
+  ]
+}

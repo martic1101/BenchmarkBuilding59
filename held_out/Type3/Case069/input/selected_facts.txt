@@ -1,0 +1,22 @@
+columns in scope: aru_001_hwr_temp, rtu_004_rf_vfd_spd_fbk_tn, zone_022_co2, zone_033_co2
+floor=Floor_G :: columns: zone_022_co2, zone_033_co2
+sampling=1 min :: columns: rtu_004_rf_vfd_spd_fbk_tn, zone_022_co2, zone_033_co2
+sampling=5 min :: columns: aru_001_hwr_temp
+vav=UTF_2-14 :: columns: zone_033_co2
+vav=UTF_2-6 :: columns: zone_022_co2
+desc=CO2 concentration of each zone :: columns: zone_022_co2, zone_033_co2
+desc=Hot water return temperature :: columns: aru_001_hwr_temp
+desc=Roof Top Unit * return fan speed (*: 001, 002, 003, 004) :: columns: rtu_004_rf_vfd_spd_fbk_tn
+unit=% :: columns: rtu_004_rf_vfd_spd_fbk_tn
+unit=ppm :: columns: zone_022_co2, zone_033_co2
+unit=°F :: columns: aru_001_hwr_temp
+class=CO2_Sensor :: columns: zone_022_co2, zone_033_co2
+class=Hot_Water_Temperature_Sensor :: columns: aru_001_hwr_temp
+class=Return_Air_Fan_Speed :: columns: rtu_004_rf_vfd_spd_fbk_tn
+rtu=RTU01 :: columns: zone_022_co2
+rtu=RTU03 :: columns: zone_033_co2
+rtu=RTU04 :: columns: rtu_004_rf_vfd_spd_fbk_tn
+zone=Building :: columns: aru_001_hwr_temp
+zone=RTU04 :: columns: rtu_004_rf_vfd_spd_fbk_tn
+zone=zone_022 :: columns: zone_022_co2
+zone=zone_033 :: columns: zone_033_co2

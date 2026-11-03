@@ -1,0 +1,12 @@
+columns in scope: air_temp_set_1, aru_001_power_mbtuph, solar_radiation_set_1
+zone=Building :: columns: air_temp_set_1, solar_radiation_set_1
+sampling=15 min :: columns: air_temp_set_1, solar_radiation_set_1
+sampling=5 min :: columns: aru_001_power_mbtuph
+class=Outdoor_Air_Temperature_Sensor :: columns: air_temp_set_1
+class=Solar_Radiance_Sensor :: columns: solar_radiation_set_1
+desc=Heat meter for air source heat pump :: columns: aru_001_power_mbtuph
+desc=Outdoor air temperature from sensor 1 :: columns: air_temp_set_1
+desc=Outdoor solar radiation from sensor 1 :: columns: solar_radiation_set_1
+unit=W/m2 :: columns: solar_radiation_set_1
+unit=mbtuph :: columns: aru_001_power_mbtuph
+unit=°C :: columns: air_temp_set_1

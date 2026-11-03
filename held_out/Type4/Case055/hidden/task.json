@@ -1,0 +1,1057 @@
+{
+  "id": "T4N-017",
+  "family": "T4",
+  "source_files": [
+    "zone_temp_sp_c.csv"
+  ],
+  "target_schema": [
+    {
+      "name": "timestamp",
+      "dtype": "string 'YYYY-MM-DD HH:MM:SS'",
+      "description": "start of interval"
+    },
+    {
+      "name": "RTU01",
+      "dtype": "float",
+      "unit": "°F",
+      "description": "Cooling temperature setpoint of Zone aggregated over all zones belonging to RTU01 (°F), 1-hour interval"
+    },
+    {
+      "name": "RTU02",
+      "dtype": "float",
+      "unit": "°F",
+      "description": "Cooling temperature setpoint of Zone aggregated over all zones belonging to RTU02 (°F), 1-hour interval"
+    },
+    {
+      "name": "RTU03",
+      "dtype": "float",
+      "unit": "°F",
+      "description": "Cooling temperature setpoint of Zone aggregated over all zones belonging to RTU03 (°F), 1-hour interval"
+    },
+    {
+      "name": "RTU04",
+      "dtype": "float",
+      "unit": "°F",
+      "description": "Cooling temperature setpoint of Zone aggregated over all zones belonging to RTU04 (°F), 1-hour interval"
+    }
+  ],
+  "example_day": "2020-05-13",
+  "test_days": [
+    "2020-12-07",
+    "2020-12-08"
+  ],
+  "source_dates_example": {
+    "zone_temp_sp_c": [
+      "2020-05-13"
+    ]
+  },
+  "source_dates_test": {
+    "zone_temp_sp_c": [
+      "2020-12-07",
+      "2020-12-08"
+    ]
+  },
+  "n_target_rows_example": 24,
+  "n_target_rows_test": 48,
+  "nl_instruction": "For each rooftop unit (RTU) serving the zones, compute the maximum over its zones of the 1-hour average of each zone column in zone_temp_sp_c.csv. One output column per group (RTU01, RTU02, RTU03, RTU04). Timestamp = start of interval.",
+  "needs": [
+    "topology",
+    "aggregation"
+  ],
+  "knowledge": [
+    {
+      "kind": "sampling_interval",
+      "file": "zone_temp_sp_c.csv",
+      "value_min": 5.0,
+      "dict_freq": "5 min"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "zone_temp_sp_c.csv",
+      "column": "zone_016_cooling_sp",
+      "description": "Cooling temperature setpoint of Zone *",
+      "quantity_kind": "temperature_setpoint"
+    },
+    {
+      "kind": "unit",
+      "file": "zone_temp_sp_c.csv",
+      "column": "zone_016_cooling_sp",
+      "true_unit": "°F",
+      "dict_unit": "°F"
+    },
+    {
+      "kind": "membership",
+      "file": "zone_temp_sp_c.csv",
+      "column": "zone_016_cooling_sp",
+      "group": "RTU01",
+      "relation": "zone -> VAV -> RTU",
+      "brick_point": "zone_016_cooling_sp"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "zone_temp_sp_c.csv",
+      "column": "zone_017_cooling_sp",
+      "description": "Cooling temperature setpoint of Zone *",
+      "quantity_kind": "temperature_setpoint"
+    },
+    {
+      "kind": "unit",
+      "file": "zone_temp_sp_c.csv",
+      "column": "zone_017_cooling_sp",
+      "true_unit": "°F",
+      "dict_unit": "°F"
+    },
+    {
+      "kind": "membership",
+      "file": "zone_temp_sp_c.csv",
+      "column": "zone_017_cooling_sp",
+      "group": "RTU01",
+      "relation": "zone -> VAV -> RTU",
+      "brick_point": "zone_017_cooling_sp"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "zone_temp_sp_c.csv",
+      "column": "zone_021_cooling_sp",
+      "description": "Cooling temperature setpoint of Zone *",
+      "quantity_kind": "temperature_setpoint"
+    },
+    {
+      "kind": "unit",
+      "file": "zone_temp_sp_c.csv",
+      "column": "zone_021_cooling_sp",
+      "true_unit": "°F",
+      "dict_unit": "°F"
+    },
+    {
+      "kind": "membership",
+      "file": "zone_temp_sp_c.csv",
+      "column": "zone_021_cooling_sp",
+      "group": "RTU01",
+      "relation": "zone -> VAV -> RTU",
+      "brick_point": "zone_021_cooling_sp"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "zone_temp_sp_c.csv",
+      "column": "zone_023_cooling_sp",
+      "description": "Cooling temperature setpoint of Zone *",
+      "quantity_kind": "temperature_setpoint"
+    },
+    {
+      "kind": "unit",
+      "file": "zone_temp_sp_c.csv",
+      "column": "zone_023_cooling_sp",
+      "true_unit": "°F",
+      "dict_unit": "°F"
+    },
+    {
+      "kind": "membership",
+      "file": "zone_temp_sp_c.csv",
+      "column": "zone_023_cooling_sp",
+      "group": "RTU01",
+      "relation": "zone -> VAV -> RTU",
+      "brick_point": "zone_023_cooling_sp"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "zone_temp_sp_c.csv",
+      "column": "zone_024_cooling_sp",
+      "description": "Cooling temperature setpoint of Zone *",
+      "quantity_kind": "temperature_setpoint"
+    },
+    {
+      "kind": "unit",
+      "file": "zone_temp_sp_c.csv",
+      "column": "zone_024_cooling_sp",
+      "true_unit": "°F",
+      "dict_unit": "°F"
+    },
+    {
+      "kind": "membership",
+      "file": "zone_temp_sp_c.csv",
+      "column": "zone_024_cooling_sp",
+      "group": "RTU01",
+      "relation": "zone -> VAV -> RTU",
+      "brick_point": "zone_024_cooling_sp"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "zone_temp_sp_c.csv",
+      "column": "zone_046_cooling_sp",
+      "description": "Cooling temperature setpoint of Zone *",
+      "quantity_kind": "temperature_setpoint"
+    },
+    {
+      "kind": "unit",
+      "file": "zone_temp_sp_c.csv",
+      "column": "zone_046_cooling_sp",
+      "true_unit": "°F",
+      "dict_unit": "°F"
+    },
+    {
+      "kind": "membership",
+      "file": "zone_temp_sp_c.csv",
+      "column": "zone_046_cooling_sp",
+      "group": "RTU01",
+      "relation": "zone -> VAV -> RTU",
+      "brick_point": "zone_046_cooling_sp"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "zone_temp_sp_c.csv",
+      "column": "zone_047_cooling_sp",
+      "description": "Cooling temperature setpoint of Zone *",
+      "quantity_kind": "temperature_setpoint"
+    },
+    {
+      "kind": "unit",
+      "file": "zone_temp_sp_c.csv",
+      "column": "zone_047_cooling_sp",
+      "true_unit": "°F",
+      "dict_unit": "°F"
+    },
+    {
+      "kind": "membership",
+      "file": "zone_temp_sp_c.csv",
+      "column": "zone_047_cooling_sp",
+      "group": "RTU01",
+      "relation": "zone -> VAV -> RTU",
+      "brick_point": "zone_047_cooling_sp"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "zone_temp_sp_c.csv",
+      "column": "zone_051_cooling_sp",
+      "description": "Cooling temperature setpoint of Zone *",
+      "quantity_kind": "temperature_setpoint"
+    },
+    {
+      "kind": "unit",
+      "file": "zone_temp_sp_c.csv",
+      "column": "zone_051_cooling_sp",
+      "true_unit": "°F",
+      "dict_unit": "°F"
+    },
+    {
+      "kind": "membership",
+      "file": "zone_temp_sp_c.csv",
+      "column": "zone_051_cooling_sp",
+      "group": "RTU01",
+      "relation": "zone -> VAV -> RTU",
+      "brick_point": "zone_051_cooling_sp"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "zone_temp_sp_c.csv",
+      "column": "zone_053_cooling_sp",
+      "description": "Cooling temperature setpoint of Zone *",
+      "quantity_kind": "temperature_setpoint"
+    },
+    {
+      "kind": "unit",
+      "file": "zone_temp_sp_c.csv",
+      "column": "zone_053_cooling_sp",
+      "true_unit": "°F",
+      "dict_unit": "°F"
+    },
+    {
+      "kind": "membership",
+      "file": "zone_temp_sp_c.csv",
+      "column": "zone_053_cooling_sp",
+      "group": "RTU01",
+      "relation": "zone -> VAV -> RTU",
+      "brick_point": "zone_053_cooling_sp"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "zone_temp_sp_c.csv",
+      "column": "zone_054_cooling_sp",
+      "description": "Cooling temperature setpoint of Zone *",
+      "quantity_kind": "temperature_setpoint"
+    },
+    {
+      "kind": "unit",
+      "file": "zone_temp_sp_c.csv",
+      "column": "zone_054_cooling_sp",
+      "true_unit": "°F",
+      "dict_unit": "°F"
+    },
+    {
+      "kind": "membership",
+      "file": "zone_temp_sp_c.csv",
+      "column": "zone_054_cooling_sp",
+      "group": "RTU01",
+      "relation": "zone -> VAV -> RTU",
+      "brick_point": "zone_054_cooling_sp"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "zone_temp_sp_c.csv",
+      "column": "zone_018_cooling_sp",
+      "description": "Cooling temperature setpoint of Zone *",
+      "quantity_kind": "temperature_setpoint"
+    },
+    {
+      "kind": "unit",
+      "file": "zone_temp_sp_c.csv",
+      "column": "zone_018_cooling_sp",
+      "true_unit": "°F",
+      "dict_unit": "°F"
+    },
+    {
+      "kind": "membership",
+      "file": "zone_temp_sp_c.csv",
+      "column": "zone_018_cooling_sp",
+      "group": "RTU02",
+      "relation": "zone -> VAV -> RTU",
+      "brick_point": "zone_018_cooling_sp"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "zone_temp_sp_c.csv",
+      "column": "zone_019_cooling_sp",
+      "description": "Cooling temperature setpoint of Zone *",
+      "quantity_kind": "temperature_setpoint"
+    },
+    {
+      "kind": "unit",
+      "file": "zone_temp_sp_c.csv",
+      "column": "zone_019_cooling_sp",
+      "true_unit": "°F",
+      "dict_unit": "°F"
+    },
+    {
+      "kind": "membership",
+      "file": "zone_temp_sp_c.csv",
+      "column": "zone_019_cooling_sp",
+      "group": "RTU02",
+      "relation": "zone -> VAV -> RTU",
+      "brick_point": "zone_019_cooling_sp"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "zone_temp_sp_c.csv",
+      "column": "zone_025_cooling_sp",
+      "description": "Cooling temperature setpoint of Zone *",
+      "quantity_kind": "temperature_setpoint"
+    },
+    {
+      "kind": "unit",
+      "file": "zone_temp_sp_c.csv",
+      "column": "zone_025_cooling_sp",
+      "true_unit": "°F",
+      "dict_unit": "°F"
+    },
+    {
+      "kind": "membership",
+      "file": "zone_temp_sp_c.csv",
+      "column": "zone_025_cooling_sp",
+      "group": "RTU02",
+      "relation": "zone -> VAV -> RTU",
+      "brick_point": "zone_025_cooling_sp"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "zone_temp_sp_c.csv",
+      "column": "zone_026_cooling_sp",
+      "description": "Cooling temperature setpoint of Zone *",
+      "quantity_kind": "temperature_setpoint"
+    },
+    {
+      "kind": "unit",
+      "file": "zone_temp_sp_c.csv",
+      "column": "zone_026_cooling_sp",
+      "true_unit": "°F",
+      "dict_unit": "°F"
+    },
+    {
+      "kind": "membership",
+      "file": "zone_temp_sp_c.csv",
+      "column": "zone_026_cooling_sp",
+      "group": "RTU02",
+      "relation": "zone -> VAV -> RTU",
+      "brick_point": "zone_026_cooling_sp"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "zone_temp_sp_c.csv",
+      "column": "zone_048_cooling_sp",
+      "description": "Cooling temperature setpoint of Zone *",
+      "quantity_kind": "temperature_setpoint"
+    },
+    {
+      "kind": "unit",
+      "file": "zone_temp_sp_c.csv",
+      "column": "zone_048_cooling_sp",
+      "true_unit": "°F",
+      "dict_unit": "°F"
+    },
+    {
+      "kind": "membership",
+      "file": "zone_temp_sp_c.csv",
+      "column": "zone_048_cooling_sp",
+      "group": "RTU02",
+      "relation": "zone -> VAV -> RTU",
+      "brick_point": "zone_048_cooling_sp"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "zone_temp_sp_c.csv",
+      "column": "zone_055_cooling_sp",
+      "description": "Cooling temperature setpoint of Zone *",
+      "quantity_kind": "temperature_setpoint"
+    },
+    {
+      "kind": "unit",
+      "file": "zone_temp_sp_c.csv",
+      "column": "zone_055_cooling_sp",
+      "true_unit": "°F",
+      "dict_unit": "°F"
+    },
+    {
+      "kind": "membership",
+      "file": "zone_temp_sp_c.csv",
+      "column": "zone_055_cooling_sp",
+      "group": "RTU02",
+      "relation": "zone -> VAV -> RTU",
+      "brick_point": "zone_055_cooling_sp"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "zone_temp_sp_c.csv",
+      "column": "zone_056_cooling_sp",
+      "description": "Cooling temperature setpoint of Zone *",
+      "quantity_kind": "temperature_setpoint"
+    },
+    {
+      "kind": "unit",
+      "file": "zone_temp_sp_c.csv",
+      "column": "zone_056_cooling_sp",
+      "true_unit": "°F",
+      "dict_unit": "°F"
+    },
+    {
+      "kind": "membership",
+      "file": "zone_temp_sp_c.csv",
+      "column": "zone_056_cooling_sp",
+      "group": "RTU02",
+      "relation": "zone -> VAV -> RTU",
+      "brick_point": "zone_056_cooling_sp"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "zone_temp_sp_c.csv",
+      "column": "zone_061_cooling_sp",
+      "description": "Cooling temperature setpoint of Zone *",
+      "quantity_kind": "temperature_setpoint"
+    },
+    {
+      "kind": "unit",
+      "file": "zone_temp_sp_c.csv",
+      "column": "zone_061_cooling_sp",
+      "true_unit": "°F",
+      "dict_unit": "°F"
+    },
+    {
+      "kind": "membership",
+      "file": "zone_temp_sp_c.csv",
+      "column": "zone_061_cooling_sp",
+      "group": "RTU02",
+      "relation": "zone -> VAV -> RTU",
+      "brick_point": "zone_061_cooling_sp"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "zone_temp_sp_c.csv",
+      "column": "zone_027_cooling_sp",
+      "description": "Cooling temperature setpoint of Zone *",
+      "quantity_kind": "temperature_setpoint"
+    },
+    {
+      "kind": "unit",
+      "file": "zone_temp_sp_c.csv",
+      "column": "zone_027_cooling_sp",
+      "true_unit": "°F",
+      "dict_unit": "°F"
+    },
+    {
+      "kind": "membership",
+      "file": "zone_temp_sp_c.csv",
+      "column": "zone_027_cooling_sp",
+      "group": "RTU03",
+      "relation": "zone -> VAV -> RTU",
+      "brick_point": "zone_027_cooling_sp"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "zone_temp_sp_c.csv",
+      "column": "zone_030_cooling_sp",
+      "description": "Cooling temperature setpoint of Zone *",
+      "quantity_kind": "temperature_setpoint"
+    },
+    {
+      "kind": "unit",
+      "file": "zone_temp_sp_c.csv",
+      "column": "zone_030_cooling_sp",
+      "true_unit": "°F",
+      "dict_unit": "°F"
+    },
+    {
+      "kind": "membership",
+      "file": "zone_temp_sp_c.csv",
+      "column": "zone_030_cooling_sp",
+      "group": "RTU03",
+      "relation": "zone -> VAV -> RTU",
+      "brick_point": "zone_030_cooling_sp"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "zone_temp_sp_c.csv",
+      "column": "zone_032_cooling_sp",
+      "description": "Cooling temperature setpoint of Zone *",
+      "quantity_kind": "temperature_setpoint"
+    },
+    {
+      "kind": "unit",
+      "file": "zone_temp_sp_c.csv",
+      "column": "zone_032_cooling_sp",
+      "true_unit": "°F",
+      "dict_unit": "°F"
+    },
+    {
+      "kind": "membership",
+      "file": "zone_temp_sp_c.csv",
+      "column": "zone_032_cooling_sp",
+      "group": "RTU03",
+      "relation": "zone -> VAV -> RTU",
+      "brick_point": "zone_032_cooling_sp"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "zone_temp_sp_c.csv",
+      "column": "zone_035_cooling_sp",
+      "description": "Cooling temperature setpoint of Zone *",
+      "quantity_kind": "temperature_setpoint"
+    },
+    {
+      "kind": "unit",
+      "file": "zone_temp_sp_c.csv",
+      "column": "zone_035_cooling_sp",
+      "true_unit": "°F",
+      "dict_unit": "°F"
+    },
+    {
+      "kind": "membership",
+      "file": "zone_temp_sp_c.csv",
+      "column": "zone_035_cooling_sp",
+      "group": "RTU03",
+      "relation": "zone -> VAV -> RTU",
+      "brick_point": "zone_035_cooling_sp"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "zone_temp_sp_c.csv",
+      "column": "zone_036_cooling_sp",
+      "description": "Cooling temperature setpoint of Zone *",
+      "quantity_kind": "temperature_setpoint"
+    },
+    {
+      "kind": "unit",
+      "file": "zone_temp_sp_c.csv",
+      "column": "zone_036_cooling_sp",
+      "true_unit": "°F",
+      "dict_unit": "°F"
+    },
+    {
+      "kind": "membership",
+      "file": "zone_temp_sp_c.csv",
+      "column": "zone_036_cooling_sp",
+      "group": "RTU03",
+      "relation": "zone -> VAV -> RTU",
+      "brick_point": "zone_036_cooling_sp"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "zone_temp_sp_c.csv",
+      "column": "zone_043_cooling_sp",
+      "description": "Cooling temperature setpoint of Zone *",
+      "quantity_kind": "temperature_setpoint"
+    },
+    {
+      "kind": "unit",
+      "file": "zone_temp_sp_c.csv",
+      "column": "zone_043_cooling_sp",
+      "true_unit": "°F",
+      "dict_unit": "°F"
+    },
+    {
+      "kind": "membership",
+      "file": "zone_temp_sp_c.csv",
+      "column": "zone_043_cooling_sp",
+      "group": "RTU03",
+      "relation": "zone -> VAV -> RTU",
+      "brick_point": "zone_043_cooling_sp"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "zone_temp_sp_c.csv",
+      "column": "zone_049_cooling_sp",
+      "description": "Cooling temperature setpoint of Zone *",
+      "quantity_kind": "temperature_setpoint"
+    },
+    {
+      "kind": "unit",
+      "file": "zone_temp_sp_c.csv",
+      "column": "zone_049_cooling_sp",
+      "true_unit": "°F",
+      "dict_unit": "°F"
+    },
+    {
+      "kind": "membership",
+      "file": "zone_temp_sp_c.csv",
+      "column": "zone_049_cooling_sp",
+      "group": "RTU03",
+      "relation": "zone -> VAV -> RTU",
+      "brick_point": "zone_049_cooling_sp"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "zone_temp_sp_c.csv",
+      "column": "zone_057_cooling_sp",
+      "description": "Cooling temperature setpoint of Zone *",
+      "quantity_kind": "temperature_setpoint"
+    },
+    {
+      "kind": "unit",
+      "file": "zone_temp_sp_c.csv",
+      "column": "zone_057_cooling_sp",
+      "true_unit": "°F",
+      "dict_unit": "°F"
+    },
+    {
+      "kind": "membership",
+      "file": "zone_temp_sp_c.csv",
+      "column": "zone_057_cooling_sp",
+      "group": "RTU03",
+      "relation": "zone -> VAV -> RTU",
+      "brick_point": "zone_057_cooling_sp"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "zone_temp_sp_c.csv",
+      "column": "zone_059_cooling_sp",
+      "description": "Cooling temperature setpoint of Zone *",
+      "quantity_kind": "temperature_setpoint"
+    },
+    {
+      "kind": "unit",
+      "file": "zone_temp_sp_c.csv",
+      "column": "zone_059_cooling_sp",
+      "true_unit": "°F",
+      "dict_unit": "°F"
+    },
+    {
+      "kind": "membership",
+      "file": "zone_temp_sp_c.csv",
+      "column": "zone_059_cooling_sp",
+      "group": "RTU03",
+      "relation": "zone -> VAV -> RTU",
+      "brick_point": "zone_059_cooling_sp"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "zone_temp_sp_c.csv",
+      "column": "zone_062_cooling_sp",
+      "description": "Cooling temperature setpoint of Zone *",
+      "quantity_kind": "temperature_setpoint"
+    },
+    {
+      "kind": "unit",
+      "file": "zone_temp_sp_c.csv",
+      "column": "zone_062_cooling_sp",
+      "true_unit": "°F",
+      "dict_unit": "°F"
+    },
+    {
+      "kind": "membership",
+      "file": "zone_temp_sp_c.csv",
+      "column": "zone_062_cooling_sp",
+      "group": "RTU03",
+      "relation": "zone -> VAV -> RTU",
+      "brick_point": "zone_062_cooling_sp"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "zone_temp_sp_c.csv",
+      "column": "zone_063_cooling_sp",
+      "description": "Cooling temperature setpoint of Zone *",
+      "quantity_kind": "temperature_setpoint"
+    },
+    {
+      "kind": "unit",
+      "file": "zone_temp_sp_c.csv",
+      "column": "zone_063_cooling_sp",
+      "true_unit": "°F",
+      "dict_unit": "°F"
+    },
+    {
+      "kind": "membership",
+      "file": "zone_temp_sp_c.csv",
+      "column": "zone_063_cooling_sp",
+      "group": "RTU03",
+      "relation": "zone -> VAV -> RTU",
+      "brick_point": "zone_063_cooling_sp"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "zone_temp_sp_c.csv",
+      "column": "zone_064_cooling_sp",
+      "description": "Cooling temperature setpoint of Zone *",
+      "quantity_kind": "temperature_setpoint"
+    },
+    {
+      "kind": "unit",
+      "file": "zone_temp_sp_c.csv",
+      "column": "zone_064_cooling_sp",
+      "true_unit": "°F",
+      "dict_unit": "°F"
+    },
+    {
+      "kind": "membership",
+      "file": "zone_temp_sp_c.csv",
+      "column": "zone_064_cooling_sp",
+      "group": "RTU03",
+      "relation": "zone -> VAV -> RTU",
+      "brick_point": "zone_064_cooling_sp"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "zone_temp_sp_c.csv",
+      "column": "zone_071_cooling_sp",
+      "description": "Cooling temperature setpoint of Zone *",
+      "quantity_kind": "temperature_setpoint"
+    },
+    {
+      "kind": "unit",
+      "file": "zone_temp_sp_c.csv",
+      "column": "zone_071_cooling_sp",
+      "true_unit": "°F",
+      "dict_unit": "°F"
+    },
+    {
+      "kind": "membership",
+      "file": "zone_temp_sp_c.csv",
+      "column": "zone_071_cooling_sp",
+      "group": "RTU03",
+      "relation": "zone -> VAV -> RTU",
+      "brick_point": "zone_071_cooling_sp"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "zone_temp_sp_c.csv",
+      "column": "zone_037_cooling_sp",
+      "description": "Cooling temperature setpoint of Zone *",
+      "quantity_kind": "temperature_setpoint"
+    },
+    {
+      "kind": "unit",
+      "file": "zone_temp_sp_c.csv",
+      "column": "zone_037_cooling_sp",
+      "true_unit": "°F",
+      "dict_unit": "°F"
+    },
+    {
+      "kind": "membership",
+      "file": "zone_temp_sp_c.csv",
+      "column": "zone_037_cooling_sp",
+      "group": "RTU04",
+      "relation": "zone -> VAV -> RTU",
+      "brick_point": "zone_037_cooling_sp"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "zone_temp_sp_c.csv",
+      "column": "zone_038_cooling_sp",
+      "description": "Cooling temperature setpoint of Zone *",
+      "quantity_kind": "temperature_setpoint"
+    },
+    {
+      "kind": "unit",
+      "file": "zone_temp_sp_c.csv",
+      "column": "zone_038_cooling_sp",
+      "true_unit": "°F",
+      "dict_unit": "°F"
+    },
+    {
+      "kind": "membership",
+      "file": "zone_temp_sp_c.csv",
+      "column": "zone_038_cooling_sp",
+      "group": "RTU04",
+      "relation": "zone -> VAV -> RTU",
+      "brick_point": "zone_038_cooling_sp"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "zone_temp_sp_c.csv",
+      "column": "zone_039_cooling_sp",
+      "description": "Cooling temperature setpoint of Zone *",
+      "quantity_kind": "temperature_setpoint"
+    },
+    {
+      "kind": "unit",
+      "file": "zone_temp_sp_c.csv",
+      "column": "zone_039_cooling_sp",
+      "true_unit": "°F",
+      "dict_unit": "°F"
+    },
+    {
+      "kind": "membership",
+      "file": "zone_temp_sp_c.csv",
+      "column": "zone_039_cooling_sp",
+      "group": "RTU04",
+      "relation": "zone -> VAV -> RTU",
+      "brick_point": "zone_039_cooling_sp"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "zone_temp_sp_c.csv",
+      "column": "zone_041_cooling_sp",
+      "description": "Cooling temperature setpoint of Zone *",
+      "quantity_kind": "temperature_setpoint"
+    },
+    {
+      "kind": "unit",
+      "file": "zone_temp_sp_c.csv",
+      "column": "zone_041_cooling_sp",
+      "true_unit": "°F",
+      "dict_unit": "°F"
+    },
+    {
+      "kind": "membership",
+      "file": "zone_temp_sp_c.csv",
+      "column": "zone_041_cooling_sp",
+      "group": "RTU04",
+      "relation": "zone -> VAV -> RTU",
+      "brick_point": "zone_041_cooling_sp"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "zone_temp_sp_c.csv",
+      "column": "zone_042_cooling_sp",
+      "description": "Cooling temperature setpoint of Zone *",
+      "quantity_kind": "temperature_setpoint"
+    },
+    {
+      "kind": "unit",
+      "file": "zone_temp_sp_c.csv",
+      "column": "zone_042_cooling_sp",
+      "true_unit": "°F",
+      "dict_unit": "°F"
+    },
+    {
+      "kind": "membership",
+      "file": "zone_temp_sp_c.csv",
+      "column": "zone_042_cooling_sp",
+      "group": "RTU04",
+      "relation": "zone -> VAV -> RTU",
+      "brick_point": "zone_042_cooling_sp"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "zone_temp_sp_c.csv",
+      "column": "zone_065_cooling_sp",
+      "description": "Cooling temperature setpoint of Zone *",
+      "quantity_kind": "temperature_setpoint"
+    },
+    {
+      "kind": "unit",
+      "file": "zone_temp_sp_c.csv",
+      "column": "zone_065_cooling_sp",
+      "true_unit": "°F",
+      "dict_unit": "°F"
+    },
+    {
+      "kind": "membership",
+      "file": "zone_temp_sp_c.csv",
+      "column": "zone_065_cooling_sp",
+      "group": "RTU04",
+      "relation": "zone -> VAV -> RTU",
+      "brick_point": "zone_065_cooling_sp"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "zone_temp_sp_c.csv",
+      "column": "zone_066_cooling_sp",
+      "description": "Cooling temperature setpoint of Zone *",
+      "quantity_kind": "temperature_setpoint"
+    },
+    {
+      "kind": "unit",
+      "file": "zone_temp_sp_c.csv",
+      "column": "zone_066_cooling_sp",
+      "true_unit": "°F",
+      "dict_unit": "°F"
+    },
+    {
+      "kind": "membership",
+      "file": "zone_temp_sp_c.csv",
+      "column": "zone_066_cooling_sp",
+      "group": "RTU04",
+      "relation": "zone -> VAV -> RTU",
+      "brick_point": "zone_066_cooling_sp"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "zone_temp_sp_c.csv",
+      "column": "zone_067_cooling_sp",
+      "description": "Cooling temperature setpoint of Zone *",
+      "quantity_kind": "temperature_setpoint"
+    },
+    {
+      "kind": "unit",
+      "file": "zone_temp_sp_c.csv",
+      "column": "zone_067_cooling_sp",
+      "true_unit": "°F",
+      "dict_unit": "°F"
+    },
+    {
+      "kind": "membership",
+      "file": "zone_temp_sp_c.csv",
+      "column": "zone_067_cooling_sp",
+      "group": "RTU04",
+      "relation": "zone -> VAV -> RTU",
+      "brick_point": "zone_067_cooling_sp"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "zone_temp_sp_c.csv",
+      "column": "zone_069_cooling_sp",
+      "description": "Cooling temperature setpoint of Zone *",
+      "quantity_kind": "temperature_setpoint"
+    },
+    {
+      "kind": "unit",
+      "file": "zone_temp_sp_c.csv",
+      "column": "zone_069_cooling_sp",
+      "true_unit": "°F",
+      "dict_unit": "°F"
+    },
+    {
+      "kind": "membership",
+      "file": "zone_temp_sp_c.csv",
+      "column": "zone_069_cooling_sp",
+      "group": "RTU04",
+      "relation": "zone -> VAV -> RTU",
+      "brick_point": "zone_069_cooling_sp"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "zone_temp_sp_c.csv",
+      "column": "zone_070_cooling_sp",
+      "description": "Cooling temperature setpoint of Zone *",
+      "quantity_kind": "temperature_setpoint"
+    },
+    {
+      "kind": "unit",
+      "file": "zone_temp_sp_c.csv",
+      "column": "zone_070_cooling_sp",
+      "true_unit": "°F",
+      "dict_unit": "°F"
+    },
+    {
+      "kind": "membership",
+      "file": "zone_temp_sp_c.csv",
+      "column": "zone_070_cooling_sp",
+      "group": "RTU04",
+      "relation": "zone -> VAV -> RTU",
+      "brick_point": "zone_070_cooling_sp"
+    }
+  ],
+  "discriminates_against": [
+    "agg_swap",
+    "space_agg_swap",
+    "shuffled_membership_0",
+    "shuffled_membership_1",
+    "shuffled_membership_2"
+  ],
+  "spec": {
+    "family": "T4",
+    "file": "zone_temp_sp_c",
+    "group_by": "rtu",
+    "groups": {
+      "RTU01": [
+        "zone_016_cooling_sp",
+        "zone_017_cooling_sp",
+        "zone_021_cooling_sp",
+        "zone_023_cooling_sp",
+        "zone_024_cooling_sp",
+        "zone_046_cooling_sp",
+        "zone_047_cooling_sp",
+        "zone_051_cooling_sp",
+        "zone_053_cooling_sp",
+        "zone_054_cooling_sp"
+      ],
+      "RTU02": [
+        "zone_018_cooling_sp",
+        "zone_019_cooling_sp",
+        "zone_025_cooling_sp",
+        "zone_026_cooling_sp",
+        "zone_048_cooling_sp",
+        "zone_055_cooling_sp",
+        "zone_056_cooling_sp",
+        "zone_061_cooling_sp"
+      ],
+      "RTU03": [
+        "zone_027_cooling_sp",
+        "zone_030_cooling_sp",
+        "zone_032_cooling_sp",
+        "zone_035_cooling_sp",
+        "zone_036_cooling_sp",
+        "zone_043_cooling_sp",
+        "zone_049_cooling_sp",
+        "zone_057_cooling_sp",
+        "zone_059_cooling_sp",
+        "zone_062_cooling_sp",
+        "zone_063_cooling_sp",
+        "zone_064_cooling_sp",
+        "zone_071_cooling_sp"
+      ],
+      "RTU04": [
+        "zone_037_cooling_sp",
+        "zone_038_cooling_sp",
+        "zone_039_cooling_sp",
+        "zone_041_cooling_sp",
+        "zone_042_cooling_sp",
+        "zone_065_cooling_sp",
+        "zone_066_cooling_sp",
+        "zone_067_cooling_sp",
+        "zone_069_cooling_sp",
+        "zone_070_cooling_sp"
+      ]
+    },
+    "freq": "1h",
+    "agg_time": "mean",
+    "agg_space": "max",
+    "out_columns": [
+      "RTU01",
+      "RTU02",
+      "RTU03",
+      "RTU04"
+    ],
+    "target_units": {
+      "RTU01": "°F",
+      "RTU02": "°F",
+      "RTU03": "°F",
+      "RTU04": "°F"
+    }
+  },
+  "benchmark_version": "holdout_v2b_t4novel",
+  "shown_rows": [
+    0,
+    6,
+    7,
+    12,
+    17
+  ]
+}

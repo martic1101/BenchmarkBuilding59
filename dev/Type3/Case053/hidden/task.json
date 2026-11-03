@@ -1,0 +1,230 @@
+{
+  "id": "T3-055",
+  "family": "T3",
+  "source_files": [
+    "occ.csv",
+    "rtu_sa_p_sp.csv",
+    "zone_temp_exterior.csv"
+  ],
+  "target_schema": [
+    {
+      "name": "timestamp",
+      "dtype": "string 'YYYY-MM-DD HH:MM:SS'",
+      "description": "start of interval"
+    },
+    {
+      "name": "occ_fourth_south",
+      "dtype": "float",
+      "unit": "/",
+      "description": "Occupant counts in the south half of forth floor (/), 30-minute averages"
+    },
+    {
+      "name": "rtu_001_pa_static_stpt_tn",
+      "dtype": "float",
+      "unit": "inH2O (suspected)",
+      "description": "Roof Top Unit * air pressure static setpoint (*: 001, 002, 003, 004) (inH2O (suspected)), 30-minute averages"
+    },
+    {
+      "name": "rtu_004_pa_static_stpt_tn",
+      "dtype": "float",
+      "unit": "inH2O (suspected)",
+      "description": "Roof Top Unit * air pressure static setpoint (*: 001, 002, 003, 004) (inH2O (suspected)), 30-minute averages"
+    },
+    {
+      "name": "zone_023_temp",
+      "dtype": "float",
+      "unit": "°F",
+      "description": "Zone temperature of exterior zone (°F), 30-minute averages"
+    },
+    {
+      "name": "zone_061_temp",
+      "dtype": "float",
+      "unit": "°F",
+      "description": "Zone temperature of exterior zone (°F), 30-minute averages"
+    }
+  ],
+  "example_day": "2018-11-29",
+  "test_days": [
+    "2019-01-25",
+    "2019-01-26"
+  ],
+  "source_dates_example": {
+    "occ": [
+      "2018-11-29"
+    ],
+    "rtu_sa_p_sp": [
+      "2018-11-29"
+    ],
+    "zone_temp_exterior": [
+      "2018-11-28",
+      "2018-11-29"
+    ]
+  },
+  "source_dates_test": {
+    "occ": [
+      "2019-01-25",
+      "2019-01-26"
+    ],
+    "rtu_sa_p_sp": [
+      "2019-01-25",
+      "2019-01-26"
+    ],
+    "zone_temp_exterior": [
+      "2019-01-24",
+      "2019-01-25",
+      "2019-01-26"
+    ]
+  },
+  "n_target_rows_example": 48,
+  "n_target_rows_test": 96,
+  "nl_instruction": "Join occ.csv, rtu_sa_p_sp.csv, zone_temp_exterior.csv on timestamp (inner join) after aggregating each to 30-minute averages; keep only occ_fourth_south, rtu_001_pa_static_stpt_tn, rtu_004_pa_static_stpt_tn, zone_023_temp, zone_061_temp. Timestamp = start of interval.",
+  "needs": [
+    "sampling_interval",
+    "time_alignment",
+    "join",
+    "aggregation"
+  ],
+  "knowledge": [
+    {
+      "kind": "sampling_interval",
+      "file": "occ.csv",
+      "value_min": 1.0,
+      "dict_freq": "1 min"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "occ.csv",
+      "column": "occ_fourth_south",
+      "description": "Occupant counts in the south half of forth floor",
+      "quantity_kind": "occupant_count"
+    },
+    {
+      "kind": "unit",
+      "file": "occ.csv",
+      "column": "occ_fourth_south",
+      "true_unit": "/",
+      "dict_unit": "/"
+    },
+    {
+      "kind": "sampling_interval",
+      "file": "rtu_sa_p_sp.csv",
+      "value_min": 1.0,
+      "dict_freq": "1 min"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "rtu_sa_p_sp.csv",
+      "column": "rtu_001_pa_static_stpt_tn",
+      "description": "Roof Top Unit * air pressure static setpoint (*: 001, 002, 003, 004)",
+      "quantity_kind": "pressure_setpoint"
+    },
+    {
+      "kind": "unit",
+      "file": "rtu_sa_p_sp.csv",
+      "column": "rtu_001_pa_static_stpt_tn",
+      "true_unit": "inH2O (suspected)",
+      "dict_unit": "psi"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "rtu_sa_p_sp.csv",
+      "column": "rtu_004_pa_static_stpt_tn",
+      "description": "Roof Top Unit * air pressure static setpoint (*: 001, 002, 003, 004)",
+      "quantity_kind": "pressure_setpoint"
+    },
+    {
+      "kind": "unit",
+      "file": "rtu_sa_p_sp.csv",
+      "column": "rtu_004_pa_static_stpt_tn",
+      "true_unit": "inH2O (suspected)",
+      "dict_unit": "psi"
+    },
+    {
+      "kind": "sampling_interval",
+      "file": "zone_temp_exterior.csv",
+      "value_min": 1.0,
+      "dict_freq": "1 min"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "zone_temp_exterior.csv",
+      "column": "zone_023_temp",
+      "description": "Zone temperature of exterior zone",
+      "quantity_kind": "temperature"
+    },
+    {
+      "kind": "unit",
+      "file": "zone_temp_exterior.csv",
+      "column": "zone_023_temp",
+      "true_unit": "°F",
+      "dict_unit": "°F"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "zone_temp_exterior.csv",
+      "column": "zone_061_temp",
+      "description": "Zone temperature of exterior zone",
+      "quantity_kind": "temperature"
+    },
+    {
+      "kind": "unit",
+      "file": "zone_temp_exterior.csv",
+      "column": "zone_061_temp",
+      "true_unit": "°F",
+      "dict_unit": "°F"
+    }
+  ],
+  "discriminates_against": [
+    "outer_join",
+    "agg_max"
+  ],
+  "spec": {
+    "family": "T3",
+    "sources": [
+      {
+        "file": "occ",
+        "columns": [
+          "occ_fourth_south"
+        ]
+      },
+      {
+        "file": "rtu_sa_p_sp",
+        "columns": [
+          "rtu_001_pa_static_stpt_tn",
+          "rtu_004_pa_static_stpt_tn"
+        ]
+      },
+      {
+        "file": "zone_temp_exterior",
+        "columns": [
+          "zone_023_temp",
+          "zone_061_temp"
+        ]
+      }
+    ],
+    "freq": "30min",
+    "agg": "mean",
+    "how": "inner",
+    "out_columns": [
+      "occ_fourth_south",
+      "rtu_001_pa_static_stpt_tn",
+      "rtu_004_pa_static_stpt_tn",
+      "zone_023_temp",
+      "zone_061_temp"
+    ],
+    "target_units": {
+      "occ_fourth_south": "/",
+      "rtu_001_pa_static_stpt_tn": "inH2O (suspected)",
+      "rtu_004_pa_static_stpt_tn": "inH2O (suspected)",
+      "zone_023_temp": "°F",
+      "zone_061_temp": "°F"
+    }
+  },
+  "shown_rows": [
+    0,
+    12,
+    24,
+    35,
+    47
+  ]
+}

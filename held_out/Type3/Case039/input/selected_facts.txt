@@ -1,0 +1,16 @@
+columns in scope: occ_fourth_south, occ_third_south, rtu_002_ra_temp, rtu_003_ra_temp
+sampling=1 min :: columns: ALL
+floor=Building :: columns: occ_fourth_south, occ_third_south
+unit=/ :: columns: occ_fourth_south, occ_third_south
+unit=°F :: columns: rtu_002_ra_temp, rtu_003_ra_temp
+class=Occupant_Count :: columns: occ_fourth_south, occ_third_south
+class=Return_Air_Temperature_Sensor :: columns: rtu_002_ra_temp, rtu_003_ra_temp
+rtu=RTU02 :: columns: rtu_002_ra_temp
+rtu=RTU03 :: columns: rtu_003_ra_temp
+desc=Occupant counts in the south half of forth floor :: columns: occ_fourth_south
+desc=Occupant counts in the south half of third floor :: columns: occ_third_south
+desc=Roof Top Unit * return air temperature (*: 001, 002, 003, 004) :: columns: rtu_002_ra_temp, rtu_003_ra_temp
+zone=Floor_G :: columns: occ_third_south
+zone=Floor_S :: columns: occ_fourth_south
+zone=RTU02 :: columns: rtu_002_ra_temp
+zone=RTU03 :: columns: rtu_003_ra_temp

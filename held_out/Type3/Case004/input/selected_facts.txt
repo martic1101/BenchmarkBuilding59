@@ -1,0 +1,13 @@
+columns in scope: rtu_003_oa_flow_tn, zone_044_co2
+sampling=1 min :: columns: ALL
+vav=UTF_2-24 :: columns: zone_044_co2
+rtu=RTU03 :: columns: ALL
+floor=Floor_G :: columns: zone_044_co2
+desc=CO2 concentration of each zone :: columns: zone_044_co2
+desc=Roof Top Unit * outdoor air flow rate (*: 001, 002, 003, 004) :: columns: rtu_003_oa_flow_tn
+unit=CFM :: columns: rtu_003_oa_flow_tn
+unit=ppm :: columns: zone_044_co2
+class=CO2_Sensor :: columns: zone_044_co2
+class=Outdoor_Air_Flow_Rate :: columns: rtu_003_oa_flow_tn
+zone=RTU03 :: columns: rtu_003_oa_flow_tn
+zone=zone_044 :: columns: zone_044_co2

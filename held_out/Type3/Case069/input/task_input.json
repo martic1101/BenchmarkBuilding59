@@ -1,0 +1,64 @@
+{
+ "source_files": [
+  "ashp_hw.csv",
+  "rtu_fan_spd.csv",
+  "zone_co2.csv"
+ ],
+ "example_day": "2020-12-25",
+ "target_schema": [
+  {
+   "name": "timestamp",
+   "dtype": "string 'YYYY-MM-DD HH:MM:SS'"
+  },
+  {
+   "name": "aru_001_hwr_temp",
+   "dtype": "float",
+   "unit": "°F"
+  },
+  {
+   "name": "rtu_004_rf_vfd_spd_fbk_tn",
+   "dtype": "float",
+   "unit": "%"
+  },
+  {
+   "name": "zone_022_co2",
+   "dtype": "float",
+   "unit": "ppm"
+  },
+  {
+   "name": "zone_033_co2",
+   "dtype": "float",
+   "unit": "ppm"
+  }
+ ],
+ "n_example_day_target_rows": 48,
+ "n_example_day_source_rows": {
+  "ashp_hw.csv": 288,
+  "rtu_fan_spd.csv": 1440,
+  "zone_co2.csv": 2880
+ },
+ "source_blocks": {
+  "ashp_hw.csv": [
+   6,
+   6,
+   6,
+   6,
+   6
+  ],
+  "rtu_fan_spd.csv": [
+   30,
+   30,
+   30,
+   30,
+   30
+  ],
+  "zone_co2.csv": [
+   30,
+   30,
+   30,
+   30,
+   30
+  ]
+ },
+ "note": "source_example/ holds only the source rows inside the time intervals of the shown target rows; source_blocks gives the sizes of the contiguous runs (shown as '...' between runs in the prompt)."
+}

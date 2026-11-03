@@ -1,0 +1,10 @@
+columns in scope: hvac_N, mels_S, solar_radiation_set_1
+sampling=15 min :: columns: ALL
+zone=Building :: columns: ALL
+unit=W/m2 :: columns: solar_radiation_set_1
+unit=kW :: columns: hvac_N, mels_S
+class=Building_Electrical_Meter :: columns: hvac_N, mels_S
+class=Solar_Radiance_Sensor :: columns: solar_radiation_set_1
+desc=Heating Ventilation and Air Conditioning load for the Nouth Wing :: columns: hvac_N
+desc=Miscellaneous electric load for the South Wing :: columns: mels_S
+desc=Outdoor solar radiation from sensor 1 :: columns: solar_radiation_set_1

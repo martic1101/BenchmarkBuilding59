@@ -1,0 +1,167 @@
+{
+  "id": "T3-082",
+  "family": "T3",
+  "source_files": [
+    "ele.csv",
+    "site_weather.csv"
+  ],
+  "target_schema": [
+    {
+      "name": "timestamp",
+      "dtype": "string 'YYYY-MM-DD HH:MM:SS'",
+      "description": "start of interval"
+    },
+    {
+      "name": "hvac_N",
+      "dtype": "float",
+      "unit": "kW",
+      "description": "Heating Ventilation and Air Conditioning load for the Nouth Wing (kW), 30-minute interval"
+    },
+    {
+      "name": "mels_S",
+      "dtype": "float",
+      "unit": "kW",
+      "description": "Miscellaneous electric load for the South Wing (kW), 30-minute interval"
+    },
+    {
+      "name": "solar_radiation_set_1",
+      "dtype": "float",
+      "unit": "W/m2",
+      "description": "Outdoor solar radiation from sensor 1 (W/m2), 30-minute interval"
+    }
+  ],
+  "example_day": "2019-01-02",
+  "test_days": [
+    "2019-04-11",
+    "2019-04-12"
+  ],
+  "source_dates_example": {
+    "ele": [
+      "2019-01-02"
+    ],
+    "site_weather": [
+      "2019-01-01",
+      "2019-01-02"
+    ]
+  },
+  "source_dates_test": {
+    "ele": [
+      "2019-04-11",
+      "2019-04-12"
+    ],
+    "site_weather": [
+      "2019-04-10",
+      "2019-04-11",
+      "2019-04-12"
+    ]
+  },
+  "n_target_rows_example": 48,
+  "n_target_rows_test": 96,
+  "nl_instruction": "Join ele.csv, site_weather.csv on timestamp (inner join) after aggregating each to 30-minute intervals using the maximum; keep only hvac_N, mels_S, solar_radiation_set_1. Timestamp = start of interval.",
+  "needs": [
+    "sampling_interval",
+    "time_alignment",
+    "join",
+    "aggregation"
+  ],
+  "knowledge": [
+    {
+      "kind": "sampling_interval",
+      "file": "ele.csv",
+      "value_min": 15.0,
+      "dict_freq": "15 min"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "ele.csv",
+      "column": "hvac_N",
+      "description": "Heating Ventilation and Air Conditioning load for the Nouth Wing",
+      "quantity_kind": "electric_power"
+    },
+    {
+      "kind": "unit",
+      "file": "ele.csv",
+      "column": "hvac_N",
+      "true_unit": "kW",
+      "dict_unit": "kW"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "ele.csv",
+      "column": "mels_S",
+      "description": "Miscellaneous electric load for the South Wing",
+      "quantity_kind": "electric_power"
+    },
+    {
+      "kind": "unit",
+      "file": "ele.csv",
+      "column": "mels_S",
+      "true_unit": "kW",
+      "dict_unit": "kW"
+    },
+    {
+      "kind": "sampling_interval",
+      "file": "site_weather.csv",
+      "value_min": 15.0,
+      "dict_freq": "15 min"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "site_weather.csv",
+      "column": "solar_radiation_set_1",
+      "description": "Outdoor solar radiation from sensor 1",
+      "quantity_kind": "solar_irradiance"
+    },
+    {
+      "kind": "unit",
+      "file": "site_weather.csv",
+      "column": "solar_radiation_set_1",
+      "true_unit": "W/m2",
+      "dict_unit": "W/m2"
+    }
+  ],
+  "discriminates_against": [
+    "outer_join",
+    "agg_mean",
+    "agg_min"
+  ],
+  "spec": {
+    "family": "T3",
+    "sources": [
+      {
+        "file": "ele",
+        "columns": [
+          "hvac_N",
+          "mels_S"
+        ]
+      },
+      {
+        "file": "site_weather",
+        "columns": [
+          "solar_radiation_set_1"
+        ]
+      }
+    ],
+    "freq": "30min",
+    "agg": "max",
+    "how": "inner",
+    "out_columns": [
+      "hvac_N",
+      "mels_S",
+      "solar_radiation_set_1"
+    ],
+    "target_units": {
+      "hvac_N": "kW",
+      "mels_S": "kW",
+      "solar_radiation_set_1": "W/m2"
+    }
+  },
+  "benchmark_version": "holdout_v2",
+  "shown_rows": [
+    0,
+    12,
+    24,
+    35,
+    47
+  ]
+}

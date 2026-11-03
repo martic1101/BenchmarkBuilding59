@@ -1,0 +1,186 @@
+{
+  "id": "T3-022",
+  "family": "T3",
+  "source_files": [
+    "rtu_econ_sp.csv",
+    "rtu_oa_t.csv",
+    "zone_temp_sp_h.csv"
+  ],
+  "target_schema": [
+    {
+      "name": "timestamp",
+      "dtype": "string 'YYYY-MM-DD HH:MM:SS'",
+      "description": "start of interval"
+    },
+    {
+      "name": "rtu_002_econ_stpt_tn",
+      "dtype": "float",
+      "unit": "°F",
+      "description": "Roof Top Unit * economizer setpoint (*: 001, 002, 003, 004) (°F), 15-minute interval"
+    },
+    {
+      "name": "rtu_003_oa_temp",
+      "dtype": "float",
+      "unit": "°F",
+      "description": "Roof Top Unit * outdoor air temperature (*: 001, 002, 003, 004) (°F), 15-minute interval"
+    },
+    {
+      "name": "zone_037_heating_sp",
+      "dtype": "float",
+      "unit": "°F",
+      "description": "Heating temperature setpoint of Zone * (°F), 15-minute interval"
+    }
+  ],
+  "example_day": "2018-12-15",
+  "test_days": [
+    "2019-03-31",
+    "2019-04-01"
+  ],
+  "source_dates_example": {
+    "rtu_econ_sp": [
+      "2018-12-15"
+    ],
+    "rtu_oa_t": [
+      "2018-12-15"
+    ],
+    "zone_temp_sp_h": [
+      "2018-12-14",
+      "2018-12-15"
+    ]
+  },
+  "source_dates_test": {
+    "rtu_econ_sp": [
+      "2019-03-31",
+      "2019-04-01"
+    ],
+    "rtu_oa_t": [
+      "2019-03-31",
+      "2019-04-01"
+    ],
+    "zone_temp_sp_h": [
+      "2019-03-30",
+      "2019-03-31",
+      "2019-04-01"
+    ]
+  },
+  "n_target_rows_example": 96,
+  "n_target_rows_test": 192,
+  "nl_instruction": "Join rtu_econ_sp.csv, rtu_oa_t.csv, zone_temp_sp_h.csv on timestamp (inner join) after aggregating each to 15-minute intervals using the minimum; keep only rtu_002_econ_stpt_tn, rtu_003_oa_temp, zone_037_heating_sp. Timestamp = start of interval.",
+  "needs": [
+    "sampling_interval",
+    "time_alignment",
+    "join",
+    "aggregation"
+  ],
+  "knowledge": [
+    {
+      "kind": "sampling_interval",
+      "file": "rtu_econ_sp.csv",
+      "value_min": 1.0,
+      "dict_freq": "1 min"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "rtu_econ_sp.csv",
+      "column": "rtu_002_econ_stpt_tn",
+      "description": "Roof Top Unit * economizer setpoint (*: 001, 002, 003, 004)",
+      "quantity_kind": "temperature_setpoint"
+    },
+    {
+      "kind": "unit",
+      "file": "rtu_econ_sp.csv",
+      "column": "rtu_002_econ_stpt_tn",
+      "true_unit": "°F",
+      "dict_unit": "°F"
+    },
+    {
+      "kind": "sampling_interval",
+      "file": "rtu_oa_t.csv",
+      "value_min": 1.0,
+      "dict_freq": "1 min"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "rtu_oa_t.csv",
+      "column": "rtu_003_oa_temp",
+      "description": "Roof Top Unit * outdoor air temperature (*: 001, 002, 003, 004)",
+      "quantity_kind": "temperature"
+    },
+    {
+      "kind": "unit",
+      "file": "rtu_oa_t.csv",
+      "column": "rtu_003_oa_temp",
+      "true_unit": "°F",
+      "dict_unit": "°F"
+    },
+    {
+      "kind": "sampling_interval",
+      "file": "zone_temp_sp_h.csv",
+      "value_min": 5.0,
+      "dict_freq": "5 min"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "zone_temp_sp_h.csv",
+      "column": "zone_037_heating_sp",
+      "description": "Heating temperature setpoint of Zone *",
+      "quantity_kind": "temperature_setpoint"
+    },
+    {
+      "kind": "unit",
+      "file": "zone_temp_sp_h.csv",
+      "column": "zone_037_heating_sp",
+      "true_unit": "°F",
+      "dict_unit": "°F"
+    }
+  ],
+  "discriminates_against": [
+    "outer_join",
+    "agg_mean",
+    "agg_max"
+  ],
+  "spec": {
+    "family": "T3",
+    "sources": [
+      {
+        "file": "rtu_econ_sp",
+        "columns": [
+          "rtu_002_econ_stpt_tn"
+        ]
+      },
+      {
+        "file": "rtu_oa_t",
+        "columns": [
+          "rtu_003_oa_temp"
+        ]
+      },
+      {
+        "file": "zone_temp_sp_h",
+        "columns": [
+          "zone_037_heating_sp"
+        ]
+      }
+    ],
+    "freq": "15min",
+    "agg": "min",
+    "how": "inner",
+    "out_columns": [
+      "rtu_002_econ_stpt_tn",
+      "rtu_003_oa_temp",
+      "zone_037_heating_sp"
+    ],
+    "target_units": {
+      "rtu_002_econ_stpt_tn": "°F",
+      "rtu_003_oa_temp": "°F",
+      "zone_037_heating_sp": "°F"
+    }
+  },
+  "benchmark_version": "holdout_v2",
+  "shown_rows": [
+    0,
+    24,
+    48,
+    71,
+    95
+  ]
+}

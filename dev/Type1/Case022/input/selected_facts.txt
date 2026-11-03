@@ -1,0 +1,6 @@
+columns in scope: mels_N
+desc=Miscellaneous electric load for the North Wing :: columns: ALL
+unit=kW :: columns: ALL
+sampling=15 min :: columns: ALL
+class=Building_Electrical_Meter :: columns: ALL
+zone=Building :: columns: ALL

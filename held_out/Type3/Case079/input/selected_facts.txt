@@ -1,0 +1,18 @@
+columns in scope: rtu_004_sf_vfd_spd_fbk_tn, zone_022_co2, zone_062_co2
+sampling=1 min :: columns: ALL
+desc=CO2 concentration of each zone :: columns: zone_022_co2, zone_062_co2
+desc=Roof Top Unit * supply fan speed (*: 001, 002, 003, 004) :: columns: rtu_004_sf_vfd_spd_fbk_tn
+unit=% :: columns: rtu_004_sf_vfd_spd_fbk_tn
+unit=ppm :: columns: zone_022_co2, zone_062_co2
+class=CO2_Sensor :: columns: zone_022_co2, zone_062_co2
+class=Supply_Air_Fan_Speed :: columns: rtu_004_sf_vfd_spd_fbk_tn
+vav=UTF_2-6 :: columns: zone_022_co2
+vav=UTF_G-15 :: columns: zone_062_co2
+floor=Floor_G :: columns: zone_022_co2
+floor=Floor_S :: columns: zone_062_co2
+zone=RTU04 :: columns: rtu_004_sf_vfd_spd_fbk_tn
+zone=zone_022 :: columns: zone_022_co2
+zone=zone_062 :: columns: zone_062_co2
+rtu=RTU01 :: columns: zone_022_co2
+rtu=RTU03 :: columns: zone_062_co2
+rtu=RTU04 :: columns: rtu_004_sf_vfd_spd_fbk_tn

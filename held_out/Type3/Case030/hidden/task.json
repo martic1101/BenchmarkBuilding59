@@ -1,0 +1,167 @@
+{
+  "id": "T3-031",
+  "family": "T3",
+  "source_files": [
+    "ashp_hw.csv",
+    "rtu_sa_p_sp.csv"
+  ],
+  "target_schema": [
+    {
+      "name": "timestamp",
+      "dtype": "string 'YYYY-MM-DD HH:MM:SS'",
+      "description": "start of interval"
+    },
+    {
+      "name": "aru_001_hwr_temp",
+      "dtype": "float",
+      "unit": "°F",
+      "description": "Hot water return temperature (°F), 15-minute interval"
+    },
+    {
+      "name": "aru_001_hws_fr_gpm",
+      "dtype": "float",
+      "unit": "gpm",
+      "description": "Hot water fow rate (gpm), 15-minute interval"
+    },
+    {
+      "name": "rtu_001_pa_static_stpt_tn",
+      "dtype": "float",
+      "unit": "psi",
+      "description": "Roof Top Unit * air pressure static setpoint (*: 001, 002, 003, 004) (psi), 15-minute interval"
+    }
+  ],
+  "example_day": "2020-03-08",
+  "test_days": [
+    "2020-10-20",
+    "2020-10-21"
+  ],
+  "source_dates_example": {
+    "ashp_hw": [
+      "2020-03-08"
+    ],
+    "rtu_sa_p_sp": [
+      "2020-03-07",
+      "2020-03-08"
+    ]
+  },
+  "source_dates_test": {
+    "ashp_hw": [
+      "2020-10-20",
+      "2020-10-21"
+    ],
+    "rtu_sa_p_sp": [
+      "2020-10-19",
+      "2020-10-20",
+      "2020-10-21"
+    ]
+  },
+  "n_target_rows_example": 96,
+  "n_target_rows_test": 192,
+  "nl_instruction": "Join ashp_hw.csv, rtu_sa_p_sp.csv on timestamp (inner join) after aggregating each to 15-minute intervals using the average; keep only aru_001_hwr_temp, aru_001_hws_fr_gpm, rtu_001_pa_static_stpt_tn. Timestamp = start of interval.",
+  "needs": [
+    "sampling_interval",
+    "time_alignment",
+    "join",
+    "aggregation"
+  ],
+  "knowledge": [
+    {
+      "kind": "sampling_interval",
+      "file": "ashp_hw.csv",
+      "value_min": 5.0,
+      "dict_freq": "5 min"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "ashp_hw.csv",
+      "column": "aru_001_hwr_temp",
+      "description": "Hot water return temperature",
+      "quantity_kind": "temperature"
+    },
+    {
+      "kind": "unit",
+      "file": "ashp_hw.csv",
+      "column": "aru_001_hwr_temp",
+      "true_unit": "°F",
+      "dict_unit": "°F"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "ashp_hw.csv",
+      "column": "aru_001_hws_fr_gpm",
+      "description": "Hot water fow rate",
+      "quantity_kind": "water_flow"
+    },
+    {
+      "kind": "unit",
+      "file": "ashp_hw.csv",
+      "column": "aru_001_hws_fr_gpm",
+      "true_unit": "gpm",
+      "dict_unit": "CFM"
+    },
+    {
+      "kind": "sampling_interval",
+      "file": "rtu_sa_p_sp.csv",
+      "value_min": 1.0,
+      "dict_freq": "1 min"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "rtu_sa_p_sp.csv",
+      "column": "rtu_001_pa_static_stpt_tn",
+      "description": "Roof Top Unit * air pressure static setpoint (*: 001, 002, 003, 004)",
+      "quantity_kind": "pressure_setpoint"
+    },
+    {
+      "kind": "unit",
+      "file": "rtu_sa_p_sp.csv",
+      "column": "rtu_001_pa_static_stpt_tn",
+      "true_unit": "psi",
+      "dict_unit": "psi"
+    }
+  ],
+  "discriminates_against": [
+    "outer_join",
+    "agg_max",
+    "agg_min"
+  ],
+  "spec": {
+    "family": "T3",
+    "sources": [
+      {
+        "file": "ashp_hw",
+        "columns": [
+          "aru_001_hwr_temp",
+          "aru_001_hws_fr_gpm"
+        ]
+      },
+      {
+        "file": "rtu_sa_p_sp",
+        "columns": [
+          "rtu_001_pa_static_stpt_tn"
+        ]
+      }
+    ],
+    "freq": "15min",
+    "agg": "mean",
+    "how": "inner",
+    "out_columns": [
+      "aru_001_hwr_temp",
+      "aru_001_hws_fr_gpm",
+      "rtu_001_pa_static_stpt_tn"
+    ],
+    "target_units": {
+      "aru_001_hwr_temp": "°F",
+      "aru_001_hws_fr_gpm": "gpm",
+      "rtu_001_pa_static_stpt_tn": "psi"
+    }
+  },
+  "benchmark_version": "holdout_v2",
+  "shown_rows": [
+    0,
+    24,
+    48,
+    71,
+    95
+  ]
+}

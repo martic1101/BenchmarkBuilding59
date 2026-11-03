@@ -1,0 +1,255 @@
+{
+  "id": "T3-078",
+  "family": "T3",
+  "source_files": [
+    "ele.csv",
+    "rtu_fan_spd.csv",
+    "site_weather.csv"
+  ],
+  "target_schema": [
+    {
+      "name": "timestamp",
+      "dtype": "string 'YYYY-MM-DD HH:MM:SS'",
+      "description": "start of interval"
+    },
+    {
+      "name": "hvac_S",
+      "dtype": "float",
+      "unit": "kW",
+      "description": "Heating Ventilation and Air Conditioning load for the Sorth Wing (kW), 15-minute interval"
+    },
+    {
+      "name": "mels_S",
+      "dtype": "float",
+      "unit": "kW",
+      "description": "Miscellaneous electric load for the South Wing (kW), 15-minute interval"
+    },
+    {
+      "name": "rtu_001_rf_vfd_spd_fbk_tn",
+      "dtype": "float",
+      "unit": "%",
+      "description": "Roof Top Unit * return fan speed (*: 001, 002, 003, 004) (%), 15-minute interval"
+    },
+    {
+      "name": "rtu_004_sf_vfd_spd_fbk_tn",
+      "dtype": "float",
+      "unit": "%",
+      "description": "Roof Top Unit * supply fan speed (*: 001, 002, 003, 004) (%), 15-minute interval"
+    },
+    {
+      "name": "relative_humidity_set_1",
+      "dtype": "float",
+      "unit": "%",
+      "description": "Outdoor air relative humidity from sensor 1 (%), 15-minute interval"
+    },
+    {
+      "name": "solar_radiation_set_1",
+      "dtype": "float",
+      "unit": "W/m2",
+      "description": "Outdoor solar radiation from sensor 1 (W/m2), 15-minute interval"
+    }
+  ],
+  "example_day": "2019-07-10",
+  "test_days": [
+    "2019-04-17",
+    "2019-04-18"
+  ],
+  "source_dates_example": {
+    "ele": [
+      "2019-07-10"
+    ],
+    "rtu_fan_spd": [
+      "2019-07-10"
+    ],
+    "site_weather": [
+      "2019-07-09",
+      "2019-07-10"
+    ]
+  },
+  "source_dates_test": {
+    "ele": [
+      "2019-04-17",
+      "2019-04-18"
+    ],
+    "rtu_fan_spd": [
+      "2019-04-17",
+      "2019-04-18"
+    ],
+    "site_weather": [
+      "2019-04-16",
+      "2019-04-17",
+      "2019-04-18"
+    ]
+  },
+  "n_target_rows_example": 96,
+  "n_target_rows_test": 192,
+  "nl_instruction": "Join ele.csv, rtu_fan_spd.csv, site_weather.csv on timestamp (inner join) after aggregating each to 15-minute intervals using the minimum; keep only hvac_S, mels_S, rtu_001_rf_vfd_spd_fbk_tn, rtu_004_sf_vfd_spd_fbk_tn, relative_humidity_set_1, solar_radiation_set_1. Timestamp = start of interval.",
+  "needs": [
+    "sampling_interval",
+    "time_alignment",
+    "join",
+    "aggregation"
+  ],
+  "knowledge": [
+    {
+      "kind": "sampling_interval",
+      "file": "ele.csv",
+      "value_min": 15.0,
+      "dict_freq": "15 min"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "ele.csv",
+      "column": "hvac_S",
+      "description": "Heating Ventilation and Air Conditioning load for the Sorth Wing",
+      "quantity_kind": "electric_power"
+    },
+    {
+      "kind": "unit",
+      "file": "ele.csv",
+      "column": "hvac_S",
+      "true_unit": "kW",
+      "dict_unit": "kW"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "ele.csv",
+      "column": "mels_S",
+      "description": "Miscellaneous electric load for the South Wing",
+      "quantity_kind": "electric_power"
+    },
+    {
+      "kind": "unit",
+      "file": "ele.csv",
+      "column": "mels_S",
+      "true_unit": "kW",
+      "dict_unit": "kW"
+    },
+    {
+      "kind": "sampling_interval",
+      "file": "rtu_fan_spd.csv",
+      "value_min": 1.0,
+      "dict_freq": "1 min"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "rtu_fan_spd.csv",
+      "column": "rtu_001_rf_vfd_spd_fbk_tn",
+      "description": "Roof Top Unit * return fan speed (*: 001, 002, 003, 004)",
+      "quantity_kind": "fan_speed"
+    },
+    {
+      "kind": "unit",
+      "file": "rtu_fan_spd.csv",
+      "column": "rtu_001_rf_vfd_spd_fbk_tn",
+      "true_unit": "%",
+      "dict_unit": "%"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "rtu_fan_spd.csv",
+      "column": "rtu_004_sf_vfd_spd_fbk_tn",
+      "description": "Roof Top Unit * supply fan speed (*: 001, 002, 003, 004)",
+      "quantity_kind": "fan_speed"
+    },
+    {
+      "kind": "unit",
+      "file": "rtu_fan_spd.csv",
+      "column": "rtu_004_sf_vfd_spd_fbk_tn",
+      "true_unit": "%",
+      "dict_unit": "%"
+    },
+    {
+      "kind": "sampling_interval",
+      "file": "site_weather.csv",
+      "value_min": 15.0,
+      "dict_freq": "15 min"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "site_weather.csv",
+      "column": "relative_humidity_set_1",
+      "description": "Outdoor air relative humidity from sensor 1",
+      "quantity_kind": "relative_humidity"
+    },
+    {
+      "kind": "unit",
+      "file": "site_weather.csv",
+      "column": "relative_humidity_set_1",
+      "true_unit": "%",
+      "dict_unit": "%"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "site_weather.csv",
+      "column": "solar_radiation_set_1",
+      "description": "Outdoor solar radiation from sensor 1",
+      "quantity_kind": "solar_irradiance"
+    },
+    {
+      "kind": "unit",
+      "file": "site_weather.csv",
+      "column": "solar_radiation_set_1",
+      "true_unit": "W/m2",
+      "dict_unit": "W/m2"
+    }
+  ],
+  "discriminates_against": [
+    "outer_join",
+    "agg_mean",
+    "agg_max"
+  ],
+  "spec": {
+    "family": "T3",
+    "sources": [
+      {
+        "file": "ele",
+        "columns": [
+          "hvac_S",
+          "mels_S"
+        ]
+      },
+      {
+        "file": "rtu_fan_spd",
+        "columns": [
+          "rtu_001_rf_vfd_spd_fbk_tn",
+          "rtu_004_sf_vfd_spd_fbk_tn"
+        ]
+      },
+      {
+        "file": "site_weather",
+        "columns": [
+          "relative_humidity_set_1",
+          "solar_radiation_set_1"
+        ]
+      }
+    ],
+    "freq": "15min",
+    "agg": "min",
+    "how": "inner",
+    "out_columns": [
+      "hvac_S",
+      "mels_S",
+      "rtu_001_rf_vfd_spd_fbk_tn",
+      "rtu_004_sf_vfd_spd_fbk_tn",
+      "relative_humidity_set_1",
+      "solar_radiation_set_1"
+    ],
+    "target_units": {
+      "hvac_S": "kW",
+      "mels_S": "kW",
+      "rtu_001_rf_vfd_spd_fbk_tn": "%",
+      "rtu_004_sf_vfd_spd_fbk_tn": "%",
+      "relative_humidity_set_1": "%",
+      "solar_radiation_set_1": "W/m2"
+    }
+  },
+  "benchmark_version": "holdout_v2",
+  "shown_rows": [
+    0,
+    24,
+    48,
+    71,
+    95
+  ]
+}

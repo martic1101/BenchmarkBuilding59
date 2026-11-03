@@ -1,0 +1,8 @@
+columns in scope: aru_001_cwr_temp, rtu_001_oa_temp, rtu_002_oa_temp
+unit=°F :: columns: ALL
+class=Chilled_Water_Temperature_Sensor :: columns: aru_001_cwr_temp
+zone=Building :: columns: aru_001_cwr_temp
+desc=Chilled water return temperature :: columns: aru_001_cwr_temp
+desc=Roof Top Unit * outdoor air temperature (*: 001, 002, 003, 004) :: columns: rtu_001_oa_temp, rtu_002_oa_temp
+sampling=1 min :: columns: rtu_001_oa_temp, rtu_002_oa_temp
+sampling=5 min :: columns: aru_001_cwr_temp

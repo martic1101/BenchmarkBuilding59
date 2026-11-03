@@ -1,0 +1,129 @@
+{
+  "id": "T2-011",
+  "family": "T2",
+  "source_files": [
+    "rtu_econ_sp.csv"
+  ],
+  "target_schema": [
+    {
+      "name": "timestamp",
+      "dtype": "string 'YYYY-MM-DD HH:MM:SS'",
+      "description": "start of interval"
+    },
+    {
+      "name": "rtu_001_econ_stpt_tn_c",
+      "dtype": "float",
+      "unit": "°C",
+      "description": "Roof Top Unit * economizer setpoint (*: 001, 002, 003, 004) (°C), 30-minute interval"
+    },
+    {
+      "name": "rtu_002_econ_stpt_tn_c",
+      "dtype": "float",
+      "unit": "°C",
+      "description": "Roof Top Unit * economizer setpoint (*: 001, 002, 003, 004) (°C), 30-minute interval"
+    }
+  ],
+  "example_day": "2019-05-16",
+  "test_days": [
+    "2020-12-12",
+    "2020-12-13"
+  ],
+  "source_dates_example": {
+    "rtu_econ_sp": [
+      "2019-05-16"
+    ]
+  },
+  "source_dates_test": {
+    "rtu_econ_sp": [
+      "2020-12-12",
+      "2020-12-13"
+    ]
+  },
+  "n_target_rows_example": 48,
+  "n_target_rows_test": 96,
+  "nl_instruction": "Aggregate rtu_001_econ_stpt_tn, rtu_002_econ_stpt_tn from rtu_econ_sp.csv to 30-minute averages and convert °F to °C. Timestamp = start of interval.",
+  "needs": [
+    "unit",
+    "conversion",
+    "aggregation"
+  ],
+  "knowledge": [
+    {
+      "kind": "sampling_interval",
+      "file": "rtu_econ_sp.csv",
+      "value_min": 1.0,
+      "dict_freq": "1 min"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "rtu_econ_sp.csv",
+      "column": "rtu_001_econ_stpt_tn",
+      "description": "Roof Top Unit * economizer setpoint (*: 001, 002, 003, 004)",
+      "quantity_kind": "temperature_setpoint"
+    },
+    {
+      "kind": "unit",
+      "file": "rtu_econ_sp.csv",
+      "column": "rtu_001_econ_stpt_tn",
+      "true_unit": "°F",
+      "dict_unit": "°F"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "rtu_econ_sp.csv",
+      "column": "rtu_002_econ_stpt_tn",
+      "description": "Roof Top Unit * economizer setpoint (*: 001, 002, 003, 004)",
+      "quantity_kind": "temperature_setpoint"
+    },
+    {
+      "kind": "unit",
+      "file": "rtu_econ_sp.csv",
+      "column": "rtu_002_econ_stpt_tn",
+      "true_unit": "°F",
+      "dict_unit": "°F"
+    }
+  ],
+  "discriminates_against": [
+    "agg_max",
+    "no_or_wrong_conversion"
+  ],
+  "spec": {
+    "family": "T2",
+    "file": "rtu_econ_sp",
+    "columns": [
+      "rtu_001_econ_stpt_tn",
+      "rtu_002_econ_stpt_tn"
+    ],
+    "freq": "30min",
+    "agg": "mean",
+    "conversion": "F_to_C",
+    "rename": {
+      "rtu_001_econ_stpt_tn": "rtu_001_econ_stpt_tn_c",
+      "rtu_002_econ_stpt_tn": "rtu_002_econ_stpt_tn_c"
+    },
+    "out_columns": [
+      "rtu_001_econ_stpt_tn_c",
+      "rtu_002_econ_stpt_tn_c"
+    ],
+    "target_units": {
+      "rtu_001_econ_stpt_tn_c": "°C",
+      "rtu_002_econ_stpt_tn_c": "°C"
+    },
+    "conflict_note": null,
+    "source_units": {
+      "rtu_001_econ_stpt_tn": "°F",
+      "rtu_002_econ_stpt_tn": "°F"
+    },
+    "dict_units": {
+      "rtu_001_econ_stpt_tn": "°F",
+      "rtu_002_econ_stpt_tn": "°F"
+    }
+  },
+  "shown_rows": [
+    0,
+    12,
+    24,
+    35,
+    44
+  ]
+}

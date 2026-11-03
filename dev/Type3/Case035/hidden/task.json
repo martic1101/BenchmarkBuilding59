@@ -1,0 +1,142 @@
+{
+  "id": "T3-036",
+  "family": "T3",
+  "source_files": [
+    "rtu_sa_fr.csv",
+    "zone_temp_interior.csv"
+  ],
+  "target_schema": [
+    {
+      "name": "timestamp",
+      "dtype": "string 'YYYY-MM-DD HH:MM:SS'",
+      "description": "start of interval"
+    },
+    {
+      "name": "rtu_003_fltrd_sa_flow_tn",
+      "dtype": "float",
+      "unit": "CFM",
+      "description": "Roof Top Unit * filtered supply air flow rate (*: 001, 002, 003, 004) (CFM), 1-hour averages"
+    },
+    {
+      "name": "cerc_templogger_5",
+      "dtype": "float",
+      "unit": "°C",
+      "description": "Zone temperature of interior zone (°C), 1-hour averages"
+    }
+  ],
+  "example_day": "2019-03-31",
+  "test_days": [
+    "2019-06-03",
+    "2019-06-04"
+  ],
+  "source_dates_example": {
+    "rtu_sa_fr": [
+      "2019-03-31"
+    ],
+    "zone_temp_interior": [
+      "2019-03-30",
+      "2019-03-31"
+    ]
+  },
+  "source_dates_test": {
+    "rtu_sa_fr": [
+      "2019-06-03",
+      "2019-06-04"
+    ],
+    "zone_temp_interior": [
+      "2019-06-02",
+      "2019-06-03",
+      "2019-06-04"
+    ]
+  },
+  "n_target_rows_example": 24,
+  "n_target_rows_test": 48,
+  "nl_instruction": "Join rtu_sa_fr.csv, zone_temp_interior.csv on timestamp (inner join) after aggregating each to 1-hour averages; keep only rtu_003_fltrd_sa_flow_tn, cerc_templogger_5. Timestamp = start of interval.",
+  "needs": [
+    "sampling_interval",
+    "time_alignment",
+    "join",
+    "aggregation"
+  ],
+  "knowledge": [
+    {
+      "kind": "sampling_interval",
+      "file": "rtu_sa_fr.csv",
+      "value_min": 1.0,
+      "dict_freq": "1 min"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "rtu_sa_fr.csv",
+      "column": "rtu_003_fltrd_sa_flow_tn",
+      "description": "Roof Top Unit * filtered supply air flow rate (*: 001, 002, 003, 004)",
+      "quantity_kind": "air_flow"
+    },
+    {
+      "kind": "unit",
+      "file": "rtu_sa_fr.csv",
+      "column": "rtu_003_fltrd_sa_flow_tn",
+      "true_unit": "CFM",
+      "dict_unit": "CFM"
+    },
+    {
+      "kind": "sampling_interval",
+      "file": "zone_temp_interior.csv",
+      "value_min": 10.0,
+      "dict_freq": "10 min"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "zone_temp_interior.csv",
+      "column": "cerc_templogger_5",
+      "description": "Zone temperature of interior zone",
+      "quantity_kind": "temperature"
+    },
+    {
+      "kind": "unit",
+      "file": "zone_temp_interior.csv",
+      "column": "cerc_templogger_5",
+      "true_unit": "°C",
+      "dict_unit": "°F"
+    }
+  ],
+  "discriminates_against": [
+    "outer_join",
+    "agg_max"
+  ],
+  "spec": {
+    "family": "T3",
+    "sources": [
+      {
+        "file": "rtu_sa_fr",
+        "columns": [
+          "rtu_003_fltrd_sa_flow_tn"
+        ]
+      },
+      {
+        "file": "zone_temp_interior",
+        "columns": [
+          "cerc_templogger_5"
+        ]
+      }
+    ],
+    "freq": "1h",
+    "agg": "mean",
+    "how": "inner",
+    "out_columns": [
+      "rtu_003_fltrd_sa_flow_tn",
+      "cerc_templogger_5"
+    ],
+    "target_units": {
+      "rtu_003_fltrd_sa_flow_tn": "CFM",
+      "cerc_templogger_5": "°C"
+    }
+  },
+  "shown_rows": [
+    0,
+    6,
+    12,
+    17,
+    23
+  ]
+}

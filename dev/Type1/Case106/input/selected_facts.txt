@@ -1,0 +1,7 @@
+columns in scope: wifi_fourth_south
+desc=Wifi connection counts in the south half of forth floor :: columns: ALL
+unit=/ :: columns: ALL
+sampling=10 min :: columns: ALL
+class=Wifi_AP :: columns: ALL
+zone=Floor_S :: columns: ALL
+floor=Building :: columns: ALL

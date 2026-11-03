@@ -1,0 +1,66 @@
+{
+ "source_files": [
+  "rtu_ma_t.csv",
+  "site_weather.csv",
+  "uft_hw_valve.csv"
+ ],
+ "example_day": "2019-06-09",
+ "target_schema": [
+  {
+   "name": "timestamp",
+   "dtype": "string 'YYYY-MM-DD HH:MM:SS'"
+  },
+  {
+   "name": "rtu_001_ma_temp",
+   "dtype": "float",
+   "unit": "°F"
+  },
+  {
+   "name": "rtu_004_ma_temp",
+   "dtype": "float",
+   "unit": "°F"
+  },
+  {
+   "name": "air_temp_set_2",
+   "dtype": "float",
+   "unit": "°C"
+  },
+  {
+   "name": "dew_point_temperature_set_1d",
+   "dtype": "float",
+   "unit": "°C"
+  },
+  {
+   "name": "zone_018_hw_valve",
+   "dtype": "float",
+   "unit": "%"
+  }
+ ],
+ "n_example_day_target_rows": 96,
+ "n_example_day_source_rows": {
+  "rtu_ma_t.csv": 1440,
+  "site_weather.csv": 96,
+  "uft_hw_valve.csv": 2880
+ },
+ "source_blocks": {
+  "rtu_ma_t.csv": [
+   30,
+   15,
+   15,
+   15
+  ],
+  "site_weather.csv": [
+   2,
+   1,
+   1,
+   1
+  ],
+  "uft_hw_valve.csv": [
+   30,
+   15,
+   15,
+   15
+  ]
+ },
+ "note": "source_example/ holds only the source rows inside the time intervals of the shown target rows; source_blocks gives the sizes of the contiguous runs (shown as '...' between runs in the prompt)."
+}

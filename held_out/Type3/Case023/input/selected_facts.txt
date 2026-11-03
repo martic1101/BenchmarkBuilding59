@@ -1,0 +1,20 @@
+columns in scope: zone_039_fan_spd, zone_054_fan_spd, zone_057_cooling_sp
+desc=Cooling temperature setpoint of Zone * :: columns: zone_057_cooling_sp
+desc=Supply air fan speed of Zone * :: columns: zone_039_fan_spd, zone_054_fan_spd
+unit=% :: columns: zone_039_fan_spd, zone_054_fan_spd
+unit=°F :: columns: zone_057_cooling_sp
+sampling=1 min :: columns: zone_039_fan_spd, zone_054_fan_spd
+sampling=5 min :: columns: zone_057_cooling_sp
+class=Cooling_Temperature_Setpoint :: columns: zone_057_cooling_sp
+class=Supply_Air_Flow_Sensor :: columns: zone_039_fan_spd, zone_054_fan_spd
+floor=Floor_G :: columns: zone_039_fan_spd
+floor=Floor_S :: columns: zone_054_fan_spd, zone_057_cooling_sp
+zone=zone_039 :: columns: zone_039_fan_spd
+zone=zone_054 :: columns: zone_054_fan_spd
+zone=zone_057 :: columns: zone_057_cooling_sp
+vav=UTF_2-19 :: columns: zone_039_fan_spd
+vav=UTF_G-11 :: columns: zone_057_cooling_sp
+vav=UTF_G-8 :: columns: zone_054_fan_spd
+rtu=RTU01 :: columns: zone_054_fan_spd
+rtu=RTU03 :: columns: zone_057_cooling_sp
+rtu=RTU04 :: columns: zone_039_fan_spd

@@ -1,0 +1,7 @@
+columns in scope: rtu_003_fltrd_lvl2_plenum_press_tn
+desc=Roof Top Unit * plenum air pressure at floor ** (*: 001, 002, 003, 004; **: gnd_lvl, lvl2) :: columns: ALL
+unit=psi :: columns: ALL
+sampling=1 min :: columns: ALL
+class=Underfloor_Air_Plenum_Static_Pressure_Sensor :: columns: ALL
+zone=RTU03 :: columns: ALL
+rtu=RTU03 :: columns: ALL

@@ -1,0 +1,165 @@
+{
+  "id": "T3-084",
+  "family": "T3",
+  "source_files": [
+    "wifi.csv",
+    "zone_temp_exterior.csv"
+  ],
+  "target_schema": [
+    {
+      "name": "timestamp",
+      "dtype": "string 'YYYY-MM-DD HH:MM:SS'",
+      "description": "start of interval"
+    },
+    {
+      "name": "wifi_first_south",
+      "dtype": "float",
+      "unit": "/",
+      "description": "Wifi connection counts in the south half of first floor (/), 1-hour averages"
+    },
+    {
+      "name": "zone_036_temp",
+      "dtype": "float",
+      "unit": "°F",
+      "description": "Zone temperature of exterior zone (°F), 1-hour averages"
+    },
+    {
+      "name": "zone_071_temp",
+      "dtype": "float",
+      "unit": "°F",
+      "description": "Zone temperature of exterior zone (°F), 1-hour averages"
+    }
+  ],
+  "example_day": "2020-02-13",
+  "test_days": [
+    "2020-12-22",
+    "2020-12-23"
+  ],
+  "source_dates_example": {
+    "wifi": [
+      "2020-02-13"
+    ],
+    "zone_temp_exterior": [
+      "2020-02-12",
+      "2020-02-13"
+    ]
+  },
+  "source_dates_test": {
+    "wifi": [
+      "2020-12-22",
+      "2020-12-23"
+    ],
+    "zone_temp_exterior": [
+      "2020-12-21",
+      "2020-12-22",
+      "2020-12-23"
+    ]
+  },
+  "n_target_rows_example": 24,
+  "n_target_rows_test": 48,
+  "nl_instruction": "Join wifi.csv, zone_temp_exterior.csv on timestamp (inner join) after aggregating each to 1-hour averages; keep only wifi_first_south, zone_036_temp, zone_071_temp. Timestamp = start of interval.",
+  "needs": [
+    "sampling_interval",
+    "time_alignment",
+    "join",
+    "aggregation"
+  ],
+  "knowledge": [
+    {
+      "kind": "sampling_interval",
+      "file": "wifi.csv",
+      "value_min": 5.0,
+      "dict_freq": "10 min"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "wifi.csv",
+      "column": "wifi_first_south",
+      "description": "Wifi connection counts in the south half of first floor",
+      "quantity_kind": "wifi_connection_count"
+    },
+    {
+      "kind": "unit",
+      "file": "wifi.csv",
+      "column": "wifi_first_south",
+      "true_unit": "/",
+      "dict_unit": "/"
+    },
+    {
+      "kind": "sampling_interval",
+      "file": "zone_temp_exterior.csv",
+      "value_min": 1.0,
+      "dict_freq": "1 min"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "zone_temp_exterior.csv",
+      "column": "zone_036_temp",
+      "description": "Zone temperature of exterior zone",
+      "quantity_kind": "temperature"
+    },
+    {
+      "kind": "unit",
+      "file": "zone_temp_exterior.csv",
+      "column": "zone_036_temp",
+      "true_unit": "°F",
+      "dict_unit": "°F"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "zone_temp_exterior.csv",
+      "column": "zone_071_temp",
+      "description": "Zone temperature of exterior zone",
+      "quantity_kind": "temperature"
+    },
+    {
+      "kind": "unit",
+      "file": "zone_temp_exterior.csv",
+      "column": "zone_071_temp",
+      "true_unit": "°F",
+      "dict_unit": "°F"
+    }
+  ],
+  "discriminates_against": [
+    "outer_join",
+    "agg_max"
+  ],
+  "spec": {
+    "family": "T3",
+    "sources": [
+      {
+        "file": "wifi",
+        "columns": [
+          "wifi_first_south"
+        ]
+      },
+      {
+        "file": "zone_temp_exterior",
+        "columns": [
+          "zone_036_temp",
+          "zone_071_temp"
+        ]
+      }
+    ],
+    "freq": "1h",
+    "agg": "mean",
+    "how": "inner",
+    "out_columns": [
+      "wifi_first_south",
+      "zone_036_temp",
+      "zone_071_temp"
+    ],
+    "target_units": {
+      "wifi_first_south": "/",
+      "zone_036_temp": "°F",
+      "zone_071_temp": "°F"
+    }
+  },
+  "shown_rows": [
+    0,
+    6,
+    12,
+    17,
+    23
+  ]
+}

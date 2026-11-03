@@ -1,0 +1,64 @@
+{
+ "source_files": [
+  "ashp_meter.csv",
+  "ele.csv",
+  "rtu_oa_damper.csv"
+ ],
+ "example_day": "2020-11-20",
+ "target_schema": [
+  {
+   "name": "timestamp",
+   "dtype": "string 'YYYY-MM-DD HH:MM:SS'"
+  },
+  {
+   "name": "aru_001_power_mbtuph",
+   "dtype": "float",
+   "unit": "mbtuph"
+  },
+  {
+   "name": "hvac_N",
+   "dtype": "float",
+   "unit": "kW"
+  },
+  {
+   "name": "hvac_S",
+   "dtype": "float",
+   "unit": "kW"
+  },
+  {
+   "name": "rtu_001_oadmpr_pct",
+   "dtype": "float",
+   "unit": "%"
+  }
+ ],
+ "n_example_day_target_rows": 96,
+ "n_example_day_source_rows": {
+  "ashp_meter.csv": 288,
+  "ele.csv": 96,
+  "rtu_oa_damper.csv": 2880
+ },
+ "source_blocks": {
+  "ashp_meter.csv": [
+   3,
+   3,
+   3,
+   3,
+   3
+  ],
+  "ele.csv": [
+   1,
+   1,
+   1,
+   1,
+   1
+  ],
+  "rtu_oa_damper.csv": [
+   15,
+   15,
+   15,
+   15,
+   15
+  ]
+ },
+ "note": "source_example/ holds only the source rows inside the time intervals of the shown target rows; source_blocks gives the sizes of the contiguous runs (shown as '...' between runs in the prompt)."
+}

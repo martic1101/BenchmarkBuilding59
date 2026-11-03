@@ -1,0 +1,18 @@
+columns in scope: aru_001_hws_temp, rtu_004_fltrd_lvl2_plenum_press_tn, zone_055_temp
+vav=UTF_G-9 :: columns: zone_055_temp
+floor=Floor_S :: columns: zone_055_temp
+unit=psi :: columns: rtu_004_fltrd_lvl2_plenum_press_tn
+unit=°F :: columns: aru_001_hws_temp, zone_055_temp
+sampling=1 min :: columns: rtu_004_fltrd_lvl2_plenum_press_tn, zone_055_temp
+sampling=5 min :: columns: aru_001_hws_temp
+rtu=RTU02 :: columns: zone_055_temp
+rtu=RTU04 :: columns: rtu_004_fltrd_lvl2_plenum_press_tn
+desc=Hot water supply temperature :: columns: aru_001_hws_temp
+desc=Roof Top Unit * plenum air pressure at floor ** (*: 001, 002, 003, 004; **: gnd_lvl, lvl2) :: columns: rtu_004_fltrd_lvl2_plenum_press_tn
+desc=Zone temperature of exterior zone :: columns: zone_055_temp
+class=Hot_Water_Temperature_Sensor :: columns: aru_001_hws_temp
+class=Underfloor_Air_Plenum_Static_Pressure_Sensor :: columns: rtu_004_fltrd_lvl2_plenum_press_tn
+class=Zone_Air_Temperature_Sensor :: columns: zone_055_temp
+zone=Building :: columns: aru_001_hws_temp
+zone=RTU04 :: columns: rtu_004_fltrd_lvl2_plenum_press_tn
+zone=zone_055 :: columns: zone_055_temp

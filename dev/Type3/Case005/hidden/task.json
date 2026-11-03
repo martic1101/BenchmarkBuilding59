@@ -1,0 +1,142 @@
+{
+  "id": "T3-006",
+  "family": "T3",
+  "source_files": [
+    "ashp_meter.csv",
+    "rtu_sa_fr.csv"
+  ],
+  "target_schema": [
+    {
+      "name": "timestamp",
+      "dtype": "string 'YYYY-MM-DD HH:MM:SS'",
+      "description": "start of interval"
+    },
+    {
+      "name": "aru_001_power_mbtuph",
+      "dtype": "float",
+      "unit": "mbtuph",
+      "description": "Heat meter for air source heat pump (mbtuph), 15-minute averages"
+    },
+    {
+      "name": "rtu_004_fltrd_sa_flow_tn",
+      "dtype": "float",
+      "unit": "CFM",
+      "description": "Roof Top Unit * filtered supply air flow rate (*: 001, 002, 003, 004) (CFM), 15-minute averages"
+    }
+  ],
+  "example_day": "2020-11-20",
+  "test_days": [
+    "2020-10-20",
+    "2020-10-21"
+  ],
+  "source_dates_example": {
+    "ashp_meter": [
+      "2020-11-20"
+    ],
+    "rtu_sa_fr": [
+      "2020-11-19",
+      "2020-11-20"
+    ]
+  },
+  "source_dates_test": {
+    "ashp_meter": [
+      "2020-10-20",
+      "2020-10-21"
+    ],
+    "rtu_sa_fr": [
+      "2020-10-19",
+      "2020-10-20",
+      "2020-10-21"
+    ]
+  },
+  "n_target_rows_example": 96,
+  "n_target_rows_test": 192,
+  "nl_instruction": "Join ashp_meter.csv, rtu_sa_fr.csv on timestamp (inner join) after aggregating each to 15-minute averages; keep only aru_001_power_mbtuph, rtu_004_fltrd_sa_flow_tn. Timestamp = start of interval.",
+  "needs": [
+    "sampling_interval",
+    "time_alignment",
+    "join",
+    "aggregation"
+  ],
+  "knowledge": [
+    {
+      "kind": "sampling_interval",
+      "file": "ashp_meter.csv",
+      "value_min": 5.0,
+      "dict_freq": "5 min"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "ashp_meter.csv",
+      "column": "aru_001_power_mbtuph",
+      "description": "Heat meter for air source heat pump",
+      "quantity_kind": "thermal_power"
+    },
+    {
+      "kind": "unit",
+      "file": "ashp_meter.csv",
+      "column": "aru_001_power_mbtuph",
+      "true_unit": "mbtuph",
+      "dict_unit": "mbtuph"
+    },
+    {
+      "kind": "sampling_interval",
+      "file": "rtu_sa_fr.csv",
+      "value_min": 1.0,
+      "dict_freq": "1 min"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "rtu_sa_fr.csv",
+      "column": "rtu_004_fltrd_sa_flow_tn",
+      "description": "Roof Top Unit * filtered supply air flow rate (*: 001, 002, 003, 004)",
+      "quantity_kind": "air_flow"
+    },
+    {
+      "kind": "unit",
+      "file": "rtu_sa_fr.csv",
+      "column": "rtu_004_fltrd_sa_flow_tn",
+      "true_unit": "CFM",
+      "dict_unit": "CFM"
+    }
+  ],
+  "discriminates_against": [
+    "outer_join",
+    "agg_max"
+  ],
+  "spec": {
+    "family": "T3",
+    "sources": [
+      {
+        "file": "ashp_meter",
+        "columns": [
+          "aru_001_power_mbtuph"
+        ]
+      },
+      {
+        "file": "rtu_sa_fr",
+        "columns": [
+          "rtu_004_fltrd_sa_flow_tn"
+        ]
+      }
+    ],
+    "freq": "15min",
+    "agg": "mean",
+    "how": "inner",
+    "out_columns": [
+      "aru_001_power_mbtuph",
+      "rtu_004_fltrd_sa_flow_tn"
+    ],
+    "target_units": {
+      "aru_001_power_mbtuph": "mbtuph",
+      "rtu_004_fltrd_sa_flow_tn": "CFM"
+    }
+  },
+  "shown_rows": [
+    0,
+    24,
+    48,
+    71,
+    95
+  ]
+}

@@ -1,0 +1,92 @@
+{
+  "id": "T1-008",
+  "family": "T1",
+  "source_files": [
+    "ashp_hw.csv"
+  ],
+  "target_schema": [
+    {
+      "name": "timestamp",
+      "dtype": "string 'YYYY-MM-DD HH:MM:SS'",
+      "description": "start of interval"
+    },
+    {
+      "name": "aru_001_hws_fr_gpm",
+      "dtype": "float",
+      "unit": "gpm",
+      "description": "Hot water fow rate (gpm), 30-minute interval"
+    }
+  ],
+  "example_day": "2020-11-06",
+  "test_days": [
+    "2019-12-31",
+    "2020-01-01"
+  ],
+  "source_dates_example": {
+    "ashp_hw": [
+      "2020-11-06"
+    ]
+  },
+  "source_dates_test": {
+    "ashp_hw": [
+      "2019-12-31",
+      "2020-01-01"
+    ]
+  },
+  "n_target_rows_example": 48,
+  "n_target_rows_test": 96,
+  "nl_instruction": "Aggregate aru_001_hws_fr_gpm from ashp_hw.csv to 30-minute intervals using the maximum. Timestamp = start of interval.",
+  "needs": [
+    "aggregation",
+    "sampling_interval"
+  ],
+  "knowledge": [
+    {
+      "kind": "sampling_interval",
+      "file": "ashp_hw.csv",
+      "value_min": 5.0,
+      "dict_freq": "5 min"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "ashp_hw.csv",
+      "column": "aru_001_hws_fr_gpm",
+      "description": "Hot water fow rate",
+      "quantity_kind": "water_flow"
+    },
+    {
+      "kind": "unit",
+      "file": "ashp_hw.csv",
+      "column": "aru_001_hws_fr_gpm",
+      "true_unit": "gpm",
+      "dict_unit": "CFM"
+    }
+  ],
+  "discriminates_against": [
+    "agg_mean",
+    "agg_min"
+  ],
+  "spec": {
+    "family": "T1",
+    "file": "ashp_hw",
+    "columns": [
+      "aru_001_hws_fr_gpm"
+    ],
+    "freq": "30min",
+    "agg": "max",
+    "out_columns": [
+      "aru_001_hws_fr_gpm"
+    ],
+    "target_units": {
+      "aru_001_hws_fr_gpm": "gpm"
+    }
+  },
+  "benchmark_version": "holdout_v2",
+  "shown_rows": [
+    0,
+    12,
+    24,
+    35,
+    47
+  ]
+}

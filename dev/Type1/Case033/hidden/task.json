@@ -1,0 +1,114 @@
+{
+  "id": "T1-039",
+  "family": "T1",
+  "source_files": [
+    "rtu_fan_spd.csv"
+  ],
+  "target_schema": [
+    {
+      "name": "timestamp",
+      "dtype": "string 'YYYY-MM-DD HH:MM:SS'",
+      "description": "start of interval"
+    },
+    {
+      "name": "rtu_001_rf_vfd_spd_fbk_tn",
+      "dtype": "float",
+      "unit": "%",
+      "description": "Roof Top Unit * return fan speed (*: 001, 002, 003, 004) (%), 30-minute interval"
+    },
+    {
+      "name": "rtu_001_sf_vfd_spd_fbk_tn",
+      "dtype": "float",
+      "unit": "%",
+      "description": "Roof Top Unit * supply fan speed (*: 001, 002, 003, 004) (%), 30-minute interval"
+    }
+  ],
+  "example_day": "2019-05-18",
+  "test_days": [
+    "2019-04-06",
+    "2019-04-07"
+  ],
+  "source_dates_example": {
+    "rtu_fan_spd": [
+      "2019-05-18"
+    ]
+  },
+  "source_dates_test": {
+    "rtu_fan_spd": [
+      "2019-04-06",
+      "2019-04-07"
+    ]
+  },
+  "n_target_rows_example": 48,
+  "n_target_rows_test": 96,
+  "nl_instruction": "Aggregate rtu_001_rf_vfd_spd_fbk_tn, rtu_001_sf_vfd_spd_fbk_tn from rtu_fan_spd.csv to 30-minute intervals using the minimum. Timestamp = start of interval.",
+  "needs": [
+    "aggregation",
+    "sampling_interval"
+  ],
+  "knowledge": [
+    {
+      "kind": "sampling_interval",
+      "file": "rtu_fan_spd.csv",
+      "value_min": 1.0,
+      "dict_freq": "1 min"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "rtu_fan_spd.csv",
+      "column": "rtu_001_rf_vfd_spd_fbk_tn",
+      "description": "Roof Top Unit * return fan speed (*: 001, 002, 003, 004)",
+      "quantity_kind": "fan_speed"
+    },
+    {
+      "kind": "unit",
+      "file": "rtu_fan_spd.csv",
+      "column": "rtu_001_rf_vfd_spd_fbk_tn",
+      "true_unit": "%",
+      "dict_unit": "%"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "rtu_fan_spd.csv",
+      "column": "rtu_001_sf_vfd_spd_fbk_tn",
+      "description": "Roof Top Unit * supply fan speed (*: 001, 002, 003, 004)",
+      "quantity_kind": "fan_speed"
+    },
+    {
+      "kind": "unit",
+      "file": "rtu_fan_spd.csv",
+      "column": "rtu_001_sf_vfd_spd_fbk_tn",
+      "true_unit": "%",
+      "dict_unit": "%"
+    }
+  ],
+  "discriminates_against": [
+    "agg_mean",
+    "agg_max"
+  ],
+  "spec": {
+    "family": "T1",
+    "file": "rtu_fan_spd",
+    "columns": [
+      "rtu_001_rf_vfd_spd_fbk_tn",
+      "rtu_001_sf_vfd_spd_fbk_tn"
+    ],
+    "freq": "30min",
+    "agg": "min",
+    "out_columns": [
+      "rtu_001_rf_vfd_spd_fbk_tn",
+      "rtu_001_sf_vfd_spd_fbk_tn"
+    ],
+    "target_units": {
+      "rtu_001_rf_vfd_spd_fbk_tn": "%",
+      "rtu_001_sf_vfd_spd_fbk_tn": "%"
+    }
+  },
+  "shown_rows": [
+    0,
+    12,
+    24,
+    35,
+    47
+  ]
+}

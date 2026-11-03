@@ -1,0 +1,15 @@
+columns in scope: rtu_002_oadmpr_pct, rtu_003_oadmpr_pct, wifi_third_south
+floor=Building :: columns: wifi_third_south
+desc=Roof Top Unit * outdoor air damper position (*: 001, 002, 003, 004) :: columns: rtu_002_oadmpr_pct, rtu_003_oadmpr_pct
+desc=Wifi connection counts in the south half of third floor :: columns: wifi_third_south
+unit=% :: columns: rtu_002_oadmpr_pct, rtu_003_oadmpr_pct
+unit=/ :: columns: wifi_third_south
+sampling=1 min :: columns: rtu_002_oadmpr_pct, rtu_003_oadmpr_pct
+sampling=10 min :: columns: wifi_third_south
+class=Outdoor_Air_Damper :: columns: rtu_002_oadmpr_pct, rtu_003_oadmpr_pct
+class=Wifi_AP :: columns: wifi_third_south
+rtu=RTU02 :: columns: rtu_002_oadmpr_pct
+rtu=RTU03 :: columns: rtu_003_oadmpr_pct
+zone=Floor_G :: columns: wifi_third_south
+zone=RTU02 :: columns: rtu_002_oadmpr_pct
+zone=RTU03 :: columns: rtu_003_oadmpr_pct

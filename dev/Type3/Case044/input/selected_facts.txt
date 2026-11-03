@@ -1,0 +1,10 @@
+columns in scope: dew_point_temperature_set_1d, relative_humidity_set_1, zone_053_hw_valve, zone_057_hw_valve
+class=Outdoor_Air_Humidity_Sensor :: columns: relative_humidity_set_1
+zone=Building :: columns: relative_humidity_set_1
+unit=% :: columns: relative_humidity_set_1, zone_053_hw_valve, zone_057_hw_valve
+unit=°C :: columns: dew_point_temperature_set_1d
+sampling=1 min :: columns: zone_053_hw_valve, zone_057_hw_valve
+sampling=15 min :: columns: dew_point_temperature_set_1d, relative_humidity_set_1
+desc=Heating water valve position of Zone * :: columns: zone_053_hw_valve, zone_057_hw_valve
+desc=Outdoor air dew temperature of sensor 2 :: columns: dew_point_temperature_set_1d
+desc=Outdoor air relative humidity from sensor 1 :: columns: relative_humidity_set_1

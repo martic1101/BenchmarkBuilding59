@@ -1,0 +1,188 @@
+{
+  "id": "T3-019",
+  "family": "T3",
+  "source_files": [
+    "rtu_oa_fr.csv",
+    "rtu_plenum_p.csv"
+  ],
+  "target_schema": [
+    {
+      "name": "timestamp",
+      "dtype": "string 'YYYY-MM-DD HH:MM:SS'",
+      "description": "start of interval"
+    },
+    {
+      "name": "rtu_001_oa_flow_tn",
+      "dtype": "float",
+      "unit": "CFM",
+      "description": "Roof Top Unit * outdoor air flow rate (*: 001, 002, 003, 004) (CFM), 30-minute averages"
+    },
+    {
+      "name": "rtu_003_oa_flow_tn",
+      "dtype": "float",
+      "unit": "CFM",
+      "description": "Roof Top Unit * outdoor air flow rate (*: 001, 002, 003, 004) (CFM), 30-minute averages"
+    },
+    {
+      "name": "rtu_003_fltrd_gnd_lvl_plenum_press_tn",
+      "dtype": "float",
+      "unit": "inH2O (suspected)",
+      "description": "Roof Top Unit * plenum air pressure at floor ** (*: 001, 002, 003, 004; **: gnd_lvl, lvl2) (inH2O (suspected)), 30-minute averages"
+    },
+    {
+      "name": "rtu_003_fltrd_lvl2_plenum_press_tn",
+      "dtype": "float",
+      "unit": "inH2O (suspected)",
+      "description": "Roof Top Unit * plenum air pressure at floor ** (*: 001, 002, 003, 004; **: gnd_lvl, lvl2) (inH2O (suspected)), 30-minute averages"
+    }
+  ],
+  "example_day": "2019-08-05",
+  "test_days": [
+    "2019-09-22",
+    "2019-09-23"
+  ],
+  "source_dates_example": {
+    "rtu_oa_fr": [
+      "2019-08-05"
+    ],
+    "rtu_plenum_p": [
+      "2019-08-04",
+      "2019-08-05"
+    ]
+  },
+  "source_dates_test": {
+    "rtu_oa_fr": [
+      "2019-09-22",
+      "2019-09-23"
+    ],
+    "rtu_plenum_p": [
+      "2019-09-21",
+      "2019-09-22",
+      "2019-09-23"
+    ]
+  },
+  "n_target_rows_example": 48,
+  "n_target_rows_test": 96,
+  "nl_instruction": "Join rtu_oa_fr.csv, rtu_plenum_p.csv on timestamp (inner join) after aggregating each to 30-minute averages; keep only rtu_001_oa_flow_tn, rtu_003_oa_flow_tn, rtu_003_fltrd_gnd_lvl_plenum_press_tn, rtu_003_fltrd_lvl2_plenum_press_tn. Timestamp = start of interval.",
+  "needs": [
+    "sampling_interval",
+    "time_alignment",
+    "join",
+    "aggregation"
+  ],
+  "knowledge": [
+    {
+      "kind": "sampling_interval",
+      "file": "rtu_oa_fr.csv",
+      "value_min": 1.0,
+      "dict_freq": "1 min"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "rtu_oa_fr.csv",
+      "column": "rtu_001_oa_flow_tn",
+      "description": "Roof Top Unit * outdoor air flow rate (*: 001, 002, 003, 004)",
+      "quantity_kind": "air_flow"
+    },
+    {
+      "kind": "unit",
+      "file": "rtu_oa_fr.csv",
+      "column": "rtu_001_oa_flow_tn",
+      "true_unit": "CFM",
+      "dict_unit": "CFM"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "rtu_oa_fr.csv",
+      "column": "rtu_003_oa_flow_tn",
+      "description": "Roof Top Unit * outdoor air flow rate (*: 001, 002, 003, 004)",
+      "quantity_kind": "air_flow"
+    },
+    {
+      "kind": "unit",
+      "file": "rtu_oa_fr.csv",
+      "column": "rtu_003_oa_flow_tn",
+      "true_unit": "CFM",
+      "dict_unit": "CFM"
+    },
+    {
+      "kind": "sampling_interval",
+      "file": "rtu_plenum_p.csv",
+      "value_min": 1.0,
+      "dict_freq": "1 min"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "rtu_plenum_p.csv",
+      "column": "rtu_003_fltrd_gnd_lvl_plenum_press_tn",
+      "description": "Roof Top Unit * plenum air pressure at floor ** (*: 001, 002, 003, 004; **: gnd_lvl, lvl2)",
+      "quantity_kind": "pressure"
+    },
+    {
+      "kind": "unit",
+      "file": "rtu_plenum_p.csv",
+      "column": "rtu_003_fltrd_gnd_lvl_plenum_press_tn",
+      "true_unit": "inH2O (suspected)",
+      "dict_unit": "psi"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "rtu_plenum_p.csv",
+      "column": "rtu_003_fltrd_lvl2_plenum_press_tn",
+      "description": "Roof Top Unit * plenum air pressure at floor ** (*: 001, 002, 003, 004; **: gnd_lvl, lvl2)",
+      "quantity_kind": "pressure"
+    },
+    {
+      "kind": "unit",
+      "file": "rtu_plenum_p.csv",
+      "column": "rtu_003_fltrd_lvl2_plenum_press_tn",
+      "true_unit": "inH2O (suspected)",
+      "dict_unit": "psi"
+    }
+  ],
+  "discriminates_against": [
+    "outer_join",
+    "agg_max"
+  ],
+  "spec": {
+    "family": "T3",
+    "sources": [
+      {
+        "file": "rtu_oa_fr",
+        "columns": [
+          "rtu_001_oa_flow_tn",
+          "rtu_003_oa_flow_tn"
+        ]
+      },
+      {
+        "file": "rtu_plenum_p",
+        "columns": [
+          "rtu_003_fltrd_gnd_lvl_plenum_press_tn",
+          "rtu_003_fltrd_lvl2_plenum_press_tn"
+        ]
+      }
+    ],
+    "freq": "30min",
+    "agg": "mean",
+    "how": "inner",
+    "out_columns": [
+      "rtu_001_oa_flow_tn",
+      "rtu_003_oa_flow_tn",
+      "rtu_003_fltrd_gnd_lvl_plenum_press_tn",
+      "rtu_003_fltrd_lvl2_plenum_press_tn"
+    ],
+    "target_units": {
+      "rtu_001_oa_flow_tn": "CFM",
+      "rtu_003_oa_flow_tn": "CFM",
+      "rtu_003_fltrd_gnd_lvl_plenum_press_tn": "inH2O (suspected)",
+      "rtu_003_fltrd_lvl2_plenum_press_tn": "inH2O (suspected)"
+    }
+  },
+  "shown_rows": [
+    0,
+    12,
+    24,
+    35,
+    47
+  ]
+}

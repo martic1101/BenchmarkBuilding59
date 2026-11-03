@@ -1,0 +1,14 @@
+columns in scope: rtu_001_ra_temp, rtu_002_ra_temp, rtu_004_oa_flow_tn
+sampling=1 min :: columns: ALL
+desc=Roof Top Unit * outdoor air flow rate (*: 001, 002, 003, 004) :: columns: rtu_004_oa_flow_tn
+desc=Roof Top Unit * return air temperature (*: 001, 002, 003, 004) :: columns: rtu_001_ra_temp, rtu_002_ra_temp
+unit=CFM :: columns: rtu_004_oa_flow_tn
+unit=°F :: columns: rtu_001_ra_temp, rtu_002_ra_temp
+class=Outdoor_Air_Flow_Rate :: columns: rtu_004_oa_flow_tn
+class=Return_Air_Temperature_Sensor :: columns: rtu_001_ra_temp, rtu_002_ra_temp
+zone=RTU01 :: columns: rtu_001_ra_temp
+zone=RTU02 :: columns: rtu_002_ra_temp
+zone=RTU04 :: columns: rtu_004_oa_flow_tn
+rtu=RTU01 :: columns: rtu_001_ra_temp
+rtu=RTU02 :: columns: rtu_002_ra_temp
+rtu=RTU04 :: columns: rtu_004_oa_flow_tn

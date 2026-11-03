@@ -1,0 +1,10 @@
+columns in scope: rtu_002_rf_vfd_spd_fbk_tn, rtu_003_sat_sp_tn, zone_038_hw_valve, zone_070_hw_valve
+sampling=1 min :: columns: ALL
+class=Return_Air_Fan_Speed :: columns: rtu_002_rf_vfd_spd_fbk_tn
+zone=RTU02 :: columns: rtu_002_rf_vfd_spd_fbk_tn
+rtu=RTU02 :: columns: rtu_002_rf_vfd_spd_fbk_tn
+unit=% :: columns: rtu_002_rf_vfd_spd_fbk_tn, zone_038_hw_valve, zone_070_hw_valve
+unit=°F :: columns: rtu_003_sat_sp_tn
+desc=Heating water valve position of Zone * :: columns: zone_038_hw_valve, zone_070_hw_valve
+desc=Roof Top Unit * return fan speed (*: 001, 002, 003, 004) :: columns: rtu_002_rf_vfd_spd_fbk_tn
+desc=Roof Top Unit * supply air temperature setpoint (*: 001, 002, 003, 004) :: columns: rtu_003_sat_sp_tn

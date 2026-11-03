@@ -1,0 +1,207 @@
+{
+  "id": "T3-023",
+  "family": "T3",
+  "source_files": [
+    "ashp_hw.csv",
+    "rtu_oa_damper.csv",
+    "uft_hw_valve.csv"
+  ],
+  "target_schema": [
+    {
+      "name": "timestamp",
+      "dtype": "string 'YYYY-MM-DD HH:MM:SS'",
+      "description": "start of interval"
+    },
+    {
+      "name": "aru_001_hws_fr_gpm",
+      "dtype": "float",
+      "unit": "gpm",
+      "description": "Hot water fow rate (gpm), 1-hour averages"
+    },
+    {
+      "name": "rtu_003_oadmpr_pct",
+      "dtype": "float",
+      "unit": "%",
+      "description": "Roof Top Unit * outdoor air damper position (*: 001, 002, 003, 004) (%), 1-hour averages"
+    },
+    {
+      "name": "rtu_004_oadmpr_pct",
+      "dtype": "float",
+      "unit": "%",
+      "description": "Roof Top Unit * outdoor air damper position (*: 001, 002, 003, 004) (%), 1-hour averages"
+    },
+    {
+      "name": "zone_035_hw_valve",
+      "dtype": "float",
+      "unit": "%",
+      "description": "Heating water valve position of Zone * (%), 1-hour averages"
+    }
+  ],
+  "example_day": "2019-11-25",
+  "test_days": [
+    "2019-12-26",
+    "2019-12-27"
+  ],
+  "source_dates_example": {
+    "ashp_hw": [
+      "2019-11-25"
+    ],
+    "rtu_oa_damper": [
+      "2019-11-25"
+    ],
+    "uft_hw_valve": [
+      "2019-11-24",
+      "2019-11-25"
+    ]
+  },
+  "source_dates_test": {
+    "ashp_hw": [
+      "2019-12-26",
+      "2019-12-27"
+    ],
+    "rtu_oa_damper": [
+      "2019-12-26",
+      "2019-12-27"
+    ],
+    "uft_hw_valve": [
+      "2019-12-25",
+      "2019-12-26",
+      "2019-12-27"
+    ]
+  },
+  "n_target_rows_example": 24,
+  "n_target_rows_test": 48,
+  "nl_instruction": "Join ashp_hw.csv, rtu_oa_damper.csv, uft_hw_valve.csv on timestamp (inner join) after aggregating each to 1-hour averages; keep only aru_001_hws_fr_gpm, rtu_003_oadmpr_pct, rtu_004_oadmpr_pct, zone_035_hw_valve. Timestamp = start of interval.",
+  "needs": [
+    "sampling_interval",
+    "time_alignment",
+    "join",
+    "aggregation"
+  ],
+  "knowledge": [
+    {
+      "kind": "sampling_interval",
+      "file": "ashp_hw.csv",
+      "value_min": 5.0,
+      "dict_freq": "5 min"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "ashp_hw.csv",
+      "column": "aru_001_hws_fr_gpm",
+      "description": "Hot water fow rate",
+      "quantity_kind": "water_flow"
+    },
+    {
+      "kind": "unit",
+      "file": "ashp_hw.csv",
+      "column": "aru_001_hws_fr_gpm",
+      "true_unit": "gpm",
+      "dict_unit": "CFM"
+    },
+    {
+      "kind": "sampling_interval",
+      "file": "rtu_oa_damper.csv",
+      "value_min": 1.0,
+      "dict_freq": "1 min"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "rtu_oa_damper.csv",
+      "column": "rtu_003_oadmpr_pct",
+      "description": "Roof Top Unit * outdoor air damper position (*: 001, 002, 003, 004)",
+      "quantity_kind": "damper_position"
+    },
+    {
+      "kind": "unit",
+      "file": "rtu_oa_damper.csv",
+      "column": "rtu_003_oadmpr_pct",
+      "true_unit": "%",
+      "dict_unit": "%"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "rtu_oa_damper.csv",
+      "column": "rtu_004_oadmpr_pct",
+      "description": "Roof Top Unit * outdoor air damper position (*: 001, 002, 003, 004)",
+      "quantity_kind": "damper_position"
+    },
+    {
+      "kind": "unit",
+      "file": "rtu_oa_damper.csv",
+      "column": "rtu_004_oadmpr_pct",
+      "true_unit": "%",
+      "dict_unit": "%"
+    },
+    {
+      "kind": "sampling_interval",
+      "file": "uft_hw_valve.csv",
+      "value_min": 1.0,
+      "dict_freq": "1 min"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "uft_hw_valve.csv",
+      "column": "zone_035_hw_valve",
+      "description": "Heating water valve position of Zone *",
+      "quantity_kind": "valve_position"
+    },
+    {
+      "kind": "unit",
+      "file": "uft_hw_valve.csv",
+      "column": "zone_035_hw_valve",
+      "true_unit": "%",
+      "dict_unit": "%"
+    }
+  ],
+  "discriminates_against": [
+    "outer_join",
+    "agg_max"
+  ],
+  "spec": {
+    "family": "T3",
+    "sources": [
+      {
+        "file": "ashp_hw",
+        "columns": [
+          "aru_001_hws_fr_gpm"
+        ]
+      },
+      {
+        "file": "rtu_oa_damper",
+        "columns": [
+          "rtu_003_oadmpr_pct",
+          "rtu_004_oadmpr_pct"
+        ]
+      },
+      {
+        "file": "uft_hw_valve",
+        "columns": [
+          "zone_035_hw_valve"
+        ]
+      }
+    ],
+    "freq": "1h",
+    "agg": "mean",
+    "how": "inner",
+    "out_columns": [
+      "aru_001_hws_fr_gpm",
+      "rtu_003_oadmpr_pct",
+      "rtu_004_oadmpr_pct",
+      "zone_035_hw_valve"
+    ],
+    "target_units": {
+      "aru_001_hws_fr_gpm": "gpm",
+      "rtu_003_oadmpr_pct": "%",
+      "rtu_004_oadmpr_pct": "%",
+      "zone_035_hw_valve": "%"
+    }
+  },
+  "shown_rows": [
+    0,
+    6,
+    12,
+    17,
+    23
+  ]
+}

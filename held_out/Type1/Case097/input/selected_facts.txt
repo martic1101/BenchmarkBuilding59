@@ -1,0 +1,14 @@
+columns in scope: zone_051_fan_spd, zone_067_fan_spd, zone_070_fan_spd
+desc=Supply air fan speed of Zone * :: columns: ALL
+unit=% :: columns: ALL
+sampling=1 min :: columns: ALL
+class=Supply_Air_Flow_Sensor :: columns: ALL
+floor=Floor_S :: columns: ALL
+rtu=RTU01 :: columns: zone_051_fan_spd
+rtu=RTU04 :: columns: zone_067_fan_spd, zone_070_fan_spd
+zone=zone_051 :: columns: zone_051_fan_spd
+zone=zone_067 :: columns: zone_067_fan_spd
+zone=zone_070 :: columns: zone_070_fan_spd
+vav=UTF_G-20 :: columns: zone_067_fan_spd
+vav=UTF_G-23 :: columns: zone_070_fan_spd
+vav=UTF_G-5 :: columns: zone_051_fan_spd

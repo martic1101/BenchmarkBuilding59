@@ -1,0 +1,138 @@
+{
+  "id": "T1-076",
+  "family": "T1",
+  "source_files": [
+    "rtu_ra_t.csv"
+  ],
+  "target_schema": [
+    {
+      "name": "timestamp",
+      "dtype": "string 'YYYY-MM-DD HH:MM:SS'",
+      "description": "start of interval"
+    },
+    {
+      "name": "rtu_001_ra_temp",
+      "dtype": "float",
+      "unit": "°F",
+      "description": "Roof Top Unit * return air temperature (*: 001, 002, 003, 004) (°F), 1-hour interval"
+    },
+    {
+      "name": "rtu_002_ra_temp",
+      "dtype": "float",
+      "unit": "°F",
+      "description": "Roof Top Unit * return air temperature (*: 001, 002, 003, 004) (°F), 1-hour interval"
+    },
+    {
+      "name": "rtu_004_ra_temp",
+      "dtype": "float",
+      "unit": "°F",
+      "description": "Roof Top Unit * return air temperature (*: 001, 002, 003, 004) (°F), 1-hour interval"
+    }
+  ],
+  "example_day": "2018-05-16",
+  "test_days": [
+    "2019-05-08",
+    "2019-05-09"
+  ],
+  "source_dates_example": {
+    "rtu_ra_t": [
+      "2018-05-16"
+    ]
+  },
+  "source_dates_test": {
+    "rtu_ra_t": [
+      "2019-05-08",
+      "2019-05-09"
+    ]
+  },
+  "n_target_rows_example": 24,
+  "n_target_rows_test": 48,
+  "nl_instruction": "Aggregate rtu_001_ra_temp, rtu_002_ra_temp, rtu_004_ra_temp from rtu_ra_t.csv to 1-hour intervals using the average. Timestamp = start of interval.",
+  "needs": [
+    "aggregation",
+    "sampling_interval"
+  ],
+  "knowledge": [
+    {
+      "kind": "sampling_interval",
+      "file": "rtu_ra_t.csv",
+      "value_min": 1.0,
+      "dict_freq": "1 min"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "rtu_ra_t.csv",
+      "column": "rtu_001_ra_temp",
+      "description": "Roof Top Unit * return air temperature (*: 001, 002, 003, 004)",
+      "quantity_kind": "temperature"
+    },
+    {
+      "kind": "unit",
+      "file": "rtu_ra_t.csv",
+      "column": "rtu_001_ra_temp",
+      "true_unit": "°F",
+      "dict_unit": "°F"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "rtu_ra_t.csv",
+      "column": "rtu_002_ra_temp",
+      "description": "Roof Top Unit * return air temperature (*: 001, 002, 003, 004)",
+      "quantity_kind": "temperature"
+    },
+    {
+      "kind": "unit",
+      "file": "rtu_ra_t.csv",
+      "column": "rtu_002_ra_temp",
+      "true_unit": "°F",
+      "dict_unit": "°F"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "rtu_ra_t.csv",
+      "column": "rtu_004_ra_temp",
+      "description": "Roof Top Unit * return air temperature (*: 001, 002, 003, 004)",
+      "quantity_kind": "temperature"
+    },
+    {
+      "kind": "unit",
+      "file": "rtu_ra_t.csv",
+      "column": "rtu_004_ra_temp",
+      "true_unit": "°F",
+      "dict_unit": "°F"
+    }
+  ],
+  "discriminates_against": [
+    "agg_max",
+    "agg_min"
+  ],
+  "spec": {
+    "family": "T1",
+    "file": "rtu_ra_t",
+    "columns": [
+      "rtu_001_ra_temp",
+      "rtu_002_ra_temp",
+      "rtu_004_ra_temp"
+    ],
+    "freq": "1h",
+    "agg": "mean",
+    "out_columns": [
+      "rtu_001_ra_temp",
+      "rtu_002_ra_temp",
+      "rtu_004_ra_temp"
+    ],
+    "target_units": {
+      "rtu_001_ra_temp": "°F",
+      "rtu_002_ra_temp": "°F",
+      "rtu_004_ra_temp": "°F"
+    }
+  },
+  "benchmark_version": "holdout_v2",
+  "shown_rows": [
+    0,
+    6,
+    12,
+    17,
+    23
+  ]
+}

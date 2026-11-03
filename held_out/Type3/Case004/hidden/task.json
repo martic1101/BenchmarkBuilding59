@@ -1,0 +1,144 @@
+{
+  "id": "T3-004",
+  "family": "T3",
+  "source_files": [
+    "rtu_oa_fr.csv",
+    "zone_co2.csv"
+  ],
+  "target_schema": [
+    {
+      "name": "timestamp",
+      "dtype": "string 'YYYY-MM-DD HH:MM:SS'",
+      "description": "start of interval"
+    },
+    {
+      "name": "rtu_003_oa_flow_tn",
+      "dtype": "float",
+      "unit": "CFM",
+      "description": "Roof Top Unit * outdoor air flow rate (*: 001, 002, 003, 004) (CFM), 1-hour interval"
+    },
+    {
+      "name": "zone_044_co2",
+      "dtype": "float",
+      "unit": "ppm",
+      "description": "CO2 concentration of each zone (ppm), 1-hour interval"
+    }
+  ],
+  "example_day": "2020-12-23",
+  "test_days": [
+    "2019-12-03",
+    "2019-12-04"
+  ],
+  "source_dates_example": {
+    "rtu_oa_fr": [
+      "2020-12-23"
+    ],
+    "zone_co2": [
+      "2020-12-22",
+      "2020-12-23"
+    ]
+  },
+  "source_dates_test": {
+    "rtu_oa_fr": [
+      "2019-12-03",
+      "2019-12-04"
+    ],
+    "zone_co2": [
+      "2019-12-03",
+      "2019-12-04",
+      "2019-12-05"
+    ]
+  },
+  "n_target_rows_example": 24,
+  "n_target_rows_test": 48,
+  "nl_instruction": "Join rtu_oa_fr.csv, zone_co2.csv on timestamp (inner join) after aggregating each to 1-hour intervals using the maximum; keep only rtu_003_oa_flow_tn, zone_044_co2. Timestamp = start of interval.",
+  "needs": [
+    "sampling_interval",
+    "time_alignment",
+    "join",
+    "aggregation"
+  ],
+  "knowledge": [
+    {
+      "kind": "sampling_interval",
+      "file": "rtu_oa_fr.csv",
+      "value_min": 1.0,
+      "dict_freq": "1 min"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "rtu_oa_fr.csv",
+      "column": "rtu_003_oa_flow_tn",
+      "description": "Roof Top Unit * outdoor air flow rate (*: 001, 002, 003, 004)",
+      "quantity_kind": "air_flow"
+    },
+    {
+      "kind": "unit",
+      "file": "rtu_oa_fr.csv",
+      "column": "rtu_003_oa_flow_tn",
+      "true_unit": "CFM",
+      "dict_unit": "CFM"
+    },
+    {
+      "kind": "sampling_interval",
+      "file": "zone_co2.csv",
+      "value_min": 1.0,
+      "dict_freq": "1 min"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "zone_co2.csv",
+      "column": "zone_044_co2",
+      "description": "CO2 concentration of each zone",
+      "quantity_kind": "co2_concentration"
+    },
+    {
+      "kind": "unit",
+      "file": "zone_co2.csv",
+      "column": "zone_044_co2",
+      "true_unit": "ppm",
+      "dict_unit": "ppm"
+    }
+  ],
+  "discriminates_against": [
+    "outer_join",
+    "agg_mean",
+    "agg_min"
+  ],
+  "spec": {
+    "family": "T3",
+    "sources": [
+      {
+        "file": "rtu_oa_fr",
+        "columns": [
+          "rtu_003_oa_flow_tn"
+        ]
+      },
+      {
+        "file": "zone_co2",
+        "columns": [
+          "zone_044_co2"
+        ]
+      }
+    ],
+    "freq": "1h",
+    "agg": "max",
+    "how": "inner",
+    "out_columns": [
+      "rtu_003_oa_flow_tn",
+      "zone_044_co2"
+    ],
+    "target_units": {
+      "rtu_003_oa_flow_tn": "CFM",
+      "zone_044_co2": "ppm"
+    }
+  },
+  "benchmark_version": "holdout_v2",
+  "shown_rows": [
+    0,
+    6,
+    12,
+    17,
+    23
+  ]
+}

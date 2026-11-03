@@ -1,0 +1,16 @@
+columns in scope: air_temp_set_2, rtu_003_econ_stpt_tn, rtu_004_sa_temp
+unit=°C :: columns: air_temp_set_2
+unit=°F :: columns: rtu_003_econ_stpt_tn, rtu_004_sa_temp
+sampling=1 min :: columns: rtu_003_econ_stpt_tn, rtu_004_sa_temp
+sampling=15 min :: columns: air_temp_set_2
+rtu=RTU03 :: columns: rtu_003_econ_stpt_tn
+rtu=RTU04 :: columns: rtu_004_sa_temp
+desc=Outdoor air temperature from sensor 2 :: columns: air_temp_set_2
+desc=Roof Top Unit * economizer setpoint (*: 001, 002, 003, 004) :: columns: rtu_003_econ_stpt_tn
+desc=Roof Top Unit * supply air temperature (*: 001, 002, 003, 004) :: columns: rtu_004_sa_temp
+class=Economizer_Setpoint :: columns: rtu_003_econ_stpt_tn
+class=Outdoor_Air_Temperature_Sensor :: columns: air_temp_set_2
+class=Supply_Air_Temperature_Sensor :: columns: rtu_004_sa_temp
+zone=Building :: columns: air_temp_set_2
+zone=RTU03 :: columns: rtu_003_econ_stpt_tn
+zone=RTU04 :: columns: rtu_004_sa_temp

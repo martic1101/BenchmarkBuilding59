@@ -1,0 +1,36 @@
+{
+ "source_files": [
+  "uft_fan_spd.csv"
+ ],
+ "example_day": "2019-06-23",
+ "target_schema": [
+  {
+   "name": "timestamp",
+   "dtype": "string 'YYYY-MM-DD HH:MM:SS'"
+  },
+  {
+   "name": "Floor_G",
+   "dtype": "float",
+   "unit": "%"
+  },
+  {
+   "name": "Floor_S",
+   "dtype": "float",
+   "unit": "%"
+  }
+ ],
+ "n_example_day_target_rows": 24,
+ "n_example_day_source_rows": {
+  "uft_fan_spd.csv": 1440
+ },
+ "source_blocks": {
+  "uft_fan_spd.csv": [
+   60,
+   60,
+   60,
+   60,
+   60
+  ]
+ },
+ "note": "source_example/ holds only the source rows inside the time intervals of the shown target rows; source_blocks gives the sizes of the contiguous runs (shown as '...' between runs in the prompt)."
+}

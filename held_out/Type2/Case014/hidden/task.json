@@ -1,0 +1,104 @@
+{
+  "id": "T2-021",
+  "family": "T2",
+  "source_files": [
+    "ashp_hw.csv"
+  ],
+  "target_schema": [
+    {
+      "name": "timestamp",
+      "dtype": "string 'YYYY-MM-DD HH:MM:SS'",
+      "description": "start of interval"
+    },
+    {
+      "name": "aru_001_hws_temp_c",
+      "dtype": "float",
+      "unit": "°C",
+      "description": "Hot water supply temperature (°C), 30-minute interval"
+    }
+  ],
+  "example_day": "2019-11-08",
+  "test_days": [
+    "2020-07-25",
+    "2020-07-26"
+  ],
+  "source_dates_example": {
+    "ashp_hw": [
+      "2019-11-08"
+    ]
+  },
+  "source_dates_test": {
+    "ashp_hw": [
+      "2020-07-25",
+      "2020-07-26"
+    ]
+  },
+  "n_target_rows_example": 48,
+  "n_target_rows_test": 96,
+  "nl_instruction": "Aggregate aru_001_hws_temp from ashp_hw.csv to 30-minute averages and convert °F to °C. Timestamp = start of interval.",
+  "needs": [
+    "unit",
+    "conversion",
+    "aggregation"
+  ],
+  "knowledge": [
+    {
+      "kind": "sampling_interval",
+      "file": "ashp_hw.csv",
+      "value_min": 5.0,
+      "dict_freq": "5 min"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "ashp_hw.csv",
+      "column": "aru_001_hws_temp",
+      "description": "Hot water supply temperature",
+      "quantity_kind": "temperature"
+    },
+    {
+      "kind": "unit",
+      "file": "ashp_hw.csv",
+      "column": "aru_001_hws_temp",
+      "true_unit": "°F",
+      "dict_unit": "°F"
+    }
+  ],
+  "discriminates_against": [
+    "agg_max",
+    "no_or_wrong_conversion"
+  ],
+  "spec": {
+    "family": "T2",
+    "file": "ashp_hw",
+    "columns": [
+      "aru_001_hws_temp"
+    ],
+    "freq": "30min",
+    "agg": "mean",
+    "conversion": "F_to_C",
+    "rename": {
+      "aru_001_hws_temp": "aru_001_hws_temp_c"
+    },
+    "out_columns": [
+      "aru_001_hws_temp_c"
+    ],
+    "target_units": {
+      "aru_001_hws_temp_c": "°C"
+    },
+    "conflict_note": null,
+    "source_units": {
+      "aru_001_hws_temp": "°F"
+    },
+    "dict_units": {
+      "aru_001_hws_temp": "°F"
+    }
+  },
+  "benchmark_version": "holdout_v2",
+  "shown_rows": [
+    0,
+    12,
+    24,
+    35,
+    47
+  ]
+}

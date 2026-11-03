@@ -1,0 +1,64 @@
+{
+ "source_files": [
+  "rtu_oa_t.csv",
+  "rtu_sa_p_sp.csv",
+  "zone_temp_interior.csv"
+ ],
+ "example_day": "2020-02-21",
+ "target_schema": [
+  {
+   "name": "timestamp",
+   "dtype": "string 'YYYY-MM-DD HH:MM:SS'"
+  },
+  {
+   "name": "rtu_004_oa_temp",
+   "dtype": "float",
+   "unit": "°F"
+  },
+  {
+   "name": "rtu_003_pa_static_stpt_tn",
+   "dtype": "float",
+   "unit": "psi"
+  },
+  {
+   "name": "rtu_004_pa_static_stpt_tn",
+   "dtype": "float",
+   "unit": "psi"
+  },
+  {
+   "name": "cerc_templogger_8",
+   "dtype": "float",
+   "unit": "°C"
+  }
+ ],
+ "n_example_day_target_rows": 24,
+ "n_example_day_source_rows": {
+  "rtu_oa_t.csv": 1440,
+  "rtu_sa_p_sp.csv": 1440,
+  "zone_temp_interior.csv": 288
+ },
+ "source_blocks": {
+  "rtu_oa_t.csv": [
+   60,
+   60,
+   60,
+   60,
+   60
+  ],
+  "rtu_sa_p_sp.csv": [
+   60,
+   60,
+   60,
+   60,
+   60
+  ],
+  "zone_temp_interior.csv": [
+   6,
+   6,
+   6,
+   6,
+   6
+  ]
+ },
+ "note": "source_example/ holds only the source rows inside the time intervals of the shown target rows; source_blocks gives the sizes of the contiguous runs (shown as '...' between runs in the prompt)."
+}

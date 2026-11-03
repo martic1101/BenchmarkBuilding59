@@ -1,0 +1,74 @@
+{
+ "source_files": [
+  "rtu_sa_t_sp.csv",
+  "site_weather.csv",
+  "zone_temp_sp_c.csv"
+ ],
+ "example_day": "2020-11-07",
+ "target_schema": [
+  {
+   "name": "timestamp",
+   "dtype": "string 'YYYY-MM-DD HH:MM:SS'"
+  },
+  {
+   "name": "rtu_002_sat_sp_tn",
+   "dtype": "float",
+   "unit": "°F"
+  },
+  {
+   "name": "rtu_003_sat_sp_tn",
+   "dtype": "float",
+   "unit": "°F"
+  },
+  {
+   "name": "air_temp_set_2",
+   "dtype": "float",
+   "unit": "°C"
+  },
+  {
+   "name": "dew_point_temperature_set_1d",
+   "dtype": "float",
+   "unit": "°C"
+  },
+  {
+   "name": "zone_032_cooling_sp",
+   "dtype": "float",
+   "unit": "°F"
+  },
+  {
+   "name": "zone_061_cooling_sp",
+   "dtype": "float",
+   "unit": "°F"
+  }
+ ],
+ "n_example_day_target_rows": 96,
+ "n_example_day_source_rows": {
+  "rtu_sa_t_sp.csv": 1440,
+  "site_weather.csv": 96,
+  "zone_temp_sp_c.csv": 576
+ },
+ "source_blocks": {
+  "rtu_sa_t_sp.csv": [
+   15,
+   15,
+   15,
+   15,
+   15
+  ],
+  "site_weather.csv": [
+   1,
+   1,
+   1,
+   1,
+   1
+  ],
+  "zone_temp_sp_c.csv": [
+   3,
+   3,
+   3,
+   3,
+   3
+  ]
+ },
+ "note": "source_example/ holds only the source rows inside the time intervals of the shown target rows; source_blocks gives the sizes of the contiguous runs (shown as '...' between runs in the prompt)."
+}

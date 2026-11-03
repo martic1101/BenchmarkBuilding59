@@ -1,0 +1,15 @@
+columns in scope: cerc_templogger_4, rtu_002_sf_vfd_spd_fbk_tn, rtu_004_sf_vfd_spd_fbk_tn
+floor=Floor_G :: columns: cerc_templogger_4
+desc=Roof Top Unit * supply fan speed (*: 001, 002, 003, 004) :: columns: rtu_002_sf_vfd_spd_fbk_tn, rtu_004_sf_vfd_spd_fbk_tn
+desc=Zone temperature of interior zone :: columns: cerc_templogger_4
+unit=% :: columns: rtu_002_sf_vfd_spd_fbk_tn, rtu_004_sf_vfd_spd_fbk_tn
+unit=°F :: columns: cerc_templogger_4
+sampling=1 min :: columns: rtu_002_sf_vfd_spd_fbk_tn, rtu_004_sf_vfd_spd_fbk_tn
+sampling=10 min :: columns: cerc_templogger_4
+class=Supply_Air_Fan_Speed :: columns: rtu_002_sf_vfd_spd_fbk_tn, rtu_004_sf_vfd_spd_fbk_tn
+class=Zone_Air_Temperature_Sensor :: columns: cerc_templogger_4
+rtu=RTU02 :: columns: rtu_002_sf_vfd_spd_fbk_tn
+rtu=RTU04 :: columns: rtu_004_sf_vfd_spd_fbk_tn
+zone=RTU02 :: columns: rtu_002_sf_vfd_spd_fbk_tn
+zone=RTU04 :: columns: rtu_004_sf_vfd_spd_fbk_tn
+zone=zone_cerc_4 :: columns: cerc_templogger_4

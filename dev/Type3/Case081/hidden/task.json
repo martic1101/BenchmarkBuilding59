@@ -1,0 +1,142 @@
+{
+  "id": "T3-086",
+  "family": "T3",
+  "source_files": [
+    "ashp_meter.csv",
+    "site_weather.csv"
+  ],
+  "target_schema": [
+    {
+      "name": "timestamp",
+      "dtype": "string 'YYYY-MM-DD HH:MM:SS'",
+      "description": "start of interval"
+    },
+    {
+      "name": "aru_001_power_mbtuph",
+      "dtype": "float",
+      "unit": "mbtuph",
+      "description": "Heat meter for air source heat pump (mbtuph), 1-hour averages"
+    },
+    {
+      "name": "air_temp_set_1",
+      "dtype": "float",
+      "unit": "°C",
+      "description": "Outdoor air temperature from sensor 1 (°C), 1-hour averages"
+    }
+  ],
+  "example_day": "2020-08-06",
+  "test_days": [
+    "2020-10-18",
+    "2020-10-19"
+  ],
+  "source_dates_example": {
+    "ashp_meter": [
+      "2020-08-06"
+    ],
+    "site_weather": [
+      "2020-08-05",
+      "2020-08-06"
+    ]
+  },
+  "source_dates_test": {
+    "ashp_meter": [
+      "2020-10-18",
+      "2020-10-19"
+    ],
+    "site_weather": [
+      "2020-10-17",
+      "2020-10-18",
+      "2020-10-19"
+    ]
+  },
+  "n_target_rows_example": 24,
+  "n_target_rows_test": 48,
+  "nl_instruction": "Join ashp_meter.csv, site_weather.csv on timestamp (inner join) after aggregating each to 1-hour averages; keep only aru_001_power_mbtuph, air_temp_set_1. Timestamp = start of interval.",
+  "needs": [
+    "sampling_interval",
+    "time_alignment",
+    "join",
+    "aggregation"
+  ],
+  "knowledge": [
+    {
+      "kind": "sampling_interval",
+      "file": "ashp_meter.csv",
+      "value_min": 5.0,
+      "dict_freq": "5 min"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "ashp_meter.csv",
+      "column": "aru_001_power_mbtuph",
+      "description": "Heat meter for air source heat pump",
+      "quantity_kind": "thermal_power"
+    },
+    {
+      "kind": "unit",
+      "file": "ashp_meter.csv",
+      "column": "aru_001_power_mbtuph",
+      "true_unit": "mbtuph",
+      "dict_unit": "mbtuph"
+    },
+    {
+      "kind": "sampling_interval",
+      "file": "site_weather.csv",
+      "value_min": 15.0,
+      "dict_freq": "15 min"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "site_weather.csv",
+      "column": "air_temp_set_1",
+      "description": "Outdoor air temperature from sensor 1",
+      "quantity_kind": "temperature"
+    },
+    {
+      "kind": "unit",
+      "file": "site_weather.csv",
+      "column": "air_temp_set_1",
+      "true_unit": "°C",
+      "dict_unit": "°C"
+    }
+  ],
+  "discriminates_against": [
+    "outer_join",
+    "agg_max"
+  ],
+  "spec": {
+    "family": "T3",
+    "sources": [
+      {
+        "file": "ashp_meter",
+        "columns": [
+          "aru_001_power_mbtuph"
+        ]
+      },
+      {
+        "file": "site_weather",
+        "columns": [
+          "air_temp_set_1"
+        ]
+      }
+    ],
+    "freq": "1h",
+    "agg": "mean",
+    "how": "inner",
+    "out_columns": [
+      "aru_001_power_mbtuph",
+      "air_temp_set_1"
+    ],
+    "target_units": {
+      "aru_001_power_mbtuph": "mbtuph",
+      "air_temp_set_1": "°C"
+    }
+  },
+  "shown_rows": [
+    0,
+    6,
+    12,
+    17,
+    23
+  ]
+}

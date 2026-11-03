@@ -1,0 +1,15 @@
+columns in scope: rtu_002_sa_temp, rtu_004_sa_temp, zone_041_heating_sp
+unit=°F :: columns: ALL
+vav=UTF_2-21 :: columns: zone_041_heating_sp
+floor=Floor_G :: columns: zone_041_heating_sp
+desc=Heating temperature setpoint of Zone * :: columns: zone_041_heating_sp
+desc=Roof Top Unit * supply air temperature (*: 001, 002, 003, 004) :: columns: rtu_002_sa_temp, rtu_004_sa_temp
+sampling=1 min :: columns: rtu_002_sa_temp, rtu_004_sa_temp
+sampling=5 min :: columns: zone_041_heating_sp
+class=Heating_Temperature_Setpoint :: columns: zone_041_heating_sp
+class=Supply_Air_Temperature_Sensor :: columns: rtu_002_sa_temp, rtu_004_sa_temp
+rtu=RTU02 :: columns: rtu_002_sa_temp
+rtu=RTU04 :: columns: rtu_004_sa_temp, zone_041_heating_sp
+zone=RTU02 :: columns: rtu_002_sa_temp
+zone=RTU04 :: columns: rtu_004_sa_temp
+zone=zone_041 :: columns: zone_041_heating_sp

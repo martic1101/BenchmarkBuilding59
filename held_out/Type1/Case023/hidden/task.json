@@ -1,0 +1,92 @@
+{
+  "id": "T1-023",
+  "family": "T1",
+  "source_files": [
+    "ele.csv"
+  ],
+  "target_schema": [
+    {
+      "name": "timestamp",
+      "dtype": "string 'YYYY-MM-DD HH:MM:SS'",
+      "description": "start of interval"
+    },
+    {
+      "name": "mels_S",
+      "dtype": "float",
+      "unit": "kW",
+      "description": "Miscellaneous electric load for the South Wing (kW), 1-hour interval"
+    }
+  ],
+  "example_day": "2018-04-03",
+  "test_days": [
+    "2020-05-24",
+    "2020-05-25"
+  ],
+  "source_dates_example": {
+    "ele": [
+      "2018-04-03"
+    ]
+  },
+  "source_dates_test": {
+    "ele": [
+      "2020-05-24",
+      "2020-05-25"
+    ]
+  },
+  "n_target_rows_example": 24,
+  "n_target_rows_test": 48,
+  "nl_instruction": "Aggregate mels_S from ele.csv to 1-hour intervals using the maximum. Timestamp = start of interval.",
+  "needs": [
+    "aggregation",
+    "sampling_interval"
+  ],
+  "knowledge": [
+    {
+      "kind": "sampling_interval",
+      "file": "ele.csv",
+      "value_min": 15.0,
+      "dict_freq": "15 min"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "ele.csv",
+      "column": "mels_S",
+      "description": "Miscellaneous electric load for the South Wing",
+      "quantity_kind": "electric_power"
+    },
+    {
+      "kind": "unit",
+      "file": "ele.csv",
+      "column": "mels_S",
+      "true_unit": "kW",
+      "dict_unit": "kW"
+    }
+  ],
+  "discriminates_against": [
+    "agg_mean",
+    "agg_min"
+  ],
+  "spec": {
+    "family": "T1",
+    "file": "ele",
+    "columns": [
+      "mels_S"
+    ],
+    "freq": "1h",
+    "agg": "max",
+    "out_columns": [
+      "mels_S"
+    ],
+    "target_units": {
+      "mels_S": "kW"
+    }
+  },
+  "benchmark_version": "holdout_v2",
+  "shown_rows": [
+    0,
+    2,
+    6,
+    12,
+    17
+  ]
+}

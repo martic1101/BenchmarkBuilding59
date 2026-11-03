@@ -1,0 +1,45 @@
+{
+ "source_files": [
+  "site_weather.csv",
+  "zone_co2.csv"
+ ],
+ "example_day": "2020-08-02",
+ "target_schema": [
+  {
+   "name": "timestamp",
+   "dtype": "string 'YYYY-MM-DD HH:MM:SS'"
+  },
+  {
+   "name": "air_temp_set_2",
+   "dtype": "float",
+   "unit": "°C"
+  },
+  {
+   "name": "zone_033_co2",
+   "dtype": "float",
+   "unit": "ppm"
+  }
+ ],
+ "n_example_day_target_rows": 96,
+ "n_example_day_source_rows": {
+  "site_weather.csv": 96,
+  "zone_co2.csv": 2880
+ },
+ "source_blocks": {
+  "site_weather.csv": [
+   1,
+   1,
+   1,
+   1,
+   1
+  ],
+  "zone_co2.csv": [
+   15,
+   15,
+   15,
+   15,
+   15
+  ]
+ },
+ "note": "source_example/ holds only the source rows inside the time intervals of the shown target rows; source_blocks gives the sizes of the contiguous runs (shown as '...' between runs in the prompt)."
+}

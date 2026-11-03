@@ -1,0 +1,10 @@
+columns in scope: cerc_templogger_5, rtu_003_fltrd_sa_flow_tn
+class=Zone_Air_Temperature_Sensor :: columns: cerc_templogger_5
+zone=zone_cerc_5 :: columns: cerc_templogger_5
+floor=Floor_G :: columns: cerc_templogger_5
+desc=Roof Top Unit * filtered supply air flow rate (*: 001, 002, 003, 004) :: columns: rtu_003_fltrd_sa_flow_tn
+desc=Zone temperature of interior zone :: columns: cerc_templogger_5
+unit=CFM :: columns: rtu_003_fltrd_sa_flow_tn
+unit=°F :: columns: cerc_templogger_5
+sampling=1 min :: columns: rtu_003_fltrd_sa_flow_tn
+sampling=10 min :: columns: cerc_templogger_5

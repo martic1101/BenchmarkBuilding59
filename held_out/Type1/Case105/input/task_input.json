@@ -1,0 +1,40 @@
+{
+ "source_files": [
+  "uft_hw_valve.csv"
+ ],
+ "example_day": "2019-04-25",
+ "target_schema": [
+  {
+   "name": "timestamp",
+   "dtype": "string 'YYYY-MM-DD HH:MM:SS'"
+  },
+  {
+   "name": "zone_041_hw_valve",
+   "dtype": "float",
+   "unit": "%"
+  },
+  {
+   "name": "zone_042_hw_valve",
+   "dtype": "float",
+   "unit": "%"
+  },
+  {
+   "name": "zone_068_hw_valve",
+   "dtype": "float",
+   "unit": "%"
+  }
+ ],
+ "n_example_day_target_rows": 24,
+ "n_example_day_source_rows": {
+  "uft_hw_valve.csv": 1440
+ },
+ "source_blocks": {
+  "uft_hw_valve.csv": [
+   60,
+   60,
+   120,
+   60
+  ]
+ },
+ "note": "source_example/ holds only the source rows inside the time intervals of the shown target rows; source_blocks gives the sizes of the contiguous runs (shown as '...' between runs in the prompt)."
+}

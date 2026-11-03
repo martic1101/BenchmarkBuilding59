@@ -1,0 +1,12 @@
+columns in scope: rtu_001_econ_stpt_tn, rtu_001_fltrd_sa_flow_tn, rtu_003_econ_stpt_tn, rtu_003_oa_temp, rtu_004_fltrd_sa_flow_tn
+sampling=1 min :: columns: ALL
+class=Economizer_Setpoint :: columns: rtu_001_econ_stpt_tn, rtu_003_econ_stpt_tn
+unit=CFM :: columns: rtu_001_fltrd_sa_flow_tn, rtu_004_fltrd_sa_flow_tn
+unit=°F :: columns: rtu_001_econ_stpt_tn, rtu_003_econ_stpt_tn, rtu_003_oa_temp
+zone=RTU01 :: columns: rtu_001_econ_stpt_tn
+zone=RTU03 :: columns: rtu_003_econ_stpt_tn
+rtu=RTU01 :: columns: rtu_001_econ_stpt_tn
+rtu=RTU03 :: columns: rtu_003_econ_stpt_tn
+desc=Roof Top Unit * economizer setpoint (*: 001, 002, 003, 004) :: columns: rtu_001_econ_stpt_tn, rtu_003_econ_stpt_tn
+desc=Roof Top Unit * filtered supply air flow rate (*: 001, 002, 003, 004) :: columns: rtu_001_fltrd_sa_flow_tn, rtu_004_fltrd_sa_flow_tn
+desc=Roof Top Unit * outdoor air temperature (*: 001, 002, 003, 004) :: columns: rtu_003_oa_temp

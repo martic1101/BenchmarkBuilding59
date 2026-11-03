@@ -1,0 +1,50 @@
+{
+ "source_files": [
+  "rtu_fan_spd.csv",
+  "zone_temp_interior.csv"
+ ],
+ "example_day": "2019-01-11",
+ "target_schema": [
+  {
+   "name": "timestamp",
+   "dtype": "string 'YYYY-MM-DD HH:MM:SS'"
+  },
+  {
+   "name": "rtu_002_sf_vfd_spd_fbk_tn",
+   "dtype": "float",
+   "unit": "%"
+  },
+  {
+   "name": "rtu_004_sf_vfd_spd_fbk_tn",
+   "dtype": "float",
+   "unit": "%"
+  },
+  {
+   "name": "cerc_templogger_4",
+   "dtype": "float",
+   "unit": "°C"
+  }
+ ],
+ "n_example_day_target_rows": 24,
+ "n_example_day_source_rows": {
+  "rtu_fan_spd.csv": 1440,
+  "zone_temp_interior.csv": 288
+ },
+ "source_blocks": {
+  "rtu_fan_spd.csv": [
+   60,
+   60,
+   60,
+   60,
+   60
+  ],
+  "zone_temp_interior.csv": [
+   6,
+   6,
+   6,
+   6,
+   6
+  ]
+ },
+ "note": "source_example/ holds only the source rows inside the time intervals of the shown target rows; source_blocks gives the sizes of the contiguous runs (shown as '...' between runs in the prompt)."
+}

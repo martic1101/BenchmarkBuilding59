@@ -1,0 +1,92 @@
+{
+  "id": "T1-124",
+  "family": "T1",
+  "source_files": [
+    "wifi.csv"
+  ],
+  "target_schema": [
+    {
+      "name": "timestamp",
+      "dtype": "string 'YYYY-MM-DD HH:MM:SS'",
+      "description": "start of interval"
+    },
+    {
+      "name": "wifi_third_south",
+      "dtype": "float",
+      "unit": "/",
+      "description": "Wifi connection counts in the south half of third floor (/), 1-hour interval"
+    }
+  ],
+  "example_day": "2020-07-16",
+  "test_days": [
+    "2020-04-03",
+    "2020-04-04"
+  ],
+  "source_dates_example": {
+    "wifi": [
+      "2020-07-16"
+    ]
+  },
+  "source_dates_test": {
+    "wifi": [
+      "2020-04-03",
+      "2020-04-04"
+    ]
+  },
+  "n_target_rows_example": 24,
+  "n_target_rows_test": 48,
+  "nl_instruction": "Aggregate wifi_third_south from wifi.csv to 1-hour intervals using the average. Timestamp = start of interval.",
+  "needs": [
+    "aggregation",
+    "sampling_interval"
+  ],
+  "knowledge": [
+    {
+      "kind": "sampling_interval",
+      "file": "wifi.csv",
+      "value_min": 5.0,
+      "dict_freq": "10 min"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "wifi.csv",
+      "column": "wifi_third_south",
+      "description": "Wifi connection counts in the south half of third floor",
+      "quantity_kind": "wifi_connection_count"
+    },
+    {
+      "kind": "unit",
+      "file": "wifi.csv",
+      "column": "wifi_third_south",
+      "true_unit": "/",
+      "dict_unit": "/"
+    }
+  ],
+  "discriminates_against": [
+    "agg_max",
+    "agg_min"
+  ],
+  "spec": {
+    "family": "T1",
+    "file": "wifi",
+    "columns": [
+      "wifi_third_south"
+    ],
+    "freq": "1h",
+    "agg": "mean",
+    "out_columns": [
+      "wifi_third_south"
+    ],
+    "target_units": {
+      "wifi_third_south": "/"
+    }
+  },
+  "benchmark_version": "holdout_v2",
+  "shown_rows": [
+    0,
+    5,
+    6,
+    12,
+    17
+  ]
+}

@@ -1,0 +1,91 @@
+{
+  "id": "T1-104",
+  "family": "T1",
+  "source_files": [
+    "site_weather.csv"
+  ],
+  "target_schema": [
+    {
+      "name": "timestamp",
+      "dtype": "string 'YYYY-MM-DD HH:MM:SS'",
+      "description": "start of interval"
+    },
+    {
+      "name": "relative_humidity_set_1",
+      "dtype": "float",
+      "unit": "%",
+      "description": "Outdoor air relative humidity from sensor 1 (%), 30-minute interval"
+    }
+  ],
+  "example_day": "2020-02-22",
+  "test_days": [
+    "2018-07-06",
+    "2018-07-07"
+  ],
+  "source_dates_example": {
+    "site_weather": [
+      "2020-02-22"
+    ]
+  },
+  "source_dates_test": {
+    "site_weather": [
+      "2018-07-06",
+      "2018-07-07"
+    ]
+  },
+  "n_target_rows_example": 48,
+  "n_target_rows_test": 96,
+  "nl_instruction": "Aggregate relative_humidity_set_1 from site_weather.csv to 30-minute intervals using the maximum. Timestamp = start of interval.",
+  "needs": [
+    "aggregation",
+    "sampling_interval"
+  ],
+  "knowledge": [
+    {
+      "kind": "sampling_interval",
+      "file": "site_weather.csv",
+      "value_min": 15.0,
+      "dict_freq": "15 min"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "site_weather.csv",
+      "column": "relative_humidity_set_1",
+      "description": "Outdoor air relative humidity from sensor 1",
+      "quantity_kind": "relative_humidity"
+    },
+    {
+      "kind": "unit",
+      "file": "site_weather.csv",
+      "column": "relative_humidity_set_1",
+      "true_unit": "%",
+      "dict_unit": "%"
+    }
+  ],
+  "discriminates_against": [
+    "agg_mean",
+    "agg_min"
+  ],
+  "spec": {
+    "family": "T1",
+    "file": "site_weather",
+    "columns": [
+      "relative_humidity_set_1"
+    ],
+    "freq": "30min",
+    "agg": "max",
+    "out_columns": [
+      "relative_humidity_set_1"
+    ],
+    "target_units": {
+      "relative_humidity_set_1": "%"
+    }
+  },
+  "shown_rows": [
+    0,
+    1,
+    12,
+    24,
+    35
+  ]
+}

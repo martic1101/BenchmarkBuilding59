@@ -1,0 +1,92 @@
+{
+  "id": "T1-104",
+  "family": "T1",
+  "source_files": [
+    "site_weather.csv"
+  ],
+  "target_schema": [
+    {
+      "name": "timestamp",
+      "dtype": "string 'YYYY-MM-DD HH:MM:SS'",
+      "description": "start of interval"
+    },
+    {
+      "name": "solar_radiation_set_1",
+      "dtype": "float",
+      "unit": "W/m2",
+      "description": "Outdoor solar radiation from sensor 1 (W/m2), 30-minute interval"
+    }
+  ],
+  "example_day": "2020-12-09",
+  "test_days": [
+    "2019-08-08",
+    "2019-08-09"
+  ],
+  "source_dates_example": {
+    "site_weather": [
+      "2020-12-09"
+    ]
+  },
+  "source_dates_test": {
+    "site_weather": [
+      "2019-08-08",
+      "2019-08-09"
+    ]
+  },
+  "n_target_rows_example": 48,
+  "n_target_rows_test": 96,
+  "nl_instruction": "Aggregate solar_radiation_set_1 from site_weather.csv to 30-minute intervals using the maximum. Timestamp = start of interval.",
+  "needs": [
+    "aggregation",
+    "sampling_interval"
+  ],
+  "knowledge": [
+    {
+      "kind": "sampling_interval",
+      "file": "site_weather.csv",
+      "value_min": 15.0,
+      "dict_freq": "15 min"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "site_weather.csv",
+      "column": "solar_radiation_set_1",
+      "description": "Outdoor solar radiation from sensor 1",
+      "quantity_kind": "solar_irradiance"
+    },
+    {
+      "kind": "unit",
+      "file": "site_weather.csv",
+      "column": "solar_radiation_set_1",
+      "true_unit": "W/m2",
+      "dict_unit": "W/m2"
+    }
+  ],
+  "discriminates_against": [
+    "agg_mean",
+    "agg_min"
+  ],
+  "spec": {
+    "family": "T1",
+    "file": "site_weather",
+    "columns": [
+      "solar_radiation_set_1"
+    ],
+    "freq": "30min",
+    "agg": "max",
+    "out_columns": [
+      "solar_radiation_set_1"
+    ],
+    "target_units": {
+      "solar_radiation_set_1": "W/m2"
+    }
+  },
+  "benchmark_version": "holdout_v2",
+  "shown_rows": [
+    0,
+    12,
+    24,
+    26,
+    35
+  ]
+}

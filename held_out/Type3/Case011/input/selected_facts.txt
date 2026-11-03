@@ -1,0 +1,9 @@
+columns in scope: occ_fourth_south, rtu_001_oa_temp, rtu_002_oa_temp
+sampling=1 min :: columns: ALL
+class=Occupant_Count :: columns: occ_fourth_south
+zone=Floor_S :: columns: occ_fourth_south
+floor=Building :: columns: occ_fourth_south
+desc=Occupant counts in the south half of forth floor :: columns: occ_fourth_south
+desc=Roof Top Unit * outdoor air temperature (*: 001, 002, 003, 004) :: columns: rtu_001_oa_temp, rtu_002_oa_temp
+unit=/ :: columns: occ_fourth_south
+unit=°F :: columns: rtu_001_oa_temp, rtu_002_oa_temp

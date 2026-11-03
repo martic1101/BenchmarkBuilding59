@@ -1,0 +1,6 @@
+columns in scope: aru_001_cws_fr_gpm
+desc=Chilled water fow rate :: columns: ALL
+unit=CFM :: columns: ALL
+sampling=5 min :: columns: ALL
+class=Chilled_Water_Supply_Flow_Rate :: columns: ALL
+zone=Building :: columns: ALL

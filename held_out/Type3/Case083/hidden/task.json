@@ -1,0 +1,167 @@
+{
+  "id": "T3-090",
+  "family": "T3",
+  "source_files": [
+    "rtu_oa_fr.csv",
+    "rtu_ra_t.csv"
+  ],
+  "target_schema": [
+    {
+      "name": "timestamp",
+      "dtype": "string 'YYYY-MM-DD HH:MM:SS'",
+      "description": "start of interval"
+    },
+    {
+      "name": "rtu_004_oa_flow_tn",
+      "dtype": "float",
+      "unit": "CFM",
+      "description": "Roof Top Unit * outdoor air flow rate (*: 001, 002, 003, 004) (CFM), 1-hour interval"
+    },
+    {
+      "name": "rtu_001_ra_temp",
+      "dtype": "float",
+      "unit": "°F",
+      "description": "Roof Top Unit * return air temperature (*: 001, 002, 003, 004) (°F), 1-hour interval"
+    },
+    {
+      "name": "rtu_002_ra_temp",
+      "dtype": "float",
+      "unit": "°F",
+      "description": "Roof Top Unit * return air temperature (*: 001, 002, 003, 004) (°F), 1-hour interval"
+    }
+  ],
+  "example_day": "2018-05-02",
+  "test_days": [
+    "2020-07-02",
+    "2020-07-03"
+  ],
+  "source_dates_example": {
+    "rtu_oa_fr": [
+      "2018-05-02"
+    ],
+    "rtu_ra_t": [
+      "2018-05-01",
+      "2018-05-02"
+    ]
+  },
+  "source_dates_test": {
+    "rtu_oa_fr": [
+      "2020-07-02",
+      "2020-07-03"
+    ],
+    "rtu_ra_t": [
+      "2020-07-01",
+      "2020-07-02",
+      "2020-07-03"
+    ]
+  },
+  "n_target_rows_example": 24,
+  "n_target_rows_test": 48,
+  "nl_instruction": "Join rtu_oa_fr.csv, rtu_ra_t.csv on timestamp (inner join) after aggregating each to 1-hour intervals using the minimum; keep only rtu_004_oa_flow_tn, rtu_001_ra_temp, rtu_002_ra_temp. Timestamp = start of interval.",
+  "needs": [
+    "sampling_interval",
+    "time_alignment",
+    "join",
+    "aggregation"
+  ],
+  "knowledge": [
+    {
+      "kind": "sampling_interval",
+      "file": "rtu_oa_fr.csv",
+      "value_min": 1.0,
+      "dict_freq": "1 min"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "rtu_oa_fr.csv",
+      "column": "rtu_004_oa_flow_tn",
+      "description": "Roof Top Unit * outdoor air flow rate (*: 001, 002, 003, 004)",
+      "quantity_kind": "air_flow"
+    },
+    {
+      "kind": "unit",
+      "file": "rtu_oa_fr.csv",
+      "column": "rtu_004_oa_flow_tn",
+      "true_unit": "CFM",
+      "dict_unit": "CFM"
+    },
+    {
+      "kind": "sampling_interval",
+      "file": "rtu_ra_t.csv",
+      "value_min": 1.0,
+      "dict_freq": "1 min"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "rtu_ra_t.csv",
+      "column": "rtu_001_ra_temp",
+      "description": "Roof Top Unit * return air temperature (*: 001, 002, 003, 004)",
+      "quantity_kind": "temperature"
+    },
+    {
+      "kind": "unit",
+      "file": "rtu_ra_t.csv",
+      "column": "rtu_001_ra_temp",
+      "true_unit": "°F",
+      "dict_unit": "°F"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "rtu_ra_t.csv",
+      "column": "rtu_002_ra_temp",
+      "description": "Roof Top Unit * return air temperature (*: 001, 002, 003, 004)",
+      "quantity_kind": "temperature"
+    },
+    {
+      "kind": "unit",
+      "file": "rtu_ra_t.csv",
+      "column": "rtu_002_ra_temp",
+      "true_unit": "°F",
+      "dict_unit": "°F"
+    }
+  ],
+  "discriminates_against": [
+    "outer_join",
+    "agg_mean",
+    "agg_max"
+  ],
+  "spec": {
+    "family": "T3",
+    "sources": [
+      {
+        "file": "rtu_oa_fr",
+        "columns": [
+          "rtu_004_oa_flow_tn"
+        ]
+      },
+      {
+        "file": "rtu_ra_t",
+        "columns": [
+          "rtu_001_ra_temp",
+          "rtu_002_ra_temp"
+        ]
+      }
+    ],
+    "freq": "1h",
+    "agg": "min",
+    "how": "inner",
+    "out_columns": [
+      "rtu_004_oa_flow_tn",
+      "rtu_001_ra_temp",
+      "rtu_002_ra_temp"
+    ],
+    "target_units": {
+      "rtu_004_oa_flow_tn": "CFM",
+      "rtu_001_ra_temp": "°F",
+      "rtu_002_ra_temp": "°F"
+    }
+  },
+  "benchmark_version": "holdout_v2",
+  "shown_rows": [
+    0,
+    6,
+    12,
+    17,
+    23
+  ]
+}

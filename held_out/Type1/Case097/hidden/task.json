@@ -1,0 +1,138 @@
+{
+  "id": "T1-111",
+  "family": "T1",
+  "source_files": [
+    "uft_fan_spd.csv"
+  ],
+  "target_schema": [
+    {
+      "name": "timestamp",
+      "dtype": "string 'YYYY-MM-DD HH:MM:SS'",
+      "description": "start of interval"
+    },
+    {
+      "name": "zone_051_fan_spd",
+      "dtype": "float",
+      "unit": "%",
+      "description": "Supply air fan speed of Zone * (%), 30-minute interval"
+    },
+    {
+      "name": "zone_067_fan_spd",
+      "dtype": "float",
+      "unit": "%",
+      "description": "Supply air fan speed of Zone * (%), 30-minute interval"
+    },
+    {
+      "name": "zone_070_fan_spd",
+      "dtype": "float",
+      "unit": "%",
+      "description": "Supply air fan speed of Zone * (%), 30-minute interval"
+    }
+  ],
+  "example_day": "2019-04-29",
+  "test_days": [
+    "2019-10-26",
+    "2019-10-27"
+  ],
+  "source_dates_example": {
+    "uft_fan_spd": [
+      "2019-04-29"
+    ]
+  },
+  "source_dates_test": {
+    "uft_fan_spd": [
+      "2019-10-26",
+      "2019-10-27"
+    ]
+  },
+  "n_target_rows_example": 48,
+  "n_target_rows_test": 96,
+  "nl_instruction": "Aggregate zone_051_fan_spd, zone_067_fan_spd, zone_070_fan_spd from uft_fan_spd.csv to 30-minute intervals using the minimum. Timestamp = start of interval.",
+  "needs": [
+    "aggregation",
+    "sampling_interval"
+  ],
+  "knowledge": [
+    {
+      "kind": "sampling_interval",
+      "file": "uft_fan_spd.csv",
+      "value_min": 1.0,
+      "dict_freq": "1 min"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "uft_fan_spd.csv",
+      "column": "zone_051_fan_spd",
+      "description": "Supply air fan speed of Zone *",
+      "quantity_kind": "fan_speed"
+    },
+    {
+      "kind": "unit",
+      "file": "uft_fan_spd.csv",
+      "column": "zone_051_fan_spd",
+      "true_unit": "%",
+      "dict_unit": "%"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "uft_fan_spd.csv",
+      "column": "zone_067_fan_spd",
+      "description": "Supply air fan speed of Zone *",
+      "quantity_kind": "fan_speed"
+    },
+    {
+      "kind": "unit",
+      "file": "uft_fan_spd.csv",
+      "column": "zone_067_fan_spd",
+      "true_unit": "%",
+      "dict_unit": "%"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "uft_fan_spd.csv",
+      "column": "zone_070_fan_spd",
+      "description": "Supply air fan speed of Zone *",
+      "quantity_kind": "fan_speed"
+    },
+    {
+      "kind": "unit",
+      "file": "uft_fan_spd.csv",
+      "column": "zone_070_fan_spd",
+      "true_unit": "%",
+      "dict_unit": "%"
+    }
+  ],
+  "discriminates_against": [
+    "agg_mean",
+    "agg_max"
+  ],
+  "spec": {
+    "family": "T1",
+    "file": "uft_fan_spd",
+    "columns": [
+      "zone_051_fan_spd",
+      "zone_067_fan_spd",
+      "zone_070_fan_spd"
+    ],
+    "freq": "30min",
+    "agg": "min",
+    "out_columns": [
+      "zone_051_fan_spd",
+      "zone_067_fan_spd",
+      "zone_070_fan_spd"
+    ],
+    "target_units": {
+      "zone_051_fan_spd": "%",
+      "zone_067_fan_spd": "%",
+      "zone_070_fan_spd": "%"
+    }
+  },
+  "benchmark_version": "holdout_v2",
+  "shown_rows": [
+    0,
+    1,
+    12,
+    24,
+    35
+  ]
+}

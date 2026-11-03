@@ -1,0 +1,14 @@
+columns in scope: zone_061_hw_valve, zone_062_co2, zone_068_co2, zone_072_hw_valve
+sampling=1 min :: columns: ALL
+class=CO2_Sensor :: columns: zone_062_co2, zone_068_co2
+floor=Floor_S :: columns: zone_062_co2, zone_068_co2
+desc=CO2 concentration of each zone :: columns: zone_062_co2, zone_068_co2
+desc=Heating water valve position of Zone * :: columns: zone_061_hw_valve, zone_072_hw_valve
+unit=% :: columns: zone_061_hw_valve, zone_072_hw_valve
+unit=ppm :: columns: zone_062_co2, zone_068_co2
+zone=zone_062 :: columns: zone_062_co2
+zone=zone_068 :: columns: zone_068_co2
+vav=UTF_G-15 :: columns: zone_062_co2
+vav=UTF_G-21 :: columns: zone_068_co2
+rtu=RTU03 :: columns: zone_062_co2
+rtu=RTU04 :: columns: zone_068_co2

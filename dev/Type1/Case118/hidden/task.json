@@ -1,0 +1,137 @@
+{
+  "id": "T1-137",
+  "family": "T1",
+  "source_files": [
+    "zone_temp_exterior.csv"
+  ],
+  "target_schema": [
+    {
+      "name": "timestamp",
+      "dtype": "string 'YYYY-MM-DD HH:MM:SS'",
+      "description": "start of interval"
+    },
+    {
+      "name": "zone_035_temp",
+      "dtype": "float",
+      "unit": "°F",
+      "description": "Zone temperature of exterior zone (°F), 1-hour interval"
+    },
+    {
+      "name": "zone_041_temp",
+      "dtype": "float",
+      "unit": "°F",
+      "description": "Zone temperature of exterior zone (°F), 1-hour interval"
+    },
+    {
+      "name": "zone_044_temp",
+      "dtype": "float",
+      "unit": "°F",
+      "description": "Zone temperature of exterior zone (°F), 1-hour interval"
+    }
+  ],
+  "example_day": "2019-11-05",
+  "test_days": [
+    "2020-12-14",
+    "2020-12-15"
+  ],
+  "source_dates_example": {
+    "zone_temp_exterior": [
+      "2019-11-05"
+    ]
+  },
+  "source_dates_test": {
+    "zone_temp_exterior": [
+      "2020-12-14",
+      "2020-12-15"
+    ]
+  },
+  "n_target_rows_example": 24,
+  "n_target_rows_test": 48,
+  "nl_instruction": "Aggregate zone_035_temp, zone_041_temp, zone_044_temp from zone_temp_exterior.csv to 1-hour intervals using the maximum. Timestamp = start of interval.",
+  "needs": [
+    "aggregation",
+    "sampling_interval"
+  ],
+  "knowledge": [
+    {
+      "kind": "sampling_interval",
+      "file": "zone_temp_exterior.csv",
+      "value_min": 1.0,
+      "dict_freq": "1 min"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "zone_temp_exterior.csv",
+      "column": "zone_035_temp",
+      "description": "Zone temperature of exterior zone",
+      "quantity_kind": "temperature"
+    },
+    {
+      "kind": "unit",
+      "file": "zone_temp_exterior.csv",
+      "column": "zone_035_temp",
+      "true_unit": "°F",
+      "dict_unit": "°F"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "zone_temp_exterior.csv",
+      "column": "zone_041_temp",
+      "description": "Zone temperature of exterior zone",
+      "quantity_kind": "temperature"
+    },
+    {
+      "kind": "unit",
+      "file": "zone_temp_exterior.csv",
+      "column": "zone_041_temp",
+      "true_unit": "°F",
+      "dict_unit": "°F"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "zone_temp_exterior.csv",
+      "column": "zone_044_temp",
+      "description": "Zone temperature of exterior zone",
+      "quantity_kind": "temperature"
+    },
+    {
+      "kind": "unit",
+      "file": "zone_temp_exterior.csv",
+      "column": "zone_044_temp",
+      "true_unit": "°F",
+      "dict_unit": "°F"
+    }
+  ],
+  "discriminates_against": [
+    "agg_mean",
+    "agg_min"
+  ],
+  "spec": {
+    "family": "T1",
+    "file": "zone_temp_exterior",
+    "columns": [
+      "zone_035_temp",
+      "zone_041_temp",
+      "zone_044_temp"
+    ],
+    "freq": "1h",
+    "agg": "max",
+    "out_columns": [
+      "zone_035_temp",
+      "zone_041_temp",
+      "zone_044_temp"
+    ],
+    "target_units": {
+      "zone_035_temp": "°F",
+      "zone_041_temp": "°F",
+      "zone_044_temp": "°F"
+    }
+  },
+  "shown_rows": [
+    0,
+    6,
+    12,
+    17,
+    23
+  ]
+}

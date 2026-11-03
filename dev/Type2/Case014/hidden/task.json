@@ -1,0 +1,103 @@
+{
+  "id": "T2-018",
+  "family": "T2",
+  "source_files": [
+    "zone_temp_sp_h.csv"
+  ],
+  "target_schema": [
+    {
+      "name": "timestamp",
+      "dtype": "string 'YYYY-MM-DD HH:MM:SS'",
+      "description": "start of interval"
+    },
+    {
+      "name": "zone_037_heating_sp_c",
+      "dtype": "float",
+      "unit": "°C",
+      "description": "Heating temperature setpoint of Zone * (°C), 1-hour interval"
+    }
+  ],
+  "example_day": "2020-01-14",
+  "test_days": [
+    "2019-06-16",
+    "2019-06-17"
+  ],
+  "source_dates_example": {
+    "zone_temp_sp_h": [
+      "2020-01-14"
+    ]
+  },
+  "source_dates_test": {
+    "zone_temp_sp_h": [
+      "2019-06-16",
+      "2019-06-17"
+    ]
+  },
+  "n_target_rows_example": 24,
+  "n_target_rows_test": 48,
+  "nl_instruction": "Aggregate zone_037_heating_sp from zone_temp_sp_h.csv to 1-hour averages and convert °F to °C. Timestamp = start of interval.",
+  "needs": [
+    "unit",
+    "conversion",
+    "aggregation"
+  ],
+  "knowledge": [
+    {
+      "kind": "sampling_interval",
+      "file": "zone_temp_sp_h.csv",
+      "value_min": 5.0,
+      "dict_freq": "5 min"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "zone_temp_sp_h.csv",
+      "column": "zone_037_heating_sp",
+      "description": "Heating temperature setpoint of Zone *",
+      "quantity_kind": "temperature_setpoint"
+    },
+    {
+      "kind": "unit",
+      "file": "zone_temp_sp_h.csv",
+      "column": "zone_037_heating_sp",
+      "true_unit": "°F",
+      "dict_unit": "°F"
+    }
+  ],
+  "discriminates_against": [
+    "agg_max",
+    "no_or_wrong_conversion"
+  ],
+  "spec": {
+    "family": "T2",
+    "file": "zone_temp_sp_h",
+    "columns": [
+      "zone_037_heating_sp"
+    ],
+    "freq": "1h",
+    "agg": "mean",
+    "conversion": "F_to_C",
+    "rename": {
+      "zone_037_heating_sp": "zone_037_heating_sp_c"
+    },
+    "out_columns": [
+      "zone_037_heating_sp_c"
+    ],
+    "target_units": {
+      "zone_037_heating_sp_c": "°C"
+    },
+    "conflict_note": null,
+    "source_units": {
+      "zone_037_heating_sp": "°F"
+    },
+    "dict_units": {
+      "zone_037_heating_sp": "°F"
+    }
+  },
+  "shown_rows": [
+    0,
+    6,
+    12,
+    17,
+    23
+  ]
+}

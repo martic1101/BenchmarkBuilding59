@@ -1,0 +1,167 @@
+{
+  "id": "T3-060",
+  "family": "T3",
+  "source_files": [
+    "ashp_cw.csv",
+    "rtu_ra_t.csv"
+  ],
+  "target_schema": [
+    {
+      "name": "timestamp",
+      "dtype": "string 'YYYY-MM-DD HH:MM:SS'",
+      "description": "start of interval"
+    },
+    {
+      "name": "aru_001_cwr_temp",
+      "dtype": "float",
+      "unit": "°F",
+      "description": "Chilled water return temperature (°F), 15-minute interval"
+    },
+    {
+      "name": "aru_001_cws_fr_gpm",
+      "dtype": "float",
+      "unit": "gpm",
+      "description": "Chilled water fow rate (gpm), 15-minute interval"
+    },
+    {
+      "name": "rtu_001_ra_temp",
+      "dtype": "float",
+      "unit": "°F",
+      "description": "Roof Top Unit * return air temperature (*: 001, 002, 003, 004) (°F), 15-minute interval"
+    }
+  ],
+  "example_day": "2020-09-24",
+  "test_days": [
+    "2020-12-01",
+    "2020-12-02"
+  ],
+  "source_dates_example": {
+    "ashp_cw": [
+      "2020-09-24"
+    ],
+    "rtu_ra_t": [
+      "2020-09-23",
+      "2020-09-24"
+    ]
+  },
+  "source_dates_test": {
+    "ashp_cw": [
+      "2020-12-01",
+      "2020-12-02"
+    ],
+    "rtu_ra_t": [
+      "2020-11-30",
+      "2020-12-01",
+      "2020-12-02"
+    ]
+  },
+  "n_target_rows_example": 96,
+  "n_target_rows_test": 192,
+  "nl_instruction": "Join ashp_cw.csv, rtu_ra_t.csv on timestamp (inner join) after aggregating each to 15-minute intervals using the average; keep only aru_001_cwr_temp, aru_001_cws_fr_gpm, rtu_001_ra_temp. Timestamp = start of interval.",
+  "needs": [
+    "sampling_interval",
+    "time_alignment",
+    "join",
+    "aggregation"
+  ],
+  "knowledge": [
+    {
+      "kind": "sampling_interval",
+      "file": "ashp_cw.csv",
+      "value_min": 5.0,
+      "dict_freq": "5 min"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "ashp_cw.csv",
+      "column": "aru_001_cwr_temp",
+      "description": "Chilled water return temperature",
+      "quantity_kind": "temperature"
+    },
+    {
+      "kind": "unit",
+      "file": "ashp_cw.csv",
+      "column": "aru_001_cwr_temp",
+      "true_unit": "°F",
+      "dict_unit": "°F"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "ashp_cw.csv",
+      "column": "aru_001_cws_fr_gpm",
+      "description": "Chilled water fow rate",
+      "quantity_kind": "water_flow"
+    },
+    {
+      "kind": "unit",
+      "file": "ashp_cw.csv",
+      "column": "aru_001_cws_fr_gpm",
+      "true_unit": "gpm",
+      "dict_unit": "CFM"
+    },
+    {
+      "kind": "sampling_interval",
+      "file": "rtu_ra_t.csv",
+      "value_min": 1.0,
+      "dict_freq": "1 min"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "rtu_ra_t.csv",
+      "column": "rtu_001_ra_temp",
+      "description": "Roof Top Unit * return air temperature (*: 001, 002, 003, 004)",
+      "quantity_kind": "temperature"
+    },
+    {
+      "kind": "unit",
+      "file": "rtu_ra_t.csv",
+      "column": "rtu_001_ra_temp",
+      "true_unit": "°F",
+      "dict_unit": "°F"
+    }
+  ],
+  "discriminates_against": [
+    "outer_join",
+    "agg_max",
+    "agg_min"
+  ],
+  "spec": {
+    "family": "T3",
+    "sources": [
+      {
+        "file": "ashp_cw",
+        "columns": [
+          "aru_001_cwr_temp",
+          "aru_001_cws_fr_gpm"
+        ]
+      },
+      {
+        "file": "rtu_ra_t",
+        "columns": [
+          "rtu_001_ra_temp"
+        ]
+      }
+    ],
+    "freq": "15min",
+    "agg": "mean",
+    "how": "inner",
+    "out_columns": [
+      "aru_001_cwr_temp",
+      "aru_001_cws_fr_gpm",
+      "rtu_001_ra_temp"
+    ],
+    "target_units": {
+      "aru_001_cwr_temp": "°F",
+      "aru_001_cws_fr_gpm": "gpm",
+      "rtu_001_ra_temp": "°F"
+    }
+  },
+  "benchmark_version": "holdout_v2",
+  "shown_rows": [
+    0,
+    24,
+    48,
+    71,
+    95
+  ]
+}

@@ -1,0 +1,21 @@
+columns in scope: rtu_003_rf_vfd_spd_fbk_tn, rtu_004_sf_vfd_spd_fbk_tn, zone_016_cooling_sp, zone_027_cooling_sp
+floor=Floor_G :: columns: zone_016_cooling_sp, zone_027_cooling_sp
+unit=% :: columns: rtu_003_rf_vfd_spd_fbk_tn, rtu_004_sf_vfd_spd_fbk_tn
+unit=°F :: columns: zone_016_cooling_sp, zone_027_cooling_sp
+sampling=1 min :: columns: rtu_003_rf_vfd_spd_fbk_tn, rtu_004_sf_vfd_spd_fbk_tn
+sampling=5 min :: columns: zone_016_cooling_sp, zone_027_cooling_sp
+vav=UTF_2-1 :: columns: zone_016_cooling_sp
+vav=UTF_2-11 :: columns: zone_027_cooling_sp
+desc=Cooling temperature setpoint of Zone * :: columns: zone_016_cooling_sp, zone_027_cooling_sp
+desc=Roof Top Unit * return fan speed (*: 001, 002, 003, 004) :: columns: rtu_003_rf_vfd_spd_fbk_tn
+desc=Roof Top Unit * supply fan speed (*: 001, 002, 003, 004) :: columns: rtu_004_sf_vfd_spd_fbk_tn
+class=Cooling_Temperature_Setpoint :: columns: zone_016_cooling_sp, zone_027_cooling_sp
+class=Return_Air_Fan_Speed :: columns: rtu_003_rf_vfd_spd_fbk_tn
+class=Supply_Air_Fan_Speed :: columns: rtu_004_sf_vfd_spd_fbk_tn
+rtu=RTU01 :: columns: zone_016_cooling_sp
+rtu=RTU03 :: columns: rtu_003_rf_vfd_spd_fbk_tn, zone_027_cooling_sp
+rtu=RTU04 :: columns: rtu_004_sf_vfd_spd_fbk_tn
+zone=RTU03 :: columns: rtu_003_rf_vfd_spd_fbk_tn
+zone=RTU04 :: columns: rtu_004_sf_vfd_spd_fbk_tn
+zone=zone_016 :: columns: zone_016_cooling_sp
+zone=zone_027 :: columns: zone_027_cooling_sp

@@ -1,0 +1,7 @@
+columns in scope: rtu_004_oadmpr_pct
+desc=Roof Top Unit * outdoor air damper position (*: 001, 002, 003, 004) :: columns: ALL
+unit=% :: columns: ALL
+sampling=1 min :: columns: ALL
+class=Outdoor_Air_Damper :: columns: ALL
+zone=RTU04 :: columns: ALL
+rtu=RTU04 :: columns: ALL

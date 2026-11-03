@@ -1,0 +1,10 @@
+columns in scope: lig_S, mels_S, zone_039_hw_valve, zone_054_hw_valve
+class=Building_Electrical_Meter :: columns: lig_S, mels_S
+zone=Building :: columns: lig_S, mels_S
+unit=% :: columns: zone_039_hw_valve, zone_054_hw_valve
+unit=kW :: columns: lig_S, mels_S
+sampling=1 min :: columns: zone_039_hw_valve, zone_054_hw_valve
+sampling=15 min :: columns: lig_S, mels_S
+desc=Heating water valve position of Zone * :: columns: zone_039_hw_valve, zone_054_hw_valve
+desc=Lighting load for the South Wing :: columns: lig_S
+desc=Miscellaneous electric load for the South Wing :: columns: mels_S

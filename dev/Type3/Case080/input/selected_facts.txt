@@ -1,0 +1,15 @@
+columns in scope: wifi_first_south, zone_036_temp, zone_071_temp
+class=Zone_Air_Temperature_Sensor :: columns: zone_036_temp, zone_071_temp
+rtu=RTU03 :: columns: zone_036_temp, zone_071_temp
+desc=Wifi connection counts in the south half of first floor :: columns: wifi_first_south
+desc=Zone temperature of exterior zone :: columns: zone_036_temp, zone_071_temp
+unit=/ :: columns: wifi_first_south
+unit=°F :: columns: zone_036_temp, zone_071_temp
+sampling=1 min :: columns: zone_036_temp, zone_071_temp
+sampling=10 min :: columns: wifi_first_south
+zone=zone_036 :: columns: zone_036_temp
+zone=zone_071 :: columns: zone_071_temp
+vav=UTF_2-16 :: columns: zone_036_temp
+vav=UTF_G-24 :: columns: zone_071_temp
+floor=Floor_G :: columns: zone_036_temp
+floor=Floor_S :: columns: zone_071_temp

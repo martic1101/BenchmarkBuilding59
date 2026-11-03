@@ -1,0 +1,18 @@
+columns in scope: rtu_003_econ_stpt_tn, zone_024_cooling_sp, zone_056_cooling_sp
+unit=°F :: columns: ALL
+desc=Cooling temperature setpoint of Zone * :: columns: zone_024_cooling_sp, zone_056_cooling_sp
+desc=Roof Top Unit * economizer setpoint (*: 001, 002, 003, 004) :: columns: rtu_003_econ_stpt_tn
+sampling=1 min :: columns: rtu_003_econ_stpt_tn
+sampling=5 min :: columns: zone_024_cooling_sp, zone_056_cooling_sp
+class=Cooling_Temperature_Setpoint :: columns: zone_024_cooling_sp, zone_056_cooling_sp
+class=Economizer_Setpoint :: columns: rtu_003_econ_stpt_tn
+vav=UTF_2-8 :: columns: zone_024_cooling_sp
+vav=UTF_G-10 :: columns: zone_056_cooling_sp
+floor=Floor_G :: columns: zone_024_cooling_sp
+floor=Floor_S :: columns: zone_056_cooling_sp
+zone=RTU03 :: columns: rtu_003_econ_stpt_tn
+zone=zone_024 :: columns: zone_024_cooling_sp
+zone=zone_056 :: columns: zone_056_cooling_sp
+rtu=RTU01 :: columns: zone_024_cooling_sp
+rtu=RTU02 :: columns: zone_056_cooling_sp
+rtu=RTU03 :: columns: rtu_003_econ_stpt_tn

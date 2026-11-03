@@ -1,0 +1,207 @@
+{
+  "id": "T3-027",
+  "family": "T3",
+  "source_files": [
+    "rtu_ra_t.csv",
+    "rtu_sa_t_sp.csv",
+    "zone_co2.csv"
+  ],
+  "target_schema": [
+    {
+      "name": "timestamp",
+      "dtype": "string 'YYYY-MM-DD HH:MM:SS'",
+      "description": "start of interval"
+    },
+    {
+      "name": "rtu_001_ra_temp",
+      "dtype": "float",
+      "unit": "°F",
+      "description": "Roof Top Unit * return air temperature (*: 001, 002, 003, 004) (°F), 1-hour averages"
+    },
+    {
+      "name": "rtu_003_ra_temp",
+      "dtype": "float",
+      "unit": "°F",
+      "description": "Roof Top Unit * return air temperature (*: 001, 002, 003, 004) (°F), 1-hour averages"
+    },
+    {
+      "name": "rtu_001_sat_sp_tn",
+      "dtype": "float",
+      "unit": "°F",
+      "description": "Roof Top Unit * supply air temperature setpoint (*: 001, 002, 003, 004) (°F), 1-hour averages"
+    },
+    {
+      "name": "zone_028_co2",
+      "dtype": "float",
+      "unit": "ppm",
+      "description": "CO2 concentration of each zone (ppm), 1-hour averages"
+    }
+  ],
+  "example_day": "2020-11-11",
+  "test_days": [
+    "2020-08-02",
+    "2020-08-03"
+  ],
+  "source_dates_example": {
+    "rtu_ra_t": [
+      "2020-11-11"
+    ],
+    "rtu_sa_t_sp": [
+      "2020-11-11"
+    ],
+    "zone_co2": [
+      "2020-11-10",
+      "2020-11-11"
+    ]
+  },
+  "source_dates_test": {
+    "rtu_ra_t": [
+      "2020-08-02",
+      "2020-08-03"
+    ],
+    "rtu_sa_t_sp": [
+      "2020-08-02",
+      "2020-08-03"
+    ],
+    "zone_co2": [
+      "2020-08-01",
+      "2020-08-02",
+      "2020-08-03"
+    ]
+  },
+  "n_target_rows_example": 24,
+  "n_target_rows_test": 48,
+  "nl_instruction": "Join rtu_ra_t.csv, rtu_sa_t_sp.csv, zone_co2.csv on timestamp (inner join) after aggregating each to 1-hour averages; keep only rtu_001_ra_temp, rtu_003_ra_temp, rtu_001_sat_sp_tn, zone_028_co2. Timestamp = start of interval.",
+  "needs": [
+    "sampling_interval",
+    "time_alignment",
+    "join",
+    "aggregation"
+  ],
+  "knowledge": [
+    {
+      "kind": "sampling_interval",
+      "file": "rtu_ra_t.csv",
+      "value_min": 1.0,
+      "dict_freq": "1 min"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "rtu_ra_t.csv",
+      "column": "rtu_001_ra_temp",
+      "description": "Roof Top Unit * return air temperature (*: 001, 002, 003, 004)",
+      "quantity_kind": "temperature"
+    },
+    {
+      "kind": "unit",
+      "file": "rtu_ra_t.csv",
+      "column": "rtu_001_ra_temp",
+      "true_unit": "°F",
+      "dict_unit": "°F"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "rtu_ra_t.csv",
+      "column": "rtu_003_ra_temp",
+      "description": "Roof Top Unit * return air temperature (*: 001, 002, 003, 004)",
+      "quantity_kind": "temperature"
+    },
+    {
+      "kind": "unit",
+      "file": "rtu_ra_t.csv",
+      "column": "rtu_003_ra_temp",
+      "true_unit": "°F",
+      "dict_unit": "°F"
+    },
+    {
+      "kind": "sampling_interval",
+      "file": "rtu_sa_t_sp.csv",
+      "value_min": 1.0,
+      "dict_freq": "1 min"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "rtu_sa_t_sp.csv",
+      "column": "rtu_001_sat_sp_tn",
+      "description": "Roof Top Unit * supply air temperature setpoint (*: 001, 002, 003, 004)",
+      "quantity_kind": "temperature_setpoint"
+    },
+    {
+      "kind": "unit",
+      "file": "rtu_sa_t_sp.csv",
+      "column": "rtu_001_sat_sp_tn",
+      "true_unit": "°F",
+      "dict_unit": "°F"
+    },
+    {
+      "kind": "sampling_interval",
+      "file": "zone_co2.csv",
+      "value_min": 1.0,
+      "dict_freq": "1 min"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "zone_co2.csv",
+      "column": "zone_028_co2",
+      "description": "CO2 concentration of each zone",
+      "quantity_kind": "co2_concentration"
+    },
+    {
+      "kind": "unit",
+      "file": "zone_co2.csv",
+      "column": "zone_028_co2",
+      "true_unit": "ppm",
+      "dict_unit": "ppm"
+    }
+  ],
+  "discriminates_against": [
+    "outer_join",
+    "agg_max"
+  ],
+  "spec": {
+    "family": "T3",
+    "sources": [
+      {
+        "file": "rtu_ra_t",
+        "columns": [
+          "rtu_001_ra_temp",
+          "rtu_003_ra_temp"
+        ]
+      },
+      {
+        "file": "rtu_sa_t_sp",
+        "columns": [
+          "rtu_001_sat_sp_tn"
+        ]
+      },
+      {
+        "file": "zone_co2",
+        "columns": [
+          "zone_028_co2"
+        ]
+      }
+    ],
+    "freq": "1h",
+    "agg": "mean",
+    "how": "inner",
+    "out_columns": [
+      "rtu_001_ra_temp",
+      "rtu_003_ra_temp",
+      "rtu_001_sat_sp_tn",
+      "zone_028_co2"
+    ],
+    "target_units": {
+      "rtu_001_ra_temp": "°F",
+      "rtu_003_ra_temp": "°F",
+      "rtu_001_sat_sp_tn": "°F",
+      "zone_028_co2": "ppm"
+    }
+  },
+  "shown_rows": [
+    0,
+    6,
+    12,
+    17,
+    23
+  ]
+}

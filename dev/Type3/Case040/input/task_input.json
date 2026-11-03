@@ -1,0 +1,50 @@
+{
+ "source_files": [
+  "ele.csv",
+  "zone_co2.csv"
+ ],
+ "example_day": "2020-05-10",
+ "target_schema": [
+  {
+   "name": "timestamp",
+   "dtype": "string 'YYYY-MM-DD HH:MM:SS'"
+  },
+  {
+   "name": "hvac_N",
+   "dtype": "float",
+   "unit": "kW"
+  },
+  {
+   "name": "zone_052_co2",
+   "dtype": "float",
+   "unit": "ppm"
+  },
+  {
+   "name": "zone_068_co2",
+   "dtype": "float",
+   "unit": "ppm"
+  }
+ ],
+ "n_example_day_target_rows": 24,
+ "n_example_day_source_rows": {
+  "ele.csv": 96,
+  "zone_co2.csv": 2880
+ },
+ "source_blocks": {
+  "ele.csv": [
+   4,
+   4,
+   4,
+   4,
+   4
+  ],
+  "zone_co2.csv": [
+   60,
+   60,
+   60,
+   60,
+   60
+  ]
+ },
+ "note": "source_example/ holds only the source rows inside the time intervals of the shown target rows; source_blocks gives the sizes of the contiguous runs (shown as '...' between runs in the prompt)."
+}

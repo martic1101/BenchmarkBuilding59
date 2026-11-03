@@ -1,0 +1,190 @@
+{
+  "id": "T3-085",
+  "family": "T3",
+  "source_files": [
+    "ele.csv",
+    "rtu_ma_t.csv"
+  ],
+  "target_schema": [
+    {
+      "name": "timestamp",
+      "dtype": "string 'YYYY-MM-DD HH:MM:SS'",
+      "description": "start of interval"
+    },
+    {
+      "name": "mels_N",
+      "dtype": "float",
+      "unit": "kW",
+      "description": "Miscellaneous electric load for the North Wing (kW), 15-minute interval"
+    },
+    {
+      "name": "mels_S",
+      "dtype": "float",
+      "unit": "kW",
+      "description": "Miscellaneous electric load for the South Wing (kW), 15-minute interval"
+    },
+    {
+      "name": "rtu_001_ma_temp",
+      "dtype": "float",
+      "unit": "°F",
+      "description": "Roof Top Unit * mixed air temperature (*: 001, 002, 003, 004) (°F), 15-minute interval"
+    },
+    {
+      "name": "rtu_004_ma_temp",
+      "dtype": "float",
+      "unit": "°F",
+      "description": "Roof Top Unit * mixed air temperature (*: 001, 002, 003, 004) (°F), 15-minute interval"
+    }
+  ],
+  "example_day": "2019-12-30",
+  "test_days": [
+    "2020-02-03",
+    "2020-02-04"
+  ],
+  "source_dates_example": {
+    "ele": [
+      "2019-12-30"
+    ],
+    "rtu_ma_t": [
+      "2019-12-29",
+      "2019-12-30"
+    ]
+  },
+  "source_dates_test": {
+    "ele": [
+      "2020-02-03",
+      "2020-02-04"
+    ],
+    "rtu_ma_t": [
+      "2020-02-02",
+      "2020-02-03",
+      "2020-02-04"
+    ]
+  },
+  "n_target_rows_example": 96,
+  "n_target_rows_test": 192,
+  "nl_instruction": "Join ele.csv, rtu_ma_t.csv on timestamp (inner join) after aggregating each to 15-minute intervals using the average; keep only mels_N, mels_S, rtu_001_ma_temp, rtu_004_ma_temp. Timestamp = start of interval.",
+  "needs": [
+    "sampling_interval",
+    "time_alignment",
+    "join",
+    "aggregation"
+  ],
+  "knowledge": [
+    {
+      "kind": "sampling_interval",
+      "file": "ele.csv",
+      "value_min": 15.0,
+      "dict_freq": "15 min"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "ele.csv",
+      "column": "mels_N",
+      "description": "Miscellaneous electric load for the North Wing",
+      "quantity_kind": "electric_power"
+    },
+    {
+      "kind": "unit",
+      "file": "ele.csv",
+      "column": "mels_N",
+      "true_unit": "kW",
+      "dict_unit": "kW"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "ele.csv",
+      "column": "mels_S",
+      "description": "Miscellaneous electric load for the South Wing",
+      "quantity_kind": "electric_power"
+    },
+    {
+      "kind": "unit",
+      "file": "ele.csv",
+      "column": "mels_S",
+      "true_unit": "kW",
+      "dict_unit": "kW"
+    },
+    {
+      "kind": "sampling_interval",
+      "file": "rtu_ma_t.csv",
+      "value_min": 1.0,
+      "dict_freq": "1 min"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "rtu_ma_t.csv",
+      "column": "rtu_001_ma_temp",
+      "description": "Roof Top Unit * mixed air temperature (*: 001, 002, 003, 004)",
+      "quantity_kind": "temperature"
+    },
+    {
+      "kind": "unit",
+      "file": "rtu_ma_t.csv",
+      "column": "rtu_001_ma_temp",
+      "true_unit": "°F",
+      "dict_unit": "°F"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "rtu_ma_t.csv",
+      "column": "rtu_004_ma_temp",
+      "description": "Roof Top Unit * mixed air temperature (*: 001, 002, 003, 004)",
+      "quantity_kind": "temperature"
+    },
+    {
+      "kind": "unit",
+      "file": "rtu_ma_t.csv",
+      "column": "rtu_004_ma_temp",
+      "true_unit": "°F",
+      "dict_unit": "°F"
+    }
+  ],
+  "discriminates_against": [
+    "outer_join",
+    "agg_max",
+    "agg_min"
+  ],
+  "spec": {
+    "family": "T3",
+    "sources": [
+      {
+        "file": "ele",
+        "columns": [
+          "mels_N",
+          "mels_S"
+        ]
+      },
+      {
+        "file": "rtu_ma_t",
+        "columns": [
+          "rtu_001_ma_temp",
+          "rtu_004_ma_temp"
+        ]
+      }
+    ],
+    "freq": "15min",
+    "agg": "mean",
+    "how": "inner",
+    "out_columns": [
+      "mels_N",
+      "mels_S",
+      "rtu_001_ma_temp",
+      "rtu_004_ma_temp"
+    ],
+    "target_units": {
+      "mels_N": "kW",
+      "mels_S": "kW",
+      "rtu_001_ma_temp": "°F",
+      "rtu_004_ma_temp": "°F"
+    }
+  },
+  "benchmark_version": "holdout_v2",
+  "shown_rows": [
+    0,
+    24,
+    48,
+    71,
+    95
+  ]
+}

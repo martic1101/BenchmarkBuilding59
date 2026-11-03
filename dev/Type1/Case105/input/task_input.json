@@ -1,0 +1,31 @@
+{
+ "source_files": [
+  "wifi.csv"
+ ],
+ "example_day": "2020-12-30",
+ "target_schema": [
+  {
+   "name": "timestamp",
+   "dtype": "string 'YYYY-MM-DD HH:MM:SS'"
+  },
+  {
+   "name": "wifi_third_south",
+   "dtype": "float",
+   "unit": "/"
+  }
+ ],
+ "n_example_day_target_rows": 24,
+ "n_example_day_source_rows": {
+  "wifi.csv": 288
+ },
+ "source_blocks": {
+  "wifi.csv": [
+   12,
+   12,
+   12,
+   12,
+   12
+  ]
+ },
+ "note": "source_example/ holds only the source rows inside the time intervals of the shown target rows; source_blocks gives the sizes of the contiguous runs (shown as '...' between runs in the prompt)."
+}

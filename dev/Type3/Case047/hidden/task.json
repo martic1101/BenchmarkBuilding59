@@ -1,0 +1,188 @@
+{
+  "id": "T3-049",
+  "family": "T3",
+  "source_files": [
+    "ele.csv",
+    "uft_hw_valve.csv"
+  ],
+  "target_schema": [
+    {
+      "name": "timestamp",
+      "dtype": "string 'YYYY-MM-DD HH:MM:SS'",
+      "description": "start of interval"
+    },
+    {
+      "name": "lig_S",
+      "dtype": "float",
+      "unit": "kW",
+      "description": "Lighting load for the South Wing (kW), 15-minute averages"
+    },
+    {
+      "name": "mels_S",
+      "dtype": "float",
+      "unit": "kW",
+      "description": "Miscellaneous electric load for the South Wing (kW), 15-minute averages"
+    },
+    {
+      "name": "zone_039_hw_valve",
+      "dtype": "float",
+      "unit": "%",
+      "description": "Heating water valve position of Zone * (%), 15-minute averages"
+    },
+    {
+      "name": "zone_054_hw_valve",
+      "dtype": "float",
+      "unit": "%",
+      "description": "Heating water valve position of Zone * (%), 15-minute averages"
+    }
+  ],
+  "example_day": "2019-12-31",
+  "test_days": [
+    "2019-10-14",
+    "2019-10-15"
+  ],
+  "source_dates_example": {
+    "ele": [
+      "2019-12-31"
+    ],
+    "uft_hw_valve": [
+      "2019-12-30",
+      "2019-12-31"
+    ]
+  },
+  "source_dates_test": {
+    "ele": [
+      "2019-10-14",
+      "2019-10-15"
+    ],
+    "uft_hw_valve": [
+      "2019-10-13",
+      "2019-10-14",
+      "2019-10-15"
+    ]
+  },
+  "n_target_rows_example": 96,
+  "n_target_rows_test": 192,
+  "nl_instruction": "Join ele.csv, uft_hw_valve.csv on timestamp (inner join) after aggregating each to 15-minute averages; keep only lig_S, mels_S, zone_039_hw_valve, zone_054_hw_valve. Timestamp = start of interval.",
+  "needs": [
+    "sampling_interval",
+    "time_alignment",
+    "join",
+    "aggregation"
+  ],
+  "knowledge": [
+    {
+      "kind": "sampling_interval",
+      "file": "ele.csv",
+      "value_min": 15.0,
+      "dict_freq": "15 min"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "ele.csv",
+      "column": "lig_S",
+      "description": "Lighting load for the South Wing",
+      "quantity_kind": "electric_power"
+    },
+    {
+      "kind": "unit",
+      "file": "ele.csv",
+      "column": "lig_S",
+      "true_unit": "kW",
+      "dict_unit": "kW"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "ele.csv",
+      "column": "mels_S",
+      "description": "Miscellaneous electric load for the South Wing",
+      "quantity_kind": "electric_power"
+    },
+    {
+      "kind": "unit",
+      "file": "ele.csv",
+      "column": "mels_S",
+      "true_unit": "kW",
+      "dict_unit": "kW"
+    },
+    {
+      "kind": "sampling_interval",
+      "file": "uft_hw_valve.csv",
+      "value_min": 1.0,
+      "dict_freq": "1 min"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "uft_hw_valve.csv",
+      "column": "zone_039_hw_valve",
+      "description": "Heating water valve position of Zone *",
+      "quantity_kind": "valve_position"
+    },
+    {
+      "kind": "unit",
+      "file": "uft_hw_valve.csv",
+      "column": "zone_039_hw_valve",
+      "true_unit": "%",
+      "dict_unit": "%"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "uft_hw_valve.csv",
+      "column": "zone_054_hw_valve",
+      "description": "Heating water valve position of Zone *",
+      "quantity_kind": "valve_position"
+    },
+    {
+      "kind": "unit",
+      "file": "uft_hw_valve.csv",
+      "column": "zone_054_hw_valve",
+      "true_unit": "%",
+      "dict_unit": "%"
+    }
+  ],
+  "discriminates_against": [
+    "outer_join",
+    "agg_max"
+  ],
+  "spec": {
+    "family": "T3",
+    "sources": [
+      {
+        "file": "ele",
+        "columns": [
+          "lig_S",
+          "mels_S"
+        ]
+      },
+      {
+        "file": "uft_hw_valve",
+        "columns": [
+          "zone_039_hw_valve",
+          "zone_054_hw_valve"
+        ]
+      }
+    ],
+    "freq": "15min",
+    "agg": "mean",
+    "how": "inner",
+    "out_columns": [
+      "lig_S",
+      "mels_S",
+      "zone_039_hw_valve",
+      "zone_054_hw_valve"
+    ],
+    "target_units": {
+      "lig_S": "kW",
+      "mels_S": "kW",
+      "zone_039_hw_valve": "%",
+      "zone_054_hw_valve": "%"
+    }
+  },
+  "shown_rows": [
+    0,
+    9,
+    24,
+    48,
+    71
+  ]
+}

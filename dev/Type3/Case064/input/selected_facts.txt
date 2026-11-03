@@ -1,0 +1,16 @@
+columns in scope: aru_001_hwr_temp, aru_001_hws_temp, zone_051_heating_sp, zone_055_heating_sp
+unit=°F :: columns: ALL
+sampling=5 min :: columns: ALL
+floor=Floor_S :: columns: zone_051_heating_sp, zone_055_heating_sp
+class=Heating_Temperature_Setpoint :: columns: zone_051_heating_sp, zone_055_heating_sp
+class=Hot_Water_Temperature_Sensor :: columns: aru_001_hwr_temp, aru_001_hws_temp
+vav=UTF_G-5 :: columns: zone_051_heating_sp
+vav=UTF_G-9 :: columns: zone_055_heating_sp
+rtu=RTU01 :: columns: zone_051_heating_sp
+rtu=RTU02 :: columns: zone_055_heating_sp
+desc=Heating temperature setpoint of Zone * :: columns: zone_051_heating_sp, zone_055_heating_sp
+desc=Hot water return temperature :: columns: aru_001_hwr_temp
+desc=Hot water supply temperature :: columns: aru_001_hws_temp
+zone=Building :: columns: aru_001_hwr_temp, aru_001_hws_temp
+zone=zone_051 :: columns: zone_051_heating_sp
+zone=zone_055 :: columns: zone_055_heating_sp

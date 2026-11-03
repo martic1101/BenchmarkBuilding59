@@ -1,0 +1,167 @@
+{
+  "id": "T3-007",
+  "family": "T3",
+  "source_files": [
+    "rtu_econ_sp.csv",
+    "zone_temp_sp_c.csv"
+  ],
+  "target_schema": [
+    {
+      "name": "timestamp",
+      "dtype": "string 'YYYY-MM-DD HH:MM:SS'",
+      "description": "start of interval"
+    },
+    {
+      "name": "rtu_003_econ_stpt_tn",
+      "dtype": "float",
+      "unit": "°F",
+      "description": "Roof Top Unit * economizer setpoint (*: 001, 002, 003, 004) (°F), 15-minute interval"
+    },
+    {
+      "name": "zone_024_cooling_sp",
+      "dtype": "float",
+      "unit": "°F",
+      "description": "Cooling temperature setpoint of Zone * (°F), 15-minute interval"
+    },
+    {
+      "name": "zone_056_cooling_sp",
+      "dtype": "float",
+      "unit": "°F",
+      "description": "Cooling temperature setpoint of Zone * (°F), 15-minute interval"
+    }
+  ],
+  "example_day": "2020-04-21",
+  "test_days": [
+    "2019-05-05",
+    "2019-05-06"
+  ],
+  "source_dates_example": {
+    "rtu_econ_sp": [
+      "2020-04-21"
+    ],
+    "zone_temp_sp_c": [
+      "2020-04-20",
+      "2020-04-21"
+    ]
+  },
+  "source_dates_test": {
+    "rtu_econ_sp": [
+      "2019-05-05",
+      "2019-05-06"
+    ],
+    "zone_temp_sp_c": [
+      "2019-05-04",
+      "2019-05-05",
+      "2019-05-06"
+    ]
+  },
+  "n_target_rows_example": 96,
+  "n_target_rows_test": 192,
+  "nl_instruction": "Join rtu_econ_sp.csv, zone_temp_sp_c.csv on timestamp (inner join) after aggregating each to 15-minute intervals using the minimum; keep only rtu_003_econ_stpt_tn, zone_024_cooling_sp, zone_056_cooling_sp. Timestamp = start of interval.",
+  "needs": [
+    "sampling_interval",
+    "time_alignment",
+    "join",
+    "aggregation"
+  ],
+  "knowledge": [
+    {
+      "kind": "sampling_interval",
+      "file": "rtu_econ_sp.csv",
+      "value_min": 1.0,
+      "dict_freq": "1 min"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "rtu_econ_sp.csv",
+      "column": "rtu_003_econ_stpt_tn",
+      "description": "Roof Top Unit * economizer setpoint (*: 001, 002, 003, 004)",
+      "quantity_kind": "temperature_setpoint"
+    },
+    {
+      "kind": "unit",
+      "file": "rtu_econ_sp.csv",
+      "column": "rtu_003_econ_stpt_tn",
+      "true_unit": "°F",
+      "dict_unit": "°F"
+    },
+    {
+      "kind": "sampling_interval",
+      "file": "zone_temp_sp_c.csv",
+      "value_min": 5.0,
+      "dict_freq": "5 min"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "zone_temp_sp_c.csv",
+      "column": "zone_024_cooling_sp",
+      "description": "Cooling temperature setpoint of Zone *",
+      "quantity_kind": "temperature_setpoint"
+    },
+    {
+      "kind": "unit",
+      "file": "zone_temp_sp_c.csv",
+      "column": "zone_024_cooling_sp",
+      "true_unit": "°F",
+      "dict_unit": "°F"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "zone_temp_sp_c.csv",
+      "column": "zone_056_cooling_sp",
+      "description": "Cooling temperature setpoint of Zone *",
+      "quantity_kind": "temperature_setpoint"
+    },
+    {
+      "kind": "unit",
+      "file": "zone_temp_sp_c.csv",
+      "column": "zone_056_cooling_sp",
+      "true_unit": "°F",
+      "dict_unit": "°F"
+    }
+  ],
+  "discriminates_against": [
+    "outer_join",
+    "agg_mean",
+    "agg_max"
+  ],
+  "spec": {
+    "family": "T3",
+    "sources": [
+      {
+        "file": "rtu_econ_sp",
+        "columns": [
+          "rtu_003_econ_stpt_tn"
+        ]
+      },
+      {
+        "file": "zone_temp_sp_c",
+        "columns": [
+          "zone_024_cooling_sp",
+          "zone_056_cooling_sp"
+        ]
+      }
+    ],
+    "freq": "15min",
+    "agg": "min",
+    "how": "inner",
+    "out_columns": [
+      "rtu_003_econ_stpt_tn",
+      "zone_024_cooling_sp",
+      "zone_056_cooling_sp"
+    ],
+    "target_units": {
+      "rtu_003_econ_stpt_tn": "°F",
+      "zone_024_cooling_sp": "°F",
+      "zone_056_cooling_sp": "°F"
+    }
+  },
+  "benchmark_version": "holdout_v2",
+  "shown_rows": [
+    0,
+    4,
+    24,
+    48,
+    71
+  ]
+}

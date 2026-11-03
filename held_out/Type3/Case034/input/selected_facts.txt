@@ -1,0 +1,23 @@
+columns in scope: mels_S, rtu_004_fltrd_gnd_lvl_plenum_press_tn, zone_044_co2, zone_052_co2
+sampling=1 min :: columns: rtu_004_fltrd_gnd_lvl_plenum_press_tn, zone_044_co2, zone_052_co2
+sampling=15 min :: columns: mels_S
+vav=UTF_2-24 :: columns: zone_044_co2
+vav=UTF_2-25 :: columns: zone_052_co2
+floor=Floor_G :: columns: zone_044_co2
+floor=Floor_S :: columns: zone_052_co2
+desc=CO2 concentration of each zone :: columns: zone_044_co2, zone_052_co2
+desc=Miscellaneous electric load for the South Wing :: columns: mels_S
+desc=Roof Top Unit * plenum air pressure at floor ** (*: 001, 002, 003, 004; **: gnd_lvl, lvl2) :: columns: rtu_004_fltrd_gnd_lvl_plenum_press_tn
+unit=kW :: columns: mels_S
+unit=ppm :: columns: zone_044_co2, zone_052_co2
+unit=psi :: columns: rtu_004_fltrd_gnd_lvl_plenum_press_tn
+class=Building_Electrical_Meter :: columns: mels_S
+class=CO2_Sensor :: columns: zone_044_co2, zone_052_co2
+class=Underfloor_Air_Plenum_Static_Pressure_Sensor :: columns: rtu_004_fltrd_gnd_lvl_plenum_press_tn
+rtu=RTU02 :: columns: zone_052_co2
+rtu=RTU03 :: columns: zone_044_co2
+rtu=RTU04 :: columns: rtu_004_fltrd_gnd_lvl_plenum_press_tn
+zone=Building :: columns: mels_S
+zone=RTU04 :: columns: rtu_004_fltrd_gnd_lvl_plenum_press_tn
+zone=zone_044 :: columns: zone_044_co2
+zone=zone_052 :: columns: zone_052_co2

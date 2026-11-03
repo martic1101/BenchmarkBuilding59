@@ -1,0 +1,9 @@
+columns in scope: rtu_003_sf_vfd_spd_fbk_tn, rtu_004_sf_vfd_spd_fbk_tn
+desc=Roof Top Unit * supply fan speed (*: 001, 002, 003, 004) :: columns: ALL
+unit=% :: columns: ALL
+sampling=1 min :: columns: ALL
+class=Supply_Air_Fan_Speed :: columns: ALL
+zone=RTU03 :: columns: rtu_003_sf_vfd_spd_fbk_tn
+zone=RTU04 :: columns: rtu_004_sf_vfd_spd_fbk_tn
+rtu=RTU03 :: columns: rtu_003_sf_vfd_spd_fbk_tn
+rtu=RTU04 :: columns: rtu_004_sf_vfd_spd_fbk_tn

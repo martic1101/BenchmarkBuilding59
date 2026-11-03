@@ -1,0 +1,253 @@
+{
+  "id": "T3-014",
+  "family": "T3",
+  "source_files": [
+    "rtu_econ_sp.csv",
+    "rtu_ma_t.csv",
+    "rtu_sa_p_sp.csv"
+  ],
+  "target_schema": [
+    {
+      "name": "timestamp",
+      "dtype": "string 'YYYY-MM-DD HH:MM:SS'",
+      "description": "start of interval"
+    },
+    {
+      "name": "rtu_001_econ_stpt_tn",
+      "dtype": "float",
+      "unit": "°F",
+      "description": "Roof Top Unit * economizer setpoint (*: 001, 002, 003, 004) (°F), 1-hour averages"
+    },
+    {
+      "name": "rtu_002_econ_stpt_tn",
+      "dtype": "float",
+      "unit": "°F",
+      "description": "Roof Top Unit * economizer setpoint (*: 001, 002, 003, 004) (°F), 1-hour averages"
+    },
+    {
+      "name": "rtu_001_ma_temp",
+      "dtype": "float",
+      "unit": "°F",
+      "description": "Roof Top Unit * mixed air temperature (*: 001, 002, 003, 004) (°F), 1-hour averages"
+    },
+    {
+      "name": "rtu_003_ma_temp",
+      "dtype": "float",
+      "unit": "°F",
+      "description": "Roof Top Unit * mixed air temperature (*: 001, 002, 003, 004) (°F), 1-hour averages"
+    },
+    {
+      "name": "rtu_002_pa_static_stpt_tn",
+      "dtype": "float",
+      "unit": "inH2O (suspected)",
+      "description": "Roof Top Unit * air pressure static setpoint (*: 001, 002, 003, 004) (inH2O (suspected)), 1-hour averages"
+    },
+    {
+      "name": "rtu_004_pa_static_stpt_tn",
+      "dtype": "float",
+      "unit": "inH2O (suspected)",
+      "description": "Roof Top Unit * air pressure static setpoint (*: 001, 002, 003, 004) (inH2O (suspected)), 1-hour averages"
+    }
+  ],
+  "example_day": "2020-05-27",
+  "test_days": [
+    "2019-02-17",
+    "2019-02-18"
+  ],
+  "source_dates_example": {
+    "rtu_econ_sp": [
+      "2020-05-27"
+    ],
+    "rtu_ma_t": [
+      "2020-05-27"
+    ],
+    "rtu_sa_p_sp": [
+      "2020-05-26",
+      "2020-05-27"
+    ]
+  },
+  "source_dates_test": {
+    "rtu_econ_sp": [
+      "2019-02-17",
+      "2019-02-18"
+    ],
+    "rtu_ma_t": [
+      "2019-02-17",
+      "2019-02-18"
+    ],
+    "rtu_sa_p_sp": [
+      "2019-02-16",
+      "2019-02-17",
+      "2019-02-18"
+    ]
+  },
+  "n_target_rows_example": 24,
+  "n_target_rows_test": 48,
+  "nl_instruction": "Join rtu_econ_sp.csv, rtu_ma_t.csv, rtu_sa_p_sp.csv on timestamp (inner join) after aggregating each to 1-hour averages; keep only rtu_001_econ_stpt_tn, rtu_002_econ_stpt_tn, rtu_001_ma_temp, rtu_003_ma_temp, rtu_002_pa_static_stpt_tn, rtu_004_pa_static_stpt_tn. Timestamp = start of interval.",
+  "needs": [
+    "sampling_interval",
+    "time_alignment",
+    "join",
+    "aggregation"
+  ],
+  "knowledge": [
+    {
+      "kind": "sampling_interval",
+      "file": "rtu_econ_sp.csv",
+      "value_min": 1.0,
+      "dict_freq": "1 min"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "rtu_econ_sp.csv",
+      "column": "rtu_001_econ_stpt_tn",
+      "description": "Roof Top Unit * economizer setpoint (*: 001, 002, 003, 004)",
+      "quantity_kind": "temperature_setpoint"
+    },
+    {
+      "kind": "unit",
+      "file": "rtu_econ_sp.csv",
+      "column": "rtu_001_econ_stpt_tn",
+      "true_unit": "°F",
+      "dict_unit": "°F"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "rtu_econ_sp.csv",
+      "column": "rtu_002_econ_stpt_tn",
+      "description": "Roof Top Unit * economizer setpoint (*: 001, 002, 003, 004)",
+      "quantity_kind": "temperature_setpoint"
+    },
+    {
+      "kind": "unit",
+      "file": "rtu_econ_sp.csv",
+      "column": "rtu_002_econ_stpt_tn",
+      "true_unit": "°F",
+      "dict_unit": "°F"
+    },
+    {
+      "kind": "sampling_interval",
+      "file": "rtu_ma_t.csv",
+      "value_min": 1.0,
+      "dict_freq": "1 min"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "rtu_ma_t.csv",
+      "column": "rtu_001_ma_temp",
+      "description": "Roof Top Unit * mixed air temperature (*: 001, 002, 003, 004)",
+      "quantity_kind": "temperature"
+    },
+    {
+      "kind": "unit",
+      "file": "rtu_ma_t.csv",
+      "column": "rtu_001_ma_temp",
+      "true_unit": "°F",
+      "dict_unit": "°F"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "rtu_ma_t.csv",
+      "column": "rtu_003_ma_temp",
+      "description": "Roof Top Unit * mixed air temperature (*: 001, 002, 003, 004)",
+      "quantity_kind": "temperature"
+    },
+    {
+      "kind": "unit",
+      "file": "rtu_ma_t.csv",
+      "column": "rtu_003_ma_temp",
+      "true_unit": "°F",
+      "dict_unit": "°F"
+    },
+    {
+      "kind": "sampling_interval",
+      "file": "rtu_sa_p_sp.csv",
+      "value_min": 1.0,
+      "dict_freq": "1 min"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "rtu_sa_p_sp.csv",
+      "column": "rtu_002_pa_static_stpt_tn",
+      "description": "Roof Top Unit * air pressure static setpoint (*: 001, 002, 003, 004)",
+      "quantity_kind": "pressure_setpoint"
+    },
+    {
+      "kind": "unit",
+      "file": "rtu_sa_p_sp.csv",
+      "column": "rtu_002_pa_static_stpt_tn",
+      "true_unit": "inH2O (suspected)",
+      "dict_unit": "psi"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "rtu_sa_p_sp.csv",
+      "column": "rtu_004_pa_static_stpt_tn",
+      "description": "Roof Top Unit * air pressure static setpoint (*: 001, 002, 003, 004)",
+      "quantity_kind": "pressure_setpoint"
+    },
+    {
+      "kind": "unit",
+      "file": "rtu_sa_p_sp.csv",
+      "column": "rtu_004_pa_static_stpt_tn",
+      "true_unit": "inH2O (suspected)",
+      "dict_unit": "psi"
+    }
+  ],
+  "discriminates_against": [
+    "outer_join",
+    "agg_max"
+  ],
+  "spec": {
+    "family": "T3",
+    "sources": [
+      {
+        "file": "rtu_econ_sp",
+        "columns": [
+          "rtu_001_econ_stpt_tn",
+          "rtu_002_econ_stpt_tn"
+        ]
+      },
+      {
+        "file": "rtu_ma_t",
+        "columns": [
+          "rtu_001_ma_temp",
+          "rtu_003_ma_temp"
+        ]
+      },
+      {
+        "file": "rtu_sa_p_sp",
+        "columns": [
+          "rtu_002_pa_static_stpt_tn",
+          "rtu_004_pa_static_stpt_tn"
+        ]
+      }
+    ],
+    "freq": "1h",
+    "agg": "mean",
+    "how": "inner",
+    "out_columns": [
+      "rtu_001_econ_stpt_tn",
+      "rtu_002_econ_stpt_tn",
+      "rtu_001_ma_temp",
+      "rtu_003_ma_temp",
+      "rtu_002_pa_static_stpt_tn",
+      "rtu_004_pa_static_stpt_tn"
+    ],
+    "target_units": {
+      "rtu_001_econ_stpt_tn": "°F",
+      "rtu_002_econ_stpt_tn": "°F",
+      "rtu_001_ma_temp": "°F",
+      "rtu_003_ma_temp": "°F",
+      "rtu_002_pa_static_stpt_tn": "inH2O (suspected)",
+      "rtu_004_pa_static_stpt_tn": "inH2O (suspected)"
+    }
+  },
+  "shown_rows": [
+    0,
+    6,
+    12,
+    17,
+    23
+  ]
+}

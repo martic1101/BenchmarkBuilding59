@@ -1,0 +1,7 @@
+columns in scope: rtu_004_ra_temp
+desc=Roof Top Unit * return air temperature (*: 001, 002, 003, 004) :: columns: ALL
+unit=°F :: columns: ALL
+sampling=1 min :: columns: ALL
+class=Return_Air_Temperature_Sensor :: columns: ALL
+zone=RTU04 :: columns: ALL
+rtu=RTU04 :: columns: ALL

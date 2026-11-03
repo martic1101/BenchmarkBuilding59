@@ -1,0 +1,167 @@
+{
+  "id": "T3-024",
+  "family": "T3",
+  "source_files": [
+    "uft_fan_spd.csv",
+    "zone_temp_sp_c.csv"
+  ],
+  "target_schema": [
+    {
+      "name": "timestamp",
+      "dtype": "string 'YYYY-MM-DD HH:MM:SS'",
+      "description": "start of interval"
+    },
+    {
+      "name": "zone_039_fan_spd",
+      "dtype": "float",
+      "unit": "%",
+      "description": "Supply air fan speed of Zone * (%), 1-hour interval"
+    },
+    {
+      "name": "zone_054_fan_spd",
+      "dtype": "float",
+      "unit": "%",
+      "description": "Supply air fan speed of Zone * (%), 1-hour interval"
+    },
+    {
+      "name": "zone_057_cooling_sp",
+      "dtype": "float",
+      "unit": "°F",
+      "description": "Cooling temperature setpoint of Zone * (°F), 1-hour interval"
+    }
+  ],
+  "example_day": "2020-01-31",
+  "test_days": [
+    "2020-11-06",
+    "2020-11-07"
+  ],
+  "source_dates_example": {
+    "uft_fan_spd": [
+      "2020-01-31"
+    ],
+    "zone_temp_sp_c": [
+      "2020-01-30",
+      "2020-01-31"
+    ]
+  },
+  "source_dates_test": {
+    "uft_fan_spd": [
+      "2020-11-06",
+      "2020-11-07"
+    ],
+    "zone_temp_sp_c": [
+      "2020-11-05",
+      "2020-11-06",
+      "2020-11-07"
+    ]
+  },
+  "n_target_rows_example": 24,
+  "n_target_rows_test": 48,
+  "nl_instruction": "Join uft_fan_spd.csv, zone_temp_sp_c.csv on timestamp (inner join) after aggregating each to 1-hour intervals using the average; keep only zone_039_fan_spd, zone_054_fan_spd, zone_057_cooling_sp. Timestamp = start of interval.",
+  "needs": [
+    "sampling_interval",
+    "time_alignment",
+    "join",
+    "aggregation"
+  ],
+  "knowledge": [
+    {
+      "kind": "sampling_interval",
+      "file": "uft_fan_spd.csv",
+      "value_min": 1.0,
+      "dict_freq": "1 min"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "uft_fan_spd.csv",
+      "column": "zone_039_fan_spd",
+      "description": "Supply air fan speed of Zone *",
+      "quantity_kind": "fan_speed"
+    },
+    {
+      "kind": "unit",
+      "file": "uft_fan_spd.csv",
+      "column": "zone_039_fan_spd",
+      "true_unit": "%",
+      "dict_unit": "%"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "uft_fan_spd.csv",
+      "column": "zone_054_fan_spd",
+      "description": "Supply air fan speed of Zone *",
+      "quantity_kind": "fan_speed"
+    },
+    {
+      "kind": "unit",
+      "file": "uft_fan_spd.csv",
+      "column": "zone_054_fan_spd",
+      "true_unit": "%",
+      "dict_unit": "%"
+    },
+    {
+      "kind": "sampling_interval",
+      "file": "zone_temp_sp_c.csv",
+      "value_min": 5.0,
+      "dict_freq": "5 min"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "zone_temp_sp_c.csv",
+      "column": "zone_057_cooling_sp",
+      "description": "Cooling temperature setpoint of Zone *",
+      "quantity_kind": "temperature_setpoint"
+    },
+    {
+      "kind": "unit",
+      "file": "zone_temp_sp_c.csv",
+      "column": "zone_057_cooling_sp",
+      "true_unit": "°F",
+      "dict_unit": "°F"
+    }
+  ],
+  "discriminates_against": [
+    "outer_join",
+    "agg_max",
+    "agg_min"
+  ],
+  "spec": {
+    "family": "T3",
+    "sources": [
+      {
+        "file": "uft_fan_spd",
+        "columns": [
+          "zone_039_fan_spd",
+          "zone_054_fan_spd"
+        ]
+      },
+      {
+        "file": "zone_temp_sp_c",
+        "columns": [
+          "zone_057_cooling_sp"
+        ]
+      }
+    ],
+    "freq": "1h",
+    "agg": "mean",
+    "how": "inner",
+    "out_columns": [
+      "zone_039_fan_spd",
+      "zone_054_fan_spd",
+      "zone_057_cooling_sp"
+    ],
+    "target_units": {
+      "zone_039_fan_spd": "%",
+      "zone_054_fan_spd": "%",
+      "zone_057_cooling_sp": "°F"
+    }
+  },
+  "benchmark_version": "holdout_v2",
+  "shown_rows": [
+    0,
+    6,
+    12,
+    17,
+    23
+  ]
+}

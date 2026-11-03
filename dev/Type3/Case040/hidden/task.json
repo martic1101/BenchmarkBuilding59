@@ -1,0 +1,165 @@
+{
+  "id": "T3-042",
+  "family": "T3",
+  "source_files": [
+    "ele.csv",
+    "zone_co2.csv"
+  ],
+  "target_schema": [
+    {
+      "name": "timestamp",
+      "dtype": "string 'YYYY-MM-DD HH:MM:SS'",
+      "description": "start of interval"
+    },
+    {
+      "name": "hvac_N",
+      "dtype": "float",
+      "unit": "kW",
+      "description": "Heating Ventilation and Air Conditioning load for the Nouth Wing (kW), 1-hour averages"
+    },
+    {
+      "name": "zone_052_co2",
+      "dtype": "float",
+      "unit": "ppm",
+      "description": "CO2 concentration of each zone (ppm), 1-hour averages"
+    },
+    {
+      "name": "zone_068_co2",
+      "dtype": "float",
+      "unit": "ppm",
+      "description": "CO2 concentration of each zone (ppm), 1-hour averages"
+    }
+  ],
+  "example_day": "2020-05-10",
+  "test_days": [
+    "2019-09-05",
+    "2019-09-06"
+  ],
+  "source_dates_example": {
+    "ele": [
+      "2020-05-10"
+    ],
+    "zone_co2": [
+      "2020-05-09",
+      "2020-05-10"
+    ]
+  },
+  "source_dates_test": {
+    "ele": [
+      "2019-09-05",
+      "2019-09-06"
+    ],
+    "zone_co2": [
+      "2019-09-04",
+      "2019-09-05",
+      "2019-09-06"
+    ]
+  },
+  "n_target_rows_example": 24,
+  "n_target_rows_test": 48,
+  "nl_instruction": "Join ele.csv, zone_co2.csv on timestamp (inner join) after aggregating each to 1-hour averages; keep only hvac_N, zone_052_co2, zone_068_co2. Timestamp = start of interval.",
+  "needs": [
+    "sampling_interval",
+    "time_alignment",
+    "join",
+    "aggregation"
+  ],
+  "knowledge": [
+    {
+      "kind": "sampling_interval",
+      "file": "ele.csv",
+      "value_min": 15.0,
+      "dict_freq": "15 min"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "ele.csv",
+      "column": "hvac_N",
+      "description": "Heating Ventilation and Air Conditioning load for the Nouth Wing",
+      "quantity_kind": "electric_power"
+    },
+    {
+      "kind": "unit",
+      "file": "ele.csv",
+      "column": "hvac_N",
+      "true_unit": "kW",
+      "dict_unit": "kW"
+    },
+    {
+      "kind": "sampling_interval",
+      "file": "zone_co2.csv",
+      "value_min": 1.0,
+      "dict_freq": "1 min"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "zone_co2.csv",
+      "column": "zone_052_co2",
+      "description": "CO2 concentration of each zone",
+      "quantity_kind": "co2_concentration"
+    },
+    {
+      "kind": "unit",
+      "file": "zone_co2.csv",
+      "column": "zone_052_co2",
+      "true_unit": "ppm",
+      "dict_unit": "ppm"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "zone_co2.csv",
+      "column": "zone_068_co2",
+      "description": "CO2 concentration of each zone",
+      "quantity_kind": "co2_concentration"
+    },
+    {
+      "kind": "unit",
+      "file": "zone_co2.csv",
+      "column": "zone_068_co2",
+      "true_unit": "ppm",
+      "dict_unit": "ppm"
+    }
+  ],
+  "discriminates_against": [
+    "outer_join",
+    "agg_max"
+  ],
+  "spec": {
+    "family": "T3",
+    "sources": [
+      {
+        "file": "ele",
+        "columns": [
+          "hvac_N"
+        ]
+      },
+      {
+        "file": "zone_co2",
+        "columns": [
+          "zone_052_co2",
+          "zone_068_co2"
+        ]
+      }
+    ],
+    "freq": "1h",
+    "agg": "mean",
+    "how": "inner",
+    "out_columns": [
+      "hvac_N",
+      "zone_052_co2",
+      "zone_068_co2"
+    ],
+    "target_units": {
+      "hvac_N": "kW",
+      "zone_052_co2": "ppm",
+      "zone_068_co2": "ppm"
+    }
+  },
+  "shown_rows": [
+    0,
+    6,
+    12,
+    17,
+    23
+  ]
+}

@@ -1,0 +1,55 @@
+{
+ "source_files": [
+  "ele.csv",
+  "rtu_fan_spd.csv"
+ ],
+ "example_day": "2019-09-08",
+ "target_schema": [
+  {
+   "name": "timestamp",
+   "dtype": "string 'YYYY-MM-DD HH:MM:SS'"
+  },
+  {
+   "name": "lig_S",
+   "dtype": "float",
+   "unit": "kW"
+  },
+  {
+   "name": "mels_S",
+   "dtype": "float",
+   "unit": "kW"
+  },
+  {
+   "name": "rtu_001_rf_vfd_spd_fbk_tn",
+   "dtype": "float",
+   "unit": "%"
+  },
+  {
+   "name": "rtu_002_sf_vfd_spd_fbk_tn",
+   "dtype": "float",
+   "unit": "%"
+  }
+ ],
+ "n_example_day_target_rows": 48,
+ "n_example_day_source_rows": {
+  "ele.csv": 96,
+  "rtu_fan_spd.csv": 2880
+ },
+ "source_blocks": {
+  "ele.csv": [
+   2,
+   2,
+   2,
+   2,
+   2
+  ],
+  "rtu_fan_spd.csv": [
+   30,
+   30,
+   30,
+   30,
+   30
+  ]
+ },
+ "note": "source_example/ holds only the source rows inside the time intervals of the shown target rows; source_blocks gives the sizes of the contiguous runs (shown as '...' between runs in the prompt)."
+}

@@ -1,0 +1,9 @@
+columns in scope: aru_001_cwr_temp, rtu_001_fltrd_sa_flow_tn, rtu_002_fltrd_sa_flow_tn
+class=Chilled_Water_Temperature_Sensor :: columns: aru_001_cwr_temp
+zone=Building :: columns: aru_001_cwr_temp
+desc=Chilled water return temperature :: columns: aru_001_cwr_temp
+desc=Roof Top Unit * filtered supply air flow rate (*: 001, 002, 003, 004) :: columns: rtu_001_fltrd_sa_flow_tn, rtu_002_fltrd_sa_flow_tn
+unit=CFM :: columns: rtu_001_fltrd_sa_flow_tn, rtu_002_fltrd_sa_flow_tn
+unit=°F :: columns: aru_001_cwr_temp
+sampling=1 min :: columns: rtu_001_fltrd_sa_flow_tn, rtu_002_fltrd_sa_flow_tn
+sampling=5 min :: columns: aru_001_cwr_temp

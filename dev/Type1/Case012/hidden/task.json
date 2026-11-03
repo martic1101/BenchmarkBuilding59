@@ -1,0 +1,114 @@
+{
+  "id": "T1-012",
+  "family": "T1",
+  "source_files": [
+    "ashp_hw.csv"
+  ],
+  "target_schema": [
+    {
+      "name": "timestamp",
+      "dtype": "string 'YYYY-MM-DD HH:MM:SS'",
+      "description": "start of interval"
+    },
+    {
+      "name": "aru_001_hwr_temp",
+      "dtype": "float",
+      "unit": "°F",
+      "description": "Hot water return temperature (°F), 1-hour interval"
+    },
+    {
+      "name": "aru_001_hws_fr_gpm",
+      "dtype": "float",
+      "unit": "gpm",
+      "description": "Hot water fow rate (gpm), 1-hour interval"
+    }
+  ],
+  "example_day": "2020-04-02",
+  "test_days": [
+    "2020-06-04",
+    "2020-06-05"
+  ],
+  "source_dates_example": {
+    "ashp_hw": [
+      "2020-04-02"
+    ]
+  },
+  "source_dates_test": {
+    "ashp_hw": [
+      "2020-06-04",
+      "2020-06-05"
+    ]
+  },
+  "n_target_rows_example": 24,
+  "n_target_rows_test": 48,
+  "nl_instruction": "Aggregate aru_001_hwr_temp, aru_001_hws_fr_gpm from ashp_hw.csv to 1-hour intervals using the minimum. Timestamp = start of interval.",
+  "needs": [
+    "aggregation",
+    "sampling_interval"
+  ],
+  "knowledge": [
+    {
+      "kind": "sampling_interval",
+      "file": "ashp_hw.csv",
+      "value_min": 5.0,
+      "dict_freq": "5 min"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "ashp_hw.csv",
+      "column": "aru_001_hwr_temp",
+      "description": "Hot water return temperature",
+      "quantity_kind": "temperature"
+    },
+    {
+      "kind": "unit",
+      "file": "ashp_hw.csv",
+      "column": "aru_001_hwr_temp",
+      "true_unit": "°F",
+      "dict_unit": "°F"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "ashp_hw.csv",
+      "column": "aru_001_hws_fr_gpm",
+      "description": "Hot water fow rate",
+      "quantity_kind": "water_flow"
+    },
+    {
+      "kind": "unit",
+      "file": "ashp_hw.csv",
+      "column": "aru_001_hws_fr_gpm",
+      "true_unit": "gpm",
+      "dict_unit": "CFM"
+    }
+  ],
+  "discriminates_against": [
+    "agg_mean",
+    "agg_max"
+  ],
+  "spec": {
+    "family": "T1",
+    "file": "ashp_hw",
+    "columns": [
+      "aru_001_hwr_temp",
+      "aru_001_hws_fr_gpm"
+    ],
+    "freq": "1h",
+    "agg": "min",
+    "out_columns": [
+      "aru_001_hwr_temp",
+      "aru_001_hws_fr_gpm"
+    ],
+    "target_units": {
+      "aru_001_hwr_temp": "°F",
+      "aru_001_hws_fr_gpm": "gpm"
+    }
+  },
+  "shown_rows": [
+    0,
+    6,
+    12,
+    17,
+    23
+  ]
+}

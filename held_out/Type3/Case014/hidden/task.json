@@ -1,0 +1,141 @@
+{
+  "id": "T3-015",
+  "family": "T3",
+  "source_files": [
+    "ashp_meter.csv",
+    "zone_temp_sp_h.csv"
+  ],
+  "target_schema": [
+    {
+      "name": "timestamp",
+      "dtype": "string 'YYYY-MM-DD HH:MM:SS'",
+      "description": "start of interval"
+    },
+    {
+      "name": "aru_001_power_mbtuph",
+      "dtype": "float",
+      "unit": "mbtuph",
+      "description": "Heat meter for air source heat pump (mbtuph), native interval (no aggregation)"
+    },
+    {
+      "name": "zone_048_heating_sp",
+      "dtype": "float",
+      "unit": "°F",
+      "description": "Heating temperature setpoint of Zone * (°F), native interval (no aggregation)"
+    }
+  ],
+  "example_day": "2020-09-08",
+  "test_days": [
+    "2020-10-23",
+    "2020-10-24"
+  ],
+  "source_dates_example": {
+    "ashp_meter": [
+      "2020-09-08"
+    ],
+    "zone_temp_sp_h": [
+      "2020-09-07",
+      "2020-09-08"
+    ]
+  },
+  "source_dates_test": {
+    "ashp_meter": [
+      "2020-10-23",
+      "2020-10-24"
+    ],
+    "zone_temp_sp_h": [
+      "2020-10-22",
+      "2020-10-23",
+      "2020-10-24"
+    ]
+  },
+  "n_target_rows_example": 288,
+  "n_target_rows_test": 576,
+  "nl_instruction": "Join ashp_meter.csv, zone_temp_sp_h.csv on timestamp (inner join) at their native interval; keep only aru_001_power_mbtuph, zone_048_heating_sp. Timestamp = start of interval.",
+  "needs": [
+    "sampling_interval",
+    "time_alignment",
+    "join"
+  ],
+  "knowledge": [
+    {
+      "kind": "sampling_interval",
+      "file": "ashp_meter.csv",
+      "value_min": 5.0,
+      "dict_freq": "5 min"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "ashp_meter.csv",
+      "column": "aru_001_power_mbtuph",
+      "description": "Heat meter for air source heat pump",
+      "quantity_kind": "thermal_power"
+    },
+    {
+      "kind": "unit",
+      "file": "ashp_meter.csv",
+      "column": "aru_001_power_mbtuph",
+      "true_unit": "mbtuph",
+      "dict_unit": "mbtuph"
+    },
+    {
+      "kind": "sampling_interval",
+      "file": "zone_temp_sp_h.csv",
+      "value_min": 5.0,
+      "dict_freq": "5 min"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "zone_temp_sp_h.csv",
+      "column": "zone_048_heating_sp",
+      "description": "Heating temperature setpoint of Zone *",
+      "quantity_kind": "temperature_setpoint"
+    },
+    {
+      "kind": "unit",
+      "file": "zone_temp_sp_h.csv",
+      "column": "zone_048_heating_sp",
+      "true_unit": "°F",
+      "dict_unit": "°F"
+    }
+  ],
+  "discriminates_against": [
+    "outer_join"
+  ],
+  "spec": {
+    "family": "T3",
+    "sources": [
+      {
+        "file": "ashp_meter",
+        "columns": [
+          "aru_001_power_mbtuph"
+        ]
+      },
+      {
+        "file": "zone_temp_sp_h",
+        "columns": [
+          "zone_048_heating_sp"
+        ]
+      }
+    ],
+    "freq": null,
+    "agg": "mean",
+    "how": "inner",
+    "out_columns": [
+      "aru_001_power_mbtuph",
+      "zone_048_heating_sp"
+    ],
+    "target_units": {
+      "aru_001_power_mbtuph": "mbtuph",
+      "zone_048_heating_sp": "°F"
+    }
+  },
+  "benchmark_version": "holdout_v2",
+  "shown_rows": [
+    0,
+    72,
+    144,
+    215,
+    287
+  ]
+}

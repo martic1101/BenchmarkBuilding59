@@ -1,0 +1,36 @@
+{
+ "source_files": [
+  "rtu_oa_damper.csv"
+ ],
+ "example_day": "2019-04-21",
+ "target_schema": [
+  {
+   "name": "timestamp",
+   "dtype": "string 'YYYY-MM-DD HH:MM:SS'"
+  },
+  {
+   "name": "rtu_001_oadmpr_pct",
+   "dtype": "float",
+   "unit": "%"
+  },
+  {
+   "name": "rtu_003_oadmpr_pct",
+   "dtype": "float",
+   "unit": "%"
+  }
+ ],
+ "n_example_day_target_rows": 48,
+ "n_example_day_source_rows": {
+  "rtu_oa_damper.csv": 1440
+ },
+ "source_blocks": {
+  "rtu_oa_damper.csv": [
+   30,
+   30,
+   30,
+   30,
+   30
+  ]
+ },
+ "note": "source_example/ holds only the source rows inside the time intervals of the shown target rows; source_blocks gives the sizes of the contiguous runs (shown as '...' between runs in the prompt)."
+}

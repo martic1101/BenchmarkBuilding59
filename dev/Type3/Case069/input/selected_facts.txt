@@ -1,0 +1,14 @@
+columns in scope: air_temp_set_2, zone_033_co2
+vav=UTF_2-14 :: columns: zone_033_co2
+rtu=RTU03 :: columns: zone_033_co2
+floor=Floor_G :: columns: zone_033_co2
+desc=CO2 concentration of each zone :: columns: zone_033_co2
+desc=Outdoor air temperature from sensor 2 :: columns: air_temp_set_2
+unit=ppm :: columns: zone_033_co2
+unit=°C :: columns: air_temp_set_2
+sampling=1 min :: columns: zone_033_co2
+sampling=15 min :: columns: air_temp_set_2
+class=CO2_Sensor :: columns: zone_033_co2
+class=Outdoor_Air_Temperature_Sensor :: columns: air_temp_set_2
+zone=Building :: columns: air_temp_set_2
+zone=zone_033 :: columns: zone_033_co2

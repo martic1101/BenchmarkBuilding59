@@ -1,0 +1,232 @@
+{
+  "id": "T3-043",
+  "family": "T3",
+  "source_files": [
+    "rtu_oa_damper.csv",
+    "rtu_sa_t_sp.csv",
+    "wifi.csv"
+  ],
+  "target_schema": [
+    {
+      "name": "timestamp",
+      "dtype": "string 'YYYY-MM-DD HH:MM:SS'",
+      "description": "start of interval"
+    },
+    {
+      "name": "rtu_002_oadmpr_pct",
+      "dtype": "float",
+      "unit": "%",
+      "description": "Roof Top Unit * outdoor air damper position (*: 001, 002, 003, 004) (%), 1-hour interval"
+    },
+    {
+      "name": "rtu_001_sat_sp_tn",
+      "dtype": "float",
+      "unit": "°F",
+      "description": "Roof Top Unit * supply air temperature setpoint (*: 001, 002, 003, 004) (°F), 1-hour interval"
+    },
+    {
+      "name": "rtu_004_sat_sp_tn",
+      "dtype": "float",
+      "unit": "°F",
+      "description": "Roof Top Unit * supply air temperature setpoint (*: 001, 002, 003, 004) (°F), 1-hour interval"
+    },
+    {
+      "name": "wifi_second_south",
+      "dtype": "float",
+      "unit": "/",
+      "description": "Wifi connection counts in the south half of second floor (/), 1-hour interval"
+    },
+    {
+      "name": "wifi_third_south",
+      "dtype": "float",
+      "unit": "/",
+      "description": "Wifi connection counts in the south half of third floor (/), 1-hour interval"
+    }
+  ],
+  "example_day": "2020-05-27",
+  "test_days": [
+    "2020-07-05",
+    "2020-07-06"
+  ],
+  "source_dates_example": {
+    "rtu_oa_damper": [
+      "2020-05-27"
+    ],
+    "rtu_sa_t_sp": [
+      "2020-05-27"
+    ],
+    "wifi": [
+      "2020-05-26",
+      "2020-05-27"
+    ]
+  },
+  "source_dates_test": {
+    "rtu_oa_damper": [
+      "2020-07-05",
+      "2020-07-06"
+    ],
+    "rtu_sa_t_sp": [
+      "2020-07-05",
+      "2020-07-06"
+    ],
+    "wifi": [
+      "2020-07-04",
+      "2020-07-05",
+      "2020-07-06"
+    ]
+  },
+  "n_target_rows_example": 24,
+  "n_target_rows_test": 48,
+  "nl_instruction": "Join rtu_oa_damper.csv, rtu_sa_t_sp.csv, wifi.csv on timestamp (inner join) after aggregating each to 1-hour intervals using the minimum; keep only rtu_002_oadmpr_pct, rtu_001_sat_sp_tn, rtu_004_sat_sp_tn, wifi_second_south, wifi_third_south. Timestamp = start of interval.",
+  "needs": [
+    "sampling_interval",
+    "time_alignment",
+    "join",
+    "aggregation"
+  ],
+  "knowledge": [
+    {
+      "kind": "sampling_interval",
+      "file": "rtu_oa_damper.csv",
+      "value_min": 1.0,
+      "dict_freq": "1 min"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "rtu_oa_damper.csv",
+      "column": "rtu_002_oadmpr_pct",
+      "description": "Roof Top Unit * outdoor air damper position (*: 001, 002, 003, 004)",
+      "quantity_kind": "damper_position"
+    },
+    {
+      "kind": "unit",
+      "file": "rtu_oa_damper.csv",
+      "column": "rtu_002_oadmpr_pct",
+      "true_unit": "%",
+      "dict_unit": "%"
+    },
+    {
+      "kind": "sampling_interval",
+      "file": "rtu_sa_t_sp.csv",
+      "value_min": 1.0,
+      "dict_freq": "1 min"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "rtu_sa_t_sp.csv",
+      "column": "rtu_001_sat_sp_tn",
+      "description": "Roof Top Unit * supply air temperature setpoint (*: 001, 002, 003, 004)",
+      "quantity_kind": "temperature_setpoint"
+    },
+    {
+      "kind": "unit",
+      "file": "rtu_sa_t_sp.csv",
+      "column": "rtu_001_sat_sp_tn",
+      "true_unit": "°F",
+      "dict_unit": "°F"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "rtu_sa_t_sp.csv",
+      "column": "rtu_004_sat_sp_tn",
+      "description": "Roof Top Unit * supply air temperature setpoint (*: 001, 002, 003, 004)",
+      "quantity_kind": "temperature_setpoint"
+    },
+    {
+      "kind": "unit",
+      "file": "rtu_sa_t_sp.csv",
+      "column": "rtu_004_sat_sp_tn",
+      "true_unit": "°F",
+      "dict_unit": "°F"
+    },
+    {
+      "kind": "sampling_interval",
+      "file": "wifi.csv",
+      "value_min": 5.0,
+      "dict_freq": "10 min"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "wifi.csv",
+      "column": "wifi_second_south",
+      "description": "Wifi connection counts in the south half of second floor",
+      "quantity_kind": "wifi_connection_count"
+    },
+    {
+      "kind": "unit",
+      "file": "wifi.csv",
+      "column": "wifi_second_south",
+      "true_unit": "/",
+      "dict_unit": "/"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "wifi.csv",
+      "column": "wifi_third_south",
+      "description": "Wifi connection counts in the south half of third floor",
+      "quantity_kind": "wifi_connection_count"
+    },
+    {
+      "kind": "unit",
+      "file": "wifi.csv",
+      "column": "wifi_third_south",
+      "true_unit": "/",
+      "dict_unit": "/"
+    }
+  ],
+  "discriminates_against": [
+    "outer_join",
+    "agg_mean",
+    "agg_max"
+  ],
+  "spec": {
+    "family": "T3",
+    "sources": [
+      {
+        "file": "rtu_oa_damper",
+        "columns": [
+          "rtu_002_oadmpr_pct"
+        ]
+      },
+      {
+        "file": "rtu_sa_t_sp",
+        "columns": [
+          "rtu_001_sat_sp_tn",
+          "rtu_004_sat_sp_tn"
+        ]
+      },
+      {
+        "file": "wifi",
+        "columns": [
+          "wifi_second_south",
+          "wifi_third_south"
+        ]
+      }
+    ],
+    "freq": "1h",
+    "agg": "min",
+    "how": "inner",
+    "out_columns": [
+      "rtu_002_oadmpr_pct",
+      "rtu_001_sat_sp_tn",
+      "rtu_004_sat_sp_tn",
+      "wifi_second_south",
+      "wifi_third_south"
+    ],
+    "target_units": {
+      "rtu_002_oadmpr_pct": "%",
+      "rtu_001_sat_sp_tn": "°F",
+      "rtu_004_sat_sp_tn": "°F",
+      "wifi_second_south": "/",
+      "wifi_third_south": "/"
+    }
+  },
+  "benchmark_version": "holdout_v2",
+  "shown_rows": [
+    0,
+    6,
+    12,
+    17,
+    23
+  ]
+}

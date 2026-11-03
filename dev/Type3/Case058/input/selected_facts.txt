@@ -1,0 +1,7 @@
+columns in scope: aru_001_power_mbtuph, rtu_003_oa_temp, rtu_004_oa_temp
+desc=Heat meter for air source heat pump :: columns: aru_001_power_mbtuph
+desc=Roof Top Unit * outdoor air temperature (*: 001, 002, 003, 004) :: columns: rtu_003_oa_temp, rtu_004_oa_temp
+unit=mbtuph :: columns: aru_001_power_mbtuph
+unit=°F :: columns: rtu_003_oa_temp, rtu_004_oa_temp
+sampling=1 min :: columns: rtu_003_oa_temp, rtu_004_oa_temp
+sampling=5 min :: columns: aru_001_power_mbtuph

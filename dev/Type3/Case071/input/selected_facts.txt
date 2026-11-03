@@ -1,0 +1,17 @@
+columns in scope: air_temp_set_2, relative_humidity_set_1, rtu_001_pa_static_stpt_tn, rtu_004_pa_static_stpt_tn
+sampling=1 min :: columns: rtu_001_pa_static_stpt_tn, rtu_004_pa_static_stpt_tn
+sampling=15 min :: columns: air_temp_set_2, relative_humidity_set_1
+rtu=RTU01 :: columns: rtu_001_pa_static_stpt_tn
+rtu=RTU04 :: columns: rtu_004_pa_static_stpt_tn
+desc=Outdoor air relative humidity from sensor 1 :: columns: relative_humidity_set_1
+desc=Outdoor air temperature from sensor 2 :: columns: air_temp_set_2
+desc=Roof Top Unit * air pressure static setpoint (*: 001, 002, 003, 004) :: columns: rtu_001_pa_static_stpt_tn, rtu_004_pa_static_stpt_tn
+unit=% :: columns: relative_humidity_set_1
+unit=psi :: columns: rtu_001_pa_static_stpt_tn, rtu_004_pa_static_stpt_tn
+unit=°C :: columns: air_temp_set_2
+class=Outdoor_Air_Humidity_Sensor :: columns: relative_humidity_set_1
+class=Outdoor_Air_Temperature_Sensor :: columns: air_temp_set_2
+class=Supply_Air_Static_Pressure_Setpoint :: columns: rtu_001_pa_static_stpt_tn, rtu_004_pa_static_stpt_tn
+zone=Building :: columns: air_temp_set_2, relative_humidity_set_1
+zone=RTU01 :: columns: rtu_001_pa_static_stpt_tn
+zone=RTU04 :: columns: rtu_004_pa_static_stpt_tn

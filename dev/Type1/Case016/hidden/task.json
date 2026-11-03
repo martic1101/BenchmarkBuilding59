@@ -1,0 +1,91 @@
+{
+  "id": "T1-016",
+  "family": "T1",
+  "source_files": [
+    "ashp_meter.csv"
+  ],
+  "target_schema": [
+    {
+      "name": "timestamp",
+      "dtype": "string 'YYYY-MM-DD HH:MM:SS'",
+      "description": "start of interval"
+    },
+    {
+      "name": "aru_001_power_mbtuph",
+      "dtype": "float",
+      "unit": "mbtuph",
+      "description": "Heat meter for air source heat pump (mbtuph), 1-hour interval"
+    }
+  ],
+  "example_day": "2020-11-22",
+  "test_days": [
+    "2020-09-30",
+    "2020-10-01"
+  ],
+  "source_dates_example": {
+    "ashp_meter": [
+      "2020-11-22"
+    ]
+  },
+  "source_dates_test": {
+    "ashp_meter": [
+      "2020-09-30",
+      "2020-10-01"
+    ]
+  },
+  "n_target_rows_example": 24,
+  "n_target_rows_test": 48,
+  "nl_instruction": "Aggregate aru_001_power_mbtuph from ashp_meter.csv to 1-hour intervals using the average. Timestamp = start of interval.",
+  "needs": [
+    "aggregation",
+    "sampling_interval"
+  ],
+  "knowledge": [
+    {
+      "kind": "sampling_interval",
+      "file": "ashp_meter.csv",
+      "value_min": 5.0,
+      "dict_freq": "5 min"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "ashp_meter.csv",
+      "column": "aru_001_power_mbtuph",
+      "description": "Heat meter for air source heat pump",
+      "quantity_kind": "thermal_power"
+    },
+    {
+      "kind": "unit",
+      "file": "ashp_meter.csv",
+      "column": "aru_001_power_mbtuph",
+      "true_unit": "mbtuph",
+      "dict_unit": "mbtuph"
+    }
+  ],
+  "discriminates_against": [
+    "agg_max",
+    "agg_min"
+  ],
+  "spec": {
+    "family": "T1",
+    "file": "ashp_meter",
+    "columns": [
+      "aru_001_power_mbtuph"
+    ],
+    "freq": "1h",
+    "agg": "mean",
+    "out_columns": [
+      "aru_001_power_mbtuph"
+    ],
+    "target_units": {
+      "aru_001_power_mbtuph": "mbtuph"
+    }
+  },
+  "shown_rows": [
+    0,
+    6,
+    12,
+    17,
+    23
+  ]
+}

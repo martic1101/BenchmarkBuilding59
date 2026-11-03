@@ -1,0 +1,144 @@
+{
+  "id": "T3-020",
+  "family": "T3",
+  "source_files": [
+    "rtu_sa_fr.csv",
+    "uft_hw_valve.csv"
+  ],
+  "target_schema": [
+    {
+      "name": "timestamp",
+      "dtype": "string 'YYYY-MM-DD HH:MM:SS'",
+      "description": "start of interval"
+    },
+    {
+      "name": "rtu_003_fltrd_sa_flow_tn",
+      "dtype": "float",
+      "unit": "CFM",
+      "description": "Roof Top Unit * filtered supply air flow rate (*: 001, 002, 003, 004) (CFM), 1-hour interval"
+    },
+    {
+      "name": "zone_055_hw_valve",
+      "dtype": "float",
+      "unit": "%",
+      "description": "Heating water valve position of Zone * (%), 1-hour interval"
+    }
+  ],
+  "example_day": "2018-09-24",
+  "test_days": [
+    "2018-11-06",
+    "2018-11-07"
+  ],
+  "source_dates_example": {
+    "rtu_sa_fr": [
+      "2018-09-24"
+    ],
+    "uft_hw_valve": [
+      "2018-09-23",
+      "2018-09-24"
+    ]
+  },
+  "source_dates_test": {
+    "rtu_sa_fr": [
+      "2018-11-06",
+      "2018-11-07"
+    ],
+    "uft_hw_valve": [
+      "2018-11-05",
+      "2018-11-06",
+      "2018-11-07"
+    ]
+  },
+  "n_target_rows_example": 24,
+  "n_target_rows_test": 48,
+  "nl_instruction": "Join rtu_sa_fr.csv, uft_hw_valve.csv on timestamp (inner join) after aggregating each to 1-hour intervals using the maximum; keep only rtu_003_fltrd_sa_flow_tn, zone_055_hw_valve. Timestamp = start of interval.",
+  "needs": [
+    "sampling_interval",
+    "time_alignment",
+    "join",
+    "aggregation"
+  ],
+  "knowledge": [
+    {
+      "kind": "sampling_interval",
+      "file": "rtu_sa_fr.csv",
+      "value_min": 1.0,
+      "dict_freq": "1 min"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "rtu_sa_fr.csv",
+      "column": "rtu_003_fltrd_sa_flow_tn",
+      "description": "Roof Top Unit * filtered supply air flow rate (*: 001, 002, 003, 004)",
+      "quantity_kind": "air_flow"
+    },
+    {
+      "kind": "unit",
+      "file": "rtu_sa_fr.csv",
+      "column": "rtu_003_fltrd_sa_flow_tn",
+      "true_unit": "CFM",
+      "dict_unit": "CFM"
+    },
+    {
+      "kind": "sampling_interval",
+      "file": "uft_hw_valve.csv",
+      "value_min": 1.0,
+      "dict_freq": "1 min"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "uft_hw_valve.csv",
+      "column": "zone_055_hw_valve",
+      "description": "Heating water valve position of Zone *",
+      "quantity_kind": "valve_position"
+    },
+    {
+      "kind": "unit",
+      "file": "uft_hw_valve.csv",
+      "column": "zone_055_hw_valve",
+      "true_unit": "%",
+      "dict_unit": "%"
+    }
+  ],
+  "discriminates_against": [
+    "outer_join",
+    "agg_mean",
+    "agg_min"
+  ],
+  "spec": {
+    "family": "T3",
+    "sources": [
+      {
+        "file": "rtu_sa_fr",
+        "columns": [
+          "rtu_003_fltrd_sa_flow_tn"
+        ]
+      },
+      {
+        "file": "uft_hw_valve",
+        "columns": [
+          "zone_055_hw_valve"
+        ]
+      }
+    ],
+    "freq": "1h",
+    "agg": "max",
+    "how": "inner",
+    "out_columns": [
+      "rtu_003_fltrd_sa_flow_tn",
+      "zone_055_hw_valve"
+    ],
+    "target_units": {
+      "rtu_003_fltrd_sa_flow_tn": "CFM",
+      "zone_055_hw_valve": "%"
+    }
+  },
+  "benchmark_version": "holdout_v2",
+  "shown_rows": [
+    0,
+    6,
+    12,
+    17,
+    23
+  ]
+}

@@ -1,0 +1,69 @@
+{
+ "source_files": [
+  "rtu_sa_t_sp.csv",
+  "uft_fan_spd.csv",
+  "uft_hw_valve.csv"
+ ],
+ "example_day": "2019-03-05",
+ "target_schema": [
+  {
+   "name": "timestamp",
+   "dtype": "string 'YYYY-MM-DD HH:MM:SS'"
+  },
+  {
+   "name": "rtu_002_sat_sp_tn",
+   "dtype": "float",
+   "unit": "°F"
+  },
+  {
+   "name": "rtu_004_sat_sp_tn",
+   "dtype": "float",
+   "unit": "°F"
+  },
+  {
+   "name": "zone_051_fan_spd",
+   "dtype": "float",
+   "unit": "%"
+  },
+  {
+   "name": "zone_065_fan_spd",
+   "dtype": "float",
+   "unit": "%"
+  },
+  {
+   "name": "zone_026_hw_valve",
+   "dtype": "float",
+   "unit": "%"
+  }
+ ],
+ "n_example_day_target_rows": 1440,
+ "n_example_day_source_rows": {
+  "rtu_sa_t_sp.csv": 1440,
+  "uft_fan_spd.csv": 1440,
+  "uft_hw_valve.csv": 2880
+ },
+ "source_blocks": {
+  "rtu_sa_t_sp.csv": [
+   1,
+   1,
+   1,
+   1,
+   1
+  ],
+  "uft_fan_spd.csv": [
+   1,
+   1,
+   1,
+   1,
+   1
+  ],
+  "uft_hw_valve.csv": [
+   1,
+   1,
+   1,
+   1,
+   1
+  ]
+ },
+ "note": "source_example/ holds only the source rows inside the time intervals of the shown target rows; source_blocks gives the sizes of the contiguous runs (shown as '...' between runs in the prompt)."
+}

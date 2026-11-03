@@ -1,0 +1,9 @@
+columns in scope: rtu_001_econ_stpt_tn, rtu_002_econ_stpt_tn
+desc=Roof Top Unit * economizer setpoint (*: 001, 002, 003, 004) :: columns: ALL
+unit=°F :: columns: ALL
+sampling=1 min :: columns: ALL
+class=Economizer_Setpoint :: columns: ALL
+zone=RTU01 :: columns: rtu_001_econ_stpt_tn
+zone=RTU02 :: columns: rtu_002_econ_stpt_tn
+rtu=RTU01 :: columns: rtu_001_econ_stpt_tn
+rtu=RTU02 :: columns: rtu_002_econ_stpt_tn

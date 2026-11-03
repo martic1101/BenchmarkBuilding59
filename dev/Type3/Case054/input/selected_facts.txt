@@ -1,0 +1,16 @@
+columns in scope: lig_S, zone_058_co2, zone_072_co2
+rtu=RTU03 :: columns: zone_058_co2, zone_072_co2
+floor=Floor_S :: columns: zone_058_co2, zone_072_co2
+desc=CO2 concentration of each zone :: columns: zone_058_co2, zone_072_co2
+desc=Lighting load for the South Wing :: columns: lig_S
+unit=kW :: columns: lig_S
+unit=ppm :: columns: zone_058_co2, zone_072_co2
+sampling=1 min :: columns: zone_058_co2, zone_072_co2
+sampling=15 min :: columns: lig_S
+class=Building_Electrical_Meter :: columns: lig_S
+class=CO2_Sensor :: columns: zone_058_co2, zone_072_co2
+vav=UTF_G-12 :: columns: zone_058_co2
+vav=UTF_G-25 :: columns: zone_072_co2
+zone=Building :: columns: lig_S
+zone=zone_058 :: columns: zone_058_co2
+zone=zone_072 :: columns: zone_072_co2

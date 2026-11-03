@@ -1,0 +1,188 @@
+{
+  "id": "T3-029",
+  "family": "T3",
+  "source_files": [
+    "ashp_cw.csv",
+    "uft_fan_spd.csv"
+  ],
+  "target_schema": [
+    {
+      "name": "timestamp",
+      "dtype": "string 'YYYY-MM-DD HH:MM:SS'",
+      "description": "start of interval"
+    },
+    {
+      "name": "aru_001_cwr_temp",
+      "dtype": "float",
+      "unit": "°F",
+      "description": "Chilled water return temperature (°F), 15-minute averages"
+    },
+    {
+      "name": "aru_001_cws_fr_gpm",
+      "dtype": "float",
+      "unit": "gpm",
+      "description": "Chilled water fow rate (gpm), 15-minute averages"
+    },
+    {
+      "name": "zone_024_fan_spd",
+      "dtype": "float",
+      "unit": "%",
+      "description": "Supply air fan speed of Zone * (%), 15-minute averages"
+    },
+    {
+      "name": "zone_046_fan_spd",
+      "dtype": "float",
+      "unit": "%",
+      "description": "Supply air fan speed of Zone * (%), 15-minute averages"
+    }
+  ],
+  "example_day": "2020-08-03",
+  "test_days": [
+    "2020-12-03",
+    "2020-12-04"
+  ],
+  "source_dates_example": {
+    "ashp_cw": [
+      "2020-08-03"
+    ],
+    "uft_fan_spd": [
+      "2020-08-02",
+      "2020-08-03"
+    ]
+  },
+  "source_dates_test": {
+    "ashp_cw": [
+      "2020-12-03",
+      "2020-12-04"
+    ],
+    "uft_fan_spd": [
+      "2020-12-02",
+      "2020-12-03",
+      "2020-12-04"
+    ]
+  },
+  "n_target_rows_example": 96,
+  "n_target_rows_test": 192,
+  "nl_instruction": "Join ashp_cw.csv, uft_fan_spd.csv on timestamp (inner join) after aggregating each to 15-minute averages; keep only aru_001_cwr_temp, aru_001_cws_fr_gpm, zone_024_fan_spd, zone_046_fan_spd. Timestamp = start of interval.",
+  "needs": [
+    "sampling_interval",
+    "time_alignment",
+    "join",
+    "aggregation"
+  ],
+  "knowledge": [
+    {
+      "kind": "sampling_interval",
+      "file": "ashp_cw.csv",
+      "value_min": 5.0,
+      "dict_freq": "5 min"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "ashp_cw.csv",
+      "column": "aru_001_cwr_temp",
+      "description": "Chilled water return temperature",
+      "quantity_kind": "temperature"
+    },
+    {
+      "kind": "unit",
+      "file": "ashp_cw.csv",
+      "column": "aru_001_cwr_temp",
+      "true_unit": "°F",
+      "dict_unit": "°F"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "ashp_cw.csv",
+      "column": "aru_001_cws_fr_gpm",
+      "description": "Chilled water fow rate",
+      "quantity_kind": "water_flow"
+    },
+    {
+      "kind": "unit",
+      "file": "ashp_cw.csv",
+      "column": "aru_001_cws_fr_gpm",
+      "true_unit": "gpm",
+      "dict_unit": "CFM"
+    },
+    {
+      "kind": "sampling_interval",
+      "file": "uft_fan_spd.csv",
+      "value_min": 1.0,
+      "dict_freq": "1 min"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "uft_fan_spd.csv",
+      "column": "zone_024_fan_spd",
+      "description": "Supply air fan speed of Zone *",
+      "quantity_kind": "fan_speed"
+    },
+    {
+      "kind": "unit",
+      "file": "uft_fan_spd.csv",
+      "column": "zone_024_fan_spd",
+      "true_unit": "%",
+      "dict_unit": "%"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "uft_fan_spd.csv",
+      "column": "zone_046_fan_spd",
+      "description": "Supply air fan speed of Zone *",
+      "quantity_kind": "fan_speed"
+    },
+    {
+      "kind": "unit",
+      "file": "uft_fan_spd.csv",
+      "column": "zone_046_fan_spd",
+      "true_unit": "%",
+      "dict_unit": "%"
+    }
+  ],
+  "discriminates_against": [
+    "outer_join",
+    "agg_max"
+  ],
+  "spec": {
+    "family": "T3",
+    "sources": [
+      {
+        "file": "ashp_cw",
+        "columns": [
+          "aru_001_cwr_temp",
+          "aru_001_cws_fr_gpm"
+        ]
+      },
+      {
+        "file": "uft_fan_spd",
+        "columns": [
+          "zone_024_fan_spd",
+          "zone_046_fan_spd"
+        ]
+      }
+    ],
+    "freq": "15min",
+    "agg": "mean",
+    "how": "inner",
+    "out_columns": [
+      "aru_001_cwr_temp",
+      "aru_001_cws_fr_gpm",
+      "zone_024_fan_spd",
+      "zone_046_fan_spd"
+    ],
+    "target_units": {
+      "aru_001_cwr_temp": "°F",
+      "aru_001_cws_fr_gpm": "gpm",
+      "zone_024_fan_spd": "%",
+      "zone_046_fan_spd": "%"
+    }
+  },
+  "shown_rows": [
+    0,
+    24,
+    48,
+    71,
+    95
+  ]
+}

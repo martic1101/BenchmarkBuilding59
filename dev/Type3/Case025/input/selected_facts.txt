@@ -1,0 +1,14 @@
+columns in scope: rtu_001_ma_temp, rtu_003_oadmpr_pct, rtu_004_ma_temp
+sampling=1 min :: columns: ALL
+desc=Roof Top Unit * mixed air temperature (*: 001, 002, 003, 004) :: columns: rtu_001_ma_temp, rtu_004_ma_temp
+desc=Roof Top Unit * outdoor air damper position (*: 001, 002, 003, 004) :: columns: rtu_003_oadmpr_pct
+unit=% :: columns: rtu_003_oadmpr_pct
+unit=°F :: columns: rtu_001_ma_temp, rtu_004_ma_temp
+class=Mixed_Air_Temperature_Sensor :: columns: rtu_001_ma_temp, rtu_004_ma_temp
+class=Outdoor_Air_Damper :: columns: rtu_003_oadmpr_pct
+zone=RTU01 :: columns: rtu_001_ma_temp
+zone=RTU03 :: columns: rtu_003_oadmpr_pct
+zone=RTU04 :: columns: rtu_004_ma_temp
+rtu=RTU01 :: columns: rtu_001_ma_temp
+rtu=RTU03 :: columns: rtu_003_oadmpr_pct
+rtu=RTU04 :: columns: rtu_004_ma_temp

@@ -1,0 +1,255 @@
+{
+  "id": "T3-030",
+  "family": "T3",
+  "source_files": [
+    "rtu_sa_t_sp.csv",
+    "site_weather.csv",
+    "zone_temp_sp_c.csv"
+  ],
+  "target_schema": [
+    {
+      "name": "timestamp",
+      "dtype": "string 'YYYY-MM-DD HH:MM:SS'",
+      "description": "start of interval"
+    },
+    {
+      "name": "rtu_002_sat_sp_tn",
+      "dtype": "float",
+      "unit": "°F",
+      "description": "Roof Top Unit * supply air temperature setpoint (*: 001, 002, 003, 004) (°F), 15-minute interval"
+    },
+    {
+      "name": "rtu_003_sat_sp_tn",
+      "dtype": "float",
+      "unit": "°F",
+      "description": "Roof Top Unit * supply air temperature setpoint (*: 001, 002, 003, 004) (°F), 15-minute interval"
+    },
+    {
+      "name": "air_temp_set_2",
+      "dtype": "float",
+      "unit": "°C",
+      "description": "Outdoor air temperature from sensor 2 (°C), 15-minute interval"
+    },
+    {
+      "name": "dew_point_temperature_set_1d",
+      "dtype": "float",
+      "unit": "°C",
+      "description": "Outdoor air dew temperature of sensor 2 (°C), 15-minute interval"
+    },
+    {
+      "name": "zone_032_cooling_sp",
+      "dtype": "float",
+      "unit": "°F",
+      "description": "Cooling temperature setpoint of Zone * (°F), 15-minute interval"
+    },
+    {
+      "name": "zone_061_cooling_sp",
+      "dtype": "float",
+      "unit": "°F",
+      "description": "Cooling temperature setpoint of Zone * (°F), 15-minute interval"
+    }
+  ],
+  "example_day": "2020-11-07",
+  "test_days": [
+    "2018-11-12",
+    "2018-11-13"
+  ],
+  "source_dates_example": {
+    "rtu_sa_t_sp": [
+      "2020-11-07"
+    ],
+    "site_weather": [
+      "2020-11-07"
+    ],
+    "zone_temp_sp_c": [
+      "2020-11-06",
+      "2020-11-07"
+    ]
+  },
+  "source_dates_test": {
+    "rtu_sa_t_sp": [
+      "2018-11-12",
+      "2018-11-13"
+    ],
+    "site_weather": [
+      "2018-11-12",
+      "2018-11-13"
+    ],
+    "zone_temp_sp_c": [
+      "2018-11-11",
+      "2018-11-12",
+      "2018-11-13"
+    ]
+  },
+  "n_target_rows_example": 96,
+  "n_target_rows_test": 192,
+  "nl_instruction": "Join rtu_sa_t_sp.csv, site_weather.csv, zone_temp_sp_c.csv on timestamp (inner join) after aggregating each to 15-minute intervals using the maximum; keep only rtu_002_sat_sp_tn, rtu_003_sat_sp_tn, air_temp_set_2, dew_point_temperature_set_1d, zone_032_cooling_sp, zone_061_cooling_sp. Timestamp = start of interval.",
+  "needs": [
+    "sampling_interval",
+    "time_alignment",
+    "join",
+    "aggregation"
+  ],
+  "knowledge": [
+    {
+      "kind": "sampling_interval",
+      "file": "rtu_sa_t_sp.csv",
+      "value_min": 1.0,
+      "dict_freq": "1 min"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "rtu_sa_t_sp.csv",
+      "column": "rtu_002_sat_sp_tn",
+      "description": "Roof Top Unit * supply air temperature setpoint (*: 001, 002, 003, 004)",
+      "quantity_kind": "temperature_setpoint"
+    },
+    {
+      "kind": "unit",
+      "file": "rtu_sa_t_sp.csv",
+      "column": "rtu_002_sat_sp_tn",
+      "true_unit": "°F",
+      "dict_unit": "°F"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "rtu_sa_t_sp.csv",
+      "column": "rtu_003_sat_sp_tn",
+      "description": "Roof Top Unit * supply air temperature setpoint (*: 001, 002, 003, 004)",
+      "quantity_kind": "temperature_setpoint"
+    },
+    {
+      "kind": "unit",
+      "file": "rtu_sa_t_sp.csv",
+      "column": "rtu_003_sat_sp_tn",
+      "true_unit": "°F",
+      "dict_unit": "°F"
+    },
+    {
+      "kind": "sampling_interval",
+      "file": "site_weather.csv",
+      "value_min": 15.0,
+      "dict_freq": "15 min"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "site_weather.csv",
+      "column": "air_temp_set_2",
+      "description": "Outdoor air temperature from sensor 2",
+      "quantity_kind": "temperature"
+    },
+    {
+      "kind": "unit",
+      "file": "site_weather.csv",
+      "column": "air_temp_set_2",
+      "true_unit": "°C",
+      "dict_unit": "°C"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "site_weather.csv",
+      "column": "dew_point_temperature_set_1d",
+      "description": "Outdoor air dew temperature of sensor 2",
+      "quantity_kind": "temperature"
+    },
+    {
+      "kind": "unit",
+      "file": "site_weather.csv",
+      "column": "dew_point_temperature_set_1d",
+      "true_unit": "°C",
+      "dict_unit": "°C"
+    },
+    {
+      "kind": "sampling_interval",
+      "file": "zone_temp_sp_c.csv",
+      "value_min": 5.0,
+      "dict_freq": "5 min"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "zone_temp_sp_c.csv",
+      "column": "zone_032_cooling_sp",
+      "description": "Cooling temperature setpoint of Zone *",
+      "quantity_kind": "temperature_setpoint"
+    },
+    {
+      "kind": "unit",
+      "file": "zone_temp_sp_c.csv",
+      "column": "zone_032_cooling_sp",
+      "true_unit": "°F",
+      "dict_unit": "°F"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "zone_temp_sp_c.csv",
+      "column": "zone_061_cooling_sp",
+      "description": "Cooling temperature setpoint of Zone *",
+      "quantity_kind": "temperature_setpoint"
+    },
+    {
+      "kind": "unit",
+      "file": "zone_temp_sp_c.csv",
+      "column": "zone_061_cooling_sp",
+      "true_unit": "°F",
+      "dict_unit": "°F"
+    }
+  ],
+  "discriminates_against": [
+    "outer_join",
+    "agg_mean",
+    "agg_min"
+  ],
+  "spec": {
+    "family": "T3",
+    "sources": [
+      {
+        "file": "rtu_sa_t_sp",
+        "columns": [
+          "rtu_002_sat_sp_tn",
+          "rtu_003_sat_sp_tn"
+        ]
+      },
+      {
+        "file": "site_weather",
+        "columns": [
+          "air_temp_set_2",
+          "dew_point_temperature_set_1d"
+        ]
+      },
+      {
+        "file": "zone_temp_sp_c",
+        "columns": [
+          "zone_032_cooling_sp",
+          "zone_061_cooling_sp"
+        ]
+      }
+    ],
+    "freq": "15min",
+    "agg": "max",
+    "how": "inner",
+    "out_columns": [
+      "rtu_002_sat_sp_tn",
+      "rtu_003_sat_sp_tn",
+      "air_temp_set_2",
+      "dew_point_temperature_set_1d",
+      "zone_032_cooling_sp",
+      "zone_061_cooling_sp"
+    ],
+    "target_units": {
+      "rtu_002_sat_sp_tn": "°F",
+      "rtu_003_sat_sp_tn": "°F",
+      "air_temp_set_2": "°C",
+      "dew_point_temperature_set_1d": "°C",
+      "zone_032_cooling_sp": "°F",
+      "zone_061_cooling_sp": "°F"
+    }
+  },
+  "benchmark_version": "holdout_v2",
+  "shown_rows": [
+    0,
+    24,
+    48,
+    71,
+    95
+  ]
+}

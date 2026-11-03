@@ -1,0 +1,13 @@
+columns in scope: wifi_first_south, wifi_second_south, zone_047_heating_sp
+class=Heating_Temperature_Setpoint :: columns: zone_047_heating_sp
+zone=zone_047 :: columns: zone_047_heating_sp
+vav=UTF_G-2 :: columns: zone_047_heating_sp
+rtu=RTU01 :: columns: zone_047_heating_sp
+floor=Floor_S :: columns: zone_047_heating_sp
+unit=/ :: columns: wifi_first_south, wifi_second_south
+unit=°F :: columns: zone_047_heating_sp
+sampling=10 min :: columns: wifi_first_south, wifi_second_south
+sampling=5 min :: columns: zone_047_heating_sp
+desc=Heating temperature setpoint of Zone * :: columns: zone_047_heating_sp
+desc=Wifi connection counts in the south half of first floor :: columns: wifi_first_south
+desc=Wifi connection counts in the south half of second floor :: columns: wifi_second_south

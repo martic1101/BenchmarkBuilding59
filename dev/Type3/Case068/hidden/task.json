@@ -1,0 +1,186 @@
+{
+  "id": "T3-070",
+  "family": "T3",
+  "source_files": [
+    "ashp_hw.csv",
+    "wifi.csv"
+  ],
+  "target_schema": [
+    {
+      "name": "timestamp",
+      "dtype": "string 'YYYY-MM-DD HH:MM:SS'",
+      "description": "start of interval"
+    },
+    {
+      "name": "aru_001_hwr_temp",
+      "dtype": "float",
+      "unit": "°F",
+      "description": "Hot water return temperature (°F), native interval (no aggregation)"
+    },
+    {
+      "name": "aru_001_hws_fr_gpm",
+      "dtype": "float",
+      "unit": "gpm",
+      "description": "Hot water fow rate (gpm), native interval (no aggregation)"
+    },
+    {
+      "name": "wifi_fourth_south",
+      "dtype": "float",
+      "unit": "/",
+      "description": "Wifi connection counts in the south half of forth floor (/), native interval (no aggregation)"
+    },
+    {
+      "name": "wifi_third_south",
+      "dtype": "float",
+      "unit": "/",
+      "description": "Wifi connection counts in the south half of third floor (/), native interval (no aggregation)"
+    }
+  ],
+  "example_day": "2020-10-18",
+  "test_days": [
+    "2020-08-15",
+    "2020-08-16"
+  ],
+  "source_dates_example": {
+    "ashp_hw": [
+      "2020-10-18"
+    ],
+    "wifi": [
+      "2020-10-17",
+      "2020-10-18"
+    ]
+  },
+  "source_dates_test": {
+    "ashp_hw": [
+      "2020-08-15",
+      "2020-08-16"
+    ],
+    "wifi": [
+      "2020-08-14",
+      "2020-08-15",
+      "2020-08-16"
+    ]
+  },
+  "n_target_rows_example": 288,
+  "n_target_rows_test": 576,
+  "nl_instruction": "Join ashp_hw.csv, wifi.csv on timestamp (inner join) at their native interval; keep only aru_001_hwr_temp, aru_001_hws_fr_gpm, wifi_fourth_south, wifi_third_south. Timestamp = start of interval.",
+  "needs": [
+    "sampling_interval",
+    "time_alignment",
+    "join"
+  ],
+  "knowledge": [
+    {
+      "kind": "sampling_interval",
+      "file": "ashp_hw.csv",
+      "value_min": 5.0,
+      "dict_freq": "5 min"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "ashp_hw.csv",
+      "column": "aru_001_hwr_temp",
+      "description": "Hot water return temperature",
+      "quantity_kind": "temperature"
+    },
+    {
+      "kind": "unit",
+      "file": "ashp_hw.csv",
+      "column": "aru_001_hwr_temp",
+      "true_unit": "°F",
+      "dict_unit": "°F"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "ashp_hw.csv",
+      "column": "aru_001_hws_fr_gpm",
+      "description": "Hot water fow rate",
+      "quantity_kind": "water_flow"
+    },
+    {
+      "kind": "unit",
+      "file": "ashp_hw.csv",
+      "column": "aru_001_hws_fr_gpm",
+      "true_unit": "gpm",
+      "dict_unit": "CFM"
+    },
+    {
+      "kind": "sampling_interval",
+      "file": "wifi.csv",
+      "value_min": 5.0,
+      "dict_freq": "10 min"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "wifi.csv",
+      "column": "wifi_fourth_south",
+      "description": "Wifi connection counts in the south half of forth floor",
+      "quantity_kind": "wifi_connection_count"
+    },
+    {
+      "kind": "unit",
+      "file": "wifi.csv",
+      "column": "wifi_fourth_south",
+      "true_unit": "/",
+      "dict_unit": "/"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "wifi.csv",
+      "column": "wifi_third_south",
+      "description": "Wifi connection counts in the south half of third floor",
+      "quantity_kind": "wifi_connection_count"
+    },
+    {
+      "kind": "unit",
+      "file": "wifi.csv",
+      "column": "wifi_third_south",
+      "true_unit": "/",
+      "dict_unit": "/"
+    }
+  ],
+  "discriminates_against": [
+    "outer_join"
+  ],
+  "spec": {
+    "family": "T3",
+    "sources": [
+      {
+        "file": "ashp_hw",
+        "columns": [
+          "aru_001_hwr_temp",
+          "aru_001_hws_fr_gpm"
+        ]
+      },
+      {
+        "file": "wifi",
+        "columns": [
+          "wifi_fourth_south",
+          "wifi_third_south"
+        ]
+      }
+    ],
+    "freq": null,
+    "agg": "mean",
+    "how": "inner",
+    "out_columns": [
+      "aru_001_hwr_temp",
+      "aru_001_hws_fr_gpm",
+      "wifi_fourth_south",
+      "wifi_third_south"
+    ],
+    "target_units": {
+      "aru_001_hwr_temp": "°F",
+      "aru_001_hws_fr_gpm": "gpm",
+      "wifi_fourth_south": "/",
+      "wifi_third_south": "/"
+    }
+  },
+  "shown_rows": [
+    0,
+    72,
+    144,
+    215,
+    287
+  ]
+}

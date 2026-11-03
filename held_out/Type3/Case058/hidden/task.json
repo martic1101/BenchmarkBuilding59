@@ -1,0 +1,167 @@
+{
+  "id": "T3-064",
+  "family": "T3",
+  "source_files": [
+    "ashp_cw.csv",
+    "zone_temp_exterior.csv"
+  ],
+  "target_schema": [
+    {
+      "name": "timestamp",
+      "dtype": "string 'YYYY-MM-DD HH:MM:SS'",
+      "description": "start of interval"
+    },
+    {
+      "name": "aru_001_cws_temp",
+      "dtype": "float",
+      "unit": "°F",
+      "description": "Chilled water supply temperature (°F), 1-hour interval"
+    },
+    {
+      "name": "zone_033_temp",
+      "dtype": "float",
+      "unit": "°F",
+      "description": "Zone temperature of exterior zone (°F), 1-hour interval"
+    },
+    {
+      "name": "zone_042_temp",
+      "dtype": "float",
+      "unit": "°F",
+      "description": "Zone temperature of exterior zone (°F), 1-hour interval"
+    }
+  ],
+  "example_day": "2020-08-02",
+  "test_days": [
+    "2020-11-28",
+    "2020-11-29"
+  ],
+  "source_dates_example": {
+    "ashp_cw": [
+      "2020-08-02"
+    ],
+    "zone_temp_exterior": [
+      "2020-08-01",
+      "2020-08-02"
+    ]
+  },
+  "source_dates_test": {
+    "ashp_cw": [
+      "2020-11-28",
+      "2020-11-29"
+    ],
+    "zone_temp_exterior": [
+      "2020-11-27",
+      "2020-11-28",
+      "2020-11-29"
+    ]
+  },
+  "n_target_rows_example": 24,
+  "n_target_rows_test": 48,
+  "nl_instruction": "Join ashp_cw.csv, zone_temp_exterior.csv on timestamp (inner join) after aggregating each to 1-hour intervals using the average; keep only aru_001_cws_temp, zone_033_temp, zone_042_temp. Timestamp = start of interval.",
+  "needs": [
+    "sampling_interval",
+    "time_alignment",
+    "join",
+    "aggregation"
+  ],
+  "knowledge": [
+    {
+      "kind": "sampling_interval",
+      "file": "ashp_cw.csv",
+      "value_min": 5.0,
+      "dict_freq": "5 min"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "ashp_cw.csv",
+      "column": "aru_001_cws_temp",
+      "description": "Chilled water supply temperature",
+      "quantity_kind": "temperature"
+    },
+    {
+      "kind": "unit",
+      "file": "ashp_cw.csv",
+      "column": "aru_001_cws_temp",
+      "true_unit": "°F",
+      "dict_unit": "°F"
+    },
+    {
+      "kind": "sampling_interval",
+      "file": "zone_temp_exterior.csv",
+      "value_min": 1.0,
+      "dict_freq": "1 min"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "zone_temp_exterior.csv",
+      "column": "zone_033_temp",
+      "description": "Zone temperature of exterior zone",
+      "quantity_kind": "temperature"
+    },
+    {
+      "kind": "unit",
+      "file": "zone_temp_exterior.csv",
+      "column": "zone_033_temp",
+      "true_unit": "°F",
+      "dict_unit": "°F"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "zone_temp_exterior.csv",
+      "column": "zone_042_temp",
+      "description": "Zone temperature of exterior zone",
+      "quantity_kind": "temperature"
+    },
+    {
+      "kind": "unit",
+      "file": "zone_temp_exterior.csv",
+      "column": "zone_042_temp",
+      "true_unit": "°F",
+      "dict_unit": "°F"
+    }
+  ],
+  "discriminates_against": [
+    "outer_join",
+    "agg_max",
+    "agg_min"
+  ],
+  "spec": {
+    "family": "T3",
+    "sources": [
+      {
+        "file": "ashp_cw",
+        "columns": [
+          "aru_001_cws_temp"
+        ]
+      },
+      {
+        "file": "zone_temp_exterior",
+        "columns": [
+          "zone_033_temp",
+          "zone_042_temp"
+        ]
+      }
+    ],
+    "freq": "1h",
+    "agg": "mean",
+    "how": "inner",
+    "out_columns": [
+      "aru_001_cws_temp",
+      "zone_033_temp",
+      "zone_042_temp"
+    ],
+    "target_units": {
+      "aru_001_cws_temp": "°F",
+      "zone_033_temp": "°F",
+      "zone_042_temp": "°F"
+    }
+  },
+  "benchmark_version": "holdout_v2",
+  "shown_rows": [
+    0,
+    6,
+    12,
+    17,
+    23
+  ]
+}

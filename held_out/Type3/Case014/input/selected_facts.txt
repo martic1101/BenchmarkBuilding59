@@ -1,0 +1,11 @@
+columns in scope: aru_001_power_mbtuph, zone_048_heating_sp
+sampling=5 min :: columns: ALL
+class=Heating_Temperature_Setpoint :: columns: zone_048_heating_sp
+zone=zone_048 :: columns: zone_048_heating_sp
+vav=UTF_G-3 :: columns: zone_048_heating_sp
+rtu=RTU02 :: columns: zone_048_heating_sp
+floor=Floor_S :: columns: zone_048_heating_sp
+desc=Heat meter for air source heat pump :: columns: aru_001_power_mbtuph
+desc=Heating temperature setpoint of Zone * :: columns: zone_048_heating_sp
+unit=mbtuph :: columns: aru_001_power_mbtuph
+unit=°F :: columns: zone_048_heating_sp

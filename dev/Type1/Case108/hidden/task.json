@@ -1,0 +1,91 @@
+{
+  "id": "T1-127",
+  "family": "T1",
+  "source_files": [
+    "zone_co2.csv"
+  ],
+  "target_schema": [
+    {
+      "name": "timestamp",
+      "dtype": "string 'YYYY-MM-DD HH:MM:SS'",
+      "description": "start of interval"
+    },
+    {
+      "name": "zone_028_co2",
+      "dtype": "float",
+      "unit": "ppm",
+      "description": "CO2 concentration of each zone (ppm), 30-minute interval"
+    }
+  ],
+  "example_day": "2019-12-24",
+  "test_days": [
+    "2019-10-29",
+    "2019-10-30"
+  ],
+  "source_dates_example": {
+    "zone_co2": [
+      "2019-12-24"
+    ]
+  },
+  "source_dates_test": {
+    "zone_co2": [
+      "2019-10-29",
+      "2019-10-30"
+    ]
+  },
+  "n_target_rows_example": 48,
+  "n_target_rows_test": 96,
+  "nl_instruction": "Aggregate zone_028_co2 from zone_co2.csv to 30-minute intervals using the average. Timestamp = start of interval.",
+  "needs": [
+    "aggregation",
+    "sampling_interval"
+  ],
+  "knowledge": [
+    {
+      "kind": "sampling_interval",
+      "file": "zone_co2.csv",
+      "value_min": 1.0,
+      "dict_freq": "1 min"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "zone_co2.csv",
+      "column": "zone_028_co2",
+      "description": "CO2 concentration of each zone",
+      "quantity_kind": "co2_concentration"
+    },
+    {
+      "kind": "unit",
+      "file": "zone_co2.csv",
+      "column": "zone_028_co2",
+      "true_unit": "ppm",
+      "dict_unit": "ppm"
+    }
+  ],
+  "discriminates_against": [
+    "agg_max",
+    "agg_min"
+  ],
+  "spec": {
+    "family": "T1",
+    "file": "zone_co2",
+    "columns": [
+      "zone_028_co2"
+    ],
+    "freq": "30min",
+    "agg": "mean",
+    "out_columns": [
+      "zone_028_co2"
+    ],
+    "target_units": {
+      "zone_028_co2": "ppm"
+    }
+  },
+  "shown_rows": [
+    0,
+    12,
+    24,
+    35,
+    47
+  ]
+}

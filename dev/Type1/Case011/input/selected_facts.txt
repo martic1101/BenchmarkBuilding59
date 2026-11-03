@@ -1,0 +1,10 @@
+columns in scope: aru_001_hwr_temp, aru_001_hws_fr_gpm, aru_001_hws_temp
+sampling=5 min :: columns: ALL
+zone=Building :: columns: ALL
+unit=CFM :: columns: aru_001_hws_fr_gpm
+unit=°F :: columns: aru_001_hwr_temp, aru_001_hws_temp
+class=Hot_Water_Supply_Flow_Rate :: columns: aru_001_hws_fr_gpm
+class=Hot_Water_Temperature_Sensor :: columns: aru_001_hwr_temp, aru_001_hws_temp
+desc=Hot water fow rate :: columns: aru_001_hws_fr_gpm
+desc=Hot water return temperature :: columns: aru_001_hwr_temp
+desc=Hot water supply temperature :: columns: aru_001_hws_temp

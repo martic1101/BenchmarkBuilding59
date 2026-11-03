@@ -1,0 +1,114 @@
+{
+  "id": "T1-021",
+  "family": "T1",
+  "source_files": [
+    "ele.csv"
+  ],
+  "target_schema": [
+    {
+      "name": "timestamp",
+      "dtype": "string 'YYYY-MM-DD HH:MM:SS'",
+      "description": "start of interval"
+    },
+    {
+      "name": "lig_S",
+      "dtype": "float",
+      "unit": "kW",
+      "description": "Lighting load for the South Wing (kW), 30-minute interval"
+    },
+    {
+      "name": "mels_S",
+      "dtype": "float",
+      "unit": "kW",
+      "description": "Miscellaneous electric load for the South Wing (kW), 30-minute interval"
+    }
+  ],
+  "example_day": "2019-04-14",
+  "test_days": [
+    "2020-01-17",
+    "2020-01-18"
+  ],
+  "source_dates_example": {
+    "ele": [
+      "2019-04-14"
+    ]
+  },
+  "source_dates_test": {
+    "ele": [
+      "2020-01-17",
+      "2020-01-18"
+    ]
+  },
+  "n_target_rows_example": 48,
+  "n_target_rows_test": 96,
+  "nl_instruction": "Aggregate lig_S, mels_S from ele.csv to 30-minute intervals using the minimum. Timestamp = start of interval.",
+  "needs": [
+    "aggregation",
+    "sampling_interval"
+  ],
+  "knowledge": [
+    {
+      "kind": "sampling_interval",
+      "file": "ele.csv",
+      "value_min": 15.0,
+      "dict_freq": "15 min"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "ele.csv",
+      "column": "lig_S",
+      "description": "Lighting load for the South Wing",
+      "quantity_kind": "electric_power"
+    },
+    {
+      "kind": "unit",
+      "file": "ele.csv",
+      "column": "lig_S",
+      "true_unit": "kW",
+      "dict_unit": "kW"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "ele.csv",
+      "column": "mels_S",
+      "description": "Miscellaneous electric load for the South Wing",
+      "quantity_kind": "electric_power"
+    },
+    {
+      "kind": "unit",
+      "file": "ele.csv",
+      "column": "mels_S",
+      "true_unit": "kW",
+      "dict_unit": "kW"
+    }
+  ],
+  "discriminates_against": [
+    "agg_mean",
+    "agg_max"
+  ],
+  "spec": {
+    "family": "T1",
+    "file": "ele",
+    "columns": [
+      "lig_S",
+      "mels_S"
+    ],
+    "freq": "30min",
+    "agg": "min",
+    "out_columns": [
+      "lig_S",
+      "mels_S"
+    ],
+    "target_units": {
+      "lig_S": "kW",
+      "mels_S": "kW"
+    }
+  },
+  "shown_rows": [
+    0,
+    2,
+    6,
+    12,
+    24
+  ]
+}

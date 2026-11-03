@@ -1,0 +1,20 @@
+columns in scope: aru_001_cwr_temp, aru_001_cws_fr_gpm, zone_024_fan_spd, zone_046_fan_spd
+rtu=RTU01 :: columns: zone_024_fan_spd, zone_046_fan_spd
+sampling=1 min :: columns: zone_024_fan_spd, zone_046_fan_spd
+sampling=5 min :: columns: aru_001_cwr_temp, aru_001_cws_fr_gpm
+vav=UTF_2-8 :: columns: zone_024_fan_spd
+vav=UTF_G-1 :: columns: zone_046_fan_spd
+floor=Floor_G :: columns: zone_024_fan_spd
+floor=Floor_S :: columns: zone_046_fan_spd
+desc=Chilled water fow rate :: columns: aru_001_cws_fr_gpm
+desc=Chilled water return temperature :: columns: aru_001_cwr_temp
+desc=Supply air fan speed of Zone * :: columns: zone_024_fan_spd, zone_046_fan_spd
+unit=% :: columns: zone_024_fan_spd, zone_046_fan_spd
+unit=CFM :: columns: aru_001_cws_fr_gpm
+unit=°F :: columns: aru_001_cwr_temp
+class=Chilled_Water_Supply_Flow_Rate :: columns: aru_001_cws_fr_gpm
+class=Chilled_Water_Temperature_Sensor :: columns: aru_001_cwr_temp
+class=Supply_Air_Flow_Sensor :: columns: zone_024_fan_spd, zone_046_fan_spd
+zone=Building :: columns: aru_001_cwr_temp, aru_001_cws_fr_gpm
+zone=zone_024 :: columns: zone_024_fan_spd
+zone=zone_046 :: columns: zone_046_fan_spd

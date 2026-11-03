@@ -1,0 +1,144 @@
+{
+  "id": "T3-037",
+  "family": "T3",
+  "source_files": [
+    "ashp_meter.csv",
+    "rtu_sa_t.csv"
+  ],
+  "target_schema": [
+    {
+      "name": "timestamp",
+      "dtype": "string 'YYYY-MM-DD HH:MM:SS'",
+      "description": "start of interval"
+    },
+    {
+      "name": "aru_001_power_mbtuph",
+      "dtype": "float",
+      "unit": "mbtuph",
+      "description": "Heat meter for air source heat pump (mbtuph), 15-minute interval"
+    },
+    {
+      "name": "rtu_002_sa_temp",
+      "dtype": "float",
+      "unit": "°F",
+      "description": "Roof Top Unit * supply air temperature (*: 001, 002, 003, 004) (°F), 15-minute interval"
+    }
+  ],
+  "example_day": "2020-11-01",
+  "test_days": [
+    "2020-08-02",
+    "2020-08-03"
+  ],
+  "source_dates_example": {
+    "ashp_meter": [
+      "2020-11-01"
+    ],
+    "rtu_sa_t": [
+      "2020-10-31",
+      "2020-11-01"
+    ]
+  },
+  "source_dates_test": {
+    "ashp_meter": [
+      "2020-08-02",
+      "2020-08-03"
+    ],
+    "rtu_sa_t": [
+      "2020-08-01",
+      "2020-08-02",
+      "2020-08-03"
+    ]
+  },
+  "n_target_rows_example": 96,
+  "n_target_rows_test": 192,
+  "nl_instruction": "Join ashp_meter.csv, rtu_sa_t.csv on timestamp (inner join) after aggregating each to 15-minute intervals using the average; keep only aru_001_power_mbtuph, rtu_002_sa_temp. Timestamp = start of interval.",
+  "needs": [
+    "sampling_interval",
+    "time_alignment",
+    "join",
+    "aggregation"
+  ],
+  "knowledge": [
+    {
+      "kind": "sampling_interval",
+      "file": "ashp_meter.csv",
+      "value_min": 5.0,
+      "dict_freq": "5 min"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "ashp_meter.csv",
+      "column": "aru_001_power_mbtuph",
+      "description": "Heat meter for air source heat pump",
+      "quantity_kind": "thermal_power"
+    },
+    {
+      "kind": "unit",
+      "file": "ashp_meter.csv",
+      "column": "aru_001_power_mbtuph",
+      "true_unit": "mbtuph",
+      "dict_unit": "mbtuph"
+    },
+    {
+      "kind": "sampling_interval",
+      "file": "rtu_sa_t.csv",
+      "value_min": 1.0,
+      "dict_freq": "1 min"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "rtu_sa_t.csv",
+      "column": "rtu_002_sa_temp",
+      "description": "Roof Top Unit * supply air temperature (*: 001, 002, 003, 004)",
+      "quantity_kind": "temperature"
+    },
+    {
+      "kind": "unit",
+      "file": "rtu_sa_t.csv",
+      "column": "rtu_002_sa_temp",
+      "true_unit": "°F",
+      "dict_unit": "°F"
+    }
+  ],
+  "discriminates_against": [
+    "outer_join",
+    "agg_max",
+    "agg_min"
+  ],
+  "spec": {
+    "family": "T3",
+    "sources": [
+      {
+        "file": "ashp_meter",
+        "columns": [
+          "aru_001_power_mbtuph"
+        ]
+      },
+      {
+        "file": "rtu_sa_t",
+        "columns": [
+          "rtu_002_sa_temp"
+        ]
+      }
+    ],
+    "freq": "15min",
+    "agg": "mean",
+    "how": "inner",
+    "out_columns": [
+      "aru_001_power_mbtuph",
+      "rtu_002_sa_temp"
+    ],
+    "target_units": {
+      "aru_001_power_mbtuph": "mbtuph",
+      "rtu_002_sa_temp": "°F"
+    }
+  },
+  "benchmark_version": "holdout_v2",
+  "shown_rows": [
+    0,
+    24,
+    48,
+    71,
+    95
+  ]
+}

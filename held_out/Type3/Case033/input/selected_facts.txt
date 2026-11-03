@@ -1,0 +1,12 @@
+columns in scope: aru_001_cws_fr_gpm, rtu_001_fltrd_lvl2_plenum_press_tn
+rtu=RTU01 :: columns: rtu_001_fltrd_lvl2_plenum_press_tn
+desc=Chilled water fow rate :: columns: aru_001_cws_fr_gpm
+desc=Roof Top Unit * plenum air pressure at floor ** (*: 001, 002, 003, 004; **: gnd_lvl, lvl2) :: columns: rtu_001_fltrd_lvl2_plenum_press_tn
+unit=CFM :: columns: aru_001_cws_fr_gpm
+unit=psi :: columns: rtu_001_fltrd_lvl2_plenum_press_tn
+sampling=1 min :: columns: rtu_001_fltrd_lvl2_plenum_press_tn
+sampling=5 min :: columns: aru_001_cws_fr_gpm
+class=Chilled_Water_Supply_Flow_Rate :: columns: aru_001_cws_fr_gpm
+class=Underfloor_Air_Plenum_Static_Pressure_Sensor :: columns: rtu_001_fltrd_lvl2_plenum_press_tn
+zone=Building :: columns: aru_001_cws_fr_gpm
+zone=RTU01 :: columns: rtu_001_fltrd_lvl2_plenum_press_tn

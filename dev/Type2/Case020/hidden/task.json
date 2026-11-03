@@ -1,0 +1,130 @@
+{
+  "id": "T2-024",
+  "family": "T2",
+  "source_files": [
+    "ele.csv"
+  ],
+  "target_schema": [
+    {
+      "name": "timestamp",
+      "dtype": "string 'YYYY-MM-DD HH:MM:SS'",
+      "description": "start of interval"
+    },
+    {
+      "name": "hvac_N_kwh",
+      "dtype": "float",
+      "unit": "kWh",
+      "description": "Heating Ventilation and Air Conditioning load for the Nouth Wing (kWh), 30-minute interval"
+    },
+    {
+      "name": "lig_S_kwh",
+      "dtype": "float",
+      "unit": "kWh",
+      "description": "Lighting load for the South Wing (kWh), 30-minute interval"
+    }
+  ],
+  "example_day": "2019-09-09",
+  "test_days": [
+    "2018-09-27",
+    "2018-09-28"
+  ],
+  "source_dates_example": {
+    "ele": [
+      "2019-09-09"
+    ]
+  },
+  "source_dates_test": {
+    "ele": [
+      "2018-09-27",
+      "2018-09-28"
+    ]
+  },
+  "n_target_rows_example": 48,
+  "n_target_rows_test": 96,
+  "nl_instruction": "Aggregate hvac_N, lig_S from ele.csv to 30-minute averages and convert average power to energy per interval (kWh). Timestamp = start of interval.",
+  "needs": [
+    "unit",
+    "conversion",
+    "aggregation",
+    "power_vs_energy"
+  ],
+  "knowledge": [
+    {
+      "kind": "sampling_interval",
+      "file": "ele.csv",
+      "value_min": 15.0,
+      "dict_freq": "15 min"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "ele.csv",
+      "column": "hvac_N",
+      "description": "Heating Ventilation and Air Conditioning load for the Nouth Wing",
+      "quantity_kind": "electric_power"
+    },
+    {
+      "kind": "unit",
+      "file": "ele.csv",
+      "column": "hvac_N",
+      "true_unit": "kW",
+      "dict_unit": "kW"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "ele.csv",
+      "column": "lig_S",
+      "description": "Lighting load for the South Wing",
+      "quantity_kind": "electric_power"
+    },
+    {
+      "kind": "unit",
+      "file": "ele.csv",
+      "column": "lig_S",
+      "true_unit": "kW",
+      "dict_unit": "kW"
+    }
+  ],
+  "discriminates_against": [
+    "agg_max",
+    "no_or_wrong_conversion"
+  ],
+  "spec": {
+    "family": "T2",
+    "file": "ele",
+    "columns": [
+      "hvac_N",
+      "lig_S"
+    ],
+    "freq": "30min",
+    "agg": "mean",
+    "conversion": "power_to_energy",
+    "rename": {
+      "hvac_N": "hvac_N_kwh",
+      "lig_S": "lig_S_kwh"
+    },
+    "out_columns": [
+      "hvac_N_kwh",
+      "lig_S_kwh"
+    ],
+    "target_units": {
+      "hvac_N_kwh": "kWh",
+      "lig_S_kwh": "kWh"
+    },
+    "conflict_note": null,
+    "source_units": {
+      "hvac_N": "kW",
+      "lig_S": "kW"
+    },
+    "dict_units": {
+      "hvac_N": "kW",
+      "lig_S": "kW"
+    }
+  },
+  "shown_rows": [
+    0,
+    12,
+    24,
+    35,
+    47
+  ]
+}

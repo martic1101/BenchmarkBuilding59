@@ -1,0 +1,167 @@
+{
+  "id": "T3-002",
+  "family": "T3",
+  "source_files": [
+    "ele.csv",
+    "rtu_ma_t.csv"
+  ],
+  "target_schema": [
+    {
+      "name": "timestamp",
+      "dtype": "string 'YYYY-MM-DD HH:MM:SS'",
+      "description": "start of interval"
+    },
+    {
+      "name": "lig_S",
+      "dtype": "float",
+      "unit": "kW",
+      "description": "Lighting load for the South Wing (kW), 30-minute interval"
+    },
+    {
+      "name": "mels_N",
+      "dtype": "float",
+      "unit": "kW",
+      "description": "Miscellaneous electric load for the North Wing (kW), 30-minute interval"
+    },
+    {
+      "name": "rtu_004_ma_temp",
+      "dtype": "float",
+      "unit": "°F",
+      "description": "Roof Top Unit * mixed air temperature (*: 001, 002, 003, 004) (°F), 30-minute interval"
+    }
+  ],
+  "example_day": "2019-10-20",
+  "test_days": [
+    "2020-02-14",
+    "2020-02-15"
+  ],
+  "source_dates_example": {
+    "ele": [
+      "2019-10-20"
+    ],
+    "rtu_ma_t": [
+      "2019-10-19",
+      "2019-10-20"
+    ]
+  },
+  "source_dates_test": {
+    "ele": [
+      "2020-02-14",
+      "2020-02-15"
+    ],
+    "rtu_ma_t": [
+      "2020-02-13",
+      "2020-02-14",
+      "2020-02-15"
+    ]
+  },
+  "n_target_rows_example": 48,
+  "n_target_rows_test": 96,
+  "nl_instruction": "Join ele.csv, rtu_ma_t.csv on timestamp (inner join) after aggregating each to 30-minute intervals using the maximum; keep only lig_S, mels_N, rtu_004_ma_temp. Timestamp = start of interval.",
+  "needs": [
+    "sampling_interval",
+    "time_alignment",
+    "join",
+    "aggregation"
+  ],
+  "knowledge": [
+    {
+      "kind": "sampling_interval",
+      "file": "ele.csv",
+      "value_min": 15.0,
+      "dict_freq": "15 min"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "ele.csv",
+      "column": "lig_S",
+      "description": "Lighting load for the South Wing",
+      "quantity_kind": "electric_power"
+    },
+    {
+      "kind": "unit",
+      "file": "ele.csv",
+      "column": "lig_S",
+      "true_unit": "kW",
+      "dict_unit": "kW"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "ele.csv",
+      "column": "mels_N",
+      "description": "Miscellaneous electric load for the North Wing",
+      "quantity_kind": "electric_power"
+    },
+    {
+      "kind": "unit",
+      "file": "ele.csv",
+      "column": "mels_N",
+      "true_unit": "kW",
+      "dict_unit": "kW"
+    },
+    {
+      "kind": "sampling_interval",
+      "file": "rtu_ma_t.csv",
+      "value_min": 1.0,
+      "dict_freq": "1 min"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "rtu_ma_t.csv",
+      "column": "rtu_004_ma_temp",
+      "description": "Roof Top Unit * mixed air temperature (*: 001, 002, 003, 004)",
+      "quantity_kind": "temperature"
+    },
+    {
+      "kind": "unit",
+      "file": "rtu_ma_t.csv",
+      "column": "rtu_004_ma_temp",
+      "true_unit": "°F",
+      "dict_unit": "°F"
+    }
+  ],
+  "discriminates_against": [
+    "outer_join",
+    "agg_mean",
+    "agg_min"
+  ],
+  "spec": {
+    "family": "T3",
+    "sources": [
+      {
+        "file": "ele",
+        "columns": [
+          "lig_S",
+          "mels_N"
+        ]
+      },
+      {
+        "file": "rtu_ma_t",
+        "columns": [
+          "rtu_004_ma_temp"
+        ]
+      }
+    ],
+    "freq": "30min",
+    "agg": "max",
+    "how": "inner",
+    "out_columns": [
+      "lig_S",
+      "mels_N",
+      "rtu_004_ma_temp"
+    ],
+    "target_units": {
+      "lig_S": "kW",
+      "mels_N": "kW",
+      "rtu_004_ma_temp": "°F"
+    }
+  },
+  "benchmark_version": "holdout_v2",
+  "shown_rows": [
+    0,
+    12,
+    24,
+    35,
+    47
+  ]
+}

@@ -1,0 +1,207 @@
+{
+  "id": "T3-061",
+  "family": "T3",
+  "source_files": [
+    "ashp_meter.csv",
+    "rtu_plenum_p.csv",
+    "zone_temp_sp_h.csv"
+  ],
+  "target_schema": [
+    {
+      "name": "timestamp",
+      "dtype": "string 'YYYY-MM-DD HH:MM:SS'",
+      "description": "start of interval"
+    },
+    {
+      "name": "aru_001_power_mbtuph",
+      "dtype": "float",
+      "unit": "mbtuph",
+      "description": "Heat meter for air source heat pump (mbtuph), 1-hour averages"
+    },
+    {
+      "name": "rtu_001_fltrd_gnd_lvl_plenum_press_tn",
+      "dtype": "float",
+      "unit": "inH2O (suspected)",
+      "description": "Roof Top Unit * plenum air pressure at floor ** (*: 001, 002, 003, 004; **: gnd_lvl, lvl2) (inH2O (suspected)), 1-hour averages"
+    },
+    {
+      "name": "rtu_004_fltrd_lvl2_plenum_press_tn",
+      "dtype": "float",
+      "unit": "inH2O (suspected)",
+      "description": "Roof Top Unit * plenum air pressure at floor ** (*: 001, 002, 003, 004; **: gnd_lvl, lvl2) (inH2O (suspected)), 1-hour averages"
+    },
+    {
+      "name": "zone_049_heating_sp",
+      "dtype": "float",
+      "unit": "°F",
+      "description": "Heating temperature setpoint of Zone * (°F), 1-hour averages"
+    }
+  ],
+  "example_day": "2020-11-19",
+  "test_days": [
+    "2020-12-19",
+    "2020-12-20"
+  ],
+  "source_dates_example": {
+    "ashp_meter": [
+      "2020-11-19"
+    ],
+    "rtu_plenum_p": [
+      "2020-11-19"
+    ],
+    "zone_temp_sp_h": [
+      "2020-11-18",
+      "2020-11-19"
+    ]
+  },
+  "source_dates_test": {
+    "ashp_meter": [
+      "2020-12-19",
+      "2020-12-20"
+    ],
+    "rtu_plenum_p": [
+      "2020-12-19",
+      "2020-12-20"
+    ],
+    "zone_temp_sp_h": [
+      "2020-12-18",
+      "2020-12-19",
+      "2020-12-20"
+    ]
+  },
+  "n_target_rows_example": 24,
+  "n_target_rows_test": 48,
+  "nl_instruction": "Join ashp_meter.csv, rtu_plenum_p.csv, zone_temp_sp_h.csv on timestamp (inner join) after aggregating each to 1-hour averages; keep only aru_001_power_mbtuph, rtu_001_fltrd_gnd_lvl_plenum_press_tn, rtu_004_fltrd_lvl2_plenum_press_tn, zone_049_heating_sp. Timestamp = start of interval.",
+  "needs": [
+    "sampling_interval",
+    "time_alignment",
+    "join",
+    "aggregation"
+  ],
+  "knowledge": [
+    {
+      "kind": "sampling_interval",
+      "file": "ashp_meter.csv",
+      "value_min": 5.0,
+      "dict_freq": "5 min"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "ashp_meter.csv",
+      "column": "aru_001_power_mbtuph",
+      "description": "Heat meter for air source heat pump",
+      "quantity_kind": "thermal_power"
+    },
+    {
+      "kind": "unit",
+      "file": "ashp_meter.csv",
+      "column": "aru_001_power_mbtuph",
+      "true_unit": "mbtuph",
+      "dict_unit": "mbtuph"
+    },
+    {
+      "kind": "sampling_interval",
+      "file": "rtu_plenum_p.csv",
+      "value_min": 1.0,
+      "dict_freq": "1 min"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "rtu_plenum_p.csv",
+      "column": "rtu_001_fltrd_gnd_lvl_plenum_press_tn",
+      "description": "Roof Top Unit * plenum air pressure at floor ** (*: 001, 002, 003, 004; **: gnd_lvl, lvl2)",
+      "quantity_kind": "pressure"
+    },
+    {
+      "kind": "unit",
+      "file": "rtu_plenum_p.csv",
+      "column": "rtu_001_fltrd_gnd_lvl_plenum_press_tn",
+      "true_unit": "inH2O (suspected)",
+      "dict_unit": "psi"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "rtu_plenum_p.csv",
+      "column": "rtu_004_fltrd_lvl2_plenum_press_tn",
+      "description": "Roof Top Unit * plenum air pressure at floor ** (*: 001, 002, 003, 004; **: gnd_lvl, lvl2)",
+      "quantity_kind": "pressure"
+    },
+    {
+      "kind": "unit",
+      "file": "rtu_plenum_p.csv",
+      "column": "rtu_004_fltrd_lvl2_plenum_press_tn",
+      "true_unit": "inH2O (suspected)",
+      "dict_unit": "psi"
+    },
+    {
+      "kind": "sampling_interval",
+      "file": "zone_temp_sp_h.csv",
+      "value_min": 5.0,
+      "dict_freq": "5 min"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "zone_temp_sp_h.csv",
+      "column": "zone_049_heating_sp",
+      "description": "Heating temperature setpoint of Zone *",
+      "quantity_kind": "temperature_setpoint"
+    },
+    {
+      "kind": "unit",
+      "file": "zone_temp_sp_h.csv",
+      "column": "zone_049_heating_sp",
+      "true_unit": "°F",
+      "dict_unit": "°F"
+    }
+  ],
+  "discriminates_against": [
+    "outer_join",
+    "agg_max"
+  ],
+  "spec": {
+    "family": "T3",
+    "sources": [
+      {
+        "file": "ashp_meter",
+        "columns": [
+          "aru_001_power_mbtuph"
+        ]
+      },
+      {
+        "file": "rtu_plenum_p",
+        "columns": [
+          "rtu_001_fltrd_gnd_lvl_plenum_press_tn",
+          "rtu_004_fltrd_lvl2_plenum_press_tn"
+        ]
+      },
+      {
+        "file": "zone_temp_sp_h",
+        "columns": [
+          "zone_049_heating_sp"
+        ]
+      }
+    ],
+    "freq": "1h",
+    "agg": "mean",
+    "how": "inner",
+    "out_columns": [
+      "aru_001_power_mbtuph",
+      "rtu_001_fltrd_gnd_lvl_plenum_press_tn",
+      "rtu_004_fltrd_lvl2_plenum_press_tn",
+      "zone_049_heating_sp"
+    ],
+    "target_units": {
+      "aru_001_power_mbtuph": "mbtuph",
+      "rtu_001_fltrd_gnd_lvl_plenum_press_tn": "inH2O (suspected)",
+      "rtu_004_fltrd_lvl2_plenum_press_tn": "inH2O (suspected)",
+      "zone_049_heating_sp": "°F"
+    }
+  },
+  "shown_rows": [
+    0,
+    6,
+    12,
+    17,
+    23
+  ]
+}

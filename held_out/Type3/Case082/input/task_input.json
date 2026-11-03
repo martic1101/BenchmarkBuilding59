@@ -1,0 +1,64 @@
+{
+ "source_files": [
+  "rtu_sa_t.csv",
+  "zone_temp_sp_c.csv",
+  "zone_temp_sp_h.csv"
+ ],
+ "example_day": "2019-06-23",
+ "target_schema": [
+  {
+   "name": "timestamp",
+   "dtype": "string 'YYYY-MM-DD HH:MM:SS'"
+  },
+  {
+   "name": "rtu_004_sa_temp",
+   "dtype": "float",
+   "unit": "°F"
+  },
+  {
+   "name": "zone_016_cooling_sp",
+   "dtype": "float",
+   "unit": "°F"
+  },
+  {
+   "name": "zone_059_cooling_sp",
+   "dtype": "float",
+   "unit": "°F"
+  },
+  {
+   "name": "zone_037_heating_sp",
+   "dtype": "float",
+   "unit": "°F"
+  }
+ ],
+ "n_example_day_target_rows": 96,
+ "n_example_day_source_rows": {
+  "rtu_sa_t.csv": 1440,
+  "zone_temp_sp_c.csv": 288,
+  "zone_temp_sp_h.csv": 576
+ },
+ "source_blocks": {
+  "rtu_sa_t.csv": [
+   15,
+   15,
+   15,
+   15,
+   15
+  ],
+  "zone_temp_sp_c.csv": [
+   3,
+   3,
+   3,
+   3,
+   3
+  ],
+  "zone_temp_sp_h.csv": [
+   3,
+   3,
+   3,
+   3,
+   3
+  ]
+ },
+ "note": "source_example/ holds only the source rows inside the time intervals of the shown target rows; source_blocks gives the sizes of the contiguous runs (shown as '...' between runs in the prompt)."
+}

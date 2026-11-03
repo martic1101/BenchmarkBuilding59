@@ -1,0 +1,45 @@
+{
+ "source_files": [
+  "rtu_ma_t.csv",
+  "zone_temp_sp_h.csv"
+ ],
+ "example_day": "2020-09-05",
+ "target_schema": [
+  {
+   "name": "timestamp",
+   "dtype": "string 'YYYY-MM-DD HH:MM:SS'"
+  },
+  {
+   "name": "rtu_003_ma_temp",
+   "dtype": "float",
+   "unit": "°F"
+  },
+  {
+   "name": "zone_036_heating_sp",
+   "dtype": "float",
+   "unit": "°F"
+  }
+ ],
+ "n_example_day_target_rows": 96,
+ "n_example_day_source_rows": {
+  "rtu_ma_t.csv": 1440,
+  "zone_temp_sp_h.csv": 576
+ },
+ "source_blocks": {
+  "rtu_ma_t.csv": [
+   15,
+   15,
+   15,
+   15,
+   15
+  ],
+  "zone_temp_sp_h.csv": [
+   3,
+   3,
+   3,
+   3,
+   3
+  ]
+ },
+ "note": "source_example/ holds only the source rows inside the time intervals of the shown target rows; source_blocks gives the sizes of the contiguous runs (shown as '...' between runs in the prompt)."
+}

@@ -1,0 +1,253 @@
+{
+  "id": "T3-013",
+  "family": "T3",
+  "source_files": [
+    "ashp_hw.csv",
+    "rtu_oa_damper.csv",
+    "rtu_sa_t_sp.csv"
+  ],
+  "target_schema": [
+    {
+      "name": "timestamp",
+      "dtype": "string 'YYYY-MM-DD HH:MM:SS'",
+      "description": "start of interval"
+    },
+    {
+      "name": "aru_001_hwr_temp",
+      "dtype": "float",
+      "unit": "°F",
+      "description": "Hot water return temperature (°F), 30-minute averages"
+    },
+    {
+      "name": "aru_001_hws_fr_gpm",
+      "dtype": "float",
+      "unit": "gpm",
+      "description": "Hot water fow rate (gpm), 30-minute averages"
+    },
+    {
+      "name": "rtu_003_oadmpr_pct",
+      "dtype": "float",
+      "unit": "%",
+      "description": "Roof Top Unit * outdoor air damper position (*: 001, 002, 003, 004) (%), 30-minute averages"
+    },
+    {
+      "name": "rtu_004_oadmpr_pct",
+      "dtype": "float",
+      "unit": "%",
+      "description": "Roof Top Unit * outdoor air damper position (*: 001, 002, 003, 004) (%), 30-minute averages"
+    },
+    {
+      "name": "rtu_001_sat_sp_tn",
+      "dtype": "float",
+      "unit": "°F",
+      "description": "Roof Top Unit * supply air temperature setpoint (*: 001, 002, 003, 004) (°F), 30-minute averages"
+    },
+    {
+      "name": "rtu_002_sat_sp_tn",
+      "dtype": "float",
+      "unit": "°F",
+      "description": "Roof Top Unit * supply air temperature setpoint (*: 001, 002, 003, 004) (°F), 30-minute averages"
+    }
+  ],
+  "example_day": "2020-01-02",
+  "test_days": [
+    "2020-05-24",
+    "2020-05-25"
+  ],
+  "source_dates_example": {
+    "ashp_hw": [
+      "2020-01-02"
+    ],
+    "rtu_oa_damper": [
+      "2020-01-02"
+    ],
+    "rtu_sa_t_sp": [
+      "2020-01-01",
+      "2020-01-02"
+    ]
+  },
+  "source_dates_test": {
+    "ashp_hw": [
+      "2020-05-24",
+      "2020-05-25"
+    ],
+    "rtu_oa_damper": [
+      "2020-05-24",
+      "2020-05-25"
+    ],
+    "rtu_sa_t_sp": [
+      "2020-05-23",
+      "2020-05-24",
+      "2020-05-25"
+    ]
+  },
+  "n_target_rows_example": 48,
+  "n_target_rows_test": 96,
+  "nl_instruction": "Join ashp_hw.csv, rtu_oa_damper.csv, rtu_sa_t_sp.csv on timestamp (inner join) after aggregating each to 30-minute averages; keep only aru_001_hwr_temp, aru_001_hws_fr_gpm, rtu_003_oadmpr_pct, rtu_004_oadmpr_pct, rtu_001_sat_sp_tn, rtu_002_sat_sp_tn. Timestamp = start of interval.",
+  "needs": [
+    "sampling_interval",
+    "time_alignment",
+    "join",
+    "aggregation"
+  ],
+  "knowledge": [
+    {
+      "kind": "sampling_interval",
+      "file": "ashp_hw.csv",
+      "value_min": 5.0,
+      "dict_freq": "5 min"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "ashp_hw.csv",
+      "column": "aru_001_hwr_temp",
+      "description": "Hot water return temperature",
+      "quantity_kind": "temperature"
+    },
+    {
+      "kind": "unit",
+      "file": "ashp_hw.csv",
+      "column": "aru_001_hwr_temp",
+      "true_unit": "°F",
+      "dict_unit": "°F"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "ashp_hw.csv",
+      "column": "aru_001_hws_fr_gpm",
+      "description": "Hot water fow rate",
+      "quantity_kind": "water_flow"
+    },
+    {
+      "kind": "unit",
+      "file": "ashp_hw.csv",
+      "column": "aru_001_hws_fr_gpm",
+      "true_unit": "gpm",
+      "dict_unit": "CFM"
+    },
+    {
+      "kind": "sampling_interval",
+      "file": "rtu_oa_damper.csv",
+      "value_min": 1.0,
+      "dict_freq": "1 min"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "rtu_oa_damper.csv",
+      "column": "rtu_003_oadmpr_pct",
+      "description": "Roof Top Unit * outdoor air damper position (*: 001, 002, 003, 004)",
+      "quantity_kind": "damper_position"
+    },
+    {
+      "kind": "unit",
+      "file": "rtu_oa_damper.csv",
+      "column": "rtu_003_oadmpr_pct",
+      "true_unit": "%",
+      "dict_unit": "%"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "rtu_oa_damper.csv",
+      "column": "rtu_004_oadmpr_pct",
+      "description": "Roof Top Unit * outdoor air damper position (*: 001, 002, 003, 004)",
+      "quantity_kind": "damper_position"
+    },
+    {
+      "kind": "unit",
+      "file": "rtu_oa_damper.csv",
+      "column": "rtu_004_oadmpr_pct",
+      "true_unit": "%",
+      "dict_unit": "%"
+    },
+    {
+      "kind": "sampling_interval",
+      "file": "rtu_sa_t_sp.csv",
+      "value_min": 1.0,
+      "dict_freq": "1 min"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "rtu_sa_t_sp.csv",
+      "column": "rtu_001_sat_sp_tn",
+      "description": "Roof Top Unit * supply air temperature setpoint (*: 001, 002, 003, 004)",
+      "quantity_kind": "temperature_setpoint"
+    },
+    {
+      "kind": "unit",
+      "file": "rtu_sa_t_sp.csv",
+      "column": "rtu_001_sat_sp_tn",
+      "true_unit": "°F",
+      "dict_unit": "°F"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "rtu_sa_t_sp.csv",
+      "column": "rtu_002_sat_sp_tn",
+      "description": "Roof Top Unit * supply air temperature setpoint (*: 001, 002, 003, 004)",
+      "quantity_kind": "temperature_setpoint"
+    },
+    {
+      "kind": "unit",
+      "file": "rtu_sa_t_sp.csv",
+      "column": "rtu_002_sat_sp_tn",
+      "true_unit": "°F",
+      "dict_unit": "°F"
+    }
+  ],
+  "discriminates_against": [
+    "outer_join",
+    "agg_max"
+  ],
+  "spec": {
+    "family": "T3",
+    "sources": [
+      {
+        "file": "ashp_hw",
+        "columns": [
+          "aru_001_hwr_temp",
+          "aru_001_hws_fr_gpm"
+        ]
+      },
+      {
+        "file": "rtu_oa_damper",
+        "columns": [
+          "rtu_003_oadmpr_pct",
+          "rtu_004_oadmpr_pct"
+        ]
+      },
+      {
+        "file": "rtu_sa_t_sp",
+        "columns": [
+          "rtu_001_sat_sp_tn",
+          "rtu_002_sat_sp_tn"
+        ]
+      }
+    ],
+    "freq": "30min",
+    "agg": "mean",
+    "how": "inner",
+    "out_columns": [
+      "aru_001_hwr_temp",
+      "aru_001_hws_fr_gpm",
+      "rtu_003_oadmpr_pct",
+      "rtu_004_oadmpr_pct",
+      "rtu_001_sat_sp_tn",
+      "rtu_002_sat_sp_tn"
+    ],
+    "target_units": {
+      "aru_001_hwr_temp": "°F",
+      "aru_001_hws_fr_gpm": "gpm",
+      "rtu_003_oadmpr_pct": "%",
+      "rtu_004_oadmpr_pct": "%",
+      "rtu_001_sat_sp_tn": "°F",
+      "rtu_002_sat_sp_tn": "°F"
+    }
+  },
+  "shown_rows": [
+    0,
+    12,
+    24,
+    35,
+    47
+  ]
+}

@@ -1,0 +1,190 @@
+{
+  "id": "T3-087",
+  "family": "T3",
+  "source_files": [
+    "ashp_cw.csv",
+    "zone_temp_interior.csv"
+  ],
+  "target_schema": [
+    {
+      "name": "timestamp",
+      "dtype": "string 'YYYY-MM-DD HH:MM:SS'",
+      "description": "start of interval"
+    },
+    {
+      "name": "aru_001_cwr_temp",
+      "dtype": "float",
+      "unit": "°F",
+      "description": "Chilled water return temperature (°F), 1-hour interval"
+    },
+    {
+      "name": "aru_001_cws_temp",
+      "dtype": "float",
+      "unit": "°F",
+      "description": "Chilled water supply temperature (°F), 1-hour interval"
+    },
+    {
+      "name": "cerc_templogger_16",
+      "dtype": "float",
+      "unit": "°C",
+      "description": "Zone temperature of interior zone (°C), 1-hour interval"
+    },
+    {
+      "name": "cerc_templogger_5",
+      "dtype": "float",
+      "unit": "°C",
+      "description": "Zone temperature of interior zone (°C), 1-hour interval"
+    }
+  ],
+  "example_day": "2020-10-31",
+  "test_days": [
+    "2020-08-18",
+    "2020-08-19"
+  ],
+  "source_dates_example": {
+    "ashp_cw": [
+      "2020-10-31"
+    ],
+    "zone_temp_interior": [
+      "2020-10-30",
+      "2020-10-31"
+    ]
+  },
+  "source_dates_test": {
+    "ashp_cw": [
+      "2020-08-18",
+      "2020-08-19"
+    ],
+    "zone_temp_interior": [
+      "2020-08-17",
+      "2020-08-18",
+      "2020-08-19"
+    ]
+  },
+  "n_target_rows_example": 24,
+  "n_target_rows_test": 48,
+  "nl_instruction": "Join ashp_cw.csv, zone_temp_interior.csv on timestamp (inner join) after aggregating each to 1-hour intervals using the minimum; keep only aru_001_cwr_temp, aru_001_cws_temp, cerc_templogger_16, cerc_templogger_5. Timestamp = start of interval.",
+  "needs": [
+    "sampling_interval",
+    "time_alignment",
+    "join",
+    "aggregation"
+  ],
+  "knowledge": [
+    {
+      "kind": "sampling_interval",
+      "file": "ashp_cw.csv",
+      "value_min": 5.0,
+      "dict_freq": "5 min"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "ashp_cw.csv",
+      "column": "aru_001_cwr_temp",
+      "description": "Chilled water return temperature",
+      "quantity_kind": "temperature"
+    },
+    {
+      "kind": "unit",
+      "file": "ashp_cw.csv",
+      "column": "aru_001_cwr_temp",
+      "true_unit": "°F",
+      "dict_unit": "°F"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "ashp_cw.csv",
+      "column": "aru_001_cws_temp",
+      "description": "Chilled water supply temperature",
+      "quantity_kind": "temperature"
+    },
+    {
+      "kind": "unit",
+      "file": "ashp_cw.csv",
+      "column": "aru_001_cws_temp",
+      "true_unit": "°F",
+      "dict_unit": "°F"
+    },
+    {
+      "kind": "sampling_interval",
+      "file": "zone_temp_interior.csv",
+      "value_min": 10.0,
+      "dict_freq": "10 min"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "zone_temp_interior.csv",
+      "column": "cerc_templogger_16",
+      "description": "Zone temperature of interior zone",
+      "quantity_kind": "temperature"
+    },
+    {
+      "kind": "unit",
+      "file": "zone_temp_interior.csv",
+      "column": "cerc_templogger_16",
+      "true_unit": "°C",
+      "dict_unit": "°F"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "zone_temp_interior.csv",
+      "column": "cerc_templogger_5",
+      "description": "Zone temperature of interior zone",
+      "quantity_kind": "temperature"
+    },
+    {
+      "kind": "unit",
+      "file": "zone_temp_interior.csv",
+      "column": "cerc_templogger_5",
+      "true_unit": "°C",
+      "dict_unit": "°F"
+    }
+  ],
+  "discriminates_against": [
+    "outer_join",
+    "agg_mean",
+    "agg_max"
+  ],
+  "spec": {
+    "family": "T3",
+    "sources": [
+      {
+        "file": "ashp_cw",
+        "columns": [
+          "aru_001_cwr_temp",
+          "aru_001_cws_temp"
+        ]
+      },
+      {
+        "file": "zone_temp_interior",
+        "columns": [
+          "cerc_templogger_16",
+          "cerc_templogger_5"
+        ]
+      }
+    ],
+    "freq": "1h",
+    "agg": "min",
+    "how": "inner",
+    "out_columns": [
+      "aru_001_cwr_temp",
+      "aru_001_cws_temp",
+      "cerc_templogger_16",
+      "cerc_templogger_5"
+    ],
+    "target_units": {
+      "aru_001_cwr_temp": "°F",
+      "aru_001_cws_temp": "°F",
+      "cerc_templogger_16": "°C",
+      "cerc_templogger_5": "°C"
+    }
+  },
+  "benchmark_version": "holdout_v2",
+  "shown_rows": [
+    0,
+    6,
+    12,
+    17,
+    23
+  ]
+}

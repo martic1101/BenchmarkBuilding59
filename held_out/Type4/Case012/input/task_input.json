@@ -1,0 +1,46 @@
+{
+ "source_files": [
+  "uft_fan_spd.csv"
+ ],
+ "example_day": "2019-04-30",
+ "target_schema": [
+  {
+   "name": "timestamp",
+   "dtype": "string 'YYYY-MM-DD HH:MM:SS'"
+  },
+  {
+   "name": "RTU01",
+   "dtype": "float",
+   "unit": "%"
+  },
+  {
+   "name": "RTU02",
+   "dtype": "float",
+   "unit": "%"
+  },
+  {
+   "name": "RTU03",
+   "dtype": "float",
+   "unit": "%"
+  },
+  {
+   "name": "RTU04",
+   "dtype": "float",
+   "unit": "%"
+  }
+ ],
+ "n_example_day_target_rows": 24,
+ "n_example_day_source_rows": {
+  "uft_fan_spd.csv": 1440
+ },
+ "source_blocks": {
+  "uft_fan_spd.csv": [
+   60,
+   60,
+   60,
+   60,
+   60
+  ]
+ },
+ "note": "source_example/ holds only the source rows inside the time intervals of the shown target rows; source_blocks gives the sizes of the contiguous runs (shown as '...' between runs in the prompt)."
+}

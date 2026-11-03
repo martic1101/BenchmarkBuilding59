@@ -1,0 +1,253 @@
+{
+  "id": "T3-051",
+  "family": "T3",
+  "source_files": [
+    "ele.csv",
+    "rtu_sa_t_sp.csv",
+    "zone_temp_sp_c.csv"
+  ],
+  "target_schema": [
+    {
+      "name": "timestamp",
+      "dtype": "string 'YYYY-MM-DD HH:MM:SS'",
+      "description": "start of interval"
+    },
+    {
+      "name": "hvac_N",
+      "dtype": "float",
+      "unit": "kW",
+      "description": "Heating Ventilation and Air Conditioning load for the Nouth Wing (kW), 30-minute averages"
+    },
+    {
+      "name": "lig_S",
+      "dtype": "float",
+      "unit": "kW",
+      "description": "Lighting load for the South Wing (kW), 30-minute averages"
+    },
+    {
+      "name": "rtu_001_sat_sp_tn",
+      "dtype": "float",
+      "unit": "°F",
+      "description": "Roof Top Unit * supply air temperature setpoint (*: 001, 002, 003, 004) (°F), 30-minute averages"
+    },
+    {
+      "name": "rtu_002_sat_sp_tn",
+      "dtype": "float",
+      "unit": "°F",
+      "description": "Roof Top Unit * supply air temperature setpoint (*: 001, 002, 003, 004) (°F), 30-minute averages"
+    },
+    {
+      "name": "zone_026_cooling_sp",
+      "dtype": "float",
+      "unit": "°F",
+      "description": "Cooling temperature setpoint of Zone * (°F), 30-minute averages"
+    },
+    {
+      "name": "zone_071_cooling_sp",
+      "dtype": "float",
+      "unit": "°F",
+      "description": "Cooling temperature setpoint of Zone * (°F), 30-minute averages"
+    }
+  ],
+  "example_day": "2020-03-14",
+  "test_days": [
+    "2020-08-20",
+    "2020-08-21"
+  ],
+  "source_dates_example": {
+    "ele": [
+      "2020-03-14"
+    ],
+    "rtu_sa_t_sp": [
+      "2020-03-14"
+    ],
+    "zone_temp_sp_c": [
+      "2020-03-13",
+      "2020-03-14"
+    ]
+  },
+  "source_dates_test": {
+    "ele": [
+      "2020-08-20",
+      "2020-08-21"
+    ],
+    "rtu_sa_t_sp": [
+      "2020-08-20",
+      "2020-08-21"
+    ],
+    "zone_temp_sp_c": [
+      "2020-08-19",
+      "2020-08-20",
+      "2020-08-21"
+    ]
+  },
+  "n_target_rows_example": 48,
+  "n_target_rows_test": 96,
+  "nl_instruction": "Join ele.csv, rtu_sa_t_sp.csv, zone_temp_sp_c.csv on timestamp (inner join) after aggregating each to 30-minute averages; keep only hvac_N, lig_S, rtu_001_sat_sp_tn, rtu_002_sat_sp_tn, zone_026_cooling_sp, zone_071_cooling_sp. Timestamp = start of interval.",
+  "needs": [
+    "sampling_interval",
+    "time_alignment",
+    "join",
+    "aggregation"
+  ],
+  "knowledge": [
+    {
+      "kind": "sampling_interval",
+      "file": "ele.csv",
+      "value_min": 15.0,
+      "dict_freq": "15 min"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "ele.csv",
+      "column": "hvac_N",
+      "description": "Heating Ventilation and Air Conditioning load for the Nouth Wing",
+      "quantity_kind": "electric_power"
+    },
+    {
+      "kind": "unit",
+      "file": "ele.csv",
+      "column": "hvac_N",
+      "true_unit": "kW",
+      "dict_unit": "kW"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "ele.csv",
+      "column": "lig_S",
+      "description": "Lighting load for the South Wing",
+      "quantity_kind": "electric_power"
+    },
+    {
+      "kind": "unit",
+      "file": "ele.csv",
+      "column": "lig_S",
+      "true_unit": "kW",
+      "dict_unit": "kW"
+    },
+    {
+      "kind": "sampling_interval",
+      "file": "rtu_sa_t_sp.csv",
+      "value_min": 1.0,
+      "dict_freq": "1 min"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "rtu_sa_t_sp.csv",
+      "column": "rtu_001_sat_sp_tn",
+      "description": "Roof Top Unit * supply air temperature setpoint (*: 001, 002, 003, 004)",
+      "quantity_kind": "temperature_setpoint"
+    },
+    {
+      "kind": "unit",
+      "file": "rtu_sa_t_sp.csv",
+      "column": "rtu_001_sat_sp_tn",
+      "true_unit": "°F",
+      "dict_unit": "°F"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "rtu_sa_t_sp.csv",
+      "column": "rtu_002_sat_sp_tn",
+      "description": "Roof Top Unit * supply air temperature setpoint (*: 001, 002, 003, 004)",
+      "quantity_kind": "temperature_setpoint"
+    },
+    {
+      "kind": "unit",
+      "file": "rtu_sa_t_sp.csv",
+      "column": "rtu_002_sat_sp_tn",
+      "true_unit": "°F",
+      "dict_unit": "°F"
+    },
+    {
+      "kind": "sampling_interval",
+      "file": "zone_temp_sp_c.csv",
+      "value_min": 5.0,
+      "dict_freq": "5 min"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "zone_temp_sp_c.csv",
+      "column": "zone_026_cooling_sp",
+      "description": "Cooling temperature setpoint of Zone *",
+      "quantity_kind": "temperature_setpoint"
+    },
+    {
+      "kind": "unit",
+      "file": "zone_temp_sp_c.csv",
+      "column": "zone_026_cooling_sp",
+      "true_unit": "°F",
+      "dict_unit": "°F"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "zone_temp_sp_c.csv",
+      "column": "zone_071_cooling_sp",
+      "description": "Cooling temperature setpoint of Zone *",
+      "quantity_kind": "temperature_setpoint"
+    },
+    {
+      "kind": "unit",
+      "file": "zone_temp_sp_c.csv",
+      "column": "zone_071_cooling_sp",
+      "true_unit": "°F",
+      "dict_unit": "°F"
+    }
+  ],
+  "discriminates_against": [
+    "outer_join",
+    "agg_max"
+  ],
+  "spec": {
+    "family": "T3",
+    "sources": [
+      {
+        "file": "ele",
+        "columns": [
+          "hvac_N",
+          "lig_S"
+        ]
+      },
+      {
+        "file": "rtu_sa_t_sp",
+        "columns": [
+          "rtu_001_sat_sp_tn",
+          "rtu_002_sat_sp_tn"
+        ]
+      },
+      {
+        "file": "zone_temp_sp_c",
+        "columns": [
+          "zone_026_cooling_sp",
+          "zone_071_cooling_sp"
+        ]
+      }
+    ],
+    "freq": "30min",
+    "agg": "mean",
+    "how": "inner",
+    "out_columns": [
+      "hvac_N",
+      "lig_S",
+      "rtu_001_sat_sp_tn",
+      "rtu_002_sat_sp_tn",
+      "zone_026_cooling_sp",
+      "zone_071_cooling_sp"
+    ],
+    "target_units": {
+      "hvac_N": "kW",
+      "lig_S": "kW",
+      "rtu_001_sat_sp_tn": "°F",
+      "rtu_002_sat_sp_tn": "°F",
+      "zone_026_cooling_sp": "°F",
+      "zone_071_cooling_sp": "°F"
+    }
+  },
+  "shown_rows": [
+    0,
+    12,
+    24,
+    35,
+    47
+  ]
+}

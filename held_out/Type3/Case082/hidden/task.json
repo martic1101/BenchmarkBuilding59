@@ -1,0 +1,209 @@
+{
+  "id": "T3-089",
+  "family": "T3",
+  "source_files": [
+    "rtu_sa_t.csv",
+    "zone_temp_sp_c.csv",
+    "zone_temp_sp_h.csv"
+  ],
+  "target_schema": [
+    {
+      "name": "timestamp",
+      "dtype": "string 'YYYY-MM-DD HH:MM:SS'",
+      "description": "start of interval"
+    },
+    {
+      "name": "rtu_004_sa_temp",
+      "dtype": "float",
+      "unit": "°F",
+      "description": "Roof Top Unit * supply air temperature (*: 001, 002, 003, 004) (°F), 15-minute interval"
+    },
+    {
+      "name": "zone_016_cooling_sp",
+      "dtype": "float",
+      "unit": "°F",
+      "description": "Cooling temperature setpoint of Zone * (°F), 15-minute interval"
+    },
+    {
+      "name": "zone_059_cooling_sp",
+      "dtype": "float",
+      "unit": "°F",
+      "description": "Cooling temperature setpoint of Zone * (°F), 15-minute interval"
+    },
+    {
+      "name": "zone_037_heating_sp",
+      "dtype": "float",
+      "unit": "°F",
+      "description": "Heating temperature setpoint of Zone * (°F), 15-minute interval"
+    }
+  ],
+  "example_day": "2019-06-23",
+  "test_days": [
+    "2018-12-15",
+    "2018-12-16"
+  ],
+  "source_dates_example": {
+    "rtu_sa_t": [
+      "2019-06-23"
+    ],
+    "zone_temp_sp_c": [
+      "2019-06-23"
+    ],
+    "zone_temp_sp_h": [
+      "2019-06-22",
+      "2019-06-23"
+    ]
+  },
+  "source_dates_test": {
+    "rtu_sa_t": [
+      "2018-12-15",
+      "2018-12-16"
+    ],
+    "zone_temp_sp_c": [
+      "2018-12-15",
+      "2018-12-16"
+    ],
+    "zone_temp_sp_h": [
+      "2018-12-14",
+      "2018-12-15",
+      "2018-12-16"
+    ]
+  },
+  "n_target_rows_example": 96,
+  "n_target_rows_test": 192,
+  "nl_instruction": "Join rtu_sa_t.csv, zone_temp_sp_c.csv, zone_temp_sp_h.csv on timestamp (inner join) after aggregating each to 15-minute intervals using the average; keep only rtu_004_sa_temp, zone_016_cooling_sp, zone_059_cooling_sp, zone_037_heating_sp. Timestamp = start of interval.",
+  "needs": [
+    "sampling_interval",
+    "time_alignment",
+    "join",
+    "aggregation"
+  ],
+  "knowledge": [
+    {
+      "kind": "sampling_interval",
+      "file": "rtu_sa_t.csv",
+      "value_min": 1.0,
+      "dict_freq": "1 min"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "rtu_sa_t.csv",
+      "column": "rtu_004_sa_temp",
+      "description": "Roof Top Unit * supply air temperature (*: 001, 002, 003, 004)",
+      "quantity_kind": "temperature"
+    },
+    {
+      "kind": "unit",
+      "file": "rtu_sa_t.csv",
+      "column": "rtu_004_sa_temp",
+      "true_unit": "°F",
+      "dict_unit": "°F"
+    },
+    {
+      "kind": "sampling_interval",
+      "file": "zone_temp_sp_c.csv",
+      "value_min": 5.0,
+      "dict_freq": "5 min"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "zone_temp_sp_c.csv",
+      "column": "zone_016_cooling_sp",
+      "description": "Cooling temperature setpoint of Zone *",
+      "quantity_kind": "temperature_setpoint"
+    },
+    {
+      "kind": "unit",
+      "file": "zone_temp_sp_c.csv",
+      "column": "zone_016_cooling_sp",
+      "true_unit": "°F",
+      "dict_unit": "°F"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "zone_temp_sp_c.csv",
+      "column": "zone_059_cooling_sp",
+      "description": "Cooling temperature setpoint of Zone *",
+      "quantity_kind": "temperature_setpoint"
+    },
+    {
+      "kind": "unit",
+      "file": "zone_temp_sp_c.csv",
+      "column": "zone_059_cooling_sp",
+      "true_unit": "°F",
+      "dict_unit": "°F"
+    },
+    {
+      "kind": "sampling_interval",
+      "file": "zone_temp_sp_h.csv",
+      "value_min": 5.0,
+      "dict_freq": "5 min"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "zone_temp_sp_h.csv",
+      "column": "zone_037_heating_sp",
+      "description": "Heating temperature setpoint of Zone *",
+      "quantity_kind": "temperature_setpoint"
+    },
+    {
+      "kind": "unit",
+      "file": "zone_temp_sp_h.csv",
+      "column": "zone_037_heating_sp",
+      "true_unit": "°F",
+      "dict_unit": "°F"
+    }
+  ],
+  "discriminates_against": [
+    "outer_join",
+    "agg_max",
+    "agg_min"
+  ],
+  "spec": {
+    "family": "T3",
+    "sources": [
+      {
+        "file": "rtu_sa_t",
+        "columns": [
+          "rtu_004_sa_temp"
+        ]
+      },
+      {
+        "file": "zone_temp_sp_c",
+        "columns": [
+          "zone_016_cooling_sp",
+          "zone_059_cooling_sp"
+        ]
+      },
+      {
+        "file": "zone_temp_sp_h",
+        "columns": [
+          "zone_037_heating_sp"
+        ]
+      }
+    ],
+    "freq": "15min",
+    "agg": "mean",
+    "how": "inner",
+    "out_columns": [
+      "rtu_004_sa_temp",
+      "zone_016_cooling_sp",
+      "zone_059_cooling_sp",
+      "zone_037_heating_sp"
+    ],
+    "target_units": {
+      "rtu_004_sa_temp": "°F",
+      "zone_016_cooling_sp": "°F",
+      "zone_059_cooling_sp": "°F",
+      "zone_037_heating_sp": "°F"
+    }
+  },
+  "benchmark_version": "holdout_v2",
+  "shown_rows": [
+    0,
+    24,
+    48,
+    71,
+    95
+  ]
+}

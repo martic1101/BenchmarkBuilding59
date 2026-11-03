@@ -1,0 +1,11 @@
+columns in scope: aru_001_hws_fr_gpm, aru_001_hws_temp, rtu_003_sat_sp_tn
+zone=Building :: columns: aru_001_hws_fr_gpm, aru_001_hws_temp
+unit=CFM :: columns: aru_001_hws_fr_gpm
+unit=°F :: columns: aru_001_hws_temp, rtu_003_sat_sp_tn
+sampling=1 min :: columns: rtu_003_sat_sp_tn
+sampling=5 min :: columns: aru_001_hws_fr_gpm, aru_001_hws_temp
+class=Hot_Water_Supply_Flow_Rate :: columns: aru_001_hws_fr_gpm
+class=Hot_Water_Temperature_Sensor :: columns: aru_001_hws_temp
+desc=Hot water fow rate :: columns: aru_001_hws_fr_gpm
+desc=Hot water supply temperature :: columns: aru_001_hws_temp
+desc=Roof Top Unit * supply air temperature setpoint (*: 001, 002, 003, 004) :: columns: rtu_003_sat_sp_tn

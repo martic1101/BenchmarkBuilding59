@@ -1,0 +1,16 @@
+columns in scope: occ_third_south, rtu_003_rf_vfd_spd_fbk_tn, rtu_004_sf_vfd_spd_fbk_tn
+sampling=1 min :: columns: ALL
+floor=Building :: columns: occ_third_south
+unit=% :: columns: rtu_003_rf_vfd_spd_fbk_tn, rtu_004_sf_vfd_spd_fbk_tn
+unit=/ :: columns: occ_third_south
+rtu=RTU03 :: columns: rtu_003_rf_vfd_spd_fbk_tn
+rtu=RTU04 :: columns: rtu_004_sf_vfd_spd_fbk_tn
+desc=Occupant counts in the south half of third floor :: columns: occ_third_south
+desc=Roof Top Unit * return fan speed (*: 001, 002, 003, 004) :: columns: rtu_003_rf_vfd_spd_fbk_tn
+desc=Roof Top Unit * supply fan speed (*: 001, 002, 003, 004) :: columns: rtu_004_sf_vfd_spd_fbk_tn
+class=Occupant_Count :: columns: occ_third_south
+class=Return_Air_Fan_Speed :: columns: rtu_003_rf_vfd_spd_fbk_tn
+class=Supply_Air_Fan_Speed :: columns: rtu_004_sf_vfd_spd_fbk_tn
+zone=Floor_G :: columns: occ_third_south
+zone=RTU03 :: columns: rtu_003_rf_vfd_spd_fbk_tn
+zone=RTU04 :: columns: rtu_004_sf_vfd_spd_fbk_tn

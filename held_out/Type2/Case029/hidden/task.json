@@ -1,0 +1,105 @@
+{
+  "id": "T2-038",
+  "family": "T2",
+  "source_files": [
+    "ashp_hw.csv"
+  ],
+  "target_schema": [
+    {
+      "name": "timestamp",
+      "dtype": "string 'YYYY-MM-DD HH:MM:SS'",
+      "description": "start of interval"
+    },
+    {
+      "name": "aru_001_hws_fr_gpm_ls",
+      "dtype": "float",
+      "unit": "L/s",
+      "description": "Hot water fow rate (L/s), 1-hour interval"
+    }
+  ],
+  "example_day": "2020-01-09",
+  "test_days": [
+    "2020-08-01",
+    "2020-08-02"
+  ],
+  "source_dates_example": {
+    "ashp_hw": [
+      "2020-01-09"
+    ]
+  },
+  "source_dates_test": {
+    "ashp_hw": [
+      "2020-08-01",
+      "2020-08-02"
+    ]
+  },
+  "n_target_rows_example": 24,
+  "n_target_rows_test": 48,
+  "nl_instruction": "Aggregate aru_001_hws_fr_gpm from ashp_hw.csv to 1-hour averages and convert gpm to L/s. Timestamp = start of interval.",
+  "needs": [
+    "unit",
+    "conversion",
+    "aggregation",
+    "metadata_conflict"
+  ],
+  "knowledge": [
+    {
+      "kind": "sampling_interval",
+      "file": "ashp_hw.csv",
+      "value_min": 5.0,
+      "dict_freq": "5 min"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "ashp_hw.csv",
+      "column": "aru_001_hws_fr_gpm",
+      "description": "Hot water fow rate",
+      "quantity_kind": "water_flow"
+    },
+    {
+      "kind": "unit",
+      "file": "ashp_hw.csv",
+      "column": "aru_001_hws_fr_gpm",
+      "true_unit": "gpm",
+      "dict_unit": "CFM"
+    }
+  ],
+  "discriminates_against": [
+    "agg_max",
+    "no_or_wrong_conversion"
+  ],
+  "spec": {
+    "family": "T2",
+    "file": "ashp_hw",
+    "columns": [
+      "aru_001_hws_fr_gpm"
+    ],
+    "freq": "1h",
+    "agg": "mean",
+    "conversion": "gpm_to_Ls",
+    "rename": {
+      "aru_001_hws_fr_gpm": "aru_001_hws_fr_gpm_ls"
+    },
+    "out_columns": [
+      "aru_001_hws_fr_gpm_ls"
+    ],
+    "target_units": {
+      "aru_001_hws_fr_gpm_ls": "L/s"
+    },
+    "conflict_note": "dictionary says CFM; column name and values indicate gpm",
+    "source_units": {
+      "aru_001_hws_fr_gpm": "gpm"
+    },
+    "dict_units": {
+      "aru_001_hws_fr_gpm": "CFM"
+    }
+  },
+  "benchmark_version": "holdout_v2",
+  "shown_rows": [
+    0,
+    6,
+    12,
+    17,
+    23
+  ]
+}

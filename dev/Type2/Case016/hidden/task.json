@@ -1,0 +1,129 @@
+{
+  "id": "T2-020",
+  "family": "T2",
+  "source_files": [
+    "ashp_cw.csv"
+  ],
+  "target_schema": [
+    {
+      "name": "timestamp",
+      "dtype": "string 'YYYY-MM-DD HH:MM:SS'",
+      "description": "start of interval"
+    },
+    {
+      "name": "aru_001_cwr_temp_c",
+      "dtype": "float",
+      "unit": "°C",
+      "description": "Chilled water return temperature (°C), 1-hour interval"
+    },
+    {
+      "name": "aru_001_cws_temp_c",
+      "dtype": "float",
+      "unit": "°C",
+      "description": "Chilled water supply temperature (°C), 1-hour interval"
+    }
+  ],
+  "example_day": "2020-08-28",
+  "test_days": [
+    "2020-11-19",
+    "2020-11-20"
+  ],
+  "source_dates_example": {
+    "ashp_cw": [
+      "2020-08-28"
+    ]
+  },
+  "source_dates_test": {
+    "ashp_cw": [
+      "2020-11-19",
+      "2020-11-20"
+    ]
+  },
+  "n_target_rows_example": 24,
+  "n_target_rows_test": 48,
+  "nl_instruction": "Aggregate aru_001_cwr_temp, aru_001_cws_temp from ashp_cw.csv to 1-hour averages and convert °F to °C. Timestamp = start of interval.",
+  "needs": [
+    "unit",
+    "conversion",
+    "aggregation"
+  ],
+  "knowledge": [
+    {
+      "kind": "sampling_interval",
+      "file": "ashp_cw.csv",
+      "value_min": 5.0,
+      "dict_freq": "5 min"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "ashp_cw.csv",
+      "column": "aru_001_cwr_temp",
+      "description": "Chilled water return temperature",
+      "quantity_kind": "temperature"
+    },
+    {
+      "kind": "unit",
+      "file": "ashp_cw.csv",
+      "column": "aru_001_cwr_temp",
+      "true_unit": "°F",
+      "dict_unit": "°F"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "ashp_cw.csv",
+      "column": "aru_001_cws_temp",
+      "description": "Chilled water supply temperature",
+      "quantity_kind": "temperature"
+    },
+    {
+      "kind": "unit",
+      "file": "ashp_cw.csv",
+      "column": "aru_001_cws_temp",
+      "true_unit": "°F",
+      "dict_unit": "°F"
+    }
+  ],
+  "discriminates_against": [
+    "agg_max",
+    "no_or_wrong_conversion"
+  ],
+  "spec": {
+    "family": "T2",
+    "file": "ashp_cw",
+    "columns": [
+      "aru_001_cwr_temp",
+      "aru_001_cws_temp"
+    ],
+    "freq": "1h",
+    "agg": "mean",
+    "conversion": "F_to_C",
+    "rename": {
+      "aru_001_cwr_temp": "aru_001_cwr_temp_c",
+      "aru_001_cws_temp": "aru_001_cws_temp_c"
+    },
+    "out_columns": [
+      "aru_001_cwr_temp_c",
+      "aru_001_cws_temp_c"
+    ],
+    "target_units": {
+      "aru_001_cwr_temp_c": "°C",
+      "aru_001_cws_temp_c": "°C"
+    },
+    "conflict_note": null,
+    "source_units": {
+      "aru_001_cwr_temp": "°F",
+      "aru_001_cws_temp": "°F"
+    },
+    "dict_units": {
+      "aru_001_cwr_temp": "°F",
+      "aru_001_cws_temp": "°F"
+    }
+  },
+  "shown_rows": [
+    0,
+    6,
+    12,
+    17,
+    23
+  ]
+}

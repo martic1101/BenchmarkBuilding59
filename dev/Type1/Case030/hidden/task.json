@@ -1,0 +1,91 @@
+{
+  "id": "T1-030",
+  "family": "T1",
+  "source_files": [
+    "occ.csv"
+  ],
+  "target_schema": [
+    {
+      "name": "timestamp",
+      "dtype": "string 'YYYY-MM-DD HH:MM:SS'",
+      "description": "start of interval"
+    },
+    {
+      "name": "occ_third_south",
+      "dtype": "float",
+      "unit": "/",
+      "description": "Occupant counts in the south half of third floor (/), 1-hour interval"
+    }
+  ],
+  "example_day": "2019-02-06",
+  "test_days": [
+    "2018-08-15",
+    "2018-08-16"
+  ],
+  "source_dates_example": {
+    "occ": [
+      "2019-02-06"
+    ]
+  },
+  "source_dates_test": {
+    "occ": [
+      "2018-08-15",
+      "2018-08-16"
+    ]
+  },
+  "n_target_rows_example": 24,
+  "n_target_rows_test": 48,
+  "nl_instruction": "Aggregate occ_third_south from occ.csv to 1-hour intervals using the minimum. Timestamp = start of interval.",
+  "needs": [
+    "aggregation",
+    "sampling_interval"
+  ],
+  "knowledge": [
+    {
+      "kind": "sampling_interval",
+      "file": "occ.csv",
+      "value_min": 1.0,
+      "dict_freq": "1 min"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "occ.csv",
+      "column": "occ_third_south",
+      "description": "Occupant counts in the south half of third floor",
+      "quantity_kind": "occupant_count"
+    },
+    {
+      "kind": "unit",
+      "file": "occ.csv",
+      "column": "occ_third_south",
+      "true_unit": "/",
+      "dict_unit": "/"
+    }
+  ],
+  "discriminates_against": [
+    "agg_mean",
+    "agg_max"
+  ],
+  "spec": {
+    "family": "T1",
+    "file": "occ",
+    "columns": [
+      "occ_third_south"
+    ],
+    "freq": "1h",
+    "agg": "min",
+    "out_columns": [
+      "occ_third_south"
+    ],
+    "target_units": {
+      "occ_third_south": "/"
+    }
+  },
+  "shown_rows": [
+    0,
+    2,
+    6,
+    12,
+    17
+  ]
+}

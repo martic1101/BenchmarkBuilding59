@@ -1,0 +1,15 @@
+columns in scope: aru_001_hwr_temp, aru_001_hws_fr_gpm, rtu_001_pa_static_stpt_tn
+rtu=RTU01 :: columns: rtu_001_pa_static_stpt_tn
+sampling=1 min :: columns: rtu_001_pa_static_stpt_tn
+sampling=5 min :: columns: aru_001_hwr_temp, aru_001_hws_fr_gpm
+zone=Building :: columns: aru_001_hwr_temp, aru_001_hws_fr_gpm
+zone=RTU01 :: columns: rtu_001_pa_static_stpt_tn
+desc=Hot water fow rate :: columns: aru_001_hws_fr_gpm
+desc=Hot water return temperature :: columns: aru_001_hwr_temp
+desc=Roof Top Unit * air pressure static setpoint (*: 001, 002, 003, 004) :: columns: rtu_001_pa_static_stpt_tn
+unit=CFM :: columns: aru_001_hws_fr_gpm
+unit=psi :: columns: rtu_001_pa_static_stpt_tn
+unit=°F :: columns: aru_001_hwr_temp
+class=Hot_Water_Supply_Flow_Rate :: columns: aru_001_hws_fr_gpm
+class=Hot_Water_Temperature_Sensor :: columns: aru_001_hwr_temp
+class=Supply_Air_Static_Pressure_Setpoint :: columns: rtu_001_pa_static_stpt_tn

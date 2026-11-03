@@ -1,0 +1,167 @@
+{
+  "id": "T3-025",
+  "family": "T3",
+  "source_files": [
+    "rtu_sa_t.csv",
+    "zone_temp_sp_h.csv"
+  ],
+  "target_schema": [
+    {
+      "name": "timestamp",
+      "dtype": "string 'YYYY-MM-DD HH:MM:SS'",
+      "description": "start of interval"
+    },
+    {
+      "name": "rtu_002_sa_temp",
+      "dtype": "float",
+      "unit": "°F",
+      "description": "Roof Top Unit * supply air temperature (*: 001, 002, 003, 004) (°F), 30-minute interval"
+    },
+    {
+      "name": "rtu_004_sa_temp",
+      "dtype": "float",
+      "unit": "°F",
+      "description": "Roof Top Unit * supply air temperature (*: 001, 002, 003, 004) (°F), 30-minute interval"
+    },
+    {
+      "name": "zone_041_heating_sp",
+      "dtype": "float",
+      "unit": "°F",
+      "description": "Heating temperature setpoint of Zone * (°F), 30-minute interval"
+    }
+  ],
+  "example_day": "2019-01-25",
+  "test_days": [
+    "2019-04-04",
+    "2019-04-05"
+  ],
+  "source_dates_example": {
+    "rtu_sa_t": [
+      "2019-01-25"
+    ],
+    "zone_temp_sp_h": [
+      "2019-01-24",
+      "2019-01-25"
+    ]
+  },
+  "source_dates_test": {
+    "rtu_sa_t": [
+      "2019-04-04",
+      "2019-04-05"
+    ],
+    "zone_temp_sp_h": [
+      "2019-04-03",
+      "2019-04-04",
+      "2019-04-05"
+    ]
+  },
+  "n_target_rows_example": 48,
+  "n_target_rows_test": 96,
+  "nl_instruction": "Join rtu_sa_t.csv, zone_temp_sp_h.csv on timestamp (inner join) after aggregating each to 30-minute intervals using the average; keep only rtu_002_sa_temp, rtu_004_sa_temp, zone_041_heating_sp. Timestamp = start of interval.",
+  "needs": [
+    "sampling_interval",
+    "time_alignment",
+    "join",
+    "aggregation"
+  ],
+  "knowledge": [
+    {
+      "kind": "sampling_interval",
+      "file": "rtu_sa_t.csv",
+      "value_min": 1.0,
+      "dict_freq": "1 min"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "rtu_sa_t.csv",
+      "column": "rtu_002_sa_temp",
+      "description": "Roof Top Unit * supply air temperature (*: 001, 002, 003, 004)",
+      "quantity_kind": "temperature"
+    },
+    {
+      "kind": "unit",
+      "file": "rtu_sa_t.csv",
+      "column": "rtu_002_sa_temp",
+      "true_unit": "°F",
+      "dict_unit": "°F"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "rtu_sa_t.csv",
+      "column": "rtu_004_sa_temp",
+      "description": "Roof Top Unit * supply air temperature (*: 001, 002, 003, 004)",
+      "quantity_kind": "temperature"
+    },
+    {
+      "kind": "unit",
+      "file": "rtu_sa_t.csv",
+      "column": "rtu_004_sa_temp",
+      "true_unit": "°F",
+      "dict_unit": "°F"
+    },
+    {
+      "kind": "sampling_interval",
+      "file": "zone_temp_sp_h.csv",
+      "value_min": 5.0,
+      "dict_freq": "5 min"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "zone_temp_sp_h.csv",
+      "column": "zone_041_heating_sp",
+      "description": "Heating temperature setpoint of Zone *",
+      "quantity_kind": "temperature_setpoint"
+    },
+    {
+      "kind": "unit",
+      "file": "zone_temp_sp_h.csv",
+      "column": "zone_041_heating_sp",
+      "true_unit": "°F",
+      "dict_unit": "°F"
+    }
+  ],
+  "discriminates_against": [
+    "outer_join",
+    "agg_max",
+    "agg_min"
+  ],
+  "spec": {
+    "family": "T3",
+    "sources": [
+      {
+        "file": "rtu_sa_t",
+        "columns": [
+          "rtu_002_sa_temp",
+          "rtu_004_sa_temp"
+        ]
+      },
+      {
+        "file": "zone_temp_sp_h",
+        "columns": [
+          "zone_041_heating_sp"
+        ]
+      }
+    ],
+    "freq": "30min",
+    "agg": "mean",
+    "how": "inner",
+    "out_columns": [
+      "rtu_002_sa_temp",
+      "rtu_004_sa_temp",
+      "zone_041_heating_sp"
+    ],
+    "target_units": {
+      "rtu_002_sa_temp": "°F",
+      "rtu_004_sa_temp": "°F",
+      "zone_041_heating_sp": "°F"
+    }
+  },
+  "benchmark_version": "holdout_v2",
+  "shown_rows": [
+    0,
+    12,
+    24,
+    35,
+    47
+  ]
+}

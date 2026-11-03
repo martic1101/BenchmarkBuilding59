@@ -1,0 +1,17 @@
+columns in scope: hvac_N, zone_052_co2, zone_068_co2
+floor=Floor_S :: columns: zone_052_co2, zone_068_co2
+desc=CO2 concentration of each zone :: columns: zone_052_co2, zone_068_co2
+desc=Heating Ventilation and Air Conditioning load for the Nouth Wing :: columns: hvac_N
+unit=kW :: columns: hvac_N
+unit=ppm :: columns: zone_052_co2, zone_068_co2
+sampling=1 min :: columns: zone_052_co2, zone_068_co2
+sampling=15 min :: columns: hvac_N
+class=Building_Electrical_Meter :: columns: hvac_N
+class=CO2_Sensor :: columns: zone_052_co2, zone_068_co2
+vav=UTF_2-25 :: columns: zone_052_co2
+vav=UTF_G-21 :: columns: zone_068_co2
+rtu=RTU02 :: columns: zone_052_co2
+rtu=RTU04 :: columns: zone_068_co2
+zone=Building :: columns: hvac_N
+zone=zone_052 :: columns: zone_052_co2
+zone=zone_068 :: columns: zone_068_co2

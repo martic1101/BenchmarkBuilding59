@@ -1,0 +1,138 @@
+{
+  "id": "T1-103",
+  "family": "T1",
+  "source_files": [
+    "site_weather.csv"
+  ],
+  "target_schema": [
+    {
+      "name": "timestamp",
+      "dtype": "string 'YYYY-MM-DD HH:MM:SS'",
+      "description": "start of interval"
+    },
+    {
+      "name": "dew_point_temperature_set_1d",
+      "dtype": "float",
+      "unit": "°C",
+      "description": "Outdoor air dew temperature of sensor 2 (°C), 30-minute interval"
+    },
+    {
+      "name": "relative_humidity_set_1",
+      "dtype": "float",
+      "unit": "%",
+      "description": "Outdoor air relative humidity from sensor 1 (%), 30-minute interval"
+    },
+    {
+      "name": "solar_radiation_set_1",
+      "dtype": "float",
+      "unit": "W/m2",
+      "description": "Outdoor solar radiation from sensor 1 (W/m2), 30-minute interval"
+    }
+  ],
+  "example_day": "2019-12-22",
+  "test_days": [
+    "2019-05-26",
+    "2019-05-27"
+  ],
+  "source_dates_example": {
+    "site_weather": [
+      "2019-12-22"
+    ]
+  },
+  "source_dates_test": {
+    "site_weather": [
+      "2019-05-26",
+      "2019-05-27"
+    ]
+  },
+  "n_target_rows_example": 48,
+  "n_target_rows_test": 96,
+  "nl_instruction": "Aggregate dew_point_temperature_set_1d, relative_humidity_set_1, solar_radiation_set_1 from site_weather.csv to 30-minute intervals using the average. Timestamp = start of interval.",
+  "needs": [
+    "aggregation",
+    "sampling_interval"
+  ],
+  "knowledge": [
+    {
+      "kind": "sampling_interval",
+      "file": "site_weather.csv",
+      "value_min": 15.0,
+      "dict_freq": "15 min"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "site_weather.csv",
+      "column": "dew_point_temperature_set_1d",
+      "description": "Outdoor air dew temperature of sensor 2",
+      "quantity_kind": "temperature"
+    },
+    {
+      "kind": "unit",
+      "file": "site_weather.csv",
+      "column": "dew_point_temperature_set_1d",
+      "true_unit": "°C",
+      "dict_unit": "°C"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "site_weather.csv",
+      "column": "relative_humidity_set_1",
+      "description": "Outdoor air relative humidity from sensor 1",
+      "quantity_kind": "relative_humidity"
+    },
+    {
+      "kind": "unit",
+      "file": "site_weather.csv",
+      "column": "relative_humidity_set_1",
+      "true_unit": "%",
+      "dict_unit": "%"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "site_weather.csv",
+      "column": "solar_radiation_set_1",
+      "description": "Outdoor solar radiation from sensor 1",
+      "quantity_kind": "solar_irradiance"
+    },
+    {
+      "kind": "unit",
+      "file": "site_weather.csv",
+      "column": "solar_radiation_set_1",
+      "true_unit": "W/m2",
+      "dict_unit": "W/m2"
+    }
+  ],
+  "discriminates_against": [
+    "agg_max",
+    "agg_min"
+  ],
+  "spec": {
+    "family": "T1",
+    "file": "site_weather",
+    "columns": [
+      "dew_point_temperature_set_1d",
+      "relative_humidity_set_1",
+      "solar_radiation_set_1"
+    ],
+    "freq": "30min",
+    "agg": "mean",
+    "out_columns": [
+      "dew_point_temperature_set_1d",
+      "relative_humidity_set_1",
+      "solar_radiation_set_1"
+    ],
+    "target_units": {
+      "dew_point_temperature_set_1d": "°C",
+      "relative_humidity_set_1": "%",
+      "solar_radiation_set_1": "W/m2"
+    }
+  },
+  "benchmark_version": "holdout_v2",
+  "shown_rows": [
+    0,
+    12,
+    24,
+    35,
+    47
+  ]
+}

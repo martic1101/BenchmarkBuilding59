@@ -1,0 +1,9 @@
+columns in scope: lig_S, wifi_second_south
+class=Building_Electrical_Meter :: columns: lig_S
+zone=Building :: columns: lig_S
+desc=Lighting load for the South Wing :: columns: lig_S
+desc=Wifi connection counts in the south half of second floor :: columns: wifi_second_south
+unit=/ :: columns: wifi_second_south
+unit=kW :: columns: lig_S
+sampling=10 min :: columns: wifi_second_south
+sampling=15 min :: columns: lig_S

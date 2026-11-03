@@ -1,0 +1,186 @@
+{
+  "id": "T3-077",
+  "family": "T3",
+  "source_files": [
+    "ashp_meter.csv",
+    "rtu_sa_p_sp.csv",
+    "zone_co2.csv"
+  ],
+  "target_schema": [
+    {
+      "name": "timestamp",
+      "dtype": "string 'YYYY-MM-DD HH:MM:SS'",
+      "description": "start of interval"
+    },
+    {
+      "name": "aru_001_power_mbtuph",
+      "dtype": "float",
+      "unit": "mbtuph",
+      "description": "Heat meter for air source heat pump (mbtuph), 1-hour interval"
+    },
+    {
+      "name": "rtu_002_pa_static_stpt_tn",
+      "dtype": "float",
+      "unit": "psi",
+      "description": "Roof Top Unit * air pressure static setpoint (*: 001, 002, 003, 004) (psi), 1-hour interval"
+    },
+    {
+      "name": "zone_058_co2",
+      "dtype": "float",
+      "unit": "ppm",
+      "description": "CO2 concentration of each zone (ppm), 1-hour interval"
+    }
+  ],
+  "example_day": "2020-12-29",
+  "test_days": [
+    "2020-11-04",
+    "2020-11-05"
+  ],
+  "source_dates_example": {
+    "ashp_meter": [
+      "2020-12-29"
+    ],
+    "rtu_sa_p_sp": [
+      "2020-12-29"
+    ],
+    "zone_co2": [
+      "2020-12-28",
+      "2020-12-29"
+    ]
+  },
+  "source_dates_test": {
+    "ashp_meter": [
+      "2020-11-04",
+      "2020-11-05"
+    ],
+    "rtu_sa_p_sp": [
+      "2020-11-04",
+      "2020-11-05"
+    ],
+    "zone_co2": [
+      "2020-11-03",
+      "2020-11-04",
+      "2020-11-05"
+    ]
+  },
+  "n_target_rows_example": 24,
+  "n_target_rows_test": 48,
+  "nl_instruction": "Join ashp_meter.csv, rtu_sa_p_sp.csv, zone_co2.csv on timestamp (inner join) after aggregating each to 1-hour intervals using the minimum; keep only aru_001_power_mbtuph, rtu_002_pa_static_stpt_tn, zone_058_co2. Timestamp = start of interval.",
+  "needs": [
+    "sampling_interval",
+    "time_alignment",
+    "join",
+    "aggregation"
+  ],
+  "knowledge": [
+    {
+      "kind": "sampling_interval",
+      "file": "ashp_meter.csv",
+      "value_min": 5.0,
+      "dict_freq": "5 min"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "ashp_meter.csv",
+      "column": "aru_001_power_mbtuph",
+      "description": "Heat meter for air source heat pump",
+      "quantity_kind": "thermal_power"
+    },
+    {
+      "kind": "unit",
+      "file": "ashp_meter.csv",
+      "column": "aru_001_power_mbtuph",
+      "true_unit": "mbtuph",
+      "dict_unit": "mbtuph"
+    },
+    {
+      "kind": "sampling_interval",
+      "file": "rtu_sa_p_sp.csv",
+      "value_min": 1.0,
+      "dict_freq": "1 min"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "rtu_sa_p_sp.csv",
+      "column": "rtu_002_pa_static_stpt_tn",
+      "description": "Roof Top Unit * air pressure static setpoint (*: 001, 002, 003, 004)",
+      "quantity_kind": "pressure_setpoint"
+    },
+    {
+      "kind": "unit",
+      "file": "rtu_sa_p_sp.csv",
+      "column": "rtu_002_pa_static_stpt_tn",
+      "true_unit": "psi",
+      "dict_unit": "psi"
+    },
+    {
+      "kind": "sampling_interval",
+      "file": "zone_co2.csv",
+      "value_min": 1.0,
+      "dict_freq": "1 min"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "zone_co2.csv",
+      "column": "zone_058_co2",
+      "description": "CO2 concentration of each zone",
+      "quantity_kind": "co2_concentration"
+    },
+    {
+      "kind": "unit",
+      "file": "zone_co2.csv",
+      "column": "zone_058_co2",
+      "true_unit": "ppm",
+      "dict_unit": "ppm"
+    }
+  ],
+  "discriminates_against": [
+    "outer_join",
+    "agg_mean",
+    "agg_max"
+  ],
+  "spec": {
+    "family": "T3",
+    "sources": [
+      {
+        "file": "ashp_meter",
+        "columns": [
+          "aru_001_power_mbtuph"
+        ]
+      },
+      {
+        "file": "rtu_sa_p_sp",
+        "columns": [
+          "rtu_002_pa_static_stpt_tn"
+        ]
+      },
+      {
+        "file": "zone_co2",
+        "columns": [
+          "zone_058_co2"
+        ]
+      }
+    ],
+    "freq": "1h",
+    "agg": "min",
+    "how": "inner",
+    "out_columns": [
+      "aru_001_power_mbtuph",
+      "rtu_002_pa_static_stpt_tn",
+      "zone_058_co2"
+    ],
+    "target_units": {
+      "aru_001_power_mbtuph": "mbtuph",
+      "rtu_002_pa_static_stpt_tn": "psi",
+      "zone_058_co2": "ppm"
+    }
+  },
+  "benchmark_version": "holdout_v2",
+  "shown_rows": [
+    0,
+    6,
+    12,
+    17,
+    23
+  ]
+}

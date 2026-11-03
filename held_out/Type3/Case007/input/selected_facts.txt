@@ -1,0 +1,14 @@
+columns in scope: rtu_001_sa_temp, rtu_003_sa_temp, rtu_004_oadmpr_pct
+sampling=1 min :: columns: ALL
+desc=Roof Top Unit * outdoor air damper position (*: 001, 002, 003, 004) :: columns: rtu_004_oadmpr_pct
+desc=Roof Top Unit * supply air temperature (*: 001, 002, 003, 004) :: columns: rtu_001_sa_temp, rtu_003_sa_temp
+unit=% :: columns: rtu_004_oadmpr_pct
+unit=°F :: columns: rtu_001_sa_temp, rtu_003_sa_temp
+class=Outdoor_Air_Damper :: columns: rtu_004_oadmpr_pct
+class=Supply_Air_Temperature_Sensor :: columns: rtu_001_sa_temp, rtu_003_sa_temp
+zone=RTU01 :: columns: rtu_001_sa_temp
+zone=RTU03 :: columns: rtu_003_sa_temp
+zone=RTU04 :: columns: rtu_004_oadmpr_pct
+rtu=RTU01 :: columns: rtu_001_sa_temp
+rtu=RTU03 :: columns: rtu_003_sa_temp
+rtu=RTU04 :: columns: rtu_004_oadmpr_pct

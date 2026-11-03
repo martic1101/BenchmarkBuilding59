@@ -1,0 +1,167 @@
+{
+  "id": "T3-070",
+  "family": "T3",
+  "source_files": [
+    "ashp_cw.csv",
+    "rtu_sa_fr.csv"
+  ],
+  "target_schema": [
+    {
+      "name": "timestamp",
+      "dtype": "string 'YYYY-MM-DD HH:MM:SS'",
+      "description": "start of interval"
+    },
+    {
+      "name": "aru_001_cwr_temp",
+      "dtype": "float",
+      "unit": "°F",
+      "description": "Chilled water return temperature (°F), 30-minute interval"
+    },
+    {
+      "name": "rtu_001_fltrd_sa_flow_tn",
+      "dtype": "float",
+      "unit": "CFM",
+      "description": "Roof Top Unit * filtered supply air flow rate (*: 001, 002, 003, 004) (CFM), 30-minute interval"
+    },
+    {
+      "name": "rtu_002_fltrd_sa_flow_tn",
+      "dtype": "float",
+      "unit": "CFM",
+      "description": "Roof Top Unit * filtered supply air flow rate (*: 001, 002, 003, 004) (CFM), 30-minute interval"
+    }
+  ],
+  "example_day": "2020-08-06",
+  "test_days": [
+    "2020-12-11",
+    "2020-12-12"
+  ],
+  "source_dates_example": {
+    "ashp_cw": [
+      "2020-08-06"
+    ],
+    "rtu_sa_fr": [
+      "2020-08-05",
+      "2020-08-06"
+    ]
+  },
+  "source_dates_test": {
+    "ashp_cw": [
+      "2020-12-11",
+      "2020-12-12"
+    ],
+    "rtu_sa_fr": [
+      "2020-12-10",
+      "2020-12-11",
+      "2020-12-12"
+    ]
+  },
+  "n_target_rows_example": 48,
+  "n_target_rows_test": 96,
+  "nl_instruction": "Join ashp_cw.csv, rtu_sa_fr.csv on timestamp (inner join) after aggregating each to 30-minute intervals using the minimum; keep only aru_001_cwr_temp, rtu_001_fltrd_sa_flow_tn, rtu_002_fltrd_sa_flow_tn. Timestamp = start of interval.",
+  "needs": [
+    "sampling_interval",
+    "time_alignment",
+    "join",
+    "aggregation"
+  ],
+  "knowledge": [
+    {
+      "kind": "sampling_interval",
+      "file": "ashp_cw.csv",
+      "value_min": 5.0,
+      "dict_freq": "5 min"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "ashp_cw.csv",
+      "column": "aru_001_cwr_temp",
+      "description": "Chilled water return temperature",
+      "quantity_kind": "temperature"
+    },
+    {
+      "kind": "unit",
+      "file": "ashp_cw.csv",
+      "column": "aru_001_cwr_temp",
+      "true_unit": "°F",
+      "dict_unit": "°F"
+    },
+    {
+      "kind": "sampling_interval",
+      "file": "rtu_sa_fr.csv",
+      "value_min": 1.0,
+      "dict_freq": "1 min"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "rtu_sa_fr.csv",
+      "column": "rtu_001_fltrd_sa_flow_tn",
+      "description": "Roof Top Unit * filtered supply air flow rate (*: 001, 002, 003, 004)",
+      "quantity_kind": "air_flow"
+    },
+    {
+      "kind": "unit",
+      "file": "rtu_sa_fr.csv",
+      "column": "rtu_001_fltrd_sa_flow_tn",
+      "true_unit": "CFM",
+      "dict_unit": "CFM"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "rtu_sa_fr.csv",
+      "column": "rtu_002_fltrd_sa_flow_tn",
+      "description": "Roof Top Unit * filtered supply air flow rate (*: 001, 002, 003, 004)",
+      "quantity_kind": "air_flow"
+    },
+    {
+      "kind": "unit",
+      "file": "rtu_sa_fr.csv",
+      "column": "rtu_002_fltrd_sa_flow_tn",
+      "true_unit": "CFM",
+      "dict_unit": "CFM"
+    }
+  ],
+  "discriminates_against": [
+    "outer_join",
+    "agg_mean",
+    "agg_max"
+  ],
+  "spec": {
+    "family": "T3",
+    "sources": [
+      {
+        "file": "ashp_cw",
+        "columns": [
+          "aru_001_cwr_temp"
+        ]
+      },
+      {
+        "file": "rtu_sa_fr",
+        "columns": [
+          "rtu_001_fltrd_sa_flow_tn",
+          "rtu_002_fltrd_sa_flow_tn"
+        ]
+      }
+    ],
+    "freq": "30min",
+    "agg": "min",
+    "how": "inner",
+    "out_columns": [
+      "aru_001_cwr_temp",
+      "rtu_001_fltrd_sa_flow_tn",
+      "rtu_002_fltrd_sa_flow_tn"
+    ],
+    "target_units": {
+      "aru_001_cwr_temp": "°F",
+      "rtu_001_fltrd_sa_flow_tn": "CFM",
+      "rtu_002_fltrd_sa_flow_tn": "CFM"
+    }
+  },
+  "benchmark_version": "holdout_v2",
+  "shown_rows": [
+    0,
+    12,
+    24,
+    35,
+    47
+  ]
+}

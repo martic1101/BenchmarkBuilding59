@@ -1,0 +1,17 @@
+columns in scope: aru_001_hwr_temp, aru_001_hws_fr_gpm, wifi_fourth_south, wifi_third_south
+floor=Building :: columns: wifi_fourth_south, wifi_third_south
+sampling=10 min :: columns: wifi_fourth_south, wifi_third_south
+sampling=5 min :: columns: aru_001_hwr_temp, aru_001_hws_fr_gpm
+unit=/ :: columns: wifi_fourth_south, wifi_third_south
+unit=CFM :: columns: aru_001_hws_fr_gpm
+unit=°F :: columns: aru_001_hwr_temp
+class=Hot_Water_Supply_Flow_Rate :: columns: aru_001_hws_fr_gpm
+class=Hot_Water_Temperature_Sensor :: columns: aru_001_hwr_temp
+class=Wifi_AP :: columns: wifi_fourth_south, wifi_third_south
+zone=Building :: columns: aru_001_hwr_temp, aru_001_hws_fr_gpm
+zone=Floor_G :: columns: wifi_third_south
+zone=Floor_S :: columns: wifi_fourth_south
+desc=Hot water fow rate :: columns: aru_001_hws_fr_gpm
+desc=Hot water return temperature :: columns: aru_001_hwr_temp
+desc=Wifi connection counts in the south half of forth floor :: columns: wifi_fourth_south
+desc=Wifi connection counts in the south half of third floor :: columns: wifi_third_south

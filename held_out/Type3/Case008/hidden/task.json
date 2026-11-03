@@ -1,0 +1,144 @@
+{
+  "id": "T3-009",
+  "family": "T3",
+  "source_files": [
+    "rtu_sa_t.csv",
+    "wifi.csv"
+  ],
+  "target_schema": [
+    {
+      "name": "timestamp",
+      "dtype": "string 'YYYY-MM-DD HH:MM:SS'",
+      "description": "start of interval"
+    },
+    {
+      "name": "rtu_004_sa_temp",
+      "dtype": "float",
+      "unit": "°F",
+      "description": "Roof Top Unit * supply air temperature (*: 001, 002, 003, 004) (°F), 15-minute interval"
+    },
+    {
+      "name": "wifi_second_south",
+      "dtype": "float",
+      "unit": "/",
+      "description": "Wifi connection counts in the south half of second floor (/), 15-minute interval"
+    }
+  ],
+  "example_day": "2020-09-08",
+  "test_days": [
+    "2020-06-28",
+    "2020-06-29"
+  ],
+  "source_dates_example": {
+    "rtu_sa_t": [
+      "2020-09-08"
+    ],
+    "wifi": [
+      "2020-09-07",
+      "2020-09-08"
+    ]
+  },
+  "source_dates_test": {
+    "rtu_sa_t": [
+      "2020-06-28",
+      "2020-06-29"
+    ],
+    "wifi": [
+      "2020-06-27",
+      "2020-06-28",
+      "2020-06-29"
+    ]
+  },
+  "n_target_rows_example": 96,
+  "n_target_rows_test": 192,
+  "nl_instruction": "Join rtu_sa_t.csv, wifi.csv on timestamp (inner join) after aggregating each to 15-minute intervals using the minimum; keep only rtu_004_sa_temp, wifi_second_south. Timestamp = start of interval.",
+  "needs": [
+    "sampling_interval",
+    "time_alignment",
+    "join",
+    "aggregation"
+  ],
+  "knowledge": [
+    {
+      "kind": "sampling_interval",
+      "file": "rtu_sa_t.csv",
+      "value_min": 1.0,
+      "dict_freq": "1 min"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "rtu_sa_t.csv",
+      "column": "rtu_004_sa_temp",
+      "description": "Roof Top Unit * supply air temperature (*: 001, 002, 003, 004)",
+      "quantity_kind": "temperature"
+    },
+    {
+      "kind": "unit",
+      "file": "rtu_sa_t.csv",
+      "column": "rtu_004_sa_temp",
+      "true_unit": "°F",
+      "dict_unit": "°F"
+    },
+    {
+      "kind": "sampling_interval",
+      "file": "wifi.csv",
+      "value_min": 5.0,
+      "dict_freq": "10 min"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "wifi.csv",
+      "column": "wifi_second_south",
+      "description": "Wifi connection counts in the south half of second floor",
+      "quantity_kind": "wifi_connection_count"
+    },
+    {
+      "kind": "unit",
+      "file": "wifi.csv",
+      "column": "wifi_second_south",
+      "true_unit": "/",
+      "dict_unit": "/"
+    }
+  ],
+  "discriminates_against": [
+    "outer_join",
+    "agg_mean",
+    "agg_max"
+  ],
+  "spec": {
+    "family": "T3",
+    "sources": [
+      {
+        "file": "rtu_sa_t",
+        "columns": [
+          "rtu_004_sa_temp"
+        ]
+      },
+      {
+        "file": "wifi",
+        "columns": [
+          "wifi_second_south"
+        ]
+      }
+    ],
+    "freq": "15min",
+    "agg": "min",
+    "how": "inner",
+    "out_columns": [
+      "rtu_004_sa_temp",
+      "wifi_second_south"
+    ],
+    "target_units": {
+      "rtu_004_sa_temp": "°F",
+      "wifi_second_south": "/"
+    }
+  },
+  "benchmark_version": "holdout_v2",
+  "shown_rows": [
+    0,
+    24,
+    48,
+    71,
+    95
+  ]
+}

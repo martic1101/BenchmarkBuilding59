@@ -1,0 +1,144 @@
+{
+  "id": "T3-039",
+  "family": "T3",
+  "source_files": [
+    "rtu_plenum_p.csv",
+    "rtu_sa_t_sp.csv"
+  ],
+  "target_schema": [
+    {
+      "name": "timestamp",
+      "dtype": "string 'YYYY-MM-DD HH:MM:SS'",
+      "description": "start of interval"
+    },
+    {
+      "name": "rtu_001_fltrd_lvl2_plenum_press_tn",
+      "dtype": "float",
+      "unit": "psi",
+      "description": "Roof Top Unit * plenum air pressure at floor ** (*: 001, 002, 003, 004; **: gnd_lvl, lvl2) (psi), 30-minute interval"
+    },
+    {
+      "name": "rtu_001_sat_sp_tn",
+      "dtype": "float",
+      "unit": "°F",
+      "description": "Roof Top Unit * supply air temperature setpoint (*: 001, 002, 003, 004) (°F), 30-minute interval"
+    }
+  ],
+  "example_day": "2018-04-02",
+  "test_days": [
+    "2019-10-15",
+    "2019-10-16"
+  ],
+  "source_dates_example": {
+    "rtu_plenum_p": [
+      "2018-04-02"
+    ],
+    "rtu_sa_t_sp": [
+      "2018-04-01",
+      "2018-04-02"
+    ]
+  },
+  "source_dates_test": {
+    "rtu_plenum_p": [
+      "2019-10-15",
+      "2019-10-16"
+    ],
+    "rtu_sa_t_sp": [
+      "2019-10-14",
+      "2019-10-15",
+      "2019-10-16"
+    ]
+  },
+  "n_target_rows_example": 48,
+  "n_target_rows_test": 96,
+  "nl_instruction": "Join rtu_plenum_p.csv, rtu_sa_t_sp.csv on timestamp (inner join) after aggregating each to 30-minute intervals using the maximum; keep only rtu_001_fltrd_lvl2_plenum_press_tn, rtu_001_sat_sp_tn. Timestamp = start of interval.",
+  "needs": [
+    "sampling_interval",
+    "time_alignment",
+    "join",
+    "aggregation"
+  ],
+  "knowledge": [
+    {
+      "kind": "sampling_interval",
+      "file": "rtu_plenum_p.csv",
+      "value_min": 1.0,
+      "dict_freq": "1 min"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "rtu_plenum_p.csv",
+      "column": "rtu_001_fltrd_lvl2_plenum_press_tn",
+      "description": "Roof Top Unit * plenum air pressure at floor ** (*: 001, 002, 003, 004; **: gnd_lvl, lvl2)",
+      "quantity_kind": "pressure"
+    },
+    {
+      "kind": "unit",
+      "file": "rtu_plenum_p.csv",
+      "column": "rtu_001_fltrd_lvl2_plenum_press_tn",
+      "true_unit": "psi",
+      "dict_unit": "psi"
+    },
+    {
+      "kind": "sampling_interval",
+      "file": "rtu_sa_t_sp.csv",
+      "value_min": 1.0,
+      "dict_freq": "1 min"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "rtu_sa_t_sp.csv",
+      "column": "rtu_001_sat_sp_tn",
+      "description": "Roof Top Unit * supply air temperature setpoint (*: 001, 002, 003, 004)",
+      "quantity_kind": "temperature_setpoint"
+    },
+    {
+      "kind": "unit",
+      "file": "rtu_sa_t_sp.csv",
+      "column": "rtu_001_sat_sp_tn",
+      "true_unit": "°F",
+      "dict_unit": "°F"
+    }
+  ],
+  "discriminates_against": [
+    "outer_join",
+    "agg_mean",
+    "agg_min"
+  ],
+  "spec": {
+    "family": "T3",
+    "sources": [
+      {
+        "file": "rtu_plenum_p",
+        "columns": [
+          "rtu_001_fltrd_lvl2_plenum_press_tn"
+        ]
+      },
+      {
+        "file": "rtu_sa_t_sp",
+        "columns": [
+          "rtu_001_sat_sp_tn"
+        ]
+      }
+    ],
+    "freq": "30min",
+    "agg": "max",
+    "how": "inner",
+    "out_columns": [
+      "rtu_001_fltrd_lvl2_plenum_press_tn",
+      "rtu_001_sat_sp_tn"
+    ],
+    "target_units": {
+      "rtu_001_fltrd_lvl2_plenum_press_tn": "psi",
+      "rtu_001_sat_sp_tn": "°F"
+    }
+  },
+  "benchmark_version": "holdout_v2",
+  "shown_rows": [
+    0,
+    12,
+    24,
+    35,
+    47
+  ]
+}

@@ -1,0 +1,36 @@
+{
+ "source_files": [
+  "zone_co2.csv"
+ ],
+ "example_day": "2020-12-27",
+ "target_schema": [
+  {
+   "name": "timestamp",
+   "dtype": "string 'YYYY-MM-DD HH:MM:SS'"
+  },
+  {
+   "name": "Floor_G",
+   "dtype": "float",
+   "unit": "ppm"
+  },
+  {
+   "name": "Floor_S",
+   "dtype": "float",
+   "unit": "ppm"
+  }
+ ],
+ "n_example_day_target_rows": 48,
+ "n_example_day_source_rows": {
+  "zone_co2.csv": 1440
+ },
+ "source_blocks": {
+  "zone_co2.csv": [
+   30,
+   30,
+   30,
+   30,
+   30
+  ]
+ },
+ "note": "source_example/ holds only the source rows inside the time intervals of the shown target rows; source_blocks gives the sizes of the contiguous runs (shown as '...' between runs in the prompt)."
+}

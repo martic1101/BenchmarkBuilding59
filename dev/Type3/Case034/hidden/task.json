@@ -1,0 +1,188 @@
+{
+  "id": "T3-035",
+  "family": "T3",
+  "source_files": [
+    "ele.csv",
+    "rtu_sa_t_sp.csv"
+  ],
+  "target_schema": [
+    {
+      "name": "timestamp",
+      "dtype": "string 'YYYY-MM-DD HH:MM:SS'",
+      "description": "start of interval"
+    },
+    {
+      "name": "lig_S",
+      "dtype": "float",
+      "unit": "kW",
+      "description": "Lighting load for the South Wing (kW), 30-minute averages"
+    },
+    {
+      "name": "mels_N",
+      "dtype": "float",
+      "unit": "kW",
+      "description": "Miscellaneous electric load for the North Wing (kW), 30-minute averages"
+    },
+    {
+      "name": "rtu_002_sat_sp_tn",
+      "dtype": "float",
+      "unit": "°F",
+      "description": "Roof Top Unit * supply air temperature setpoint (*: 001, 002, 003, 004) (°F), 30-minute averages"
+    },
+    {
+      "name": "rtu_004_sat_sp_tn",
+      "dtype": "float",
+      "unit": "°F",
+      "description": "Roof Top Unit * supply air temperature setpoint (*: 001, 002, 003, 004) (°F), 30-minute averages"
+    }
+  ],
+  "example_day": "2018-07-23",
+  "test_days": [
+    "2020-09-11",
+    "2020-09-12"
+  ],
+  "source_dates_example": {
+    "ele": [
+      "2018-07-23"
+    ],
+    "rtu_sa_t_sp": [
+      "2018-07-22",
+      "2018-07-23"
+    ]
+  },
+  "source_dates_test": {
+    "ele": [
+      "2020-09-11",
+      "2020-09-12"
+    ],
+    "rtu_sa_t_sp": [
+      "2020-09-10",
+      "2020-09-11",
+      "2020-09-12"
+    ]
+  },
+  "n_target_rows_example": 48,
+  "n_target_rows_test": 96,
+  "nl_instruction": "Join ele.csv, rtu_sa_t_sp.csv on timestamp (inner join) after aggregating each to 30-minute averages; keep only lig_S, mels_N, rtu_002_sat_sp_tn, rtu_004_sat_sp_tn. Timestamp = start of interval.",
+  "needs": [
+    "sampling_interval",
+    "time_alignment",
+    "join",
+    "aggregation"
+  ],
+  "knowledge": [
+    {
+      "kind": "sampling_interval",
+      "file": "ele.csv",
+      "value_min": 15.0,
+      "dict_freq": "15 min"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "ele.csv",
+      "column": "lig_S",
+      "description": "Lighting load for the South Wing",
+      "quantity_kind": "electric_power"
+    },
+    {
+      "kind": "unit",
+      "file": "ele.csv",
+      "column": "lig_S",
+      "true_unit": "kW",
+      "dict_unit": "kW"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "ele.csv",
+      "column": "mels_N",
+      "description": "Miscellaneous electric load for the North Wing",
+      "quantity_kind": "electric_power"
+    },
+    {
+      "kind": "unit",
+      "file": "ele.csv",
+      "column": "mels_N",
+      "true_unit": "kW",
+      "dict_unit": "kW"
+    },
+    {
+      "kind": "sampling_interval",
+      "file": "rtu_sa_t_sp.csv",
+      "value_min": 1.0,
+      "dict_freq": "1 min"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "rtu_sa_t_sp.csv",
+      "column": "rtu_002_sat_sp_tn",
+      "description": "Roof Top Unit * supply air temperature setpoint (*: 001, 002, 003, 004)",
+      "quantity_kind": "temperature_setpoint"
+    },
+    {
+      "kind": "unit",
+      "file": "rtu_sa_t_sp.csv",
+      "column": "rtu_002_sat_sp_tn",
+      "true_unit": "°F",
+      "dict_unit": "°F"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "rtu_sa_t_sp.csv",
+      "column": "rtu_004_sat_sp_tn",
+      "description": "Roof Top Unit * supply air temperature setpoint (*: 001, 002, 003, 004)",
+      "quantity_kind": "temperature_setpoint"
+    },
+    {
+      "kind": "unit",
+      "file": "rtu_sa_t_sp.csv",
+      "column": "rtu_004_sat_sp_tn",
+      "true_unit": "°F",
+      "dict_unit": "°F"
+    }
+  ],
+  "discriminates_against": [
+    "outer_join",
+    "agg_max"
+  ],
+  "spec": {
+    "family": "T3",
+    "sources": [
+      {
+        "file": "ele",
+        "columns": [
+          "lig_S",
+          "mels_N"
+        ]
+      },
+      {
+        "file": "rtu_sa_t_sp",
+        "columns": [
+          "rtu_002_sat_sp_tn",
+          "rtu_004_sat_sp_tn"
+        ]
+      }
+    ],
+    "freq": "30min",
+    "agg": "mean",
+    "how": "inner",
+    "out_columns": [
+      "lig_S",
+      "mels_N",
+      "rtu_002_sat_sp_tn",
+      "rtu_004_sat_sp_tn"
+    ],
+    "target_units": {
+      "lig_S": "kW",
+      "mels_N": "kW",
+      "rtu_002_sat_sp_tn": "°F",
+      "rtu_004_sat_sp_tn": "°F"
+    }
+  },
+  "shown_rows": [
+    0,
+    12,
+    24,
+    35,
+    47
+  ]
+}

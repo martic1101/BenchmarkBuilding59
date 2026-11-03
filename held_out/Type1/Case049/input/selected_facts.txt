@@ -1,0 +1,7 @@
+columns in scope: rtu_001_oa_flow_tn
+desc=Roof Top Unit * outdoor air flow rate (*: 001, 002, 003, 004) :: columns: ALL
+unit=CFM :: columns: ALL
+sampling=1 min :: columns: ALL
+class=Outdoor_Air_Flow_Rate :: columns: ALL
+zone=RTU01 :: columns: ALL
+rtu=RTU01 :: columns: ALL

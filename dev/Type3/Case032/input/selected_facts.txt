@@ -1,0 +1,11 @@
+columns in scope: aru_001_power_mbtuph, wifi_second_south, wifi_third_south
+class=Wifi_AP :: columns: wifi_third_south
+zone=Floor_G :: columns: wifi_third_south
+floor=Building :: columns: wifi_third_south
+unit=/ :: columns: wifi_second_south, wifi_third_south
+unit=mbtuph :: columns: aru_001_power_mbtuph
+sampling=10 min :: columns: wifi_second_south, wifi_third_south
+sampling=5 min :: columns: aru_001_power_mbtuph
+desc=Heat meter for air source heat pump :: columns: aru_001_power_mbtuph
+desc=Wifi connection counts in the south half of second floor :: columns: wifi_second_south
+desc=Wifi connection counts in the south half of third floor :: columns: wifi_third_south

@@ -1,0 +1,114 @@
+{
+  "id": "T1-059",
+  "family": "T1",
+  "source_files": [
+    "rtu_oa_fr.csv"
+  ],
+  "target_schema": [
+    {
+      "name": "timestamp",
+      "dtype": "string 'YYYY-MM-DD HH:MM:SS'",
+      "description": "start of interval"
+    },
+    {
+      "name": "rtu_001_oa_flow_tn",
+      "dtype": "float",
+      "unit": "CFM",
+      "description": "Roof Top Unit * outdoor air flow rate (*: 001, 002, 003, 004) (CFM), 1-hour interval"
+    },
+    {
+      "name": "rtu_003_oa_flow_tn",
+      "dtype": "float",
+      "unit": "CFM",
+      "description": "Roof Top Unit * outdoor air flow rate (*: 001, 002, 003, 004) (CFM), 1-hour interval"
+    }
+  ],
+  "example_day": "2020-02-09",
+  "test_days": [
+    "2020-11-30",
+    "2020-12-01"
+  ],
+  "source_dates_example": {
+    "rtu_oa_fr": [
+      "2020-02-09"
+    ]
+  },
+  "source_dates_test": {
+    "rtu_oa_fr": [
+      "2020-11-30",
+      "2020-12-01"
+    ]
+  },
+  "n_target_rows_example": 24,
+  "n_target_rows_test": 48,
+  "nl_instruction": "Aggregate rtu_001_oa_flow_tn, rtu_003_oa_flow_tn from rtu_oa_fr.csv to 1-hour intervals using the maximum. Timestamp = start of interval.",
+  "needs": [
+    "aggregation",
+    "sampling_interval"
+  ],
+  "knowledge": [
+    {
+      "kind": "sampling_interval",
+      "file": "rtu_oa_fr.csv",
+      "value_min": 1.0,
+      "dict_freq": "1 min"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "rtu_oa_fr.csv",
+      "column": "rtu_001_oa_flow_tn",
+      "description": "Roof Top Unit * outdoor air flow rate (*: 001, 002, 003, 004)",
+      "quantity_kind": "air_flow"
+    },
+    {
+      "kind": "unit",
+      "file": "rtu_oa_fr.csv",
+      "column": "rtu_001_oa_flow_tn",
+      "true_unit": "CFM",
+      "dict_unit": "CFM"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "rtu_oa_fr.csv",
+      "column": "rtu_003_oa_flow_tn",
+      "description": "Roof Top Unit * outdoor air flow rate (*: 001, 002, 003, 004)",
+      "quantity_kind": "air_flow"
+    },
+    {
+      "kind": "unit",
+      "file": "rtu_oa_fr.csv",
+      "column": "rtu_003_oa_flow_tn",
+      "true_unit": "CFM",
+      "dict_unit": "CFM"
+    }
+  ],
+  "discriminates_against": [
+    "agg_mean",
+    "agg_min"
+  ],
+  "spec": {
+    "family": "T1",
+    "file": "rtu_oa_fr",
+    "columns": [
+      "rtu_001_oa_flow_tn",
+      "rtu_003_oa_flow_tn"
+    ],
+    "freq": "1h",
+    "agg": "max",
+    "out_columns": [
+      "rtu_001_oa_flow_tn",
+      "rtu_003_oa_flow_tn"
+    ],
+    "target_units": {
+      "rtu_001_oa_flow_tn": "CFM",
+      "rtu_003_oa_flow_tn": "CFM"
+    }
+  },
+  "shown_rows": [
+    0,
+    6,
+    12,
+    17,
+    23
+  ]
+}

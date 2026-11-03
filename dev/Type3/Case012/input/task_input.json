@@ -1,0 +1,74 @@
+{
+ "source_files": [
+  "ashp_hw.csv",
+  "rtu_oa_damper.csv",
+  "rtu_sa_t_sp.csv"
+ ],
+ "example_day": "2020-01-02",
+ "target_schema": [
+  {
+   "name": "timestamp",
+   "dtype": "string 'YYYY-MM-DD HH:MM:SS'"
+  },
+  {
+   "name": "aru_001_hwr_temp",
+   "dtype": "float",
+   "unit": "°F"
+  },
+  {
+   "name": "aru_001_hws_fr_gpm",
+   "dtype": "float",
+   "unit": "gpm"
+  },
+  {
+   "name": "rtu_003_oadmpr_pct",
+   "dtype": "float",
+   "unit": "%"
+  },
+  {
+   "name": "rtu_004_oadmpr_pct",
+   "dtype": "float",
+   "unit": "%"
+  },
+  {
+   "name": "rtu_001_sat_sp_tn",
+   "dtype": "float",
+   "unit": "°F"
+  },
+  {
+   "name": "rtu_002_sat_sp_tn",
+   "dtype": "float",
+   "unit": "°F"
+  }
+ ],
+ "n_example_day_target_rows": 48,
+ "n_example_day_source_rows": {
+  "ashp_hw.csv": 288,
+  "rtu_oa_damper.csv": 1440,
+  "rtu_sa_t_sp.csv": 2880
+ },
+ "source_blocks": {
+  "ashp_hw.csv": [
+   6,
+   6,
+   6,
+   6,
+   6
+  ],
+  "rtu_oa_damper.csv": [
+   30,
+   30,
+   30,
+   30,
+   30
+  ],
+  "rtu_sa_t_sp.csv": [
+   30,
+   30,
+   30,
+   30,
+   30
+  ]
+ },
+ "note": "source_example/ holds only the source rows inside the time intervals of the shown target rows; source_blocks gives the sizes of the contiguous runs (shown as '...' between runs in the prompt)."
+}

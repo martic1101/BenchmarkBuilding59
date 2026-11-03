@@ -1,0 +1,50 @@
+{
+ "source_files": [
+  "ele.csv",
+  "site_weather.csv"
+ ],
+ "example_day": "2019-01-02",
+ "target_schema": [
+  {
+   "name": "timestamp",
+   "dtype": "string 'YYYY-MM-DD HH:MM:SS'"
+  },
+  {
+   "name": "hvac_N",
+   "dtype": "float",
+   "unit": "kW"
+  },
+  {
+   "name": "mels_S",
+   "dtype": "float",
+   "unit": "kW"
+  },
+  {
+   "name": "solar_radiation_set_1",
+   "dtype": "float",
+   "unit": "W/m2"
+  }
+ ],
+ "n_example_day_target_rows": 48,
+ "n_example_day_source_rows": {
+  "ele.csv": 96,
+  "site_weather.csv": 192
+ },
+ "source_blocks": {
+  "ele.csv": [
+   2,
+   2,
+   2,
+   2,
+   2
+  ],
+  "site_weather.csv": [
+   2,
+   2,
+   2,
+   2,
+   2
+  ]
+ },
+ "note": "source_example/ holds only the source rows inside the time intervals of the shown target rows; source_blocks gives the sizes of the contiguous runs (shown as '...' between runs in the prompt)."
+}

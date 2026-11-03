@@ -1,0 +1,115 @@
+{
+  "id": "T1-069",
+  "family": "T1",
+  "source_files": [
+    "rtu_plenum_p.csv"
+  ],
+  "target_schema": [
+    {
+      "name": "timestamp",
+      "dtype": "string 'YYYY-MM-DD HH:MM:SS'",
+      "description": "start of interval"
+    },
+    {
+      "name": "rtu_001_fltrd_lvl2_plenum_press_tn",
+      "dtype": "float",
+      "unit": "psi",
+      "description": "Roof Top Unit * plenum air pressure at floor ** (*: 001, 002, 003, 004; **: gnd_lvl, lvl2) (psi), 30-minute interval"
+    },
+    {
+      "name": "rtu_003_fltrd_gnd_lvl_plenum_press_tn",
+      "dtype": "float",
+      "unit": "psi",
+      "description": "Roof Top Unit * plenum air pressure at floor ** (*: 001, 002, 003, 004; **: gnd_lvl, lvl2) (psi), 30-minute interval"
+    }
+  ],
+  "example_day": "2019-12-25",
+  "test_days": [
+    "2019-05-26",
+    "2019-05-27"
+  ],
+  "source_dates_example": {
+    "rtu_plenum_p": [
+      "2019-12-25"
+    ]
+  },
+  "source_dates_test": {
+    "rtu_plenum_p": [
+      "2019-05-26",
+      "2019-05-27"
+    ]
+  },
+  "n_target_rows_example": 48,
+  "n_target_rows_test": 96,
+  "nl_instruction": "Aggregate rtu_001_fltrd_lvl2_plenum_press_tn, rtu_003_fltrd_gnd_lvl_plenum_press_tn from rtu_plenum_p.csv to 30-minute intervals using the minimum. Timestamp = start of interval.",
+  "needs": [
+    "aggregation",
+    "sampling_interval"
+  ],
+  "knowledge": [
+    {
+      "kind": "sampling_interval",
+      "file": "rtu_plenum_p.csv",
+      "value_min": 1.0,
+      "dict_freq": "1 min"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "rtu_plenum_p.csv",
+      "column": "rtu_001_fltrd_lvl2_plenum_press_tn",
+      "description": "Roof Top Unit * plenum air pressure at floor ** (*: 001, 002, 003, 004; **: gnd_lvl, lvl2)",
+      "quantity_kind": "pressure"
+    },
+    {
+      "kind": "unit",
+      "file": "rtu_plenum_p.csv",
+      "column": "rtu_001_fltrd_lvl2_plenum_press_tn",
+      "true_unit": "psi",
+      "dict_unit": "psi"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "rtu_plenum_p.csv",
+      "column": "rtu_003_fltrd_gnd_lvl_plenum_press_tn",
+      "description": "Roof Top Unit * plenum air pressure at floor ** (*: 001, 002, 003, 004; **: gnd_lvl, lvl2)",
+      "quantity_kind": "pressure"
+    },
+    {
+      "kind": "unit",
+      "file": "rtu_plenum_p.csv",
+      "column": "rtu_003_fltrd_gnd_lvl_plenum_press_tn",
+      "true_unit": "psi",
+      "dict_unit": "psi"
+    }
+  ],
+  "discriminates_against": [
+    "agg_mean",
+    "agg_max"
+  ],
+  "spec": {
+    "family": "T1",
+    "file": "rtu_plenum_p",
+    "columns": [
+      "rtu_001_fltrd_lvl2_plenum_press_tn",
+      "rtu_003_fltrd_gnd_lvl_plenum_press_tn"
+    ],
+    "freq": "30min",
+    "agg": "min",
+    "out_columns": [
+      "rtu_001_fltrd_lvl2_plenum_press_tn",
+      "rtu_003_fltrd_gnd_lvl_plenum_press_tn"
+    ],
+    "target_units": {
+      "rtu_001_fltrd_lvl2_plenum_press_tn": "psi",
+      "rtu_003_fltrd_gnd_lvl_plenum_press_tn": "psi"
+    }
+  },
+  "benchmark_version": "holdout_v2",
+  "shown_rows": [
+    0,
+    12,
+    24,
+    35,
+    47
+  ]
+}

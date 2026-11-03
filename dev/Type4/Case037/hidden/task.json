@@ -1,0 +1,1036 @@
+{
+  "id": "T4-040",
+  "family": "T4",
+  "source_files": [
+    "zone_temp_sp_h.csv"
+  ],
+  "target_schema": [
+    {
+      "name": "timestamp",
+      "dtype": "string 'YYYY-MM-DD HH:MM:SS'",
+      "description": "start of interval"
+    },
+    {
+      "name": "Floor_G",
+      "dtype": "float",
+      "unit": "°F",
+      "description": "Heating temperature setpoint of Zone aggregated over all zones belonging to Floor_G (°F), 1-hour interval"
+    },
+    {
+      "name": "Floor_S",
+      "dtype": "float",
+      "unit": "°F",
+      "description": "Heating temperature setpoint of Zone aggregated over all zones belonging to Floor_S (°F), 1-hour interval"
+    }
+  ],
+  "example_day": "2020-01-07",
+  "test_days": [
+    "2020-04-07",
+    "2020-04-08"
+  ],
+  "source_dates_example": {
+    "zone_temp_sp_h": [
+      "2020-01-07"
+    ]
+  },
+  "source_dates_test": {
+    "zone_temp_sp_h": [
+      "2020-04-07",
+      "2020-04-08"
+    ]
+  },
+  "n_target_rows_example": 24,
+  "n_target_rows_test": 48,
+  "nl_instruction": "For each floor, compute the maximum over its zones of the 1-hour maximum of each zone column in zone_temp_sp_h.csv. One output column per group (Floor_G, Floor_S). Timestamp = start of interval.",
+  "needs": [
+    "topology",
+    "aggregation"
+  ],
+  "knowledge": [
+    {
+      "kind": "sampling_interval",
+      "file": "zone_temp_sp_h.csv",
+      "value_min": 5.0,
+      "dict_freq": "5 min"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "zone_temp_sp_h.csv",
+      "column": "zone_016_heating_sp",
+      "description": "Heating temperature setpoint of Zone *",
+      "quantity_kind": "temperature_setpoint"
+    },
+    {
+      "kind": "unit",
+      "file": "zone_temp_sp_h.csv",
+      "column": "zone_016_heating_sp",
+      "true_unit": "°F",
+      "dict_unit": "°F"
+    },
+    {
+      "kind": "membership",
+      "file": "zone_temp_sp_h.csv",
+      "column": "zone_016_heating_sp",
+      "group": "Floor_G",
+      "relation": "zone isPartOf floor",
+      "brick_point": "zone_016_heating_sp"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "zone_temp_sp_h.csv",
+      "column": "zone_017_heating_sp",
+      "description": "Heating temperature setpoint of Zone *",
+      "quantity_kind": "temperature_setpoint"
+    },
+    {
+      "kind": "unit",
+      "file": "zone_temp_sp_h.csv",
+      "column": "zone_017_heating_sp",
+      "true_unit": "°F",
+      "dict_unit": "°F"
+    },
+    {
+      "kind": "membership",
+      "file": "zone_temp_sp_h.csv",
+      "column": "zone_017_heating_sp",
+      "group": "Floor_G",
+      "relation": "zone isPartOf floor",
+      "brick_point": "zone_017_heating_sp"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "zone_temp_sp_h.csv",
+      "column": "zone_018_heating_sp",
+      "description": "Heating temperature setpoint of Zone *",
+      "quantity_kind": "temperature_setpoint"
+    },
+    {
+      "kind": "unit",
+      "file": "zone_temp_sp_h.csv",
+      "column": "zone_018_heating_sp",
+      "true_unit": "°F",
+      "dict_unit": "°F"
+    },
+    {
+      "kind": "membership",
+      "file": "zone_temp_sp_h.csv",
+      "column": "zone_018_heating_sp",
+      "group": "Floor_G",
+      "relation": "zone isPartOf floor",
+      "brick_point": "zone_018_heating_sp"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "zone_temp_sp_h.csv",
+      "column": "zone_019_heating_sp",
+      "description": "Heating temperature setpoint of Zone *",
+      "quantity_kind": "temperature_setpoint"
+    },
+    {
+      "kind": "unit",
+      "file": "zone_temp_sp_h.csv",
+      "column": "zone_019_heating_sp",
+      "true_unit": "°F",
+      "dict_unit": "°F"
+    },
+    {
+      "kind": "membership",
+      "file": "zone_temp_sp_h.csv",
+      "column": "zone_019_heating_sp",
+      "group": "Floor_G",
+      "relation": "zone isPartOf floor",
+      "brick_point": "zone_019_heating_sp"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "zone_temp_sp_h.csv",
+      "column": "zone_021_heating_sp",
+      "description": "Heating temperature setpoint of Zone *",
+      "quantity_kind": "temperature_setpoint"
+    },
+    {
+      "kind": "unit",
+      "file": "zone_temp_sp_h.csv",
+      "column": "zone_021_heating_sp",
+      "true_unit": "°F",
+      "dict_unit": "°F"
+    },
+    {
+      "kind": "membership",
+      "file": "zone_temp_sp_h.csv",
+      "column": "zone_021_heating_sp",
+      "group": "Floor_G",
+      "relation": "zone isPartOf floor",
+      "brick_point": "zone_021_heating_sp"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "zone_temp_sp_h.csv",
+      "column": "zone_023_heating_sp",
+      "description": "Heating temperature setpoint of Zone *",
+      "quantity_kind": "temperature_setpoint"
+    },
+    {
+      "kind": "unit",
+      "file": "zone_temp_sp_h.csv",
+      "column": "zone_023_heating_sp",
+      "true_unit": "°F",
+      "dict_unit": "°F"
+    },
+    {
+      "kind": "membership",
+      "file": "zone_temp_sp_h.csv",
+      "column": "zone_023_heating_sp",
+      "group": "Floor_G",
+      "relation": "zone isPartOf floor",
+      "brick_point": "zone_023_heating_sp"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "zone_temp_sp_h.csv",
+      "column": "zone_024_heating_sp",
+      "description": "Heating temperature setpoint of Zone *",
+      "quantity_kind": "temperature_setpoint"
+    },
+    {
+      "kind": "unit",
+      "file": "zone_temp_sp_h.csv",
+      "column": "zone_024_heating_sp",
+      "true_unit": "°F",
+      "dict_unit": "°F"
+    },
+    {
+      "kind": "membership",
+      "file": "zone_temp_sp_h.csv",
+      "column": "zone_024_heating_sp",
+      "group": "Floor_G",
+      "relation": "zone isPartOf floor",
+      "brick_point": "zone_024_heating_sp"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "zone_temp_sp_h.csv",
+      "column": "zone_025_heating_sp",
+      "description": "Heating temperature setpoint of Zone *",
+      "quantity_kind": "temperature_setpoint"
+    },
+    {
+      "kind": "unit",
+      "file": "zone_temp_sp_h.csv",
+      "column": "zone_025_heating_sp",
+      "true_unit": "°F",
+      "dict_unit": "°F"
+    },
+    {
+      "kind": "membership",
+      "file": "zone_temp_sp_h.csv",
+      "column": "zone_025_heating_sp",
+      "group": "Floor_G",
+      "relation": "zone isPartOf floor",
+      "brick_point": "zone_025_heating_sp"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "zone_temp_sp_h.csv",
+      "column": "zone_026_heating_sp",
+      "description": "Heating temperature setpoint of Zone *",
+      "quantity_kind": "temperature_setpoint"
+    },
+    {
+      "kind": "unit",
+      "file": "zone_temp_sp_h.csv",
+      "column": "zone_026_heating_sp",
+      "true_unit": "°F",
+      "dict_unit": "°F"
+    },
+    {
+      "kind": "membership",
+      "file": "zone_temp_sp_h.csv",
+      "column": "zone_026_heating_sp",
+      "group": "Floor_G",
+      "relation": "zone isPartOf floor",
+      "brick_point": "zone_026_heating_sp"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "zone_temp_sp_h.csv",
+      "column": "zone_027_heating_sp",
+      "description": "Heating temperature setpoint of Zone *",
+      "quantity_kind": "temperature_setpoint"
+    },
+    {
+      "kind": "unit",
+      "file": "zone_temp_sp_h.csv",
+      "column": "zone_027_heating_sp",
+      "true_unit": "°F",
+      "dict_unit": "°F"
+    },
+    {
+      "kind": "membership",
+      "file": "zone_temp_sp_h.csv",
+      "column": "zone_027_heating_sp",
+      "group": "Floor_G",
+      "relation": "zone isPartOf floor",
+      "brick_point": "zone_027_heating_sp"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "zone_temp_sp_h.csv",
+      "column": "zone_030_heating_sp",
+      "description": "Heating temperature setpoint of Zone *",
+      "quantity_kind": "temperature_setpoint"
+    },
+    {
+      "kind": "unit",
+      "file": "zone_temp_sp_h.csv",
+      "column": "zone_030_heating_sp",
+      "true_unit": "°F",
+      "dict_unit": "°F"
+    },
+    {
+      "kind": "membership",
+      "file": "zone_temp_sp_h.csv",
+      "column": "zone_030_heating_sp",
+      "group": "Floor_G",
+      "relation": "zone isPartOf floor",
+      "brick_point": "zone_030_heating_sp"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "zone_temp_sp_h.csv",
+      "column": "zone_032_heating_sp",
+      "description": "Heating temperature setpoint of Zone *",
+      "quantity_kind": "temperature_setpoint"
+    },
+    {
+      "kind": "unit",
+      "file": "zone_temp_sp_h.csv",
+      "column": "zone_032_heating_sp",
+      "true_unit": "°F",
+      "dict_unit": "°F"
+    },
+    {
+      "kind": "membership",
+      "file": "zone_temp_sp_h.csv",
+      "column": "zone_032_heating_sp",
+      "group": "Floor_G",
+      "relation": "zone isPartOf floor",
+      "brick_point": "zone_032_heating_sp"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "zone_temp_sp_h.csv",
+      "column": "zone_035_heating_sp",
+      "description": "Heating temperature setpoint of Zone *",
+      "quantity_kind": "temperature_setpoint"
+    },
+    {
+      "kind": "unit",
+      "file": "zone_temp_sp_h.csv",
+      "column": "zone_035_heating_sp",
+      "true_unit": "°F",
+      "dict_unit": "°F"
+    },
+    {
+      "kind": "membership",
+      "file": "zone_temp_sp_h.csv",
+      "column": "zone_035_heating_sp",
+      "group": "Floor_G",
+      "relation": "zone isPartOf floor",
+      "brick_point": "zone_035_heating_sp"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "zone_temp_sp_h.csv",
+      "column": "zone_036_heating_sp",
+      "description": "Heating temperature setpoint of Zone *",
+      "quantity_kind": "temperature_setpoint"
+    },
+    {
+      "kind": "unit",
+      "file": "zone_temp_sp_h.csv",
+      "column": "zone_036_heating_sp",
+      "true_unit": "°F",
+      "dict_unit": "°F"
+    },
+    {
+      "kind": "membership",
+      "file": "zone_temp_sp_h.csv",
+      "column": "zone_036_heating_sp",
+      "group": "Floor_G",
+      "relation": "zone isPartOf floor",
+      "brick_point": "zone_036_heating_sp"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "zone_temp_sp_h.csv",
+      "column": "zone_037_heating_sp",
+      "description": "Heating temperature setpoint of Zone *",
+      "quantity_kind": "temperature_setpoint"
+    },
+    {
+      "kind": "unit",
+      "file": "zone_temp_sp_h.csv",
+      "column": "zone_037_heating_sp",
+      "true_unit": "°F",
+      "dict_unit": "°F"
+    },
+    {
+      "kind": "membership",
+      "file": "zone_temp_sp_h.csv",
+      "column": "zone_037_heating_sp",
+      "group": "Floor_G",
+      "relation": "zone isPartOf floor",
+      "brick_point": "zone_037_heating_sp"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "zone_temp_sp_h.csv",
+      "column": "zone_038_heating_sp",
+      "description": "Heating temperature setpoint of Zone *",
+      "quantity_kind": "temperature_setpoint"
+    },
+    {
+      "kind": "unit",
+      "file": "zone_temp_sp_h.csv",
+      "column": "zone_038_heating_sp",
+      "true_unit": "°F",
+      "dict_unit": "°F"
+    },
+    {
+      "kind": "membership",
+      "file": "zone_temp_sp_h.csv",
+      "column": "zone_038_heating_sp",
+      "group": "Floor_G",
+      "relation": "zone isPartOf floor",
+      "brick_point": "zone_038_heating_sp"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "zone_temp_sp_h.csv",
+      "column": "zone_039_heating_sp",
+      "description": "Heating temperature setpoint of Zone *",
+      "quantity_kind": "temperature_setpoint"
+    },
+    {
+      "kind": "unit",
+      "file": "zone_temp_sp_h.csv",
+      "column": "zone_039_heating_sp",
+      "true_unit": "°F",
+      "dict_unit": "°F"
+    },
+    {
+      "kind": "membership",
+      "file": "zone_temp_sp_h.csv",
+      "column": "zone_039_heating_sp",
+      "group": "Floor_G",
+      "relation": "zone isPartOf floor",
+      "brick_point": "zone_039_heating_sp"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "zone_temp_sp_h.csv",
+      "column": "zone_041_heating_sp",
+      "description": "Heating temperature setpoint of Zone *",
+      "quantity_kind": "temperature_setpoint"
+    },
+    {
+      "kind": "unit",
+      "file": "zone_temp_sp_h.csv",
+      "column": "zone_041_heating_sp",
+      "true_unit": "°F",
+      "dict_unit": "°F"
+    },
+    {
+      "kind": "membership",
+      "file": "zone_temp_sp_h.csv",
+      "column": "zone_041_heating_sp",
+      "group": "Floor_G",
+      "relation": "zone isPartOf floor",
+      "brick_point": "zone_041_heating_sp"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "zone_temp_sp_h.csv",
+      "column": "zone_042_heating_sp",
+      "description": "Heating temperature setpoint of Zone *",
+      "quantity_kind": "temperature_setpoint"
+    },
+    {
+      "kind": "unit",
+      "file": "zone_temp_sp_h.csv",
+      "column": "zone_042_heating_sp",
+      "true_unit": "°F",
+      "dict_unit": "°F"
+    },
+    {
+      "kind": "membership",
+      "file": "zone_temp_sp_h.csv",
+      "column": "zone_042_heating_sp",
+      "group": "Floor_G",
+      "relation": "zone isPartOf floor",
+      "brick_point": "zone_042_heating_sp"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "zone_temp_sp_h.csv",
+      "column": "zone_043_heating_sp",
+      "description": "Heating temperature setpoint of Zone *",
+      "quantity_kind": "temperature_setpoint"
+    },
+    {
+      "kind": "unit",
+      "file": "zone_temp_sp_h.csv",
+      "column": "zone_043_heating_sp",
+      "true_unit": "°F",
+      "dict_unit": "°F"
+    },
+    {
+      "kind": "membership",
+      "file": "zone_temp_sp_h.csv",
+      "column": "zone_043_heating_sp",
+      "group": "Floor_G",
+      "relation": "zone isPartOf floor",
+      "brick_point": "zone_043_heating_sp"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "zone_temp_sp_h.csv",
+      "column": "zone_046_heating_sp",
+      "description": "Heating temperature setpoint of Zone *",
+      "quantity_kind": "temperature_setpoint"
+    },
+    {
+      "kind": "unit",
+      "file": "zone_temp_sp_h.csv",
+      "column": "zone_046_heating_sp",
+      "true_unit": "°F",
+      "dict_unit": "°F"
+    },
+    {
+      "kind": "membership",
+      "file": "zone_temp_sp_h.csv",
+      "column": "zone_046_heating_sp",
+      "group": "Floor_S",
+      "relation": "zone isPartOf floor",
+      "brick_point": "zone_046_heating_sp"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "zone_temp_sp_h.csv",
+      "column": "zone_047_heating_sp",
+      "description": "Heating temperature setpoint of Zone *",
+      "quantity_kind": "temperature_setpoint"
+    },
+    {
+      "kind": "unit",
+      "file": "zone_temp_sp_h.csv",
+      "column": "zone_047_heating_sp",
+      "true_unit": "°F",
+      "dict_unit": "°F"
+    },
+    {
+      "kind": "membership",
+      "file": "zone_temp_sp_h.csv",
+      "column": "zone_047_heating_sp",
+      "group": "Floor_S",
+      "relation": "zone isPartOf floor",
+      "brick_point": "zone_047_heating_sp"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "zone_temp_sp_h.csv",
+      "column": "zone_048_heating_sp",
+      "description": "Heating temperature setpoint of Zone *",
+      "quantity_kind": "temperature_setpoint"
+    },
+    {
+      "kind": "unit",
+      "file": "zone_temp_sp_h.csv",
+      "column": "zone_048_heating_sp",
+      "true_unit": "°F",
+      "dict_unit": "°F"
+    },
+    {
+      "kind": "membership",
+      "file": "zone_temp_sp_h.csv",
+      "column": "zone_048_heating_sp",
+      "group": "Floor_S",
+      "relation": "zone isPartOf floor",
+      "brick_point": "zone_048_heating_sp"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "zone_temp_sp_h.csv",
+      "column": "zone_049_heating_sp",
+      "description": "Heating temperature setpoint of Zone *",
+      "quantity_kind": "temperature_setpoint"
+    },
+    {
+      "kind": "unit",
+      "file": "zone_temp_sp_h.csv",
+      "column": "zone_049_heating_sp",
+      "true_unit": "°F",
+      "dict_unit": "°F"
+    },
+    {
+      "kind": "membership",
+      "file": "zone_temp_sp_h.csv",
+      "column": "zone_049_heating_sp",
+      "group": "Floor_S",
+      "relation": "zone isPartOf floor",
+      "brick_point": "zone_049_heating_sp"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "zone_temp_sp_h.csv",
+      "column": "zone_051_heating_sp",
+      "description": "Heating temperature setpoint of Zone *",
+      "quantity_kind": "temperature_setpoint"
+    },
+    {
+      "kind": "unit",
+      "file": "zone_temp_sp_h.csv",
+      "column": "zone_051_heating_sp",
+      "true_unit": "°F",
+      "dict_unit": "°F"
+    },
+    {
+      "kind": "membership",
+      "file": "zone_temp_sp_h.csv",
+      "column": "zone_051_heating_sp",
+      "group": "Floor_S",
+      "relation": "zone isPartOf floor",
+      "brick_point": "zone_051_heating_sp"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "zone_temp_sp_h.csv",
+      "column": "zone_053_heating_sp",
+      "description": "Heating temperature setpoint of Zone *",
+      "quantity_kind": "temperature_setpoint"
+    },
+    {
+      "kind": "unit",
+      "file": "zone_temp_sp_h.csv",
+      "column": "zone_053_heating_sp",
+      "true_unit": "°F",
+      "dict_unit": "°F"
+    },
+    {
+      "kind": "membership",
+      "file": "zone_temp_sp_h.csv",
+      "column": "zone_053_heating_sp",
+      "group": "Floor_S",
+      "relation": "zone isPartOf floor",
+      "brick_point": "zone_053_heating_sp"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "zone_temp_sp_h.csv",
+      "column": "zone_054_heating_sp",
+      "description": "Heating temperature setpoint of Zone *",
+      "quantity_kind": "temperature_setpoint"
+    },
+    {
+      "kind": "unit",
+      "file": "zone_temp_sp_h.csv",
+      "column": "zone_054_heating_sp",
+      "true_unit": "°F",
+      "dict_unit": "°F"
+    },
+    {
+      "kind": "membership",
+      "file": "zone_temp_sp_h.csv",
+      "column": "zone_054_heating_sp",
+      "group": "Floor_S",
+      "relation": "zone isPartOf floor",
+      "brick_point": "zone_054_heating_sp"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "zone_temp_sp_h.csv",
+      "column": "zone_055_heating_sp",
+      "description": "Heating temperature setpoint of Zone *",
+      "quantity_kind": "temperature_setpoint"
+    },
+    {
+      "kind": "unit",
+      "file": "zone_temp_sp_h.csv",
+      "column": "zone_055_heating_sp",
+      "true_unit": "°F",
+      "dict_unit": "°F"
+    },
+    {
+      "kind": "membership",
+      "file": "zone_temp_sp_h.csv",
+      "column": "zone_055_heating_sp",
+      "group": "Floor_S",
+      "relation": "zone isPartOf floor",
+      "brick_point": "zone_055_heating_sp"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "zone_temp_sp_h.csv",
+      "column": "zone_056_heating_sp",
+      "description": "Heating temperature setpoint of Zone *",
+      "quantity_kind": "temperature_setpoint"
+    },
+    {
+      "kind": "unit",
+      "file": "zone_temp_sp_h.csv",
+      "column": "zone_056_heating_sp",
+      "true_unit": "°F",
+      "dict_unit": "°F"
+    },
+    {
+      "kind": "membership",
+      "file": "zone_temp_sp_h.csv",
+      "column": "zone_056_heating_sp",
+      "group": "Floor_S",
+      "relation": "zone isPartOf floor",
+      "brick_point": "zone_056_heating_sp"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "zone_temp_sp_h.csv",
+      "column": "zone_057_heating_sp",
+      "description": "Heating temperature setpoint of Zone *",
+      "quantity_kind": "temperature_setpoint"
+    },
+    {
+      "kind": "unit",
+      "file": "zone_temp_sp_h.csv",
+      "column": "zone_057_heating_sp",
+      "true_unit": "°F",
+      "dict_unit": "°F"
+    },
+    {
+      "kind": "membership",
+      "file": "zone_temp_sp_h.csv",
+      "column": "zone_057_heating_sp",
+      "group": "Floor_S",
+      "relation": "zone isPartOf floor",
+      "brick_point": "zone_057_heating_sp"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "zone_temp_sp_h.csv",
+      "column": "zone_059_heating_sp",
+      "description": "Heating temperature setpoint of Zone *",
+      "quantity_kind": "temperature_setpoint"
+    },
+    {
+      "kind": "unit",
+      "file": "zone_temp_sp_h.csv",
+      "column": "zone_059_heating_sp",
+      "true_unit": "°F",
+      "dict_unit": "°F"
+    },
+    {
+      "kind": "membership",
+      "file": "zone_temp_sp_h.csv",
+      "column": "zone_059_heating_sp",
+      "group": "Floor_S",
+      "relation": "zone isPartOf floor",
+      "brick_point": "zone_059_heating_sp"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "zone_temp_sp_h.csv",
+      "column": "zone_061_heating_sp",
+      "description": "Heating temperature setpoint of Zone *",
+      "quantity_kind": "temperature_setpoint"
+    },
+    {
+      "kind": "unit",
+      "file": "zone_temp_sp_h.csv",
+      "column": "zone_061_heating_sp",
+      "true_unit": "°F",
+      "dict_unit": "°F"
+    },
+    {
+      "kind": "membership",
+      "file": "zone_temp_sp_h.csv",
+      "column": "zone_061_heating_sp",
+      "group": "Floor_S",
+      "relation": "zone isPartOf floor",
+      "brick_point": "zone_061_heating_sp"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "zone_temp_sp_h.csv",
+      "column": "zone_062_heating_sp",
+      "description": "Heating temperature setpoint of Zone *",
+      "quantity_kind": "temperature_setpoint"
+    },
+    {
+      "kind": "unit",
+      "file": "zone_temp_sp_h.csv",
+      "column": "zone_062_heating_sp",
+      "true_unit": "°F",
+      "dict_unit": "°F"
+    },
+    {
+      "kind": "membership",
+      "file": "zone_temp_sp_h.csv",
+      "column": "zone_062_heating_sp",
+      "group": "Floor_S",
+      "relation": "zone isPartOf floor",
+      "brick_point": "zone_062_heating_sp"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "zone_temp_sp_h.csv",
+      "column": "zone_063_heating_sp",
+      "description": "Heating temperature setpoint of Zone *",
+      "quantity_kind": "temperature_setpoint"
+    },
+    {
+      "kind": "unit",
+      "file": "zone_temp_sp_h.csv",
+      "column": "zone_063_heating_sp",
+      "true_unit": "°F",
+      "dict_unit": "°F"
+    },
+    {
+      "kind": "membership",
+      "file": "zone_temp_sp_h.csv",
+      "column": "zone_063_heating_sp",
+      "group": "Floor_S",
+      "relation": "zone isPartOf floor",
+      "brick_point": "zone_063_heating_sp"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "zone_temp_sp_h.csv",
+      "column": "zone_064_heating_sp",
+      "description": "Heating temperature setpoint of Zone *",
+      "quantity_kind": "temperature_setpoint"
+    },
+    {
+      "kind": "unit",
+      "file": "zone_temp_sp_h.csv",
+      "column": "zone_064_heating_sp",
+      "true_unit": "°F",
+      "dict_unit": "°F"
+    },
+    {
+      "kind": "membership",
+      "file": "zone_temp_sp_h.csv",
+      "column": "zone_064_heating_sp",
+      "group": "Floor_S",
+      "relation": "zone isPartOf floor",
+      "brick_point": "zone_064_heating_sp"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "zone_temp_sp_h.csv",
+      "column": "zone_065_heating_sp",
+      "description": "Heating temperature setpoint of Zone *",
+      "quantity_kind": "temperature_setpoint"
+    },
+    {
+      "kind": "unit",
+      "file": "zone_temp_sp_h.csv",
+      "column": "zone_065_heating_sp",
+      "true_unit": "°F",
+      "dict_unit": "°F"
+    },
+    {
+      "kind": "membership",
+      "file": "zone_temp_sp_h.csv",
+      "column": "zone_065_heating_sp",
+      "group": "Floor_S",
+      "relation": "zone isPartOf floor",
+      "brick_point": "zone_065_heating_sp"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "zone_temp_sp_h.csv",
+      "column": "zone_066_heating_sp",
+      "description": "Heating temperature setpoint of Zone *",
+      "quantity_kind": "temperature_setpoint"
+    },
+    {
+      "kind": "unit",
+      "file": "zone_temp_sp_h.csv",
+      "column": "zone_066_heating_sp",
+      "true_unit": "°F",
+      "dict_unit": "°F"
+    },
+    {
+      "kind": "membership",
+      "file": "zone_temp_sp_h.csv",
+      "column": "zone_066_heating_sp",
+      "group": "Floor_S",
+      "relation": "zone isPartOf floor",
+      "brick_point": "zone_066_heating_sp"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "zone_temp_sp_h.csv",
+      "column": "zone_067_heating_sp",
+      "description": "Heating temperature setpoint of Zone *",
+      "quantity_kind": "temperature_setpoint"
+    },
+    {
+      "kind": "unit",
+      "file": "zone_temp_sp_h.csv",
+      "column": "zone_067_heating_sp",
+      "true_unit": "°F",
+      "dict_unit": "°F"
+    },
+    {
+      "kind": "membership",
+      "file": "zone_temp_sp_h.csv",
+      "column": "zone_067_heating_sp",
+      "group": "Floor_S",
+      "relation": "zone isPartOf floor",
+      "brick_point": "zone_067_heating_sp"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "zone_temp_sp_h.csv",
+      "column": "zone_069_heating_sp",
+      "description": "Heating temperature setpoint of Zone *",
+      "quantity_kind": "temperature_setpoint"
+    },
+    {
+      "kind": "unit",
+      "file": "zone_temp_sp_h.csv",
+      "column": "zone_069_heating_sp",
+      "true_unit": "°F",
+      "dict_unit": "°F"
+    },
+    {
+      "kind": "membership",
+      "file": "zone_temp_sp_h.csv",
+      "column": "zone_069_heating_sp",
+      "group": "Floor_S",
+      "relation": "zone isPartOf floor",
+      "brick_point": "zone_069_heating_sp"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "zone_temp_sp_h.csv",
+      "column": "zone_070_heating_sp",
+      "description": "Heating temperature setpoint of Zone *",
+      "quantity_kind": "temperature_setpoint"
+    },
+    {
+      "kind": "unit",
+      "file": "zone_temp_sp_h.csv",
+      "column": "zone_070_heating_sp",
+      "true_unit": "°F",
+      "dict_unit": "°F"
+    },
+    {
+      "kind": "membership",
+      "file": "zone_temp_sp_h.csv",
+      "column": "zone_070_heating_sp",
+      "group": "Floor_S",
+      "relation": "zone isPartOf floor",
+      "brick_point": "zone_070_heating_sp"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "zone_temp_sp_h.csv",
+      "column": "zone_071_heating_sp",
+      "description": "Heating temperature setpoint of Zone *",
+      "quantity_kind": "temperature_setpoint"
+    },
+    {
+      "kind": "unit",
+      "file": "zone_temp_sp_h.csv",
+      "column": "zone_071_heating_sp",
+      "true_unit": "°F",
+      "dict_unit": "°F"
+    },
+    {
+      "kind": "membership",
+      "file": "zone_temp_sp_h.csv",
+      "column": "zone_071_heating_sp",
+      "group": "Floor_S",
+      "relation": "zone isPartOf floor",
+      "brick_point": "zone_071_heating_sp"
+    }
+  ],
+  "discriminates_against": [
+    "agg_swap",
+    "space_agg_swap",
+    "shuffled_membership_0",
+    "shuffled_membership_1",
+    "shuffled_membership_2"
+  ],
+  "spec": {
+    "family": "T4",
+    "file": "zone_temp_sp_h",
+    "group_by": "floor",
+    "groups": {
+      "Floor_G": [
+        "zone_016_heating_sp",
+        "zone_017_heating_sp",
+        "zone_018_heating_sp",
+        "zone_019_heating_sp",
+        "zone_021_heating_sp",
+        "zone_023_heating_sp",
+        "zone_024_heating_sp",
+        "zone_025_heating_sp",
+        "zone_026_heating_sp",
+        "zone_027_heating_sp",
+        "zone_030_heating_sp",
+        "zone_032_heating_sp",
+        "zone_035_heating_sp",
+        "zone_036_heating_sp",
+        "zone_037_heating_sp",
+        "zone_038_heating_sp",
+        "zone_039_heating_sp",
+        "zone_041_heating_sp",
+        "zone_042_heating_sp",
+        "zone_043_heating_sp"
+      ],
+      "Floor_S": [
+        "zone_046_heating_sp",
+        "zone_047_heating_sp",
+        "zone_048_heating_sp",
+        "zone_049_heating_sp",
+        "zone_051_heating_sp",
+        "zone_053_heating_sp",
+        "zone_054_heating_sp",
+        "zone_055_heating_sp",
+        "zone_056_heating_sp",
+        "zone_057_heating_sp",
+        "zone_059_heating_sp",
+        "zone_061_heating_sp",
+        "zone_062_heating_sp",
+        "zone_063_heating_sp",
+        "zone_064_heating_sp",
+        "zone_065_heating_sp",
+        "zone_066_heating_sp",
+        "zone_067_heating_sp",
+        "zone_069_heating_sp",
+        "zone_070_heating_sp",
+        "zone_071_heating_sp"
+      ]
+    },
+    "freq": "1h",
+    "agg_time": "max",
+    "agg_space": "max",
+    "out_columns": [
+      "Floor_G",
+      "Floor_S"
+    ],
+    "target_units": {
+      "Floor_G": "°F",
+      "Floor_S": "°F"
+    }
+  },
+  "shown_rows": [
+    0,
+    6,
+    12,
+    17,
+    23
+  ]
+}

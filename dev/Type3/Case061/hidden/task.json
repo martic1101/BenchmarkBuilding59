@@ -1,0 +1,163 @@
+{
+  "id": "T3-063",
+  "family": "T3",
+  "source_files": [
+    "rtu_ra_t.csv",
+    "rtu_sa_t.csv"
+  ],
+  "target_schema": [
+    {
+      "name": "timestamp",
+      "dtype": "string 'YYYY-MM-DD HH:MM:SS'",
+      "description": "start of interval"
+    },
+    {
+      "name": "rtu_003_ra_temp",
+      "dtype": "float",
+      "unit": "°F",
+      "description": "Roof Top Unit * return air temperature (*: 001, 002, 003, 004) (°F), native interval (no aggregation)"
+    },
+    {
+      "name": "rtu_002_sa_temp",
+      "dtype": "float",
+      "unit": "°F",
+      "description": "Roof Top Unit * supply air temperature (*: 001, 002, 003, 004) (°F), native interval (no aggregation)"
+    },
+    {
+      "name": "rtu_004_sa_temp",
+      "dtype": "float",
+      "unit": "°F",
+      "description": "Roof Top Unit * supply air temperature (*: 001, 002, 003, 004) (°F), native interval (no aggregation)"
+    }
+  ],
+  "example_day": "2019-08-16",
+  "test_days": [
+    "2018-04-04",
+    "2018-04-05"
+  ],
+  "source_dates_example": {
+    "rtu_ra_t": [
+      "2019-08-16"
+    ],
+    "rtu_sa_t": [
+      "2019-08-15",
+      "2019-08-16"
+    ]
+  },
+  "source_dates_test": {
+    "rtu_ra_t": [
+      "2018-04-04",
+      "2018-04-05"
+    ],
+    "rtu_sa_t": [
+      "2018-04-03",
+      "2018-04-04",
+      "2018-04-05"
+    ]
+  },
+  "n_target_rows_example": 1440,
+  "n_target_rows_test": 2880,
+  "nl_instruction": "Join rtu_ra_t.csv, rtu_sa_t.csv on timestamp (inner join) at their native interval; keep only rtu_003_ra_temp, rtu_002_sa_temp, rtu_004_sa_temp. Timestamp = start of interval.",
+  "needs": [
+    "sampling_interval",
+    "time_alignment",
+    "join"
+  ],
+  "knowledge": [
+    {
+      "kind": "sampling_interval",
+      "file": "rtu_ra_t.csv",
+      "value_min": 1.0,
+      "dict_freq": "1 min"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "rtu_ra_t.csv",
+      "column": "rtu_003_ra_temp",
+      "description": "Roof Top Unit * return air temperature (*: 001, 002, 003, 004)",
+      "quantity_kind": "temperature"
+    },
+    {
+      "kind": "unit",
+      "file": "rtu_ra_t.csv",
+      "column": "rtu_003_ra_temp",
+      "true_unit": "°F",
+      "dict_unit": "°F"
+    },
+    {
+      "kind": "sampling_interval",
+      "file": "rtu_sa_t.csv",
+      "value_min": 1.0,
+      "dict_freq": "1 min"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "rtu_sa_t.csv",
+      "column": "rtu_002_sa_temp",
+      "description": "Roof Top Unit * supply air temperature (*: 001, 002, 003, 004)",
+      "quantity_kind": "temperature"
+    },
+    {
+      "kind": "unit",
+      "file": "rtu_sa_t.csv",
+      "column": "rtu_002_sa_temp",
+      "true_unit": "°F",
+      "dict_unit": "°F"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "rtu_sa_t.csv",
+      "column": "rtu_004_sa_temp",
+      "description": "Roof Top Unit * supply air temperature (*: 001, 002, 003, 004)",
+      "quantity_kind": "temperature"
+    },
+    {
+      "kind": "unit",
+      "file": "rtu_sa_t.csv",
+      "column": "rtu_004_sa_temp",
+      "true_unit": "°F",
+      "dict_unit": "°F"
+    }
+  ],
+  "discriminates_against": [
+    "outer_join"
+  ],
+  "spec": {
+    "family": "T3",
+    "sources": [
+      {
+        "file": "rtu_ra_t",
+        "columns": [
+          "rtu_003_ra_temp"
+        ]
+      },
+      {
+        "file": "rtu_sa_t",
+        "columns": [
+          "rtu_002_sa_temp",
+          "rtu_004_sa_temp"
+        ]
+      }
+    ],
+    "freq": null,
+    "agg": "mean",
+    "how": "inner",
+    "out_columns": [
+      "rtu_003_ra_temp",
+      "rtu_002_sa_temp",
+      "rtu_004_sa_temp"
+    ],
+    "target_units": {
+      "rtu_003_ra_temp": "°F",
+      "rtu_002_sa_temp": "°F",
+      "rtu_004_sa_temp": "°F"
+    }
+  },
+  "shown_rows": [
+    0,
+    360,
+    720,
+    1079,
+    1439
+  ]
+}

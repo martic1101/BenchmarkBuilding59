@@ -1,0 +1,14 @@
+columns in scope: rtu_001_ma_temp, rtu_001_pa_static_stpt_tn, rtu_003_pa_static_stpt_tn, rtu_004_ma_temp
+sampling=1 min :: columns: ALL
+desc=Roof Top Unit * air pressure static setpoint (*: 001, 002, 003, 004) :: columns: rtu_001_pa_static_stpt_tn, rtu_003_pa_static_stpt_tn
+desc=Roof Top Unit * mixed air temperature (*: 001, 002, 003, 004) :: columns: rtu_001_ma_temp, rtu_004_ma_temp
+unit=psi :: columns: rtu_001_pa_static_stpt_tn, rtu_003_pa_static_stpt_tn
+unit=°F :: columns: rtu_001_ma_temp, rtu_004_ma_temp
+class=Mixed_Air_Temperature_Sensor :: columns: rtu_001_ma_temp, rtu_004_ma_temp
+class=Supply_Air_Static_Pressure_Setpoint :: columns: rtu_001_pa_static_stpt_tn, rtu_003_pa_static_stpt_tn
+zone=RTU01 :: columns: rtu_001_ma_temp, rtu_001_pa_static_stpt_tn
+zone=RTU03 :: columns: rtu_003_pa_static_stpt_tn
+zone=RTU04 :: columns: rtu_004_ma_temp
+rtu=RTU01 :: columns: rtu_001_ma_temp, rtu_001_pa_static_stpt_tn
+rtu=RTU03 :: columns: rtu_003_pa_static_stpt_tn
+rtu=RTU04 :: columns: rtu_004_ma_temp

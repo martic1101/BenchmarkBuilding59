@@ -1,0 +1,4 @@
+columns in scope: rtu_001_fltrd_sa_flow_tn, rtu_002_fltrd_sa_flow_tn, rtu_004_fltrd_sa_flow_tn
+desc=Roof Top Unit * filtered supply air flow rate (*: 001, 002, 003, 004) :: columns: ALL
+unit=CFM :: columns: ALL
+sampling=1 min :: columns: ALL

@@ -1,0 +1,207 @@
+{
+  "id": "T3-008",
+  "family": "T3",
+  "source_files": [
+    "ashp_cw.csv",
+    "rtu_oa_fr.csv",
+    "rtu_sa_p_sp.csv"
+  ],
+  "target_schema": [
+    {
+      "name": "timestamp",
+      "dtype": "string 'YYYY-MM-DD HH:MM:SS'",
+      "description": "start of interval"
+    },
+    {
+      "name": "aru_001_cws_temp",
+      "dtype": "float",
+      "unit": "°F",
+      "description": "Chilled water supply temperature (°F), 1-hour averages"
+    },
+    {
+      "name": "rtu_002_oa_flow_tn",
+      "dtype": "float",
+      "unit": "CFM",
+      "description": "Roof Top Unit * outdoor air flow rate (*: 001, 002, 003, 004) (CFM), 1-hour averages"
+    },
+    {
+      "name": "rtu_002_pa_static_stpt_tn",
+      "dtype": "float",
+      "unit": "inH2O (suspected)",
+      "description": "Roof Top Unit * air pressure static setpoint (*: 001, 002, 003, 004) (inH2O (suspected)), 1-hour averages"
+    },
+    {
+      "name": "rtu_004_pa_static_stpt_tn",
+      "dtype": "float",
+      "unit": "inH2O (suspected)",
+      "description": "Roof Top Unit * air pressure static setpoint (*: 001, 002, 003, 004) (inH2O (suspected)), 1-hour averages"
+    }
+  ],
+  "example_day": "2020-08-21",
+  "test_days": [
+    "2020-12-13",
+    "2020-12-14"
+  ],
+  "source_dates_example": {
+    "ashp_cw": [
+      "2020-08-21"
+    ],
+    "rtu_oa_fr": [
+      "2020-08-21"
+    ],
+    "rtu_sa_p_sp": [
+      "2020-08-20",
+      "2020-08-21"
+    ]
+  },
+  "source_dates_test": {
+    "ashp_cw": [
+      "2020-12-13",
+      "2020-12-14"
+    ],
+    "rtu_oa_fr": [
+      "2020-12-13",
+      "2020-12-14"
+    ],
+    "rtu_sa_p_sp": [
+      "2020-12-12",
+      "2020-12-13",
+      "2020-12-14"
+    ]
+  },
+  "n_target_rows_example": 24,
+  "n_target_rows_test": 48,
+  "nl_instruction": "Join ashp_cw.csv, rtu_oa_fr.csv, rtu_sa_p_sp.csv on timestamp (inner join) after aggregating each to 1-hour averages; keep only aru_001_cws_temp, rtu_002_oa_flow_tn, rtu_002_pa_static_stpt_tn, rtu_004_pa_static_stpt_tn. Timestamp = start of interval.",
+  "needs": [
+    "sampling_interval",
+    "time_alignment",
+    "join",
+    "aggregation"
+  ],
+  "knowledge": [
+    {
+      "kind": "sampling_interval",
+      "file": "ashp_cw.csv",
+      "value_min": 5.0,
+      "dict_freq": "5 min"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "ashp_cw.csv",
+      "column": "aru_001_cws_temp",
+      "description": "Chilled water supply temperature",
+      "quantity_kind": "temperature"
+    },
+    {
+      "kind": "unit",
+      "file": "ashp_cw.csv",
+      "column": "aru_001_cws_temp",
+      "true_unit": "°F",
+      "dict_unit": "°F"
+    },
+    {
+      "kind": "sampling_interval",
+      "file": "rtu_oa_fr.csv",
+      "value_min": 1.0,
+      "dict_freq": "1 min"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "rtu_oa_fr.csv",
+      "column": "rtu_002_oa_flow_tn",
+      "description": "Roof Top Unit * outdoor air flow rate (*: 001, 002, 003, 004)",
+      "quantity_kind": "air_flow"
+    },
+    {
+      "kind": "unit",
+      "file": "rtu_oa_fr.csv",
+      "column": "rtu_002_oa_flow_tn",
+      "true_unit": "CFM",
+      "dict_unit": "CFM"
+    },
+    {
+      "kind": "sampling_interval",
+      "file": "rtu_sa_p_sp.csv",
+      "value_min": 1.0,
+      "dict_freq": "1 min"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "rtu_sa_p_sp.csv",
+      "column": "rtu_002_pa_static_stpt_tn",
+      "description": "Roof Top Unit * air pressure static setpoint (*: 001, 002, 003, 004)",
+      "quantity_kind": "pressure_setpoint"
+    },
+    {
+      "kind": "unit",
+      "file": "rtu_sa_p_sp.csv",
+      "column": "rtu_002_pa_static_stpt_tn",
+      "true_unit": "inH2O (suspected)",
+      "dict_unit": "psi"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "rtu_sa_p_sp.csv",
+      "column": "rtu_004_pa_static_stpt_tn",
+      "description": "Roof Top Unit * air pressure static setpoint (*: 001, 002, 003, 004)",
+      "quantity_kind": "pressure_setpoint"
+    },
+    {
+      "kind": "unit",
+      "file": "rtu_sa_p_sp.csv",
+      "column": "rtu_004_pa_static_stpt_tn",
+      "true_unit": "inH2O (suspected)",
+      "dict_unit": "psi"
+    }
+  ],
+  "discriminates_against": [
+    "outer_join",
+    "agg_max"
+  ],
+  "spec": {
+    "family": "T3",
+    "sources": [
+      {
+        "file": "ashp_cw",
+        "columns": [
+          "aru_001_cws_temp"
+        ]
+      },
+      {
+        "file": "rtu_oa_fr",
+        "columns": [
+          "rtu_002_oa_flow_tn"
+        ]
+      },
+      {
+        "file": "rtu_sa_p_sp",
+        "columns": [
+          "rtu_002_pa_static_stpt_tn",
+          "rtu_004_pa_static_stpt_tn"
+        ]
+      }
+    ],
+    "freq": "1h",
+    "agg": "mean",
+    "how": "inner",
+    "out_columns": [
+      "aru_001_cws_temp",
+      "rtu_002_oa_flow_tn",
+      "rtu_002_pa_static_stpt_tn",
+      "rtu_004_pa_static_stpt_tn"
+    ],
+    "target_units": {
+      "aru_001_cws_temp": "°F",
+      "rtu_002_oa_flow_tn": "CFM",
+      "rtu_002_pa_static_stpt_tn": "inH2O (suspected)",
+      "rtu_004_pa_static_stpt_tn": "inH2O (suspected)"
+    }
+  },
+  "shown_rows": [
+    0,
+    6,
+    12,
+    17,
+    23
+  ]
+}

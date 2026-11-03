@@ -1,0 +1,184 @@
+{
+  "id": "T3-043",
+  "family": "T3",
+  "source_files": [
+    "ashp_hw.csv",
+    "rtu_plenum_p.csv",
+    "zone_temp_exterior.csv"
+  ],
+  "target_schema": [
+    {
+      "name": "timestamp",
+      "dtype": "string 'YYYY-MM-DD HH:MM:SS'",
+      "description": "start of interval"
+    },
+    {
+      "name": "aru_001_hws_temp",
+      "dtype": "float",
+      "unit": "°F",
+      "description": "Hot water supply temperature (°F), 1-hour averages"
+    },
+    {
+      "name": "rtu_004_fltrd_lvl2_plenum_press_tn",
+      "dtype": "float",
+      "unit": "inH2O (suspected)",
+      "description": "Roof Top Unit * plenum air pressure at floor ** (*: 001, 002, 003, 004; **: gnd_lvl, lvl2) (inH2O (suspected)), 1-hour averages"
+    },
+    {
+      "name": "zone_055_temp",
+      "dtype": "float",
+      "unit": "°F",
+      "description": "Zone temperature of exterior zone (°F), 1-hour averages"
+    }
+  ],
+  "example_day": "2020-12-29",
+  "test_days": [
+    "2019-11-28",
+    "2019-11-29"
+  ],
+  "source_dates_example": {
+    "ashp_hw": [
+      "2020-12-29"
+    ],
+    "rtu_plenum_p": [
+      "2020-12-29"
+    ],
+    "zone_temp_exterior": [
+      "2020-12-28",
+      "2020-12-29"
+    ]
+  },
+  "source_dates_test": {
+    "ashp_hw": [
+      "2019-11-28",
+      "2019-11-29"
+    ],
+    "rtu_plenum_p": [
+      "2019-11-28",
+      "2019-11-29"
+    ],
+    "zone_temp_exterior": [
+      "2019-11-27",
+      "2019-11-28",
+      "2019-11-29"
+    ]
+  },
+  "n_target_rows_example": 24,
+  "n_target_rows_test": 48,
+  "nl_instruction": "Join ashp_hw.csv, rtu_plenum_p.csv, zone_temp_exterior.csv on timestamp (inner join) after aggregating each to 1-hour averages; keep only aru_001_hws_temp, rtu_004_fltrd_lvl2_plenum_press_tn, zone_055_temp. Timestamp = start of interval.",
+  "needs": [
+    "sampling_interval",
+    "time_alignment",
+    "join",
+    "aggregation"
+  ],
+  "knowledge": [
+    {
+      "kind": "sampling_interval",
+      "file": "ashp_hw.csv",
+      "value_min": 5.0,
+      "dict_freq": "5 min"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "ashp_hw.csv",
+      "column": "aru_001_hws_temp",
+      "description": "Hot water supply temperature",
+      "quantity_kind": "temperature"
+    },
+    {
+      "kind": "unit",
+      "file": "ashp_hw.csv",
+      "column": "aru_001_hws_temp",
+      "true_unit": "°F",
+      "dict_unit": "°F"
+    },
+    {
+      "kind": "sampling_interval",
+      "file": "rtu_plenum_p.csv",
+      "value_min": 1.0,
+      "dict_freq": "1 min"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "rtu_plenum_p.csv",
+      "column": "rtu_004_fltrd_lvl2_plenum_press_tn",
+      "description": "Roof Top Unit * plenum air pressure at floor ** (*: 001, 002, 003, 004; **: gnd_lvl, lvl2)",
+      "quantity_kind": "pressure"
+    },
+    {
+      "kind": "unit",
+      "file": "rtu_plenum_p.csv",
+      "column": "rtu_004_fltrd_lvl2_plenum_press_tn",
+      "true_unit": "inH2O (suspected)",
+      "dict_unit": "psi"
+    },
+    {
+      "kind": "sampling_interval",
+      "file": "zone_temp_exterior.csv",
+      "value_min": 1.0,
+      "dict_freq": "1 min"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "zone_temp_exterior.csv",
+      "column": "zone_055_temp",
+      "description": "Zone temperature of exterior zone",
+      "quantity_kind": "temperature"
+    },
+    {
+      "kind": "unit",
+      "file": "zone_temp_exterior.csv",
+      "column": "zone_055_temp",
+      "true_unit": "°F",
+      "dict_unit": "°F"
+    }
+  ],
+  "discriminates_against": [
+    "outer_join",
+    "agg_max"
+  ],
+  "spec": {
+    "family": "T3",
+    "sources": [
+      {
+        "file": "ashp_hw",
+        "columns": [
+          "aru_001_hws_temp"
+        ]
+      },
+      {
+        "file": "rtu_plenum_p",
+        "columns": [
+          "rtu_004_fltrd_lvl2_plenum_press_tn"
+        ]
+      },
+      {
+        "file": "zone_temp_exterior",
+        "columns": [
+          "zone_055_temp"
+        ]
+      }
+    ],
+    "freq": "1h",
+    "agg": "mean",
+    "how": "inner",
+    "out_columns": [
+      "aru_001_hws_temp",
+      "rtu_004_fltrd_lvl2_plenum_press_tn",
+      "zone_055_temp"
+    ],
+    "target_units": {
+      "aru_001_hws_temp": "°F",
+      "rtu_004_fltrd_lvl2_plenum_press_tn": "inH2O (suspected)",
+      "zone_055_temp": "°F"
+    }
+  },
+  "shown_rows": [
+    0,
+    6,
+    12,
+    17,
+    23
+  ]
+}

@@ -1,0 +1,19 @@
+columns in scope: aru_001_power_mbtuph, rtu_001_fltrd_gnd_lvl_plenum_press_tn, rtu_004_fltrd_lvl2_plenum_press_tn, zone_049_heating_sp
+vav=UTF_G-4A :: columns: zone_049_heating_sp
+floor=Floor_S :: columns: zone_049_heating_sp
+sampling=1 min :: columns: rtu_001_fltrd_gnd_lvl_plenum_press_tn, rtu_004_fltrd_lvl2_plenum_press_tn
+sampling=5 min :: columns: aru_001_power_mbtuph, zone_049_heating_sp
+class=Heating_Temperature_Setpoint :: columns: zone_049_heating_sp
+class=Underfloor_Air_Plenum_Static_Pressure_Sensor :: columns: rtu_001_fltrd_gnd_lvl_plenum_press_tn, rtu_004_fltrd_lvl2_plenum_press_tn
+desc=Heat meter for air source heat pump :: columns: aru_001_power_mbtuph
+desc=Heating temperature setpoint of Zone * :: columns: zone_049_heating_sp
+desc=Roof Top Unit * plenum air pressure at floor ** (*: 001, 002, 003, 004; **: gnd_lvl, lvl2) :: columns: rtu_001_fltrd_gnd_lvl_plenum_press_tn, rtu_004_fltrd_lvl2_plenum_press_tn
+unit=mbtuph :: columns: aru_001_power_mbtuph
+unit=psi :: columns: rtu_001_fltrd_gnd_lvl_plenum_press_tn, rtu_004_fltrd_lvl2_plenum_press_tn
+unit=°F :: columns: zone_049_heating_sp
+zone=RTU01 :: columns: rtu_001_fltrd_gnd_lvl_plenum_press_tn
+zone=RTU04 :: columns: rtu_004_fltrd_lvl2_plenum_press_tn
+zone=zone_049 :: columns: zone_049_heating_sp
+rtu=RTU01 :: columns: rtu_001_fltrd_gnd_lvl_plenum_press_tn
+rtu=RTU03 :: columns: zone_049_heating_sp
+rtu=RTU04 :: columns: rtu_004_fltrd_lvl2_plenum_press_tn

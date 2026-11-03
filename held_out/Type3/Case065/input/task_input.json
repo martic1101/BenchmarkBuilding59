@@ -1,0 +1,69 @@
+{
+ "source_files": [
+  "ashp_hw.csv",
+  "wifi.csv",
+  "zone_temp_interior.csv"
+ ],
+ "example_day": "2020-11-06",
+ "target_schema": [
+  {
+   "name": "timestamp",
+   "dtype": "string 'YYYY-MM-DD HH:MM:SS'"
+  },
+  {
+   "name": "aru_001_hwr_temp",
+   "dtype": "float",
+   "unit": "°F"
+  },
+  {
+   "name": "aru_001_hws_fr_gpm",
+   "dtype": "float",
+   "unit": "gpm"
+  },
+  {
+   "name": "wifi_third_south",
+   "dtype": "float",
+   "unit": "/"
+  },
+  {
+   "name": "cerc_templogger_16",
+   "dtype": "float",
+   "unit": "°C"
+  },
+  {
+   "name": "cerc_templogger_3",
+   "dtype": "float",
+   "unit": "°C"
+  }
+ ],
+ "n_example_day_target_rows": 48,
+ "n_example_day_source_rows": {
+  "ashp_hw.csv": 288,
+  "wifi.csv": 288,
+  "zone_temp_interior.csv": 288
+ },
+ "source_blocks": {
+  "ashp_hw.csv": [
+   6,
+   6,
+   6,
+   6,
+   6
+  ],
+  "wifi.csv": [
+   6,
+   6,
+   6,
+   6,
+   6
+  ],
+  "zone_temp_interior.csv": [
+   3,
+   3,
+   3,
+   3,
+   3
+  ]
+ },
+ "note": "source_example/ holds only the source rows inside the time intervals of the shown target rows; source_blocks gives the sizes of the contiguous runs (shown as '...' between runs in the prompt)."
+}

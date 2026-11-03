@@ -1,0 +1,23 @@
+columns in scope: rtu_001_sat_sp_tn, rtu_002_sat_sp_tn, zone_040_co2, zone_046_cooling_sp, zone_053_cooling_sp, zone_072_co2
+unit=ppm :: columns: zone_040_co2, zone_072_co2
+unit=°F :: columns: rtu_001_sat_sp_tn, rtu_002_sat_sp_tn, zone_046_cooling_sp, zone_053_cooling_sp
+sampling=1 min :: columns: rtu_001_sat_sp_tn, rtu_002_sat_sp_tn, zone_040_co2, zone_072_co2
+sampling=5 min :: columns: zone_046_cooling_sp, zone_053_cooling_sp
+class=CO2_Sensor :: columns: zone_040_co2, zone_072_co2
+class=Cooling_Temperature_Setpoint :: columns: zone_046_cooling_sp, zone_053_cooling_sp
+floor=Floor_G :: columns: zone_040_co2
+floor=Floor_S :: columns: zone_046_cooling_sp, zone_053_cooling_sp, zone_072_co2
+desc=CO2 concentration of each zone :: columns: zone_040_co2, zone_072_co2
+desc=Cooling temperature setpoint of Zone * :: columns: zone_046_cooling_sp, zone_053_cooling_sp
+desc=Roof Top Unit * supply air temperature setpoint (*: 001, 002, 003, 004) :: columns: rtu_001_sat_sp_tn, rtu_002_sat_sp_tn
+rtu=RTU01 :: columns: zone_046_cooling_sp, zone_053_cooling_sp
+rtu=RTU03 :: columns: zone_072_co2
+rtu=RTU04 :: columns: zone_040_co2
+zone=zone_040 :: columns: zone_040_co2
+zone=zone_046 :: columns: zone_046_cooling_sp
+zone=zone_053 :: columns: zone_053_cooling_sp
+zone=zone_072 :: columns: zone_072_co2
+vav=UTF_2-20 :: columns: zone_040_co2
+vav=UTF_G-1 :: columns: zone_046_cooling_sp
+vav=UTF_G-25 :: columns: zone_072_co2
+vav=UTF_G-7 :: columns: zone_053_cooling_sp

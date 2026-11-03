@@ -1,0 +1,13 @@
+columns in scope: zone_038_heating_sp, zone_046_heating_sp
+desc=Heating temperature setpoint of Zone * :: columns: ALL
+unit=°F :: columns: ALL
+sampling=5 min :: columns: ALL
+class=Heating_Temperature_Setpoint :: columns: ALL
+zone=zone_038 :: columns: zone_038_heating_sp
+zone=zone_046 :: columns: zone_046_heating_sp
+vav=UTF_2-18 :: columns: zone_038_heating_sp
+vav=UTF_G-1 :: columns: zone_046_heating_sp
+rtu=RTU01 :: columns: zone_046_heating_sp
+rtu=RTU04 :: columns: zone_038_heating_sp
+floor=Floor_G :: columns: zone_038_heating_sp
+floor=Floor_S :: columns: zone_046_heating_sp

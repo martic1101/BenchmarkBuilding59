@@ -1,0 +1,22 @@
+columns in scope: hvac_S, mels_S, relative_humidity_set_1, rtu_001_rf_vfd_spd_fbk_tn, rtu_004_sf_vfd_spd_fbk_tn, solar_radiation_set_1
+sampling=1 min :: columns: rtu_001_rf_vfd_spd_fbk_tn, rtu_004_sf_vfd_spd_fbk_tn
+sampling=15 min :: columns: hvac_S, mels_S, relative_humidity_set_1, solar_radiation_set_1
+rtu=RTU01 :: columns: rtu_001_rf_vfd_spd_fbk_tn
+rtu=RTU04 :: columns: rtu_004_sf_vfd_spd_fbk_tn
+unit=% :: columns: relative_humidity_set_1, rtu_001_rf_vfd_spd_fbk_tn, rtu_004_sf_vfd_spd_fbk_tn
+unit=W/m2 :: columns: solar_radiation_set_1
+unit=kW :: columns: hvac_S, mels_S
+zone=Building :: columns: hvac_S, mels_S, relative_humidity_set_1, solar_radiation_set_1
+zone=RTU01 :: columns: rtu_001_rf_vfd_spd_fbk_tn
+zone=RTU04 :: columns: rtu_004_sf_vfd_spd_fbk_tn
+class=Building_Electrical_Meter :: columns: hvac_S, mels_S
+class=Outdoor_Air_Humidity_Sensor :: columns: relative_humidity_set_1
+class=Return_Air_Fan_Speed :: columns: rtu_001_rf_vfd_spd_fbk_tn
+class=Solar_Radiance_Sensor :: columns: solar_radiation_set_1
+class=Supply_Air_Fan_Speed :: columns: rtu_004_sf_vfd_spd_fbk_tn
+desc=Heating Ventilation and Air Conditioning load for the Sorth Wing :: columns: hvac_S
+desc=Miscellaneous electric load for the South Wing :: columns: mels_S
+desc=Outdoor air relative humidity from sensor 1 :: columns: relative_humidity_set_1
+desc=Outdoor solar radiation from sensor 1 :: columns: solar_radiation_set_1
+desc=Roof Top Unit * return fan speed (*: 001, 002, 003, 004) :: columns: rtu_001_rf_vfd_spd_fbk_tn
+desc=Roof Top Unit * supply fan speed (*: 001, 002, 003, 004) :: columns: rtu_004_sf_vfd_spd_fbk_tn

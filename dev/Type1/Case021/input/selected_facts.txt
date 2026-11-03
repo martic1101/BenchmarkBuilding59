@@ -1,0 +1,7 @@
+columns in scope: lig_S, mels_S
+unit=kW :: columns: ALL
+sampling=15 min :: columns: ALL
+class=Building_Electrical_Meter :: columns: ALL
+zone=Building :: columns: ALL
+desc=Lighting load for the South Wing :: columns: lig_S
+desc=Miscellaneous electric load for the South Wing :: columns: mels_S

@@ -1,0 +1,31 @@
+{
+ "source_files": [
+  "rtu_oa_fr.csv"
+ ],
+ "example_day": "2020-11-03",
+ "target_schema": [
+  {
+   "name": "timestamp",
+   "dtype": "string 'YYYY-MM-DD HH:MM:SS'"
+  },
+  {
+   "name": "rtu_002_oa_flow_tn",
+   "dtype": "float",
+   "unit": "CFM"
+  }
+ ],
+ "n_example_day_target_rows": 24,
+ "n_example_day_source_rows": {
+  "rtu_oa_fr.csv": 1440
+ },
+ "source_blocks": {
+  "rtu_oa_fr.csv": [
+   60,
+   60,
+   60,
+   60,
+   60
+  ]
+ },
+ "note": "source_example/ holds only the source rows inside the time intervals of the shown target rows; source_blocks gives the sizes of the contiguous runs (shown as '...' between runs in the prompt)."
+}

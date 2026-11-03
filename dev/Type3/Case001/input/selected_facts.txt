@@ -1,0 +1,24 @@
+columns in scope: air_temp_set_1, air_temp_set_2, zone_017_heating_sp, zone_027_temp, zone_059_heating_sp
+unit=°C :: columns: air_temp_set_1, air_temp_set_2
+unit=°F :: columns: zone_017_heating_sp, zone_027_temp, zone_059_heating_sp
+rtu=RTU01 :: columns: zone_017_heating_sp
+rtu=RTU03 :: columns: zone_027_temp, zone_059_heating_sp
+floor=Floor_G :: columns: zone_017_heating_sp, zone_027_temp
+floor=Floor_S :: columns: zone_059_heating_sp
+sampling=1 min :: columns: zone_027_temp
+sampling=15 min :: columns: air_temp_set_1, air_temp_set_2
+sampling=5 min :: columns: zone_017_heating_sp, zone_059_heating_sp
+class=Heating_Temperature_Setpoint :: columns: zone_017_heating_sp, zone_059_heating_sp
+class=Outdoor_Air_Temperature_Sensor :: columns: air_temp_set_1, air_temp_set_2
+class=Zone_Air_Temperature_Sensor :: columns: zone_027_temp
+vav=UTF_2-11 :: columns: zone_027_temp
+vav=UTF_2-2 :: columns: zone_017_heating_sp
+vav=UTF_G-13A :: columns: zone_059_heating_sp
+desc=Heating temperature setpoint of Zone * :: columns: zone_017_heating_sp, zone_059_heating_sp
+desc=Outdoor air temperature from sensor 1 :: columns: air_temp_set_1
+desc=Outdoor air temperature from sensor 2 :: columns: air_temp_set_2
+desc=Zone temperature of exterior zone :: columns: zone_027_temp
+zone=Building :: columns: air_temp_set_1, air_temp_set_2
+zone=zone_017 :: columns: zone_017_heating_sp
+zone=zone_027 :: columns: zone_027_temp
+zone=zone_059 :: columns: zone_059_heating_sp

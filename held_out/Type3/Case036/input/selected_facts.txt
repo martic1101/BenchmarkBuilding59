@@ -1,0 +1,9 @@
+columns in scope: rtu_001_fltrd_lvl2_plenum_press_tn, rtu_001_sat_sp_tn
+sampling=1 min :: columns: ALL
+class=Underfloor_Air_Plenum_Static_Pressure_Sensor :: columns: rtu_001_fltrd_lvl2_plenum_press_tn
+zone=RTU01 :: columns: rtu_001_fltrd_lvl2_plenum_press_tn
+rtu=RTU01 :: columns: rtu_001_fltrd_lvl2_plenum_press_tn
+desc=Roof Top Unit * plenum air pressure at floor ** (*: 001, 002, 003, 004; **: gnd_lvl, lvl2) :: columns: rtu_001_fltrd_lvl2_plenum_press_tn
+desc=Roof Top Unit * supply air temperature setpoint (*: 001, 002, 003, 004) :: columns: rtu_001_sat_sp_tn
+unit=psi :: columns: rtu_001_fltrd_lvl2_plenum_press_tn
+unit=°F :: columns: rtu_001_sat_sp_tn

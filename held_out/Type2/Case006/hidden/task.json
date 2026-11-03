@@ -1,0 +1,130 @@
+{
+  "id": "T2-006",
+  "family": "T2",
+  "source_files": [
+    "rtu_ma_t.csv"
+  ],
+  "target_schema": [
+    {
+      "name": "timestamp",
+      "dtype": "string 'YYYY-MM-DD HH:MM:SS'",
+      "description": "start of interval"
+    },
+    {
+      "name": "rtu_002_ma_temp_c",
+      "dtype": "float",
+      "unit": "°C",
+      "description": "Roof Top Unit * mixed air temperature (*: 001, 002, 003, 004) (°C), 1-hour interval"
+    },
+    {
+      "name": "rtu_004_ma_temp_c",
+      "dtype": "float",
+      "unit": "°C",
+      "description": "Roof Top Unit * mixed air temperature (*: 001, 002, 003, 004) (°C), 1-hour interval"
+    }
+  ],
+  "example_day": "2020-12-24",
+  "test_days": [
+    "2019-08-21",
+    "2019-08-22"
+  ],
+  "source_dates_example": {
+    "rtu_ma_t": [
+      "2020-12-24"
+    ]
+  },
+  "source_dates_test": {
+    "rtu_ma_t": [
+      "2019-08-21",
+      "2019-08-22"
+    ]
+  },
+  "n_target_rows_example": 24,
+  "n_target_rows_test": 48,
+  "nl_instruction": "Aggregate rtu_002_ma_temp, rtu_004_ma_temp from rtu_ma_t.csv to 1-hour averages and convert °F to °C. Timestamp = start of interval.",
+  "needs": [
+    "unit",
+    "conversion",
+    "aggregation"
+  ],
+  "knowledge": [
+    {
+      "kind": "sampling_interval",
+      "file": "rtu_ma_t.csv",
+      "value_min": 1.0,
+      "dict_freq": "1 min"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "rtu_ma_t.csv",
+      "column": "rtu_002_ma_temp",
+      "description": "Roof Top Unit * mixed air temperature (*: 001, 002, 003, 004)",
+      "quantity_kind": "temperature"
+    },
+    {
+      "kind": "unit",
+      "file": "rtu_ma_t.csv",
+      "column": "rtu_002_ma_temp",
+      "true_unit": "°F",
+      "dict_unit": "°F"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "rtu_ma_t.csv",
+      "column": "rtu_004_ma_temp",
+      "description": "Roof Top Unit * mixed air temperature (*: 001, 002, 003, 004)",
+      "quantity_kind": "temperature"
+    },
+    {
+      "kind": "unit",
+      "file": "rtu_ma_t.csv",
+      "column": "rtu_004_ma_temp",
+      "true_unit": "°F",
+      "dict_unit": "°F"
+    }
+  ],
+  "discriminates_against": [
+    "agg_max",
+    "no_or_wrong_conversion"
+  ],
+  "spec": {
+    "family": "T2",
+    "file": "rtu_ma_t",
+    "columns": [
+      "rtu_002_ma_temp",
+      "rtu_004_ma_temp"
+    ],
+    "freq": "1h",
+    "agg": "mean",
+    "conversion": "F_to_C",
+    "rename": {
+      "rtu_002_ma_temp": "rtu_002_ma_temp_c",
+      "rtu_004_ma_temp": "rtu_004_ma_temp_c"
+    },
+    "out_columns": [
+      "rtu_002_ma_temp_c",
+      "rtu_004_ma_temp_c"
+    ],
+    "target_units": {
+      "rtu_002_ma_temp_c": "°C",
+      "rtu_004_ma_temp_c": "°C"
+    },
+    "conflict_note": null,
+    "source_units": {
+      "rtu_002_ma_temp": "°F",
+      "rtu_004_ma_temp": "°F"
+    },
+    "dict_units": {
+      "rtu_002_ma_temp": "°F",
+      "rtu_004_ma_temp": "°F"
+    }
+  },
+  "benchmark_version": "holdout_v2",
+  "shown_rows": [
+    0,
+    6,
+    12,
+    17,
+    23
+  ]
+}

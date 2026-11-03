@@ -1,0 +1,187 @@
+{
+  "id": "T3-041",
+  "family": "T3",
+  "source_files": [
+    "rtu_ma_t.csv",
+    "rtu_sa_p_sp.csv"
+  ],
+  "target_schema": [
+    {
+      "name": "timestamp",
+      "dtype": "string 'YYYY-MM-DD HH:MM:SS'",
+      "description": "start of interval"
+    },
+    {
+      "name": "rtu_001_ma_temp",
+      "dtype": "float",
+      "unit": "°F",
+      "description": "Roof Top Unit * mixed air temperature (*: 001, 002, 003, 004) (°F), native interval (no aggregation)"
+    },
+    {
+      "name": "rtu_004_ma_temp",
+      "dtype": "float",
+      "unit": "°F",
+      "description": "Roof Top Unit * mixed air temperature (*: 001, 002, 003, 004) (°F), native interval (no aggregation)"
+    },
+    {
+      "name": "rtu_001_pa_static_stpt_tn",
+      "dtype": "float",
+      "unit": "psi",
+      "description": "Roof Top Unit * air pressure static setpoint (*: 001, 002, 003, 004) (psi), native interval (no aggregation)"
+    },
+    {
+      "name": "rtu_003_pa_static_stpt_tn",
+      "dtype": "float",
+      "unit": "psi",
+      "description": "Roof Top Unit * air pressure static setpoint (*: 001, 002, 003, 004) (psi), native interval (no aggregation)"
+    }
+  ],
+  "example_day": "2018-02-03",
+  "test_days": [
+    "2019-03-27",
+    "2019-03-28"
+  ],
+  "source_dates_example": {
+    "rtu_ma_t": [
+      "2018-02-03"
+    ],
+    "rtu_sa_p_sp": [
+      "2018-02-02",
+      "2018-02-03"
+    ]
+  },
+  "source_dates_test": {
+    "rtu_ma_t": [
+      "2019-03-27",
+      "2019-03-28"
+    ],
+    "rtu_sa_p_sp": [
+      "2019-03-26",
+      "2019-03-27",
+      "2019-03-28"
+    ]
+  },
+  "n_target_rows_example": 1440,
+  "n_target_rows_test": 2880,
+  "nl_instruction": "Join rtu_ma_t.csv, rtu_sa_p_sp.csv on timestamp (inner join) at their native interval; keep only rtu_001_ma_temp, rtu_004_ma_temp, rtu_001_pa_static_stpt_tn, rtu_003_pa_static_stpt_tn. Timestamp = start of interval.",
+  "needs": [
+    "sampling_interval",
+    "time_alignment",
+    "join"
+  ],
+  "knowledge": [
+    {
+      "kind": "sampling_interval",
+      "file": "rtu_ma_t.csv",
+      "value_min": 1.0,
+      "dict_freq": "1 min"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "rtu_ma_t.csv",
+      "column": "rtu_001_ma_temp",
+      "description": "Roof Top Unit * mixed air temperature (*: 001, 002, 003, 004)",
+      "quantity_kind": "temperature"
+    },
+    {
+      "kind": "unit",
+      "file": "rtu_ma_t.csv",
+      "column": "rtu_001_ma_temp",
+      "true_unit": "°F",
+      "dict_unit": "°F"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "rtu_ma_t.csv",
+      "column": "rtu_004_ma_temp",
+      "description": "Roof Top Unit * mixed air temperature (*: 001, 002, 003, 004)",
+      "quantity_kind": "temperature"
+    },
+    {
+      "kind": "unit",
+      "file": "rtu_ma_t.csv",
+      "column": "rtu_004_ma_temp",
+      "true_unit": "°F",
+      "dict_unit": "°F"
+    },
+    {
+      "kind": "sampling_interval",
+      "file": "rtu_sa_p_sp.csv",
+      "value_min": 1.0,
+      "dict_freq": "1 min"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "rtu_sa_p_sp.csv",
+      "column": "rtu_001_pa_static_stpt_tn",
+      "description": "Roof Top Unit * air pressure static setpoint (*: 001, 002, 003, 004)",
+      "quantity_kind": "pressure_setpoint"
+    },
+    {
+      "kind": "unit",
+      "file": "rtu_sa_p_sp.csv",
+      "column": "rtu_001_pa_static_stpt_tn",
+      "true_unit": "psi",
+      "dict_unit": "psi"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "rtu_sa_p_sp.csv",
+      "column": "rtu_003_pa_static_stpt_tn",
+      "description": "Roof Top Unit * air pressure static setpoint (*: 001, 002, 003, 004)",
+      "quantity_kind": "pressure_setpoint"
+    },
+    {
+      "kind": "unit",
+      "file": "rtu_sa_p_sp.csv",
+      "column": "rtu_003_pa_static_stpt_tn",
+      "true_unit": "psi",
+      "dict_unit": "psi"
+    }
+  ],
+  "discriminates_against": [
+    "outer_join"
+  ],
+  "spec": {
+    "family": "T3",
+    "sources": [
+      {
+        "file": "rtu_ma_t",
+        "columns": [
+          "rtu_001_ma_temp",
+          "rtu_004_ma_temp"
+        ]
+      },
+      {
+        "file": "rtu_sa_p_sp",
+        "columns": [
+          "rtu_001_pa_static_stpt_tn",
+          "rtu_003_pa_static_stpt_tn"
+        ]
+      }
+    ],
+    "freq": null,
+    "agg": "mean",
+    "how": "inner",
+    "out_columns": [
+      "rtu_001_ma_temp",
+      "rtu_004_ma_temp",
+      "rtu_001_pa_static_stpt_tn",
+      "rtu_003_pa_static_stpt_tn"
+    ],
+    "target_units": {
+      "rtu_001_ma_temp": "°F",
+      "rtu_004_ma_temp": "°F",
+      "rtu_001_pa_static_stpt_tn": "psi",
+      "rtu_003_pa_static_stpt_tn": "psi"
+    }
+  },
+  "benchmark_version": "holdout_v2",
+  "shown_rows": [
+    0,
+    360,
+    720,
+    1079,
+    1439
+  ]
+}

@@ -1,0 +1,12 @@
+columns in scope: rtu_002_oadmpr_pct, rtu_004_econ_stpt_tn, rtu_004_oadmpr_pct
+sampling=1 min :: columns: ALL
+desc=Roof Top Unit * economizer setpoint (*: 001, 002, 003, 004) :: columns: rtu_004_econ_stpt_tn
+desc=Roof Top Unit * outdoor air damper position (*: 001, 002, 003, 004) :: columns: rtu_002_oadmpr_pct, rtu_004_oadmpr_pct
+unit=% :: columns: rtu_002_oadmpr_pct, rtu_004_oadmpr_pct
+unit=°F :: columns: rtu_004_econ_stpt_tn
+class=Economizer_Setpoint :: columns: rtu_004_econ_stpt_tn
+class=Outdoor_Air_Damper :: columns: rtu_002_oadmpr_pct, rtu_004_oadmpr_pct
+zone=RTU02 :: columns: rtu_002_oadmpr_pct
+zone=RTU04 :: columns: rtu_004_econ_stpt_tn, rtu_004_oadmpr_pct
+rtu=RTU02 :: columns: rtu_002_oadmpr_pct
+rtu=RTU04 :: columns: rtu_004_econ_stpt_tn, rtu_004_oadmpr_pct

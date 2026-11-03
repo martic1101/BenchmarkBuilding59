@@ -1,0 +1,64 @@
+{
+ "source_files": [
+  "rtu_fan_spd.csv",
+  "rtu_sa_t_sp.csv",
+  "uft_hw_valve.csv"
+ ],
+ "example_day": "2019-12-24",
+ "target_schema": [
+  {
+   "name": "timestamp",
+   "dtype": "string 'YYYY-MM-DD HH:MM:SS'"
+  },
+  {
+   "name": "rtu_002_rf_vfd_spd_fbk_tn",
+   "dtype": "float",
+   "unit": "%"
+  },
+  {
+   "name": "rtu_003_sat_sp_tn",
+   "dtype": "float",
+   "unit": "°F"
+  },
+  {
+   "name": "zone_038_hw_valve",
+   "dtype": "float",
+   "unit": "%"
+  },
+  {
+   "name": "zone_070_hw_valve",
+   "dtype": "float",
+   "unit": "%"
+  }
+ ],
+ "n_example_day_target_rows": 96,
+ "n_example_day_source_rows": {
+  "rtu_fan_spd.csv": 1440,
+  "rtu_sa_t_sp.csv": 1440,
+  "uft_hw_valve.csv": 2880
+ },
+ "source_blocks": {
+  "rtu_fan_spd.csv": [
+   15,
+   15,
+   15,
+   15,
+   15
+  ],
+  "rtu_sa_t_sp.csv": [
+   15,
+   15,
+   15,
+   15,
+   15
+  ],
+  "uft_hw_valve.csv": [
+   15,
+   15,
+   15,
+   15,
+   15
+  ]
+ },
+ "note": "source_example/ holds only the source rows inside the time intervals of the shown target rows; source_blocks gives the sizes of the contiguous runs (shown as '...' between runs in the prompt)."
+}

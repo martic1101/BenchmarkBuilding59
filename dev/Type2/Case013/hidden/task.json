@@ -1,0 +1,129 @@
+{
+  "id": "T2-017",
+  "family": "T2",
+  "source_files": [
+    "zone_temp_sp_h.csv"
+  ],
+  "target_schema": [
+    {
+      "name": "timestamp",
+      "dtype": "string 'YYYY-MM-DD HH:MM:SS'",
+      "description": "start of interval"
+    },
+    {
+      "name": "zone_038_heating_sp_c",
+      "dtype": "float",
+      "unit": "°C",
+      "description": "Heating temperature setpoint of Zone * (°C), 30-minute interval"
+    },
+    {
+      "name": "zone_046_heating_sp_c",
+      "dtype": "float",
+      "unit": "°C",
+      "description": "Heating temperature setpoint of Zone * (°C), 30-minute interval"
+    }
+  ],
+  "example_day": "2020-02-15",
+  "test_days": [
+    "2020-04-07",
+    "2020-04-08"
+  ],
+  "source_dates_example": {
+    "zone_temp_sp_h": [
+      "2020-02-15"
+    ]
+  },
+  "source_dates_test": {
+    "zone_temp_sp_h": [
+      "2020-04-07",
+      "2020-04-08"
+    ]
+  },
+  "n_target_rows_example": 48,
+  "n_target_rows_test": 96,
+  "nl_instruction": "Aggregate zone_038_heating_sp, zone_046_heating_sp from zone_temp_sp_h.csv to 30-minute averages and convert °F to °C. Timestamp = start of interval.",
+  "needs": [
+    "unit",
+    "conversion",
+    "aggregation"
+  ],
+  "knowledge": [
+    {
+      "kind": "sampling_interval",
+      "file": "zone_temp_sp_h.csv",
+      "value_min": 5.0,
+      "dict_freq": "5 min"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "zone_temp_sp_h.csv",
+      "column": "zone_038_heating_sp",
+      "description": "Heating temperature setpoint of Zone *",
+      "quantity_kind": "temperature_setpoint"
+    },
+    {
+      "kind": "unit",
+      "file": "zone_temp_sp_h.csv",
+      "column": "zone_038_heating_sp",
+      "true_unit": "°F",
+      "dict_unit": "°F"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "zone_temp_sp_h.csv",
+      "column": "zone_046_heating_sp",
+      "description": "Heating temperature setpoint of Zone *",
+      "quantity_kind": "temperature_setpoint"
+    },
+    {
+      "kind": "unit",
+      "file": "zone_temp_sp_h.csv",
+      "column": "zone_046_heating_sp",
+      "true_unit": "°F",
+      "dict_unit": "°F"
+    }
+  ],
+  "discriminates_against": [
+    "agg_max",
+    "no_or_wrong_conversion"
+  ],
+  "spec": {
+    "family": "T2",
+    "file": "zone_temp_sp_h",
+    "columns": [
+      "zone_038_heating_sp",
+      "zone_046_heating_sp"
+    ],
+    "freq": "30min",
+    "agg": "mean",
+    "conversion": "F_to_C",
+    "rename": {
+      "zone_038_heating_sp": "zone_038_heating_sp_c",
+      "zone_046_heating_sp": "zone_046_heating_sp_c"
+    },
+    "out_columns": [
+      "zone_038_heating_sp_c",
+      "zone_046_heating_sp_c"
+    ],
+    "target_units": {
+      "zone_038_heating_sp_c": "°C",
+      "zone_046_heating_sp_c": "°C"
+    },
+    "conflict_note": null,
+    "source_units": {
+      "zone_038_heating_sp": "°F",
+      "zone_046_heating_sp": "°F"
+    },
+    "dict_units": {
+      "zone_038_heating_sp": "°F",
+      "zone_046_heating_sp": "°F"
+    }
+  },
+  "shown_rows": [
+    0,
+    12,
+    16,
+    24,
+    35
+  ]
+}

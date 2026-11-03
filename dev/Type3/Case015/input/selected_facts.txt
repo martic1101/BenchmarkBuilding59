@@ -1,0 +1,10 @@
+columns in scope: aru_001_power_mbtuph, rtu_001_sa_temp
+class=Supply_Air_Temperature_Sensor :: columns: rtu_001_sa_temp
+zone=RTU01 :: columns: rtu_001_sa_temp
+rtu=RTU01 :: columns: rtu_001_sa_temp
+desc=Heat meter for air source heat pump :: columns: aru_001_power_mbtuph
+desc=Roof Top Unit * supply air temperature (*: 001, 002, 003, 004) :: columns: rtu_001_sa_temp
+unit=mbtuph :: columns: aru_001_power_mbtuph
+unit=°F :: columns: rtu_001_sa_temp
+sampling=1 min :: columns: rtu_001_sa_temp
+sampling=5 min :: columns: aru_001_power_mbtuph

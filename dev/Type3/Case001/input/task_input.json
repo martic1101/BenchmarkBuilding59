@@ -1,0 +1,69 @@
+{
+ "source_files": [
+  "site_weather.csv",
+  "zone_temp_exterior.csv",
+  "zone_temp_sp_h.csv"
+ ],
+ "example_day": "2020-11-22",
+ "target_schema": [
+  {
+   "name": "timestamp",
+   "dtype": "string 'YYYY-MM-DD HH:MM:SS'"
+  },
+  {
+   "name": "air_temp_set_1",
+   "dtype": "float",
+   "unit": "°C"
+  },
+  {
+   "name": "air_temp_set_2",
+   "dtype": "float",
+   "unit": "°C"
+  },
+  {
+   "name": "zone_027_temp",
+   "dtype": "float",
+   "unit": "°F"
+  },
+  {
+   "name": "zone_017_heating_sp",
+   "dtype": "float",
+   "unit": "°F"
+  },
+  {
+   "name": "zone_059_heating_sp",
+   "dtype": "float",
+   "unit": "°F"
+  }
+ ],
+ "n_example_day_target_rows": 24,
+ "n_example_day_source_rows": {
+  "site_weather.csv": 96,
+  "zone_temp_exterior.csv": 1440,
+  "zone_temp_sp_h.csv": 576
+ },
+ "source_blocks": {
+  "site_weather.csv": [
+   4,
+   4,
+   4,
+   4,
+   4
+  ],
+  "zone_temp_exterior.csv": [
+   60,
+   60,
+   60,
+   60,
+   60
+  ],
+  "zone_temp_sp_h.csv": [
+   12,
+   12,
+   12,
+   12,
+   12
+  ]
+ },
+ "note": "source_example/ holds only the source rows inside the time intervals of the shown target rows; source_blocks gives the sizes of the contiguous runs (shown as '...' between runs in the prompt)."
+}

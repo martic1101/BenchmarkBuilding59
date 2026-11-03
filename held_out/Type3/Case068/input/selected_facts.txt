@@ -1,0 +1,15 @@
+columns in scope: hvac_N, lig_S, rtu_002_fltrd_gnd_lvl_plenum_press_tn, rtu_002_oa_temp, rtu_004_oa_temp
+rtu=RTU02 :: columns: rtu_002_fltrd_gnd_lvl_plenum_press_tn
+sampling=1 min :: columns: rtu_002_fltrd_gnd_lvl_plenum_press_tn, rtu_002_oa_temp, rtu_004_oa_temp
+sampling=15 min :: columns: hvac_N, lig_S
+class=Building_Electrical_Meter :: columns: hvac_N, lig_S
+class=Underfloor_Air_Plenum_Static_Pressure_Sensor :: columns: rtu_002_fltrd_gnd_lvl_plenum_press_tn
+zone=Building :: columns: hvac_N, lig_S
+zone=RTU02 :: columns: rtu_002_fltrd_gnd_lvl_plenum_press_tn
+unit=kW :: columns: hvac_N, lig_S
+unit=psi :: columns: rtu_002_fltrd_gnd_lvl_plenum_press_tn
+unit=°F :: columns: rtu_002_oa_temp, rtu_004_oa_temp
+desc=Heating Ventilation and Air Conditioning load for the Nouth Wing :: columns: hvac_N
+desc=Lighting load for the South Wing :: columns: lig_S
+desc=Roof Top Unit * outdoor air temperature (*: 001, 002, 003, 004) :: columns: rtu_002_oa_temp, rtu_004_oa_temp
+desc=Roof Top Unit * plenum air pressure at floor ** (*: 001, 002, 003, 004; **: gnd_lvl, lvl2) :: columns: rtu_002_fltrd_gnd_lvl_plenum_press_tn

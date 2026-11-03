@@ -1,0 +1,15 @@
+columns in scope: zone_052_co2, zone_063_temp
+sampling=1 min :: columns: ALL
+floor=Floor_S :: columns: ALL
+desc=CO2 concentration of each zone :: columns: zone_052_co2
+desc=Zone temperature of exterior zone :: columns: zone_063_temp
+unit=ppm :: columns: zone_052_co2
+unit=°F :: columns: zone_063_temp
+class=CO2_Sensor :: columns: zone_052_co2
+class=Zone_Air_Temperature_Sensor :: columns: zone_063_temp
+zone=zone_052 :: columns: zone_052_co2
+zone=zone_063 :: columns: zone_063_temp
+vav=UTF_2-25 :: columns: zone_052_co2
+vav=UTF_G-16 :: columns: zone_063_temp
+rtu=RTU02 :: columns: zone_052_co2
+rtu=RTU03 :: columns: zone_063_temp

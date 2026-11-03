@@ -1,0 +1,91 @@
+{
+  "id": "T1-071",
+  "family": "T1",
+  "source_files": [
+    "rtu_plenum_p.csv"
+  ],
+  "target_schema": [
+    {
+      "name": "timestamp",
+      "dtype": "string 'YYYY-MM-DD HH:MM:SS'",
+      "description": "start of interval"
+    },
+    {
+      "name": "rtu_001_fltrd_gnd_lvl_plenum_press_tn",
+      "dtype": "float",
+      "unit": "inH2O (suspected)",
+      "description": "Roof Top Unit * plenum air pressure at floor ** (*: 001, 002, 003, 004; **: gnd_lvl, lvl2) (inH2O (suspected)), 1-hour interval"
+    }
+  ],
+  "example_day": "2018-05-10",
+  "test_days": [
+    "2020-09-05",
+    "2020-09-06"
+  ],
+  "source_dates_example": {
+    "rtu_plenum_p": [
+      "2018-05-10"
+    ]
+  },
+  "source_dates_test": {
+    "rtu_plenum_p": [
+      "2020-09-05",
+      "2020-09-06"
+    ]
+  },
+  "n_target_rows_example": 24,
+  "n_target_rows_test": 48,
+  "nl_instruction": "Aggregate rtu_001_fltrd_gnd_lvl_plenum_press_tn from rtu_plenum_p.csv to 1-hour intervals using the maximum. Timestamp = start of interval.",
+  "needs": [
+    "aggregation",
+    "sampling_interval"
+  ],
+  "knowledge": [
+    {
+      "kind": "sampling_interval",
+      "file": "rtu_plenum_p.csv",
+      "value_min": 1.0,
+      "dict_freq": "1 min"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "rtu_plenum_p.csv",
+      "column": "rtu_001_fltrd_gnd_lvl_plenum_press_tn",
+      "description": "Roof Top Unit * plenum air pressure at floor ** (*: 001, 002, 003, 004; **: gnd_lvl, lvl2)",
+      "quantity_kind": "pressure"
+    },
+    {
+      "kind": "unit",
+      "file": "rtu_plenum_p.csv",
+      "column": "rtu_001_fltrd_gnd_lvl_plenum_press_tn",
+      "true_unit": "inH2O (suspected)",
+      "dict_unit": "psi"
+    }
+  ],
+  "discriminates_against": [
+    "agg_mean",
+    "agg_min"
+  ],
+  "spec": {
+    "family": "T1",
+    "file": "rtu_plenum_p",
+    "columns": [
+      "rtu_001_fltrd_gnd_lvl_plenum_press_tn"
+    ],
+    "freq": "1h",
+    "agg": "max",
+    "out_columns": [
+      "rtu_001_fltrd_gnd_lvl_plenum_press_tn"
+    ],
+    "target_units": {
+      "rtu_001_fltrd_gnd_lvl_plenum_press_tn": "inH2O (suspected)"
+    }
+  },
+  "shown_rows": [
+    0,
+    6,
+    12,
+    17,
+    23
+  ]
+}

@@ -1,0 +1,19 @@
+columns in scope: aru_001_cws_fr_gpm, rtu_001_econ_stpt_tn, rtu_002_econ_stpt_tn, rtu_002_oadmpr_pct, rtu_004_oadmpr_pct
+sampling=1 min :: columns: rtu_001_econ_stpt_tn, rtu_002_econ_stpt_tn, rtu_002_oadmpr_pct, rtu_004_oadmpr_pct
+sampling=5 min :: columns: aru_001_cws_fr_gpm
+desc=Chilled water fow rate :: columns: aru_001_cws_fr_gpm
+desc=Roof Top Unit * economizer setpoint (*: 001, 002, 003, 004) :: columns: rtu_001_econ_stpt_tn, rtu_002_econ_stpt_tn
+desc=Roof Top Unit * outdoor air damper position (*: 001, 002, 003, 004) :: columns: rtu_002_oadmpr_pct, rtu_004_oadmpr_pct
+unit=% :: columns: rtu_002_oadmpr_pct, rtu_004_oadmpr_pct
+unit=CFM :: columns: aru_001_cws_fr_gpm
+unit=°F :: columns: rtu_001_econ_stpt_tn, rtu_002_econ_stpt_tn
+class=Chilled_Water_Supply_Flow_Rate :: columns: aru_001_cws_fr_gpm
+class=Economizer_Setpoint :: columns: rtu_001_econ_stpt_tn, rtu_002_econ_stpt_tn
+class=Outdoor_Air_Damper :: columns: rtu_002_oadmpr_pct, rtu_004_oadmpr_pct
+rtu=RTU01 :: columns: rtu_001_econ_stpt_tn
+rtu=RTU02 :: columns: rtu_002_econ_stpt_tn, rtu_002_oadmpr_pct
+rtu=RTU04 :: columns: rtu_004_oadmpr_pct
+zone=Building :: columns: aru_001_cws_fr_gpm
+zone=RTU01 :: columns: rtu_001_econ_stpt_tn
+zone=RTU02 :: columns: rtu_002_econ_stpt_tn, rtu_002_oadmpr_pct
+zone=RTU04 :: columns: rtu_004_oadmpr_pct

@@ -1,0 +1,11 @@
+columns in scope: aru_001_hws_temp, rtu_003_econ_stpt_tn
+unit=°F :: columns: ALL
+rtu=RTU03 :: columns: rtu_003_econ_stpt_tn
+desc=Hot water supply temperature :: columns: aru_001_hws_temp
+desc=Roof Top Unit * economizer setpoint (*: 001, 002, 003, 004) :: columns: rtu_003_econ_stpt_tn
+sampling=1 min :: columns: rtu_003_econ_stpt_tn
+sampling=5 min :: columns: aru_001_hws_temp
+class=Economizer_Setpoint :: columns: rtu_003_econ_stpt_tn
+class=Hot_Water_Temperature_Sensor :: columns: aru_001_hws_temp
+zone=Building :: columns: aru_001_hws_temp
+zone=RTU03 :: columns: rtu_003_econ_stpt_tn

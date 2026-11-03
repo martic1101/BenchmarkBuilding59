@@ -1,0 +1,165 @@
+{
+  "id": "T3-080",
+  "family": "T3",
+  "source_files": [
+    "rtu_fan_spd.csv",
+    "rtu_ra_t.csv"
+  ],
+  "target_schema": [
+    {
+      "name": "timestamp",
+      "dtype": "string 'YYYY-MM-DD HH:MM:SS'",
+      "description": "start of interval"
+    },
+    {
+      "name": "rtu_004_rf_vfd_spd_fbk_tn",
+      "dtype": "float",
+      "unit": "%",
+      "description": "Roof Top Unit * return fan speed (*: 001, 002, 003, 004) (%), 30-minute averages"
+    },
+    {
+      "name": "rtu_004_sf_vfd_spd_fbk_tn",
+      "dtype": "float",
+      "unit": "%",
+      "description": "Roof Top Unit * supply fan speed (*: 001, 002, 003, 004) (%), 30-minute averages"
+    },
+    {
+      "name": "rtu_002_ra_temp",
+      "dtype": "float",
+      "unit": "°F",
+      "description": "Roof Top Unit * return air temperature (*: 001, 002, 003, 004) (°F), 30-minute averages"
+    }
+  ],
+  "example_day": "2020-03-09",
+  "test_days": [
+    "2020-05-02",
+    "2020-05-03"
+  ],
+  "source_dates_example": {
+    "rtu_fan_spd": [
+      "2020-03-09"
+    ],
+    "rtu_ra_t": [
+      "2020-03-08",
+      "2020-03-09"
+    ]
+  },
+  "source_dates_test": {
+    "rtu_fan_spd": [
+      "2020-05-02",
+      "2020-05-03"
+    ],
+    "rtu_ra_t": [
+      "2020-05-01",
+      "2020-05-02",
+      "2020-05-03"
+    ]
+  },
+  "n_target_rows_example": 48,
+  "n_target_rows_test": 96,
+  "nl_instruction": "Join rtu_fan_spd.csv, rtu_ra_t.csv on timestamp (inner join) after aggregating each to 30-minute averages; keep only rtu_004_rf_vfd_spd_fbk_tn, rtu_004_sf_vfd_spd_fbk_tn, rtu_002_ra_temp. Timestamp = start of interval.",
+  "needs": [
+    "sampling_interval",
+    "time_alignment",
+    "join",
+    "aggregation"
+  ],
+  "knowledge": [
+    {
+      "kind": "sampling_interval",
+      "file": "rtu_fan_spd.csv",
+      "value_min": 1.0,
+      "dict_freq": "1 min"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "rtu_fan_spd.csv",
+      "column": "rtu_004_rf_vfd_spd_fbk_tn",
+      "description": "Roof Top Unit * return fan speed (*: 001, 002, 003, 004)",
+      "quantity_kind": "fan_speed"
+    },
+    {
+      "kind": "unit",
+      "file": "rtu_fan_spd.csv",
+      "column": "rtu_004_rf_vfd_spd_fbk_tn",
+      "true_unit": "%",
+      "dict_unit": "%"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "rtu_fan_spd.csv",
+      "column": "rtu_004_sf_vfd_spd_fbk_tn",
+      "description": "Roof Top Unit * supply fan speed (*: 001, 002, 003, 004)",
+      "quantity_kind": "fan_speed"
+    },
+    {
+      "kind": "unit",
+      "file": "rtu_fan_spd.csv",
+      "column": "rtu_004_sf_vfd_spd_fbk_tn",
+      "true_unit": "%",
+      "dict_unit": "%"
+    },
+    {
+      "kind": "sampling_interval",
+      "file": "rtu_ra_t.csv",
+      "value_min": 1.0,
+      "dict_freq": "1 min"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "rtu_ra_t.csv",
+      "column": "rtu_002_ra_temp",
+      "description": "Roof Top Unit * return air temperature (*: 001, 002, 003, 004)",
+      "quantity_kind": "temperature"
+    },
+    {
+      "kind": "unit",
+      "file": "rtu_ra_t.csv",
+      "column": "rtu_002_ra_temp",
+      "true_unit": "°F",
+      "dict_unit": "°F"
+    }
+  ],
+  "discriminates_against": [
+    "outer_join",
+    "agg_max"
+  ],
+  "spec": {
+    "family": "T3",
+    "sources": [
+      {
+        "file": "rtu_fan_spd",
+        "columns": [
+          "rtu_004_rf_vfd_spd_fbk_tn",
+          "rtu_004_sf_vfd_spd_fbk_tn"
+        ]
+      },
+      {
+        "file": "rtu_ra_t",
+        "columns": [
+          "rtu_002_ra_temp"
+        ]
+      }
+    ],
+    "freq": "30min",
+    "agg": "mean",
+    "how": "inner",
+    "out_columns": [
+      "rtu_004_rf_vfd_spd_fbk_tn",
+      "rtu_004_sf_vfd_spd_fbk_tn",
+      "rtu_002_ra_temp"
+    ],
+    "target_units": {
+      "rtu_004_rf_vfd_spd_fbk_tn": "%",
+      "rtu_004_sf_vfd_spd_fbk_tn": "%",
+      "rtu_002_ra_temp": "°F"
+    }
+  },
+  "shown_rows": [
+    0,
+    12,
+    24,
+    35,
+    47
+  ]
+}

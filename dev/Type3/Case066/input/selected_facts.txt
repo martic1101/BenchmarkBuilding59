@@ -1,0 +1,16 @@
+columns in scope: aru_001_power_mbtuph, hvac_N, hvac_S, rtu_001_oadmpr_pct
+rtu=RTU01 :: columns: rtu_001_oadmpr_pct
+class=Building_Electrical_Meter :: columns: hvac_N, hvac_S
+class=Outdoor_Air_Damper :: columns: rtu_001_oadmpr_pct
+zone=Building :: columns: hvac_N, hvac_S
+zone=RTU01 :: columns: rtu_001_oadmpr_pct
+unit=% :: columns: rtu_001_oadmpr_pct
+unit=kW :: columns: hvac_N, hvac_S
+unit=mbtuph :: columns: aru_001_power_mbtuph
+sampling=1 min :: columns: rtu_001_oadmpr_pct
+sampling=15 min :: columns: hvac_N, hvac_S
+sampling=5 min :: columns: aru_001_power_mbtuph
+desc=Heat meter for air source heat pump :: columns: aru_001_power_mbtuph
+desc=Heating Ventilation and Air Conditioning load for the Nouth Wing :: columns: hvac_N
+desc=Heating Ventilation and Air Conditioning load for the Sorth Wing :: columns: hvac_S
+desc=Roof Top Unit * outdoor air damper position (*: 001, 002, 003, 004) :: columns: rtu_001_oadmpr_pct

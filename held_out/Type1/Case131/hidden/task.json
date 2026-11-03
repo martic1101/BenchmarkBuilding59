@@ -1,0 +1,141 @@
+{
+  "id": "T1-146",
+  "family": "T1",
+  "source_files": [
+    "zone_temp_sp_c.csv"
+  ],
+  "target_schema": [
+    {
+      "name": "timestamp",
+      "dtype": "string 'YYYY-MM-DD HH:MM:SS'",
+      "description": "start of interval"
+    },
+    {
+      "name": "zone_021_cooling_sp",
+      "dtype": "float",
+      "unit": "°F",
+      "description": "Cooling temperature setpoint of Zone * (°F), 30-minute interval"
+    },
+    {
+      "name": "zone_043_cooling_sp",
+      "dtype": "float",
+      "unit": "°F",
+      "description": "Cooling temperature setpoint of Zone * (°F), 30-minute interval"
+    },
+    {
+      "name": "zone_057_cooling_sp",
+      "dtype": "float",
+      "unit": "°F",
+      "description": "Cooling temperature setpoint of Zone * (°F), 30-minute interval"
+    }
+  ],
+  "example_day": "2020-10-19",
+  "test_days": [
+    "2020-04-12",
+    "2020-04-13"
+  ],
+  "source_dates_example": {
+    "zone_temp_sp_c": [
+      "2020-10-19"
+    ]
+  },
+  "source_dates_test": {
+    "zone_temp_sp_c": [
+      "2020-04-12",
+      "2020-04-13"
+    ]
+  },
+  "n_target_rows_example": 48,
+  "n_target_rows_test": 96,
+  "nl_instruction": "Aggregate zone_021_cooling_sp, zone_043_cooling_sp, zone_057_cooling_sp from zone_temp_sp_c.csv to 30-minute intervals using the maximum. Timestamp = start of interval.",
+  "needs": [
+    "aggregation",
+    "sampling_interval"
+  ],
+  "knowledge": [
+    {
+      "kind": "sampling_interval",
+      "file": "zone_temp_sp_c.csv",
+      "value_min": 5.0,
+      "dict_freq": "5 min"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "zone_temp_sp_c.csv",
+      "column": "zone_021_cooling_sp",
+      "description": "Cooling temperature setpoint of Zone *",
+      "quantity_kind": "temperature_setpoint"
+    },
+    {
+      "kind": "unit",
+      "file": "zone_temp_sp_c.csv",
+      "column": "zone_021_cooling_sp",
+      "true_unit": "°F",
+      "dict_unit": "°F"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "zone_temp_sp_c.csv",
+      "column": "zone_043_cooling_sp",
+      "description": "Cooling temperature setpoint of Zone *",
+      "quantity_kind": "temperature_setpoint"
+    },
+    {
+      "kind": "unit",
+      "file": "zone_temp_sp_c.csv",
+      "column": "zone_043_cooling_sp",
+      "true_unit": "°F",
+      "dict_unit": "°F"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "zone_temp_sp_c.csv",
+      "column": "zone_057_cooling_sp",
+      "description": "Cooling temperature setpoint of Zone *",
+      "quantity_kind": "temperature_setpoint"
+    },
+    {
+      "kind": "unit",
+      "file": "zone_temp_sp_c.csv",
+      "column": "zone_057_cooling_sp",
+      "true_unit": "°F",
+      "dict_unit": "°F"
+    }
+  ],
+  "discriminates_against": [
+    "agg_mean",
+    "agg_min"
+  ],
+  "spec": {
+    "family": "T1",
+    "file": "zone_temp_sp_c",
+    "columns": [
+      "zone_021_cooling_sp",
+      "zone_043_cooling_sp",
+      "zone_057_cooling_sp"
+    ],
+    "freq": "30min",
+    "agg": "max",
+    "out_columns": [
+      "zone_021_cooling_sp",
+      "zone_043_cooling_sp",
+      "zone_057_cooling_sp"
+    ],
+    "target_units": {
+      "zone_021_cooling_sp": "°F",
+      "zone_043_cooling_sp": "°F",
+      "zone_057_cooling_sp": "°F"
+    }
+  },
+  "benchmark_version": "holdout_v2",
+  "shown_rows": [
+    0,
+    12,
+    24,
+    34,
+    38
+  ],
+  "history": [
+    "holdout_v2: example day re-picked (unfair alternative agg_last)"
+  ]
+}

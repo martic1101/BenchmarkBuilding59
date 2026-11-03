@@ -1,0 +1,5 @@
+columns in scope: wifi_first_south, wifi_second_south
+unit=/ :: columns: ALL
+sampling=10 min :: columns: ALL
+desc=Wifi connection counts in the south half of first floor :: columns: wifi_first_south
+desc=Wifi connection counts in the south half of second floor :: columns: wifi_second_south

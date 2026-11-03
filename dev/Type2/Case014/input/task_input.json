@@ -1,0 +1,31 @@
+{
+ "source_files": [
+  "zone_temp_sp_h.csv"
+ ],
+ "example_day": "2020-01-14",
+ "target_schema": [
+  {
+   "name": "timestamp",
+   "dtype": "string 'YYYY-MM-DD HH:MM:SS'"
+  },
+  {
+   "name": "zone_037_heating_sp_c",
+   "dtype": "float",
+   "unit": "°C"
+  }
+ ],
+ "n_example_day_target_rows": 24,
+ "n_example_day_source_rows": {
+  "zone_temp_sp_h.csv": 288
+ },
+ "source_blocks": {
+  "zone_temp_sp_h.csv": [
+   12,
+   12,
+   12,
+   12,
+   12
+  ]
+ },
+ "note": "source_example/ holds only the source rows inside the time intervals of the shown target rows; source_blocks gives the sizes of the contiguous runs (shown as '...' between runs in the prompt)."
+}

@@ -1,0 +1,6 @@
+columns in scope: solar_radiation_set_1
+desc=Outdoor solar radiation from sensor 1 :: columns: ALL
+unit=W/m2 :: columns: ALL
+sampling=15 min :: columns: ALL
+class=Solar_Radiance_Sensor :: columns: ALL
+zone=Building :: columns: ALL

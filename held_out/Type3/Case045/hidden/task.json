@@ -1,0 +1,167 @@
+{
+  "id": "T3-048",
+  "family": "T3",
+  "source_files": [
+    "ashp_hw.csv",
+    "rtu_sa_t_sp.csv"
+  ],
+  "target_schema": [
+    {
+      "name": "timestamp",
+      "dtype": "string 'YYYY-MM-DD HH:MM:SS'",
+      "description": "start of interval"
+    },
+    {
+      "name": "aru_001_hws_fr_gpm",
+      "dtype": "float",
+      "unit": "gpm",
+      "description": "Hot water fow rate (gpm), 15-minute interval"
+    },
+    {
+      "name": "aru_001_hws_temp",
+      "dtype": "float",
+      "unit": "°F",
+      "description": "Hot water supply temperature (°F), 15-minute interval"
+    },
+    {
+      "name": "rtu_003_sat_sp_tn",
+      "dtype": "float",
+      "unit": "°F",
+      "description": "Roof Top Unit * supply air temperature setpoint (*: 001, 002, 003, 004) (°F), 15-minute interval"
+    }
+  ],
+  "example_day": "2020-10-28",
+  "test_days": [
+    "2020-02-16",
+    "2020-02-17"
+  ],
+  "source_dates_example": {
+    "ashp_hw": [
+      "2020-10-28"
+    ],
+    "rtu_sa_t_sp": [
+      "2020-10-27",
+      "2020-10-28"
+    ]
+  },
+  "source_dates_test": {
+    "ashp_hw": [
+      "2020-02-16",
+      "2020-02-17"
+    ],
+    "rtu_sa_t_sp": [
+      "2020-02-15",
+      "2020-02-16",
+      "2020-02-17"
+    ]
+  },
+  "n_target_rows_example": 96,
+  "n_target_rows_test": 192,
+  "nl_instruction": "Join ashp_hw.csv, rtu_sa_t_sp.csv on timestamp (inner join) after aggregating each to 15-minute intervals using the average; keep only aru_001_hws_fr_gpm, aru_001_hws_temp, rtu_003_sat_sp_tn. Timestamp = start of interval.",
+  "needs": [
+    "sampling_interval",
+    "time_alignment",
+    "join",
+    "aggregation"
+  ],
+  "knowledge": [
+    {
+      "kind": "sampling_interval",
+      "file": "ashp_hw.csv",
+      "value_min": 5.0,
+      "dict_freq": "5 min"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "ashp_hw.csv",
+      "column": "aru_001_hws_fr_gpm",
+      "description": "Hot water fow rate",
+      "quantity_kind": "water_flow"
+    },
+    {
+      "kind": "unit",
+      "file": "ashp_hw.csv",
+      "column": "aru_001_hws_fr_gpm",
+      "true_unit": "gpm",
+      "dict_unit": "CFM"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "ashp_hw.csv",
+      "column": "aru_001_hws_temp",
+      "description": "Hot water supply temperature",
+      "quantity_kind": "temperature"
+    },
+    {
+      "kind": "unit",
+      "file": "ashp_hw.csv",
+      "column": "aru_001_hws_temp",
+      "true_unit": "°F",
+      "dict_unit": "°F"
+    },
+    {
+      "kind": "sampling_interval",
+      "file": "rtu_sa_t_sp.csv",
+      "value_min": 1.0,
+      "dict_freq": "1 min"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "rtu_sa_t_sp.csv",
+      "column": "rtu_003_sat_sp_tn",
+      "description": "Roof Top Unit * supply air temperature setpoint (*: 001, 002, 003, 004)",
+      "quantity_kind": "temperature_setpoint"
+    },
+    {
+      "kind": "unit",
+      "file": "rtu_sa_t_sp.csv",
+      "column": "rtu_003_sat_sp_tn",
+      "true_unit": "°F",
+      "dict_unit": "°F"
+    }
+  ],
+  "discriminates_against": [
+    "outer_join",
+    "agg_max",
+    "agg_min"
+  ],
+  "spec": {
+    "family": "T3",
+    "sources": [
+      {
+        "file": "ashp_hw",
+        "columns": [
+          "aru_001_hws_fr_gpm",
+          "aru_001_hws_temp"
+        ]
+      },
+      {
+        "file": "rtu_sa_t_sp",
+        "columns": [
+          "rtu_003_sat_sp_tn"
+        ]
+      }
+    ],
+    "freq": "15min",
+    "agg": "mean",
+    "how": "inner",
+    "out_columns": [
+      "aru_001_hws_fr_gpm",
+      "aru_001_hws_temp",
+      "rtu_003_sat_sp_tn"
+    ],
+    "target_units": {
+      "aru_001_hws_fr_gpm": "gpm",
+      "aru_001_hws_temp": "°F",
+      "rtu_003_sat_sp_tn": "°F"
+    }
+  },
+  "benchmark_version": "holdout_v2",
+  "shown_rows": [
+    0,
+    24,
+    48,
+    71,
+    95
+  ]
+}

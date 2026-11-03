@@ -1,0 +1,18 @@
+columns in scope: rtu_001_econ_stpt_tn, rtu_001_ma_temp, rtu_002_econ_stpt_tn, rtu_002_pa_static_stpt_tn, rtu_003_ma_temp, rtu_004_pa_static_stpt_tn
+sampling=1 min :: columns: ALL
+unit=psi :: columns: rtu_002_pa_static_stpt_tn, rtu_004_pa_static_stpt_tn
+unit=°F :: columns: rtu_001_econ_stpt_tn, rtu_001_ma_temp, rtu_002_econ_stpt_tn, rtu_003_ma_temp
+desc=Roof Top Unit * air pressure static setpoint (*: 001, 002, 003, 004) :: columns: rtu_002_pa_static_stpt_tn, rtu_004_pa_static_stpt_tn
+desc=Roof Top Unit * economizer setpoint (*: 001, 002, 003, 004) :: columns: rtu_001_econ_stpt_tn, rtu_002_econ_stpt_tn
+desc=Roof Top Unit * mixed air temperature (*: 001, 002, 003, 004) :: columns: rtu_001_ma_temp, rtu_003_ma_temp
+class=Economizer_Setpoint :: columns: rtu_001_econ_stpt_tn, rtu_002_econ_stpt_tn
+class=Mixed_Air_Temperature_Sensor :: columns: rtu_001_ma_temp, rtu_003_ma_temp
+class=Supply_Air_Static_Pressure_Setpoint :: columns: rtu_002_pa_static_stpt_tn, rtu_004_pa_static_stpt_tn
+zone=RTU01 :: columns: rtu_001_econ_stpt_tn, rtu_001_ma_temp
+zone=RTU02 :: columns: rtu_002_econ_stpt_tn, rtu_002_pa_static_stpt_tn
+zone=RTU03 :: columns: rtu_003_ma_temp
+zone=RTU04 :: columns: rtu_004_pa_static_stpt_tn
+rtu=RTU01 :: columns: rtu_001_econ_stpt_tn, rtu_001_ma_temp
+rtu=RTU02 :: columns: rtu_002_econ_stpt_tn, rtu_002_pa_static_stpt_tn
+rtu=RTU03 :: columns: rtu_003_ma_temp
+rtu=RTU04 :: columns: rtu_004_pa_static_stpt_tn

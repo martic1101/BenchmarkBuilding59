@@ -1,0 +1,165 @@
+{
+  "id": "T3-056",
+  "family": "T3",
+  "source_files": [
+    "ele.csv",
+    "zone_co2.csv"
+  ],
+  "target_schema": [
+    {
+      "name": "timestamp",
+      "dtype": "string 'YYYY-MM-DD HH:MM:SS'",
+      "description": "start of interval"
+    },
+    {
+      "name": "lig_S",
+      "dtype": "float",
+      "unit": "kW",
+      "description": "Lighting load for the South Wing (kW), 30-minute averages"
+    },
+    {
+      "name": "zone_058_co2",
+      "dtype": "float",
+      "unit": "ppm",
+      "description": "CO2 concentration of each zone (ppm), 30-minute averages"
+    },
+    {
+      "name": "zone_072_co2",
+      "dtype": "float",
+      "unit": "ppm",
+      "description": "CO2 concentration of each zone (ppm), 30-minute averages"
+    }
+  ],
+  "example_day": "2020-11-27",
+  "test_days": [
+    "2019-12-24",
+    "2019-12-25"
+  ],
+  "source_dates_example": {
+    "ele": [
+      "2020-11-27"
+    ],
+    "zone_co2": [
+      "2020-11-26",
+      "2020-11-27"
+    ]
+  },
+  "source_dates_test": {
+    "ele": [
+      "2019-12-24",
+      "2019-12-25"
+    ],
+    "zone_co2": [
+      "2019-12-23",
+      "2019-12-24",
+      "2019-12-25"
+    ]
+  },
+  "n_target_rows_example": 48,
+  "n_target_rows_test": 96,
+  "nl_instruction": "Join ele.csv, zone_co2.csv on timestamp (inner join) after aggregating each to 30-minute averages; keep only lig_S, zone_058_co2, zone_072_co2. Timestamp = start of interval.",
+  "needs": [
+    "sampling_interval",
+    "time_alignment",
+    "join",
+    "aggregation"
+  ],
+  "knowledge": [
+    {
+      "kind": "sampling_interval",
+      "file": "ele.csv",
+      "value_min": 15.0,
+      "dict_freq": "15 min"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "ele.csv",
+      "column": "lig_S",
+      "description": "Lighting load for the South Wing",
+      "quantity_kind": "electric_power"
+    },
+    {
+      "kind": "unit",
+      "file": "ele.csv",
+      "column": "lig_S",
+      "true_unit": "kW",
+      "dict_unit": "kW"
+    },
+    {
+      "kind": "sampling_interval",
+      "file": "zone_co2.csv",
+      "value_min": 1.0,
+      "dict_freq": "1 min"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "zone_co2.csv",
+      "column": "zone_058_co2",
+      "description": "CO2 concentration of each zone",
+      "quantity_kind": "co2_concentration"
+    },
+    {
+      "kind": "unit",
+      "file": "zone_co2.csv",
+      "column": "zone_058_co2",
+      "true_unit": "ppm",
+      "dict_unit": "ppm"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "zone_co2.csv",
+      "column": "zone_072_co2",
+      "description": "CO2 concentration of each zone",
+      "quantity_kind": "co2_concentration"
+    },
+    {
+      "kind": "unit",
+      "file": "zone_co2.csv",
+      "column": "zone_072_co2",
+      "true_unit": "ppm",
+      "dict_unit": "ppm"
+    }
+  ],
+  "discriminates_against": [
+    "outer_join",
+    "agg_max"
+  ],
+  "spec": {
+    "family": "T3",
+    "sources": [
+      {
+        "file": "ele",
+        "columns": [
+          "lig_S"
+        ]
+      },
+      {
+        "file": "zone_co2",
+        "columns": [
+          "zone_058_co2",
+          "zone_072_co2"
+        ]
+      }
+    ],
+    "freq": "30min",
+    "agg": "mean",
+    "how": "inner",
+    "out_columns": [
+      "lig_S",
+      "zone_058_co2",
+      "zone_072_co2"
+    ],
+    "target_units": {
+      "lig_S": "kW",
+      "zone_058_co2": "ppm",
+      "zone_072_co2": "ppm"
+    }
+  },
+  "shown_rows": [
+    0,
+    12,
+    24,
+    35,
+    47
+  ]
+}

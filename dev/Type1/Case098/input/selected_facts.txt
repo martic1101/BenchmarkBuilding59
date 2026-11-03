@@ -1,0 +1,4 @@
+columns in scope: zone_046_hw_valve, zone_061_hw_valve
+desc=Heating water valve position of Zone * :: columns: ALL
+unit=% :: columns: ALL
+sampling=1 min :: columns: ALL

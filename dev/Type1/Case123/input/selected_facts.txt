@@ -1,0 +1,10 @@
+columns in scope: cerc_templogger_14, cerc_templogger_3, cerc_templogger_7
+desc=Zone temperature of interior zone :: columns: ALL
+unit=°F :: columns: ALL
+sampling=10 min :: columns: ALL
+class=Zone_Air_Temperature_Sensor :: columns: ALL
+floor=Floor_G :: columns: cerc_templogger_3, cerc_templogger_7
+floor=Floor_S :: columns: cerc_templogger_14
+zone=zone_cerc_14 :: columns: cerc_templogger_14
+zone=zone_cerc_3 :: columns: cerc_templogger_3
+zone=zone_cerc_7 :: columns: cerc_templogger_7

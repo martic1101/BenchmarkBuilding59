@@ -1,0 +1,13 @@
+columns in scope: hvac_N, lig_S, rtu_003_ra_temp
+rtu=RTU03 :: columns: rtu_003_ra_temp
+unit=kW :: columns: hvac_N, lig_S
+unit=°F :: columns: rtu_003_ra_temp
+sampling=1 min :: columns: rtu_003_ra_temp
+sampling=15 min :: columns: hvac_N, lig_S
+class=Building_Electrical_Meter :: columns: hvac_N, lig_S
+class=Return_Air_Temperature_Sensor :: columns: rtu_003_ra_temp
+zone=Building :: columns: hvac_N, lig_S
+zone=RTU03 :: columns: rtu_003_ra_temp
+desc=Heating Ventilation and Air Conditioning load for the Nouth Wing :: columns: hvac_N
+desc=Lighting load for the South Wing :: columns: lig_S
+desc=Roof Top Unit * return air temperature (*: 001, 002, 003, 004) :: columns: rtu_003_ra_temp

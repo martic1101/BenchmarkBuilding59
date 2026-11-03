@@ -1,0 +1,69 @@
+{
+ "source_files": [
+  "rtu_oa_damper.csv",
+  "rtu_sa_t_sp.csv",
+  "wifi.csv"
+ ],
+ "example_day": "2020-05-27",
+ "target_schema": [
+  {
+   "name": "timestamp",
+   "dtype": "string 'YYYY-MM-DD HH:MM:SS'"
+  },
+  {
+   "name": "rtu_002_oadmpr_pct",
+   "dtype": "float",
+   "unit": "%"
+  },
+  {
+   "name": "rtu_001_sat_sp_tn",
+   "dtype": "float",
+   "unit": "°F"
+  },
+  {
+   "name": "rtu_004_sat_sp_tn",
+   "dtype": "float",
+   "unit": "°F"
+  },
+  {
+   "name": "wifi_second_south",
+   "dtype": "float",
+   "unit": "/"
+  },
+  {
+   "name": "wifi_third_south",
+   "dtype": "float",
+   "unit": "/"
+  }
+ ],
+ "n_example_day_target_rows": 24,
+ "n_example_day_source_rows": {
+  "rtu_oa_damper.csv": 1440,
+  "rtu_sa_t_sp.csv": 1440,
+  "wifi.csv": 576
+ },
+ "source_blocks": {
+  "rtu_oa_damper.csv": [
+   60,
+   60,
+   60,
+   60,
+   60
+  ],
+  "rtu_sa_t_sp.csv": [
+   60,
+   60,
+   60,
+   60,
+   60
+  ],
+  "wifi.csv": [
+   12,
+   12,
+   12,
+   12,
+   12
+  ]
+ },
+ "note": "source_example/ holds only the source rows inside the time intervals of the shown target rows; source_blocks gives the sizes of the contiguous runs (shown as '...' between runs in the prompt)."
+}

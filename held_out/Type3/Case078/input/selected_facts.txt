@@ -1,0 +1,15 @@
+columns in scope: mels_N, mels_S, rtu_001_ma_temp, rtu_004_ma_temp
+unit=kW :: columns: mels_N, mels_S
+unit=°F :: columns: rtu_001_ma_temp, rtu_004_ma_temp
+sampling=1 min :: columns: rtu_001_ma_temp, rtu_004_ma_temp
+sampling=15 min :: columns: mels_N, mels_S
+class=Building_Electrical_Meter :: columns: mels_N, mels_S
+class=Mixed_Air_Temperature_Sensor :: columns: rtu_001_ma_temp, rtu_004_ma_temp
+rtu=RTU01 :: columns: rtu_001_ma_temp
+rtu=RTU04 :: columns: rtu_004_ma_temp
+desc=Miscellaneous electric load for the North Wing :: columns: mels_N
+desc=Miscellaneous electric load for the South Wing :: columns: mels_S
+desc=Roof Top Unit * mixed air temperature (*: 001, 002, 003, 004) :: columns: rtu_001_ma_temp, rtu_004_ma_temp
+zone=Building :: columns: mels_N, mels_S
+zone=RTU01 :: columns: rtu_001_ma_temp
+zone=RTU04 :: columns: rtu_004_ma_temp

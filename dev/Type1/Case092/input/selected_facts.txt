@@ -1,0 +1,9 @@
+columns in scope: air_temp_set_1, relative_humidity_set_1
+sampling=15 min :: columns: ALL
+zone=Building :: columns: ALL
+desc=Outdoor air relative humidity from sensor 1 :: columns: relative_humidity_set_1
+desc=Outdoor air temperature from sensor 1 :: columns: air_temp_set_1
+unit=% :: columns: relative_humidity_set_1
+unit=°C :: columns: air_temp_set_1
+class=Outdoor_Air_Humidity_Sensor :: columns: relative_humidity_set_1
+class=Outdoor_Air_Temperature_Sensor :: columns: air_temp_set_1

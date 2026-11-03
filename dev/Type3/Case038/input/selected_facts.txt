@@ -1,0 +1,12 @@
+columns in scope: air_temp_set_2, rtu_003_fltrd_gnd_lvl_plenum_press_tn, rtu_003_fltrd_lvl2_plenum_press_tn
+rtu=RTU03 :: columns: rtu_003_fltrd_gnd_lvl_plenum_press_tn, rtu_003_fltrd_lvl2_plenum_press_tn
+desc=Outdoor air temperature from sensor 2 :: columns: air_temp_set_2
+desc=Roof Top Unit * plenum air pressure at floor ** (*: 001, 002, 003, 004; **: gnd_lvl, lvl2) :: columns: rtu_003_fltrd_gnd_lvl_plenum_press_tn, rtu_003_fltrd_lvl2_plenum_press_tn
+unit=psi :: columns: rtu_003_fltrd_gnd_lvl_plenum_press_tn, rtu_003_fltrd_lvl2_plenum_press_tn
+unit=°C :: columns: air_temp_set_2
+sampling=1 min :: columns: rtu_003_fltrd_gnd_lvl_plenum_press_tn, rtu_003_fltrd_lvl2_plenum_press_tn
+sampling=15 min :: columns: air_temp_set_2
+class=Outdoor_Air_Temperature_Sensor :: columns: air_temp_set_2
+class=Underfloor_Air_Plenum_Static_Pressure_Sensor :: columns: rtu_003_fltrd_gnd_lvl_plenum_press_tn, rtu_003_fltrd_lvl2_plenum_press_tn
+zone=Building :: columns: air_temp_set_2
+zone=RTU03 :: columns: rtu_003_fltrd_gnd_lvl_plenum_press_tn, rtu_003_fltrd_lvl2_plenum_press_tn

@@ -1,0 +1,129 @@
+{
+  "id": "T2-036",
+  "family": "T2",
+  "source_files": [
+    "rtu_oa_fr.csv"
+  ],
+  "target_schema": [
+    {
+      "name": "timestamp",
+      "dtype": "string 'YYYY-MM-DD HH:MM:SS'",
+      "description": "start of interval"
+    },
+    {
+      "name": "rtu_002_oa_flow_tn_m3h",
+      "dtype": "float",
+      "unit": "m3/h",
+      "description": "Roof Top Unit * outdoor air flow rate (*: 001, 002, 003, 004) (m3/h), 1-hour interval"
+    },
+    {
+      "name": "rtu_003_oa_flow_tn_m3h",
+      "dtype": "float",
+      "unit": "m3/h",
+      "description": "Roof Top Unit * outdoor air flow rate (*: 001, 002, 003, 004) (m3/h), 1-hour interval"
+    }
+  ],
+  "example_day": "2018-02-14",
+  "test_days": [
+    "2018-10-23",
+    "2018-10-24"
+  ],
+  "source_dates_example": {
+    "rtu_oa_fr": [
+      "2018-02-14"
+    ]
+  },
+  "source_dates_test": {
+    "rtu_oa_fr": [
+      "2018-10-23",
+      "2018-10-24"
+    ]
+  },
+  "n_target_rows_example": 24,
+  "n_target_rows_test": 48,
+  "nl_instruction": "Aggregate rtu_002_oa_flow_tn, rtu_003_oa_flow_tn from rtu_oa_fr.csv to 1-hour averages and convert CFM to m3/h. Timestamp = start of interval.",
+  "needs": [
+    "unit",
+    "conversion",
+    "aggregation"
+  ],
+  "knowledge": [
+    {
+      "kind": "sampling_interval",
+      "file": "rtu_oa_fr.csv",
+      "value_min": 1.0,
+      "dict_freq": "1 min"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "rtu_oa_fr.csv",
+      "column": "rtu_002_oa_flow_tn",
+      "description": "Roof Top Unit * outdoor air flow rate (*: 001, 002, 003, 004)",
+      "quantity_kind": "air_flow"
+    },
+    {
+      "kind": "unit",
+      "file": "rtu_oa_fr.csv",
+      "column": "rtu_002_oa_flow_tn",
+      "true_unit": "CFM",
+      "dict_unit": "CFM"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "rtu_oa_fr.csv",
+      "column": "rtu_003_oa_flow_tn",
+      "description": "Roof Top Unit * outdoor air flow rate (*: 001, 002, 003, 004)",
+      "quantity_kind": "air_flow"
+    },
+    {
+      "kind": "unit",
+      "file": "rtu_oa_fr.csv",
+      "column": "rtu_003_oa_flow_tn",
+      "true_unit": "CFM",
+      "dict_unit": "CFM"
+    }
+  ],
+  "discriminates_against": [
+    "agg_max",
+    "no_or_wrong_conversion"
+  ],
+  "spec": {
+    "family": "T2",
+    "file": "rtu_oa_fr",
+    "columns": [
+      "rtu_002_oa_flow_tn",
+      "rtu_003_oa_flow_tn"
+    ],
+    "freq": "1h",
+    "agg": "mean",
+    "conversion": "CFM_to_m3h",
+    "rename": {
+      "rtu_002_oa_flow_tn": "rtu_002_oa_flow_tn_m3h",
+      "rtu_003_oa_flow_tn": "rtu_003_oa_flow_tn_m3h"
+    },
+    "out_columns": [
+      "rtu_002_oa_flow_tn_m3h",
+      "rtu_003_oa_flow_tn_m3h"
+    ],
+    "target_units": {
+      "rtu_002_oa_flow_tn_m3h": "m3/h",
+      "rtu_003_oa_flow_tn_m3h": "m3/h"
+    },
+    "conflict_note": null,
+    "source_units": {
+      "rtu_002_oa_flow_tn": "CFM",
+      "rtu_003_oa_flow_tn": "CFM"
+    },
+    "dict_units": {
+      "rtu_002_oa_flow_tn": "CFM",
+      "rtu_003_oa_flow_tn": "CFM"
+    }
+  },
+  "shown_rows": [
+    0,
+    6,
+    12,
+    17,
+    23
+  ]
+}

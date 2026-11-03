@@ -1,0 +1,137 @@
+{
+  "id": "T1-053",
+  "family": "T1",
+  "source_files": [
+    "rtu_oa_damper.csv"
+  ],
+  "target_schema": [
+    {
+      "name": "timestamp",
+      "dtype": "string 'YYYY-MM-DD HH:MM:SS'",
+      "description": "start of interval"
+    },
+    {
+      "name": "rtu_001_oadmpr_pct",
+      "dtype": "float",
+      "unit": "%",
+      "description": "Roof Top Unit * outdoor air damper position (*: 001, 002, 003, 004) (%), 1-hour interval"
+    },
+    {
+      "name": "rtu_003_oadmpr_pct",
+      "dtype": "float",
+      "unit": "%",
+      "description": "Roof Top Unit * outdoor air damper position (*: 001, 002, 003, 004) (%), 1-hour interval"
+    },
+    {
+      "name": "rtu_004_oadmpr_pct",
+      "dtype": "float",
+      "unit": "%",
+      "description": "Roof Top Unit * outdoor air damper position (*: 001, 002, 003, 004) (%), 1-hour interval"
+    }
+  ],
+  "example_day": "2018-10-30",
+  "test_days": [
+    "2019-09-27",
+    "2019-09-28"
+  ],
+  "source_dates_example": {
+    "rtu_oa_damper": [
+      "2018-10-30"
+    ]
+  },
+  "source_dates_test": {
+    "rtu_oa_damper": [
+      "2019-09-27",
+      "2019-09-28"
+    ]
+  },
+  "n_target_rows_example": 24,
+  "n_target_rows_test": 48,
+  "nl_instruction": "Aggregate rtu_001_oadmpr_pct, rtu_003_oadmpr_pct, rtu_004_oadmpr_pct from rtu_oa_damper.csv to 1-hour intervals using the maximum. Timestamp = start of interval.",
+  "needs": [
+    "aggregation",
+    "sampling_interval"
+  ],
+  "knowledge": [
+    {
+      "kind": "sampling_interval",
+      "file": "rtu_oa_damper.csv",
+      "value_min": 1.0,
+      "dict_freq": "1 min"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "rtu_oa_damper.csv",
+      "column": "rtu_001_oadmpr_pct",
+      "description": "Roof Top Unit * outdoor air damper position (*: 001, 002, 003, 004)",
+      "quantity_kind": "damper_position"
+    },
+    {
+      "kind": "unit",
+      "file": "rtu_oa_damper.csv",
+      "column": "rtu_001_oadmpr_pct",
+      "true_unit": "%",
+      "dict_unit": "%"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "rtu_oa_damper.csv",
+      "column": "rtu_003_oadmpr_pct",
+      "description": "Roof Top Unit * outdoor air damper position (*: 001, 002, 003, 004)",
+      "quantity_kind": "damper_position"
+    },
+    {
+      "kind": "unit",
+      "file": "rtu_oa_damper.csv",
+      "column": "rtu_003_oadmpr_pct",
+      "true_unit": "%",
+      "dict_unit": "%"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "rtu_oa_damper.csv",
+      "column": "rtu_004_oadmpr_pct",
+      "description": "Roof Top Unit * outdoor air damper position (*: 001, 002, 003, 004)",
+      "quantity_kind": "damper_position"
+    },
+    {
+      "kind": "unit",
+      "file": "rtu_oa_damper.csv",
+      "column": "rtu_004_oadmpr_pct",
+      "true_unit": "%",
+      "dict_unit": "%"
+    }
+  ],
+  "discriminates_against": [
+    "agg_mean",
+    "agg_min"
+  ],
+  "spec": {
+    "family": "T1",
+    "file": "rtu_oa_damper",
+    "columns": [
+      "rtu_001_oadmpr_pct",
+      "rtu_003_oadmpr_pct",
+      "rtu_004_oadmpr_pct"
+    ],
+    "freq": "1h",
+    "agg": "max",
+    "out_columns": [
+      "rtu_001_oadmpr_pct",
+      "rtu_003_oadmpr_pct",
+      "rtu_004_oadmpr_pct"
+    ],
+    "target_units": {
+      "rtu_001_oadmpr_pct": "%",
+      "rtu_003_oadmpr_pct": "%",
+      "rtu_004_oadmpr_pct": "%"
+    }
+  },
+  "shown_rows": [
+    0,
+    6,
+    12,
+    17,
+    23
+  ]
+}

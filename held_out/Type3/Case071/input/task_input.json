@@ -1,0 +1,59 @@
+{
+ "source_files": [
+  "ashp_meter.csv",
+  "rtu_sa_p_sp.csv",
+  "zone_co2.csv"
+ ],
+ "example_day": "2020-12-29",
+ "target_schema": [
+  {
+   "name": "timestamp",
+   "dtype": "string 'YYYY-MM-DD HH:MM:SS'"
+  },
+  {
+   "name": "aru_001_power_mbtuph",
+   "dtype": "float",
+   "unit": "mbtuph"
+  },
+  {
+   "name": "rtu_002_pa_static_stpt_tn",
+   "dtype": "float",
+   "unit": "psi"
+  },
+  {
+   "name": "zone_058_co2",
+   "dtype": "float",
+   "unit": "ppm"
+  }
+ ],
+ "n_example_day_target_rows": 24,
+ "n_example_day_source_rows": {
+  "ashp_meter.csv": 288,
+  "rtu_sa_p_sp.csv": 1440,
+  "zone_co2.csv": 2880
+ },
+ "source_blocks": {
+  "ashp_meter.csv": [
+   12,
+   12,
+   12,
+   12,
+   12
+  ],
+  "rtu_sa_p_sp.csv": [
+   60,
+   60,
+   60,
+   60,
+   60
+  ],
+  "zone_co2.csv": [
+   60,
+   60,
+   60,
+   60,
+   60
+  ]
+ },
+ "note": "source_example/ holds only the source rows inside the time intervals of the shown target rows; source_blocks gives the sizes of the contiguous runs (shown as '...' between runs in the prompt)."
+}

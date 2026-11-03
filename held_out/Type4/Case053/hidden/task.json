@@ -1,0 +1,462 @@
+{
+  "id": "T4N-014",
+  "family": "T4",
+  "source_files": [
+    "zone_temp_interior.csv"
+  ],
+  "target_schema": [
+    {
+      "name": "timestamp",
+      "dtype": "string 'YYYY-MM-DD HH:MM:SS'",
+      "description": "start of interval"
+    },
+    {
+      "name": "Floor_G",
+      "dtype": "float",
+      "unit": "°C",
+      "description": "Zone temperature of interior zone aggregated over all zones belonging to Floor_G (°C), 30-minute interval"
+    },
+    {
+      "name": "Floor_S",
+      "dtype": "float",
+      "unit": "°C",
+      "description": "Zone temperature of interior zone aggregated over all zones belonging to Floor_S (°C), 30-minute interval"
+    }
+  ],
+  "example_day": "2018-11-11",
+  "test_days": [
+    "2020-02-29",
+    "2020-03-01"
+  ],
+  "source_dates_example": {
+    "zone_temp_interior": [
+      "2018-11-11"
+    ]
+  },
+  "source_dates_test": {
+    "zone_temp_interior": [
+      "2020-02-29",
+      "2020-03-01"
+    ]
+  },
+  "n_target_rows_example": 48,
+  "n_target_rows_test": 96,
+  "nl_instruction": "For each floor, compute the maximum over its zones of the 30-minute average of each zone column in zone_temp_interior.csv. One output column per group (Floor_G, Floor_S). Timestamp = start of interval.",
+  "needs": [
+    "topology",
+    "aggregation"
+  ],
+  "knowledge": [
+    {
+      "kind": "sampling_interval",
+      "file": "zone_temp_interior.csv",
+      "value_min": 10.0,
+      "dict_freq": "10 min"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "zone_temp_interior.csv",
+      "column": "cerc_templogger_1",
+      "description": "Zone temperature of interior zone",
+      "quantity_kind": "temperature"
+    },
+    {
+      "kind": "unit",
+      "file": "zone_temp_interior.csv",
+      "column": "cerc_templogger_1",
+      "true_unit": "°C",
+      "dict_unit": "°F"
+    },
+    {
+      "kind": "membership",
+      "file": "zone_temp_interior.csv",
+      "column": "cerc_templogger_1",
+      "group": "Floor_G",
+      "relation": "zone isPartOf floor",
+      "brick_point": "cerc_templogger_1"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "zone_temp_interior.csv",
+      "column": "cerc_templogger_2",
+      "description": "Zone temperature of interior zone",
+      "quantity_kind": "temperature"
+    },
+    {
+      "kind": "unit",
+      "file": "zone_temp_interior.csv",
+      "column": "cerc_templogger_2",
+      "true_unit": "°C",
+      "dict_unit": "°F"
+    },
+    {
+      "kind": "membership",
+      "file": "zone_temp_interior.csv",
+      "column": "cerc_templogger_2",
+      "group": "Floor_G",
+      "relation": "zone isPartOf floor",
+      "brick_point": "cerc_templogger_2"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "zone_temp_interior.csv",
+      "column": "cerc_templogger_3",
+      "description": "Zone temperature of interior zone",
+      "quantity_kind": "temperature"
+    },
+    {
+      "kind": "unit",
+      "file": "zone_temp_interior.csv",
+      "column": "cerc_templogger_3",
+      "true_unit": "°C",
+      "dict_unit": "°F"
+    },
+    {
+      "kind": "membership",
+      "file": "zone_temp_interior.csv",
+      "column": "cerc_templogger_3",
+      "group": "Floor_G",
+      "relation": "zone isPartOf floor",
+      "brick_point": "cerc_templogger_3"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "zone_temp_interior.csv",
+      "column": "cerc_templogger_4",
+      "description": "Zone temperature of interior zone",
+      "quantity_kind": "temperature"
+    },
+    {
+      "kind": "unit",
+      "file": "zone_temp_interior.csv",
+      "column": "cerc_templogger_4",
+      "true_unit": "°C",
+      "dict_unit": "°F"
+    },
+    {
+      "kind": "membership",
+      "file": "zone_temp_interior.csv",
+      "column": "cerc_templogger_4",
+      "group": "Floor_G",
+      "relation": "zone isPartOf floor",
+      "brick_point": "cerc_templogger_4"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "zone_temp_interior.csv",
+      "column": "cerc_templogger_5",
+      "description": "Zone temperature of interior zone",
+      "quantity_kind": "temperature"
+    },
+    {
+      "kind": "unit",
+      "file": "zone_temp_interior.csv",
+      "column": "cerc_templogger_5",
+      "true_unit": "°C",
+      "dict_unit": "°F"
+    },
+    {
+      "kind": "membership",
+      "file": "zone_temp_interior.csv",
+      "column": "cerc_templogger_5",
+      "group": "Floor_G",
+      "relation": "zone isPartOf floor",
+      "brick_point": "cerc_templogger_5"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "zone_temp_interior.csv",
+      "column": "cerc_templogger_6",
+      "description": "Zone temperature of interior zone",
+      "quantity_kind": "temperature"
+    },
+    {
+      "kind": "unit",
+      "file": "zone_temp_interior.csv",
+      "column": "cerc_templogger_6",
+      "true_unit": "°C",
+      "dict_unit": "°F"
+    },
+    {
+      "kind": "membership",
+      "file": "zone_temp_interior.csv",
+      "column": "cerc_templogger_6",
+      "group": "Floor_G",
+      "relation": "zone isPartOf floor",
+      "brick_point": "cerc_templogger_6"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "zone_temp_interior.csv",
+      "column": "cerc_templogger_7",
+      "description": "Zone temperature of interior zone",
+      "quantity_kind": "temperature"
+    },
+    {
+      "kind": "unit",
+      "file": "zone_temp_interior.csv",
+      "column": "cerc_templogger_7",
+      "true_unit": "°C",
+      "dict_unit": "°F"
+    },
+    {
+      "kind": "membership",
+      "file": "zone_temp_interior.csv",
+      "column": "cerc_templogger_7",
+      "group": "Floor_G",
+      "relation": "zone isPartOf floor",
+      "brick_point": "cerc_templogger_7"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "zone_temp_interior.csv",
+      "column": "cerc_templogger_8",
+      "description": "Zone temperature of interior zone",
+      "quantity_kind": "temperature"
+    },
+    {
+      "kind": "unit",
+      "file": "zone_temp_interior.csv",
+      "column": "cerc_templogger_8",
+      "true_unit": "°C",
+      "dict_unit": "°F"
+    },
+    {
+      "kind": "membership",
+      "file": "zone_temp_interior.csv",
+      "column": "cerc_templogger_8",
+      "group": "Floor_G",
+      "relation": "zone isPartOf floor",
+      "brick_point": "cerc_templogger_8"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "zone_temp_interior.csv",
+      "column": "cerc_templogger_10",
+      "description": "Zone temperature of interior zone",
+      "quantity_kind": "temperature"
+    },
+    {
+      "kind": "unit",
+      "file": "zone_temp_interior.csv",
+      "column": "cerc_templogger_10",
+      "true_unit": "°C",
+      "dict_unit": "°F"
+    },
+    {
+      "kind": "membership",
+      "file": "zone_temp_interior.csv",
+      "column": "cerc_templogger_10",
+      "group": "Floor_S",
+      "relation": "zone isPartOf floor",
+      "brick_point": "cerc_templogger_10"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "zone_temp_interior.csv",
+      "column": "cerc_templogger_11",
+      "description": "Zone temperature of interior zone",
+      "quantity_kind": "temperature"
+    },
+    {
+      "kind": "unit",
+      "file": "zone_temp_interior.csv",
+      "column": "cerc_templogger_11",
+      "true_unit": "°C",
+      "dict_unit": "°F"
+    },
+    {
+      "kind": "membership",
+      "file": "zone_temp_interior.csv",
+      "column": "cerc_templogger_11",
+      "group": "Floor_S",
+      "relation": "zone isPartOf floor",
+      "brick_point": "cerc_templogger_11"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "zone_temp_interior.csv",
+      "column": "cerc_templogger_12",
+      "description": "Zone temperature of interior zone",
+      "quantity_kind": "temperature"
+    },
+    {
+      "kind": "unit",
+      "file": "zone_temp_interior.csv",
+      "column": "cerc_templogger_12",
+      "true_unit": "°C",
+      "dict_unit": "°F"
+    },
+    {
+      "kind": "membership",
+      "file": "zone_temp_interior.csv",
+      "column": "cerc_templogger_12",
+      "group": "Floor_S",
+      "relation": "zone isPartOf floor",
+      "brick_point": "cerc_templogger_12"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "zone_temp_interior.csv",
+      "column": "cerc_templogger_13",
+      "description": "Zone temperature of interior zone",
+      "quantity_kind": "temperature"
+    },
+    {
+      "kind": "unit",
+      "file": "zone_temp_interior.csv",
+      "column": "cerc_templogger_13",
+      "true_unit": "°C",
+      "dict_unit": "°F"
+    },
+    {
+      "kind": "membership",
+      "file": "zone_temp_interior.csv",
+      "column": "cerc_templogger_13",
+      "group": "Floor_S",
+      "relation": "zone isPartOf floor",
+      "brick_point": "cerc_templogger_13"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "zone_temp_interior.csv",
+      "column": "cerc_templogger_14",
+      "description": "Zone temperature of interior zone",
+      "quantity_kind": "temperature"
+    },
+    {
+      "kind": "unit",
+      "file": "zone_temp_interior.csv",
+      "column": "cerc_templogger_14",
+      "true_unit": "°C",
+      "dict_unit": "°F"
+    },
+    {
+      "kind": "membership",
+      "file": "zone_temp_interior.csv",
+      "column": "cerc_templogger_14",
+      "group": "Floor_S",
+      "relation": "zone isPartOf floor",
+      "brick_point": "cerc_templogger_14"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "zone_temp_interior.csv",
+      "column": "cerc_templogger_15",
+      "description": "Zone temperature of interior zone",
+      "quantity_kind": "temperature"
+    },
+    {
+      "kind": "unit",
+      "file": "zone_temp_interior.csv",
+      "column": "cerc_templogger_15",
+      "true_unit": "°C",
+      "dict_unit": "°F"
+    },
+    {
+      "kind": "membership",
+      "file": "zone_temp_interior.csv",
+      "column": "cerc_templogger_15",
+      "group": "Floor_S",
+      "relation": "zone isPartOf floor",
+      "brick_point": "cerc_templogger_15"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "zone_temp_interior.csv",
+      "column": "cerc_templogger_16",
+      "description": "Zone temperature of interior zone",
+      "quantity_kind": "temperature"
+    },
+    {
+      "kind": "unit",
+      "file": "zone_temp_interior.csv",
+      "column": "cerc_templogger_16",
+      "true_unit": "°C",
+      "dict_unit": "°F"
+    },
+    {
+      "kind": "membership",
+      "file": "zone_temp_interior.csv",
+      "column": "cerc_templogger_16",
+      "group": "Floor_S",
+      "relation": "zone isPartOf floor",
+      "brick_point": "cerc_templogger_16"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "zone_temp_interior.csv",
+      "column": "cerc_templogger_9",
+      "description": "Zone temperature of interior zone",
+      "quantity_kind": "temperature"
+    },
+    {
+      "kind": "unit",
+      "file": "zone_temp_interior.csv",
+      "column": "cerc_templogger_9",
+      "true_unit": "°C",
+      "dict_unit": "°F"
+    },
+    {
+      "kind": "membership",
+      "file": "zone_temp_interior.csv",
+      "column": "cerc_templogger_9",
+      "group": "Floor_S",
+      "relation": "zone isPartOf floor",
+      "brick_point": "cerc_templogger_9"
+    }
+  ],
+  "discriminates_against": [
+    "agg_swap",
+    "space_agg_swap",
+    "shuffled_membership_0",
+    "shuffled_membership_1",
+    "shuffled_membership_2"
+  ],
+  "spec": {
+    "family": "T4",
+    "file": "zone_temp_interior",
+    "group_by": "floor",
+    "groups": {
+      "Floor_G": [
+        "cerc_templogger_1",
+        "cerc_templogger_2",
+        "cerc_templogger_3",
+        "cerc_templogger_4",
+        "cerc_templogger_5",
+        "cerc_templogger_6",
+        "cerc_templogger_7",
+        "cerc_templogger_8"
+      ],
+      "Floor_S": [
+        "cerc_templogger_10",
+        "cerc_templogger_11",
+        "cerc_templogger_12",
+        "cerc_templogger_13",
+        "cerc_templogger_14",
+        "cerc_templogger_15",
+        "cerc_templogger_16",
+        "cerc_templogger_9"
+      ]
+    },
+    "freq": "30min",
+    "agg_time": "mean",
+    "agg_space": "max",
+    "out_columns": [
+      "Floor_G",
+      "Floor_S"
+    ],
+    "target_units": {
+      "Floor_G": "°C",
+      "Floor_S": "°C"
+    }
+  },
+  "benchmark_version": "holdout_v2b_t4novel",
+  "shown_rows": [
+    0,
+    1,
+    12,
+    24,
+    35
+  ]
+}

@@ -1,0 +1,115 @@
+{
+  "id": "T1-029",
+  "family": "T1",
+  "source_files": [
+    "occ.csv"
+  ],
+  "target_schema": [
+    {
+      "name": "timestamp",
+      "dtype": "string 'YYYY-MM-DD HH:MM:SS'",
+      "description": "start of interval"
+    },
+    {
+      "name": "occ_fourth_south",
+      "dtype": "float",
+      "unit": "/",
+      "description": "Occupant counts in the south half of forth floor (/), 1-hour interval"
+    },
+    {
+      "name": "occ_third_south",
+      "dtype": "float",
+      "unit": "/",
+      "description": "Occupant counts in the south half of third floor (/), 1-hour interval"
+    }
+  ],
+  "example_day": "2019-01-31",
+  "test_days": [
+    "2018-07-04",
+    "2018-07-05"
+  ],
+  "source_dates_example": {
+    "occ": [
+      "2019-01-31"
+    ]
+  },
+  "source_dates_test": {
+    "occ": [
+      "2018-07-04",
+      "2018-07-05"
+    ]
+  },
+  "n_target_rows_example": 24,
+  "n_target_rows_test": 48,
+  "nl_instruction": "Aggregate occ_fourth_south, occ_third_south from occ.csv to 1-hour intervals using the maximum. Timestamp = start of interval.",
+  "needs": [
+    "aggregation",
+    "sampling_interval"
+  ],
+  "knowledge": [
+    {
+      "kind": "sampling_interval",
+      "file": "occ.csv",
+      "value_min": 1.0,
+      "dict_freq": "1 min"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "occ.csv",
+      "column": "occ_fourth_south",
+      "description": "Occupant counts in the south half of forth floor",
+      "quantity_kind": "occupant_count"
+    },
+    {
+      "kind": "unit",
+      "file": "occ.csv",
+      "column": "occ_fourth_south",
+      "true_unit": "/",
+      "dict_unit": "/"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "occ.csv",
+      "column": "occ_third_south",
+      "description": "Occupant counts in the south half of third floor",
+      "quantity_kind": "occupant_count"
+    },
+    {
+      "kind": "unit",
+      "file": "occ.csv",
+      "column": "occ_third_south",
+      "true_unit": "/",
+      "dict_unit": "/"
+    }
+  ],
+  "discriminates_against": [
+    "agg_mean",
+    "agg_min"
+  ],
+  "spec": {
+    "family": "T1",
+    "file": "occ",
+    "columns": [
+      "occ_fourth_south",
+      "occ_third_south"
+    ],
+    "freq": "1h",
+    "agg": "max",
+    "out_columns": [
+      "occ_fourth_south",
+      "occ_third_south"
+    ],
+    "target_units": {
+      "occ_fourth_south": "/",
+      "occ_third_south": "/"
+    }
+  },
+  "benchmark_version": "holdout_v2",
+  "shown_rows": [
+    0,
+    6,
+    12,
+    17,
+    23
+  ]
+}

@@ -1,0 +1,188 @@
+{
+  "id": "T3-052",
+  "family": "T3",
+  "source_files": [
+    "rtu_sa_p_sp.csv",
+    "zone_temp_interior.csv"
+  ],
+  "target_schema": [
+    {
+      "name": "timestamp",
+      "dtype": "string 'YYYY-MM-DD HH:MM:SS'",
+      "description": "start of interval"
+    },
+    {
+      "name": "rtu_003_pa_static_stpt_tn",
+      "dtype": "float",
+      "unit": "inH2O (suspected)",
+      "description": "Roof Top Unit * air pressure static setpoint (*: 001, 002, 003, 004) (inH2O (suspected)), 1-hour averages"
+    },
+    {
+      "name": "rtu_004_pa_static_stpt_tn",
+      "dtype": "float",
+      "unit": "inH2O (suspected)",
+      "description": "Roof Top Unit * air pressure static setpoint (*: 001, 002, 003, 004) (inH2O (suspected)), 1-hour averages"
+    },
+    {
+      "name": "cerc_templogger_2",
+      "dtype": "float",
+      "unit": "°C",
+      "description": "Zone temperature of interior zone (°C), 1-hour averages"
+    },
+    {
+      "name": "cerc_templogger_7",
+      "dtype": "float",
+      "unit": "°C",
+      "description": "Zone temperature of interior zone (°C), 1-hour averages"
+    }
+  ],
+  "example_day": "2020-12-27",
+  "test_days": [
+    "2019-06-30",
+    "2019-07-01"
+  ],
+  "source_dates_example": {
+    "rtu_sa_p_sp": [
+      "2020-12-27"
+    ],
+    "zone_temp_interior": [
+      "2020-12-26",
+      "2020-12-27"
+    ]
+  },
+  "source_dates_test": {
+    "rtu_sa_p_sp": [
+      "2019-06-30",
+      "2019-07-01"
+    ],
+    "zone_temp_interior": [
+      "2019-06-29",
+      "2019-06-30",
+      "2019-07-01"
+    ]
+  },
+  "n_target_rows_example": 24,
+  "n_target_rows_test": 48,
+  "nl_instruction": "Join rtu_sa_p_sp.csv, zone_temp_interior.csv on timestamp (inner join) after aggregating each to 1-hour averages; keep only rtu_003_pa_static_stpt_tn, rtu_004_pa_static_stpt_tn, cerc_templogger_2, cerc_templogger_7. Timestamp = start of interval.",
+  "needs": [
+    "sampling_interval",
+    "time_alignment",
+    "join",
+    "aggregation"
+  ],
+  "knowledge": [
+    {
+      "kind": "sampling_interval",
+      "file": "rtu_sa_p_sp.csv",
+      "value_min": 1.0,
+      "dict_freq": "1 min"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "rtu_sa_p_sp.csv",
+      "column": "rtu_003_pa_static_stpt_tn",
+      "description": "Roof Top Unit * air pressure static setpoint (*: 001, 002, 003, 004)",
+      "quantity_kind": "pressure_setpoint"
+    },
+    {
+      "kind": "unit",
+      "file": "rtu_sa_p_sp.csv",
+      "column": "rtu_003_pa_static_stpt_tn",
+      "true_unit": "inH2O (suspected)",
+      "dict_unit": "psi"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "rtu_sa_p_sp.csv",
+      "column": "rtu_004_pa_static_stpt_tn",
+      "description": "Roof Top Unit * air pressure static setpoint (*: 001, 002, 003, 004)",
+      "quantity_kind": "pressure_setpoint"
+    },
+    {
+      "kind": "unit",
+      "file": "rtu_sa_p_sp.csv",
+      "column": "rtu_004_pa_static_stpt_tn",
+      "true_unit": "inH2O (suspected)",
+      "dict_unit": "psi"
+    },
+    {
+      "kind": "sampling_interval",
+      "file": "zone_temp_interior.csv",
+      "value_min": 10.0,
+      "dict_freq": "10 min"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "zone_temp_interior.csv",
+      "column": "cerc_templogger_2",
+      "description": "Zone temperature of interior zone",
+      "quantity_kind": "temperature"
+    },
+    {
+      "kind": "unit",
+      "file": "zone_temp_interior.csv",
+      "column": "cerc_templogger_2",
+      "true_unit": "°C",
+      "dict_unit": "°F"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "zone_temp_interior.csv",
+      "column": "cerc_templogger_7",
+      "description": "Zone temperature of interior zone",
+      "quantity_kind": "temperature"
+    },
+    {
+      "kind": "unit",
+      "file": "zone_temp_interior.csv",
+      "column": "cerc_templogger_7",
+      "true_unit": "°C",
+      "dict_unit": "°F"
+    }
+  ],
+  "discriminates_against": [
+    "outer_join",
+    "agg_max"
+  ],
+  "spec": {
+    "family": "T3",
+    "sources": [
+      {
+        "file": "rtu_sa_p_sp",
+        "columns": [
+          "rtu_003_pa_static_stpt_tn",
+          "rtu_004_pa_static_stpt_tn"
+        ]
+      },
+      {
+        "file": "zone_temp_interior",
+        "columns": [
+          "cerc_templogger_2",
+          "cerc_templogger_7"
+        ]
+      }
+    ],
+    "freq": "1h",
+    "agg": "mean",
+    "how": "inner",
+    "out_columns": [
+      "rtu_003_pa_static_stpt_tn",
+      "rtu_004_pa_static_stpt_tn",
+      "cerc_templogger_2",
+      "cerc_templogger_7"
+    ],
+    "target_units": {
+      "rtu_003_pa_static_stpt_tn": "inH2O (suspected)",
+      "rtu_004_pa_static_stpt_tn": "inH2O (suspected)",
+      "cerc_templogger_2": "°C",
+      "cerc_templogger_7": "°C"
+    }
+  },
+  "shown_rows": [
+    0,
+    6,
+    12,
+    17,
+    23
+  ]
+}

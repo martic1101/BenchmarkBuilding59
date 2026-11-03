@@ -1,0 +1,50 @@
+{
+ "source_files": [
+  "rtu_fan_spd.csv",
+  "rtu_ra_t.csv"
+ ],
+ "example_day": "2019-09-03",
+ "target_schema": [
+  {
+   "name": "timestamp",
+   "dtype": "string 'YYYY-MM-DD HH:MM:SS'"
+  },
+  {
+   "name": "rtu_003_sf_vfd_spd_fbk_tn",
+   "dtype": "float",
+   "unit": "%"
+  },
+  {
+   "name": "rtu_004_rf_vfd_spd_fbk_tn",
+   "dtype": "float",
+   "unit": "%"
+  },
+  {
+   "name": "rtu_002_ra_temp",
+   "dtype": "float",
+   "unit": "°F"
+  }
+ ],
+ "n_example_day_target_rows": 1440,
+ "n_example_day_source_rows": {
+  "rtu_fan_spd.csv": 1440,
+  "rtu_ra_t.csv": 2880
+ },
+ "source_blocks": {
+  "rtu_fan_spd.csv": [
+   1,
+   1,
+   1,
+   1,
+   1
+  ],
+  "rtu_ra_t.csv": [
+   1,
+   1,
+   1,
+   1,
+   1
+  ]
+ },
+ "note": "source_example/ holds only the source rows inside the time intervals of the shown target rows; source_blocks gives the sizes of the contiguous runs (shown as '...' between runs in the prompt)."
+}

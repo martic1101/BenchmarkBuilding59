@@ -1,0 +1,7 @@
+columns in scope: occ_third_south
+desc=Occupant counts in the south half of third floor :: columns: ALL
+unit=/ :: columns: ALL
+sampling=1 min :: columns: ALL
+class=Occupant_Count :: columns: ALL
+zone=Floor_G :: columns: ALL
+floor=Building :: columns: ALL

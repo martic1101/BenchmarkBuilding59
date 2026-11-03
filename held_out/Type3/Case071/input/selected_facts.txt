@@ -1,0 +1,17 @@
+columns in scope: aru_001_power_mbtuph, rtu_002_pa_static_stpt_tn, zone_058_co2
+vav=UTF_G-12 :: columns: zone_058_co2
+floor=Floor_S :: columns: zone_058_co2
+sampling=1 min :: columns: rtu_002_pa_static_stpt_tn, zone_058_co2
+sampling=5 min :: columns: aru_001_power_mbtuph
+class=CO2_Sensor :: columns: zone_058_co2
+class=Supply_Air_Static_Pressure_Setpoint :: columns: rtu_002_pa_static_stpt_tn
+zone=RTU02 :: columns: rtu_002_pa_static_stpt_tn
+zone=zone_058 :: columns: zone_058_co2
+rtu=RTU02 :: columns: rtu_002_pa_static_stpt_tn
+rtu=RTU03 :: columns: zone_058_co2
+desc=CO2 concentration of each zone :: columns: zone_058_co2
+desc=Heat meter for air source heat pump :: columns: aru_001_power_mbtuph
+desc=Roof Top Unit * air pressure static setpoint (*: 001, 002, 003, 004) :: columns: rtu_002_pa_static_stpt_tn
+unit=mbtuph :: columns: aru_001_power_mbtuph
+unit=ppm :: columns: zone_058_co2
+unit=psi :: columns: rtu_002_pa_static_stpt_tn

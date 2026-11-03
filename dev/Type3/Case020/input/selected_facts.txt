@@ -1,0 +1,19 @@
+columns in scope: aru_001_cws_temp, hvac_N, mels_S, rtu_002_oadmpr_pct, rtu_003_oadmpr_pct
+rtu=RTU02 :: columns: rtu_002_oadmpr_pct
+rtu=RTU03 :: columns: rtu_003_oadmpr_pct
+unit=% :: columns: rtu_002_oadmpr_pct, rtu_003_oadmpr_pct
+unit=kW :: columns: hvac_N, mels_S
+unit=°F :: columns: aru_001_cws_temp
+sampling=1 min :: columns: rtu_002_oadmpr_pct, rtu_003_oadmpr_pct
+sampling=15 min :: columns: hvac_N, mels_S
+sampling=5 min :: columns: aru_001_cws_temp
+class=Building_Electrical_Meter :: columns: hvac_N, mels_S
+class=Chilled_Water_Temperature_Sensor :: columns: aru_001_cws_temp
+class=Outdoor_Air_Damper :: columns: rtu_002_oadmpr_pct, rtu_003_oadmpr_pct
+zone=Building :: columns: aru_001_cws_temp, hvac_N, mels_S
+zone=RTU02 :: columns: rtu_002_oadmpr_pct
+zone=RTU03 :: columns: rtu_003_oadmpr_pct
+desc=Chilled water supply temperature :: columns: aru_001_cws_temp
+desc=Heating Ventilation and Air Conditioning load for the Nouth Wing :: columns: hvac_N
+desc=Miscellaneous electric load for the South Wing :: columns: mels_S
+desc=Roof Top Unit * outdoor air damper position (*: 001, 002, 003, 004) :: columns: rtu_002_oadmpr_pct, rtu_003_oadmpr_pct

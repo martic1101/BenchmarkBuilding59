@@ -1,0 +1,232 @@
+{
+  "id": "T3-055",
+  "family": "T3",
+  "source_files": [
+    "rtu_plenum_p.csv",
+    "wifi.csv",
+    "zone_co2.csv"
+  ],
+  "target_schema": [
+    {
+      "name": "timestamp",
+      "dtype": "string 'YYYY-MM-DD HH:MM:SS'",
+      "description": "start of interval"
+    },
+    {
+      "name": "rtu_001_fltrd_gnd_lvl_plenum_press_tn",
+      "dtype": "float",
+      "unit": "psi",
+      "description": "Roof Top Unit * plenum air pressure at floor ** (*: 001, 002, 003, 004; **: gnd_lvl, lvl2) (psi), 1-hour interval"
+    },
+    {
+      "name": "wifi_fourth_south",
+      "dtype": "float",
+      "unit": "/",
+      "description": "Wifi connection counts in the south half of forth floor (/), 1-hour interval"
+    },
+    {
+      "name": "wifi_second_south",
+      "dtype": "float",
+      "unit": "/",
+      "description": "Wifi connection counts in the south half of second floor (/), 1-hour interval"
+    },
+    {
+      "name": "zone_028_co2",
+      "dtype": "float",
+      "unit": "ppm",
+      "description": "CO2 concentration of each zone (ppm), 1-hour interval"
+    },
+    {
+      "name": "zone_052_co2",
+      "dtype": "float",
+      "unit": "ppm",
+      "description": "CO2 concentration of each zone (ppm), 1-hour interval"
+    }
+  ],
+  "example_day": "2020-04-30",
+  "test_days": [
+    "2020-11-24",
+    "2020-11-25"
+  ],
+  "source_dates_example": {
+    "rtu_plenum_p": [
+      "2020-04-30"
+    ],
+    "wifi": [
+      "2020-04-30"
+    ],
+    "zone_co2": [
+      "2020-04-29",
+      "2020-04-30"
+    ]
+  },
+  "source_dates_test": {
+    "rtu_plenum_p": [
+      "2020-11-24",
+      "2020-11-25"
+    ],
+    "wifi": [
+      "2020-11-24",
+      "2020-11-25"
+    ],
+    "zone_co2": [
+      "2020-11-23",
+      "2020-11-24",
+      "2020-11-25"
+    ]
+  },
+  "n_target_rows_example": 24,
+  "n_target_rows_test": 48,
+  "nl_instruction": "Join rtu_plenum_p.csv, wifi.csv, zone_co2.csv on timestamp (inner join) after aggregating each to 1-hour intervals using the average; keep only rtu_001_fltrd_gnd_lvl_plenum_press_tn, wifi_fourth_south, wifi_second_south, zone_028_co2, zone_052_co2. Timestamp = start of interval.",
+  "needs": [
+    "sampling_interval",
+    "time_alignment",
+    "join",
+    "aggregation"
+  ],
+  "knowledge": [
+    {
+      "kind": "sampling_interval",
+      "file": "rtu_plenum_p.csv",
+      "value_min": 1.0,
+      "dict_freq": "1 min"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "rtu_plenum_p.csv",
+      "column": "rtu_001_fltrd_gnd_lvl_plenum_press_tn",
+      "description": "Roof Top Unit * plenum air pressure at floor ** (*: 001, 002, 003, 004; **: gnd_lvl, lvl2)",
+      "quantity_kind": "pressure"
+    },
+    {
+      "kind": "unit",
+      "file": "rtu_plenum_p.csv",
+      "column": "rtu_001_fltrd_gnd_lvl_plenum_press_tn",
+      "true_unit": "psi",
+      "dict_unit": "psi"
+    },
+    {
+      "kind": "sampling_interval",
+      "file": "wifi.csv",
+      "value_min": 5.0,
+      "dict_freq": "10 min"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "wifi.csv",
+      "column": "wifi_fourth_south",
+      "description": "Wifi connection counts in the south half of forth floor",
+      "quantity_kind": "wifi_connection_count"
+    },
+    {
+      "kind": "unit",
+      "file": "wifi.csv",
+      "column": "wifi_fourth_south",
+      "true_unit": "/",
+      "dict_unit": "/"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "wifi.csv",
+      "column": "wifi_second_south",
+      "description": "Wifi connection counts in the south half of second floor",
+      "quantity_kind": "wifi_connection_count"
+    },
+    {
+      "kind": "unit",
+      "file": "wifi.csv",
+      "column": "wifi_second_south",
+      "true_unit": "/",
+      "dict_unit": "/"
+    },
+    {
+      "kind": "sampling_interval",
+      "file": "zone_co2.csv",
+      "value_min": 1.0,
+      "dict_freq": "1 min"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "zone_co2.csv",
+      "column": "zone_028_co2",
+      "description": "CO2 concentration of each zone",
+      "quantity_kind": "co2_concentration"
+    },
+    {
+      "kind": "unit",
+      "file": "zone_co2.csv",
+      "column": "zone_028_co2",
+      "true_unit": "ppm",
+      "dict_unit": "ppm"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "zone_co2.csv",
+      "column": "zone_052_co2",
+      "description": "CO2 concentration of each zone",
+      "quantity_kind": "co2_concentration"
+    },
+    {
+      "kind": "unit",
+      "file": "zone_co2.csv",
+      "column": "zone_052_co2",
+      "true_unit": "ppm",
+      "dict_unit": "ppm"
+    }
+  ],
+  "discriminates_against": [
+    "outer_join",
+    "agg_max",
+    "agg_min"
+  ],
+  "spec": {
+    "family": "T3",
+    "sources": [
+      {
+        "file": "rtu_plenum_p",
+        "columns": [
+          "rtu_001_fltrd_gnd_lvl_plenum_press_tn"
+        ]
+      },
+      {
+        "file": "wifi",
+        "columns": [
+          "wifi_fourth_south",
+          "wifi_second_south"
+        ]
+      },
+      {
+        "file": "zone_co2",
+        "columns": [
+          "zone_028_co2",
+          "zone_052_co2"
+        ]
+      }
+    ],
+    "freq": "1h",
+    "agg": "mean",
+    "how": "inner",
+    "out_columns": [
+      "rtu_001_fltrd_gnd_lvl_plenum_press_tn",
+      "wifi_fourth_south",
+      "wifi_second_south",
+      "zone_028_co2",
+      "zone_052_co2"
+    ],
+    "target_units": {
+      "rtu_001_fltrd_gnd_lvl_plenum_press_tn": "psi",
+      "wifi_fourth_south": "/",
+      "wifi_second_south": "/",
+      "zone_028_co2": "ppm",
+      "zone_052_co2": "ppm"
+    }
+  },
+  "benchmark_version": "holdout_v2",
+  "shown_rows": [
+    0,
+    6,
+    12,
+    17,
+    23
+  ]
+}

@@ -1,0 +1,11 @@
+columns in scope: aru_001_power_mbtuph, cerc_templogger_13, cerc_templogger_16
+class=Zone_Air_Temperature_Sensor :: columns: cerc_templogger_13, cerc_templogger_16
+floor=Floor_S :: columns: cerc_templogger_13, cerc_templogger_16
+desc=Heat meter for air source heat pump :: columns: aru_001_power_mbtuph
+desc=Zone temperature of interior zone :: columns: cerc_templogger_13, cerc_templogger_16
+unit=mbtuph :: columns: aru_001_power_mbtuph
+unit=°F :: columns: cerc_templogger_13, cerc_templogger_16
+sampling=10 min :: columns: cerc_templogger_13, cerc_templogger_16
+sampling=5 min :: columns: aru_001_power_mbtuph
+zone=zone_cerc_13 :: columns: cerc_templogger_13
+zone=zone_cerc_16 :: columns: cerc_templogger_16

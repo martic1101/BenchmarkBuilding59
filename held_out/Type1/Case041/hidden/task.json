@@ -1,0 +1,138 @@
+{
+  "id": "T1-047",
+  "family": "T1",
+  "source_files": [
+    "rtu_ma_t.csv"
+  ],
+  "target_schema": [
+    {
+      "name": "timestamp",
+      "dtype": "string 'YYYY-MM-DD HH:MM:SS'",
+      "description": "start of interval"
+    },
+    {
+      "name": "rtu_001_ma_temp",
+      "dtype": "float",
+      "unit": "°F",
+      "description": "Roof Top Unit * mixed air temperature (*: 001, 002, 003, 004) (°F), 1-hour interval"
+    },
+    {
+      "name": "rtu_002_ma_temp",
+      "dtype": "float",
+      "unit": "°F",
+      "description": "Roof Top Unit * mixed air temperature (*: 001, 002, 003, 004) (°F), 1-hour interval"
+    },
+    {
+      "name": "rtu_004_ma_temp",
+      "dtype": "float",
+      "unit": "°F",
+      "description": "Roof Top Unit * mixed air temperature (*: 001, 002, 003, 004) (°F), 1-hour interval"
+    }
+  ],
+  "example_day": "2018-04-15",
+  "test_days": [
+    "2019-06-12",
+    "2019-06-13"
+  ],
+  "source_dates_example": {
+    "rtu_ma_t": [
+      "2018-04-15"
+    ]
+  },
+  "source_dates_test": {
+    "rtu_ma_t": [
+      "2019-06-12",
+      "2019-06-13"
+    ]
+  },
+  "n_target_rows_example": 24,
+  "n_target_rows_test": 48,
+  "nl_instruction": "Aggregate rtu_001_ma_temp, rtu_002_ma_temp, rtu_004_ma_temp from rtu_ma_t.csv to 1-hour intervals using the maximum. Timestamp = start of interval.",
+  "needs": [
+    "aggregation",
+    "sampling_interval"
+  ],
+  "knowledge": [
+    {
+      "kind": "sampling_interval",
+      "file": "rtu_ma_t.csv",
+      "value_min": 1.0,
+      "dict_freq": "1 min"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "rtu_ma_t.csv",
+      "column": "rtu_001_ma_temp",
+      "description": "Roof Top Unit * mixed air temperature (*: 001, 002, 003, 004)",
+      "quantity_kind": "temperature"
+    },
+    {
+      "kind": "unit",
+      "file": "rtu_ma_t.csv",
+      "column": "rtu_001_ma_temp",
+      "true_unit": "°F",
+      "dict_unit": "°F"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "rtu_ma_t.csv",
+      "column": "rtu_002_ma_temp",
+      "description": "Roof Top Unit * mixed air temperature (*: 001, 002, 003, 004)",
+      "quantity_kind": "temperature"
+    },
+    {
+      "kind": "unit",
+      "file": "rtu_ma_t.csv",
+      "column": "rtu_002_ma_temp",
+      "true_unit": "°F",
+      "dict_unit": "°F"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "rtu_ma_t.csv",
+      "column": "rtu_004_ma_temp",
+      "description": "Roof Top Unit * mixed air temperature (*: 001, 002, 003, 004)",
+      "quantity_kind": "temperature"
+    },
+    {
+      "kind": "unit",
+      "file": "rtu_ma_t.csv",
+      "column": "rtu_004_ma_temp",
+      "true_unit": "°F",
+      "dict_unit": "°F"
+    }
+  ],
+  "discriminates_against": [
+    "agg_mean",
+    "agg_min"
+  ],
+  "spec": {
+    "family": "T1",
+    "file": "rtu_ma_t",
+    "columns": [
+      "rtu_001_ma_temp",
+      "rtu_002_ma_temp",
+      "rtu_004_ma_temp"
+    ],
+    "freq": "1h",
+    "agg": "max",
+    "out_columns": [
+      "rtu_001_ma_temp",
+      "rtu_002_ma_temp",
+      "rtu_004_ma_temp"
+    ],
+    "target_units": {
+      "rtu_001_ma_temp": "°F",
+      "rtu_002_ma_temp": "°F",
+      "rtu_004_ma_temp": "°F"
+    }
+  },
+  "benchmark_version": "holdout_v2",
+  "shown_rows": [
+    0,
+    6,
+    12,
+    17,
+    23
+  ]
+}

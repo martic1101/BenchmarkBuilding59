@@ -1,0 +1,190 @@
+{
+  "id": "T3-063",
+  "family": "T3",
+  "source_files": [
+    "ele.csv",
+    "rtu_fan_spd.csv"
+  ],
+  "target_schema": [
+    {
+      "name": "timestamp",
+      "dtype": "string 'YYYY-MM-DD HH:MM:SS'",
+      "description": "start of interval"
+    },
+    {
+      "name": "lig_S",
+      "dtype": "float",
+      "unit": "kW",
+      "description": "Lighting load for the South Wing (kW), 30-minute interval"
+    },
+    {
+      "name": "mels_S",
+      "dtype": "float",
+      "unit": "kW",
+      "description": "Miscellaneous electric load for the South Wing (kW), 30-minute interval"
+    },
+    {
+      "name": "rtu_001_rf_vfd_spd_fbk_tn",
+      "dtype": "float",
+      "unit": "%",
+      "description": "Roof Top Unit * return fan speed (*: 001, 002, 003, 004) (%), 30-minute interval"
+    },
+    {
+      "name": "rtu_002_sf_vfd_spd_fbk_tn",
+      "dtype": "float",
+      "unit": "%",
+      "description": "Roof Top Unit * supply fan speed (*: 001, 002, 003, 004) (%), 30-minute interval"
+    }
+  ],
+  "example_day": "2019-09-08",
+  "test_days": [
+    "2019-06-04",
+    "2019-06-05"
+  ],
+  "source_dates_example": {
+    "ele": [
+      "2019-09-08"
+    ],
+    "rtu_fan_spd": [
+      "2019-09-07",
+      "2019-09-08"
+    ]
+  },
+  "source_dates_test": {
+    "ele": [
+      "2019-06-04",
+      "2019-06-05"
+    ],
+    "rtu_fan_spd": [
+      "2019-06-03",
+      "2019-06-04",
+      "2019-06-05"
+    ]
+  },
+  "n_target_rows_example": 48,
+  "n_target_rows_test": 96,
+  "nl_instruction": "Join ele.csv, rtu_fan_spd.csv on timestamp (inner join) after aggregating each to 30-minute intervals using the maximum; keep only lig_S, mels_S, rtu_001_rf_vfd_spd_fbk_tn, rtu_002_sf_vfd_spd_fbk_tn. Timestamp = start of interval.",
+  "needs": [
+    "sampling_interval",
+    "time_alignment",
+    "join",
+    "aggregation"
+  ],
+  "knowledge": [
+    {
+      "kind": "sampling_interval",
+      "file": "ele.csv",
+      "value_min": 15.0,
+      "dict_freq": "15 min"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "ele.csv",
+      "column": "lig_S",
+      "description": "Lighting load for the South Wing",
+      "quantity_kind": "electric_power"
+    },
+    {
+      "kind": "unit",
+      "file": "ele.csv",
+      "column": "lig_S",
+      "true_unit": "kW",
+      "dict_unit": "kW"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "ele.csv",
+      "column": "mels_S",
+      "description": "Miscellaneous electric load for the South Wing",
+      "quantity_kind": "electric_power"
+    },
+    {
+      "kind": "unit",
+      "file": "ele.csv",
+      "column": "mels_S",
+      "true_unit": "kW",
+      "dict_unit": "kW"
+    },
+    {
+      "kind": "sampling_interval",
+      "file": "rtu_fan_spd.csv",
+      "value_min": 1.0,
+      "dict_freq": "1 min"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "rtu_fan_spd.csv",
+      "column": "rtu_001_rf_vfd_spd_fbk_tn",
+      "description": "Roof Top Unit * return fan speed (*: 001, 002, 003, 004)",
+      "quantity_kind": "fan_speed"
+    },
+    {
+      "kind": "unit",
+      "file": "rtu_fan_spd.csv",
+      "column": "rtu_001_rf_vfd_spd_fbk_tn",
+      "true_unit": "%",
+      "dict_unit": "%"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "rtu_fan_spd.csv",
+      "column": "rtu_002_sf_vfd_spd_fbk_tn",
+      "description": "Roof Top Unit * supply fan speed (*: 001, 002, 003, 004)",
+      "quantity_kind": "fan_speed"
+    },
+    {
+      "kind": "unit",
+      "file": "rtu_fan_spd.csv",
+      "column": "rtu_002_sf_vfd_spd_fbk_tn",
+      "true_unit": "%",
+      "dict_unit": "%"
+    }
+  ],
+  "discriminates_against": [
+    "outer_join",
+    "agg_mean",
+    "agg_min"
+  ],
+  "spec": {
+    "family": "T3",
+    "sources": [
+      {
+        "file": "ele",
+        "columns": [
+          "lig_S",
+          "mels_S"
+        ]
+      },
+      {
+        "file": "rtu_fan_spd",
+        "columns": [
+          "rtu_001_rf_vfd_spd_fbk_tn",
+          "rtu_002_sf_vfd_spd_fbk_tn"
+        ]
+      }
+    ],
+    "freq": "30min",
+    "agg": "max",
+    "how": "inner",
+    "out_columns": [
+      "lig_S",
+      "mels_S",
+      "rtu_001_rf_vfd_spd_fbk_tn",
+      "rtu_002_sf_vfd_spd_fbk_tn"
+    ],
+    "target_units": {
+      "lig_S": "kW",
+      "mels_S": "kW",
+      "rtu_001_rf_vfd_spd_fbk_tn": "%",
+      "rtu_002_sf_vfd_spd_fbk_tn": "%"
+    }
+  },
+  "benchmark_version": "holdout_v2",
+  "shown_rows": [
+    0,
+    12,
+    24,
+    35,
+    47
+  ]
+}

@@ -1,0 +1,17 @@
+columns in scope: aru_001_cws_temp, rtu_002_oa_flow_tn, rtu_002_pa_static_stpt_tn, rtu_004_pa_static_stpt_tn
+sampling=1 min :: columns: rtu_002_oa_flow_tn, rtu_002_pa_static_stpt_tn, rtu_004_pa_static_stpt_tn
+sampling=5 min :: columns: aru_001_cws_temp
+rtu=RTU02 :: columns: rtu_002_oa_flow_tn, rtu_002_pa_static_stpt_tn
+rtu=RTU04 :: columns: rtu_004_pa_static_stpt_tn
+desc=Chilled water supply temperature :: columns: aru_001_cws_temp
+desc=Roof Top Unit * air pressure static setpoint (*: 001, 002, 003, 004) :: columns: rtu_002_pa_static_stpt_tn, rtu_004_pa_static_stpt_tn
+desc=Roof Top Unit * outdoor air flow rate (*: 001, 002, 003, 004) :: columns: rtu_002_oa_flow_tn
+unit=CFM :: columns: rtu_002_oa_flow_tn
+unit=psi :: columns: rtu_002_pa_static_stpt_tn, rtu_004_pa_static_stpt_tn
+unit=°F :: columns: aru_001_cws_temp
+class=Chilled_Water_Temperature_Sensor :: columns: aru_001_cws_temp
+class=Outdoor_Air_Flow_Rate :: columns: rtu_002_oa_flow_tn
+class=Supply_Air_Static_Pressure_Setpoint :: columns: rtu_002_pa_static_stpt_tn, rtu_004_pa_static_stpt_tn
+zone=Building :: columns: aru_001_cws_temp
+zone=RTU02 :: columns: rtu_002_oa_flow_tn, rtu_002_pa_static_stpt_tn
+zone=RTU04 :: columns: rtu_004_pa_static_stpt_tn

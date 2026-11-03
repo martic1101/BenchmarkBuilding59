@@ -1,0 +1,41 @@
+{
+ "source_files": [
+  "ele.csv"
+ ],
+ "example_day": "2019-06-03",
+ "target_schema": [
+  {
+   "name": "timestamp",
+   "dtype": "string 'YYYY-MM-DD HH:MM:SS'"
+  },
+  {
+   "name": "hvac_N",
+   "dtype": "float",
+   "unit": "kW"
+  },
+  {
+   "name": "hvac_S",
+   "dtype": "float",
+   "unit": "kW"
+  },
+  {
+   "name": "lig_S",
+   "dtype": "float",
+   "unit": "kW"
+  }
+ ],
+ "n_example_day_target_rows": 48,
+ "n_example_day_source_rows": {
+  "ele.csv": 96
+ },
+ "source_blocks": {
+  "ele.csv": [
+   2,
+   2,
+   2,
+   2,
+   2
+  ]
+ },
+ "note": "source_example/ holds only the source rows inside the time intervals of the shown target rows; source_blocks gives the sizes of the contiguous runs (shown as '...' between runs in the prompt)."
+}

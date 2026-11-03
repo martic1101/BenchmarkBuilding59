@@ -1,0 +1,188 @@
+{
+  "id": "T3-046",
+  "family": "T3",
+  "source_files": [
+    "site_weather.csv",
+    "uft_hw_valve.csv"
+  ],
+  "target_schema": [
+    {
+      "name": "timestamp",
+      "dtype": "string 'YYYY-MM-DD HH:MM:SS'",
+      "description": "start of interval"
+    },
+    {
+      "name": "dew_point_temperature_set_1d",
+      "dtype": "float",
+      "unit": "°C",
+      "description": "Outdoor air dew temperature of sensor 2 (°C), 15-minute averages"
+    },
+    {
+      "name": "relative_humidity_set_1",
+      "dtype": "float",
+      "unit": "%",
+      "description": "Outdoor air relative humidity from sensor 1 (%), 15-minute averages"
+    },
+    {
+      "name": "zone_053_hw_valve",
+      "dtype": "float",
+      "unit": "%",
+      "description": "Heating water valve position of Zone * (%), 15-minute averages"
+    },
+    {
+      "name": "zone_057_hw_valve",
+      "dtype": "float",
+      "unit": "%",
+      "description": "Heating water valve position of Zone * (%), 15-minute averages"
+    }
+  ],
+  "example_day": "2018-02-26",
+  "test_days": [
+    "2019-11-15",
+    "2019-11-16"
+  ],
+  "source_dates_example": {
+    "site_weather": [
+      "2018-02-26"
+    ],
+    "uft_hw_valve": [
+      "2018-02-25",
+      "2018-02-26"
+    ]
+  },
+  "source_dates_test": {
+    "site_weather": [
+      "2019-11-15",
+      "2019-11-16"
+    ],
+    "uft_hw_valve": [
+      "2019-11-14",
+      "2019-11-15",
+      "2019-11-16"
+    ]
+  },
+  "n_target_rows_example": 96,
+  "n_target_rows_test": 192,
+  "nl_instruction": "Join site_weather.csv, uft_hw_valve.csv on timestamp (inner join) after aggregating each to 15-minute averages; keep only dew_point_temperature_set_1d, relative_humidity_set_1, zone_053_hw_valve, zone_057_hw_valve. Timestamp = start of interval.",
+  "needs": [
+    "sampling_interval",
+    "time_alignment",
+    "join",
+    "aggregation"
+  ],
+  "knowledge": [
+    {
+      "kind": "sampling_interval",
+      "file": "site_weather.csv",
+      "value_min": 15.0,
+      "dict_freq": "15 min"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "site_weather.csv",
+      "column": "dew_point_temperature_set_1d",
+      "description": "Outdoor air dew temperature of sensor 2",
+      "quantity_kind": "temperature"
+    },
+    {
+      "kind": "unit",
+      "file": "site_weather.csv",
+      "column": "dew_point_temperature_set_1d",
+      "true_unit": "°C",
+      "dict_unit": "°C"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "site_weather.csv",
+      "column": "relative_humidity_set_1",
+      "description": "Outdoor air relative humidity from sensor 1",
+      "quantity_kind": "relative_humidity"
+    },
+    {
+      "kind": "unit",
+      "file": "site_weather.csv",
+      "column": "relative_humidity_set_1",
+      "true_unit": "%",
+      "dict_unit": "%"
+    },
+    {
+      "kind": "sampling_interval",
+      "file": "uft_hw_valve.csv",
+      "value_min": 1.0,
+      "dict_freq": "1 min"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "uft_hw_valve.csv",
+      "column": "zone_053_hw_valve",
+      "description": "Heating water valve position of Zone *",
+      "quantity_kind": "valve_position"
+    },
+    {
+      "kind": "unit",
+      "file": "uft_hw_valve.csv",
+      "column": "zone_053_hw_valve",
+      "true_unit": "%",
+      "dict_unit": "%"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "uft_hw_valve.csv",
+      "column": "zone_057_hw_valve",
+      "description": "Heating water valve position of Zone *",
+      "quantity_kind": "valve_position"
+    },
+    {
+      "kind": "unit",
+      "file": "uft_hw_valve.csv",
+      "column": "zone_057_hw_valve",
+      "true_unit": "%",
+      "dict_unit": "%"
+    }
+  ],
+  "discriminates_against": [
+    "outer_join",
+    "agg_max"
+  ],
+  "spec": {
+    "family": "T3",
+    "sources": [
+      {
+        "file": "site_weather",
+        "columns": [
+          "dew_point_temperature_set_1d",
+          "relative_humidity_set_1"
+        ]
+      },
+      {
+        "file": "uft_hw_valve",
+        "columns": [
+          "zone_053_hw_valve",
+          "zone_057_hw_valve"
+        ]
+      }
+    ],
+    "freq": "15min",
+    "agg": "mean",
+    "how": "inner",
+    "out_columns": [
+      "dew_point_temperature_set_1d",
+      "relative_humidity_set_1",
+      "zone_053_hw_valve",
+      "zone_057_hw_valve"
+    ],
+    "target_units": {
+      "dew_point_temperature_set_1d": "°C",
+      "relative_humidity_set_1": "%",
+      "zone_053_hw_valve": "%",
+      "zone_057_hw_valve": "%"
+    }
+  },
+  "shown_rows": [
+    0,
+    8,
+    24,
+    48,
+    71
+  ]
+}

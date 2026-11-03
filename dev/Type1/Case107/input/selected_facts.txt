@@ -1,0 +1,10 @@
+columns in scope: wifi_fourth_south, wifi_second_south, wifi_third_south
+unit=/ :: columns: ALL
+sampling=10 min :: columns: ALL
+class=Wifi_AP :: columns: wifi_fourth_south, wifi_third_south
+floor=Building :: columns: wifi_fourth_south, wifi_third_south
+zone=Floor_G :: columns: wifi_third_south
+zone=Floor_S :: columns: wifi_fourth_south
+desc=Wifi connection counts in the south half of forth floor :: columns: wifi_fourth_south
+desc=Wifi connection counts in the south half of second floor :: columns: wifi_second_south
+desc=Wifi connection counts in the south half of third floor :: columns: wifi_third_south

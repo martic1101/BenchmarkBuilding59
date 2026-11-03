@@ -1,0 +1,6 @@
+columns in scope: rtu_003_fltrd_sa_flow_tn, zone_055_hw_valve
+sampling=1 min :: columns: ALL
+desc=Heating water valve position of Zone * :: columns: zone_055_hw_valve
+desc=Roof Top Unit * filtered supply air flow rate (*: 001, 002, 003, 004) :: columns: rtu_003_fltrd_sa_flow_tn
+unit=% :: columns: zone_055_hw_valve
+unit=CFM :: columns: rtu_003_fltrd_sa_flow_tn

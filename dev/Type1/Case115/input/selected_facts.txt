@@ -1,0 +1,12 @@
+columns in scope: zone_016_temp, zone_037_temp
+desc=Zone temperature of exterior zone :: columns: ALL
+unit=°F :: columns: ALL
+sampling=1 min :: columns: ALL
+class=Zone_Air_Temperature_Sensor :: columns: ALL
+floor=Floor_G :: columns: ALL
+zone=zone_016 :: columns: zone_016_temp
+zone=zone_037 :: columns: zone_037_temp
+vav=UTF_2-1 :: columns: zone_016_temp
+vav=UTF_2-17 :: columns: zone_037_temp
+rtu=RTU01 :: columns: zone_016_temp
+rtu=RTU04 :: columns: zone_037_temp

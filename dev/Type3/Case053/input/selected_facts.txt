@@ -1,0 +1,24 @@
+columns in scope: occ_fourth_south, rtu_001_pa_static_stpt_tn, rtu_004_pa_static_stpt_tn, zone_023_temp, zone_061_temp
+sampling=1 min :: columns: ALL
+vav=UTF_2-7 :: columns: zone_023_temp
+vav=UTF_G-14 :: columns: zone_061_temp
+desc=Occupant counts in the south half of forth floor :: columns: occ_fourth_south
+desc=Roof Top Unit * air pressure static setpoint (*: 001, 002, 003, 004) :: columns: rtu_001_pa_static_stpt_tn, rtu_004_pa_static_stpt_tn
+desc=Zone temperature of exterior zone :: columns: zone_023_temp, zone_061_temp
+unit=/ :: columns: occ_fourth_south
+unit=psi :: columns: rtu_001_pa_static_stpt_tn, rtu_004_pa_static_stpt_tn
+unit=°F :: columns: zone_023_temp, zone_061_temp
+class=Occupant_Count :: columns: occ_fourth_south
+class=Supply_Air_Static_Pressure_Setpoint :: columns: rtu_001_pa_static_stpt_tn, rtu_004_pa_static_stpt_tn
+class=Zone_Air_Temperature_Sensor :: columns: zone_023_temp, zone_061_temp
+rtu=RTU01 :: columns: rtu_001_pa_static_stpt_tn, zone_023_temp
+rtu=RTU02 :: columns: zone_061_temp
+rtu=RTU04 :: columns: rtu_004_pa_static_stpt_tn
+floor=Building :: columns: occ_fourth_south
+floor=Floor_G :: columns: zone_023_temp
+floor=Floor_S :: columns: zone_061_temp
+zone=Floor_S :: columns: occ_fourth_south
+zone=RTU01 :: columns: rtu_001_pa_static_stpt_tn
+zone=RTU04 :: columns: rtu_004_pa_static_stpt_tn
+zone=zone_023 :: columns: zone_023_temp
+zone=zone_061 :: columns: zone_061_temp

@@ -1,0 +1,8 @@
+columns in scope: rtu_001_oadmpr_pct, zone_017_hw_valve, zone_024_hw_valve
+unit=% :: columns: ALL
+sampling=1 min :: columns: ALL
+class=Outdoor_Air_Damper :: columns: rtu_001_oadmpr_pct
+zone=RTU01 :: columns: rtu_001_oadmpr_pct
+rtu=RTU01 :: columns: rtu_001_oadmpr_pct
+desc=Heating water valve position of Zone * :: columns: zone_017_hw_valve, zone_024_hw_valve
+desc=Roof Top Unit * outdoor air damper position (*: 001, 002, 003, 004) :: columns: rtu_001_oadmpr_pct

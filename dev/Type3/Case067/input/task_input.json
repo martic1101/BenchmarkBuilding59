@@ -1,0 +1,64 @@
+{
+ "source_files": [
+  "occ.csv",
+  "rtu_ma_t.csv",
+  "rtu_sa_t_sp.csv"
+ ],
+ "example_day": "2018-06-07",
+ "target_schema": [
+  {
+   "name": "timestamp",
+   "dtype": "string 'YYYY-MM-DD HH:MM:SS'"
+  },
+  {
+   "name": "occ_fourth_south",
+   "dtype": "float",
+   "unit": "/"
+  },
+  {
+   "name": "rtu_001_ma_temp",
+   "dtype": "float",
+   "unit": "°F"
+  },
+  {
+   "name": "rtu_002_ma_temp",
+   "dtype": "float",
+   "unit": "°F"
+  },
+  {
+   "name": "rtu_001_sat_sp_tn",
+   "dtype": "float",
+   "unit": "°F"
+  }
+ ],
+ "n_example_day_target_rows": 48,
+ "n_example_day_source_rows": {
+  "occ.csv": 1440,
+  "rtu_ma_t.csv": 1440,
+  "rtu_sa_t_sp.csv": 2880
+ },
+ "source_blocks": {
+  "occ.csv": [
+   30,
+   30,
+   30,
+   30,
+   30
+  ],
+  "rtu_ma_t.csv": [
+   30,
+   30,
+   30,
+   30,
+   30
+  ],
+  "rtu_sa_t_sp.csv": [
+   30,
+   30,
+   30,
+   30,
+   30
+  ]
+ },
+ "note": "source_example/ holds only the source rows inside the time intervals of the shown target rows; source_blocks gives the sizes of the contiguous runs (shown as '...' between runs in the prompt)."
+}

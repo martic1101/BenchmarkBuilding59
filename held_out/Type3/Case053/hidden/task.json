@@ -1,0 +1,167 @@
+{
+  "id": "T3-056",
+  "family": "T3",
+  "source_files": [
+    "ashp_hw.csv",
+    "zone_temp_sp_h.csv"
+  ],
+  "target_schema": [
+    {
+      "name": "timestamp",
+      "dtype": "string 'YYYY-MM-DD HH:MM:SS'",
+      "description": "start of interval"
+    },
+    {
+      "name": "aru_001_hwr_temp",
+      "dtype": "float",
+      "unit": "°F",
+      "description": "Hot water return temperature (°F), 30-minute interval"
+    },
+    {
+      "name": "aru_001_hws_temp",
+      "dtype": "float",
+      "unit": "°F",
+      "description": "Hot water supply temperature (°F), 30-minute interval"
+    },
+    {
+      "name": "zone_069_heating_sp",
+      "dtype": "float",
+      "unit": "°F",
+      "description": "Heating temperature setpoint of Zone * (°F), 30-minute interval"
+    }
+  ],
+  "example_day": "2020-08-03",
+  "test_days": [
+    "2019-11-09",
+    "2019-11-10"
+  ],
+  "source_dates_example": {
+    "ashp_hw": [
+      "2020-08-03"
+    ],
+    "zone_temp_sp_h": [
+      "2020-08-02",
+      "2020-08-03"
+    ]
+  },
+  "source_dates_test": {
+    "ashp_hw": [
+      "2019-11-09",
+      "2019-11-10"
+    ],
+    "zone_temp_sp_h": [
+      "2019-11-08",
+      "2019-11-09",
+      "2019-11-10"
+    ]
+  },
+  "n_target_rows_example": 48,
+  "n_target_rows_test": 96,
+  "nl_instruction": "Join ashp_hw.csv, zone_temp_sp_h.csv on timestamp (inner join) after aggregating each to 30-minute intervals using the maximum; keep only aru_001_hwr_temp, aru_001_hws_temp, zone_069_heating_sp. Timestamp = start of interval.",
+  "needs": [
+    "sampling_interval",
+    "time_alignment",
+    "join",
+    "aggregation"
+  ],
+  "knowledge": [
+    {
+      "kind": "sampling_interval",
+      "file": "ashp_hw.csv",
+      "value_min": 5.0,
+      "dict_freq": "5 min"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "ashp_hw.csv",
+      "column": "aru_001_hwr_temp",
+      "description": "Hot water return temperature",
+      "quantity_kind": "temperature"
+    },
+    {
+      "kind": "unit",
+      "file": "ashp_hw.csv",
+      "column": "aru_001_hwr_temp",
+      "true_unit": "°F",
+      "dict_unit": "°F"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "ashp_hw.csv",
+      "column": "aru_001_hws_temp",
+      "description": "Hot water supply temperature",
+      "quantity_kind": "temperature"
+    },
+    {
+      "kind": "unit",
+      "file": "ashp_hw.csv",
+      "column": "aru_001_hws_temp",
+      "true_unit": "°F",
+      "dict_unit": "°F"
+    },
+    {
+      "kind": "sampling_interval",
+      "file": "zone_temp_sp_h.csv",
+      "value_min": 5.0,
+      "dict_freq": "5 min"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "zone_temp_sp_h.csv",
+      "column": "zone_069_heating_sp",
+      "description": "Heating temperature setpoint of Zone *",
+      "quantity_kind": "temperature_setpoint"
+    },
+    {
+      "kind": "unit",
+      "file": "zone_temp_sp_h.csv",
+      "column": "zone_069_heating_sp",
+      "true_unit": "°F",
+      "dict_unit": "°F"
+    }
+  ],
+  "discriminates_against": [
+    "outer_join",
+    "agg_mean",
+    "agg_min"
+  ],
+  "spec": {
+    "family": "T3",
+    "sources": [
+      {
+        "file": "ashp_hw",
+        "columns": [
+          "aru_001_hwr_temp",
+          "aru_001_hws_temp"
+        ]
+      },
+      {
+        "file": "zone_temp_sp_h",
+        "columns": [
+          "zone_069_heating_sp"
+        ]
+      }
+    ],
+    "freq": "30min",
+    "agg": "max",
+    "how": "inner",
+    "out_columns": [
+      "aru_001_hwr_temp",
+      "aru_001_hws_temp",
+      "zone_069_heating_sp"
+    ],
+    "target_units": {
+      "aru_001_hwr_temp": "°F",
+      "aru_001_hws_temp": "°F",
+      "zone_069_heating_sp": "°F"
+    }
+  },
+  "benchmark_version": "holdout_v2",
+  "shown_rows": [
+    0,
+    12,
+    24,
+    35,
+    47
+  ]
+}

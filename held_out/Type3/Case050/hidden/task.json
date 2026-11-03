@@ -1,0 +1,167 @@
+{
+  "id": "T3-053",
+  "family": "T3",
+  "source_files": [
+    "uft_hw_valve.csv",
+    "zone_temp_interior.csv"
+  ],
+  "target_schema": [
+    {
+      "name": "timestamp",
+      "dtype": "string 'YYYY-MM-DD HH:MM:SS'",
+      "description": "start of interval"
+    },
+    {
+      "name": "zone_046_hw_valve",
+      "dtype": "float",
+      "unit": "%",
+      "description": "Heating water valve position of Zone * (%), 15-minute interval"
+    },
+    {
+      "name": "cerc_templogger_11",
+      "dtype": "float",
+      "unit": "°C",
+      "description": "Zone temperature of interior zone (°C), 15-minute interval"
+    },
+    {
+      "name": "cerc_templogger_13",
+      "dtype": "float",
+      "unit": "°C",
+      "description": "Zone temperature of interior zone (°C), 15-minute interval"
+    }
+  ],
+  "example_day": "2019-07-18",
+  "test_days": [
+    "2018-04-03",
+    "2018-04-04"
+  ],
+  "source_dates_example": {
+    "uft_hw_valve": [
+      "2019-07-18"
+    ],
+    "zone_temp_interior": [
+      "2019-07-17",
+      "2019-07-18"
+    ]
+  },
+  "source_dates_test": {
+    "uft_hw_valve": [
+      "2018-04-03",
+      "2018-04-04"
+    ],
+    "zone_temp_interior": [
+      "2018-04-02",
+      "2018-04-03",
+      "2018-04-04"
+    ]
+  },
+  "n_target_rows_example": 96,
+  "n_target_rows_test": 192,
+  "nl_instruction": "Join uft_hw_valve.csv, zone_temp_interior.csv on timestamp (inner join) after aggregating each to 15-minute intervals using the minimum; keep only zone_046_hw_valve, cerc_templogger_11, cerc_templogger_13. Timestamp = start of interval.",
+  "needs": [
+    "sampling_interval",
+    "time_alignment",
+    "join",
+    "aggregation"
+  ],
+  "knowledge": [
+    {
+      "kind": "sampling_interval",
+      "file": "uft_hw_valve.csv",
+      "value_min": 1.0,
+      "dict_freq": "1 min"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "uft_hw_valve.csv",
+      "column": "zone_046_hw_valve",
+      "description": "Heating water valve position of Zone *",
+      "quantity_kind": "valve_position"
+    },
+    {
+      "kind": "unit",
+      "file": "uft_hw_valve.csv",
+      "column": "zone_046_hw_valve",
+      "true_unit": "%",
+      "dict_unit": "%"
+    },
+    {
+      "kind": "sampling_interval",
+      "file": "zone_temp_interior.csv",
+      "value_min": 10.0,
+      "dict_freq": "10 min"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "zone_temp_interior.csv",
+      "column": "cerc_templogger_11",
+      "description": "Zone temperature of interior zone",
+      "quantity_kind": "temperature"
+    },
+    {
+      "kind": "unit",
+      "file": "zone_temp_interior.csv",
+      "column": "cerc_templogger_11",
+      "true_unit": "°C",
+      "dict_unit": "°F"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "zone_temp_interior.csv",
+      "column": "cerc_templogger_13",
+      "description": "Zone temperature of interior zone",
+      "quantity_kind": "temperature"
+    },
+    {
+      "kind": "unit",
+      "file": "zone_temp_interior.csv",
+      "column": "cerc_templogger_13",
+      "true_unit": "°C",
+      "dict_unit": "°F"
+    }
+  ],
+  "discriminates_against": [
+    "outer_join",
+    "agg_mean",
+    "agg_max"
+  ],
+  "spec": {
+    "family": "T3",
+    "sources": [
+      {
+        "file": "uft_hw_valve",
+        "columns": [
+          "zone_046_hw_valve"
+        ]
+      },
+      {
+        "file": "zone_temp_interior",
+        "columns": [
+          "cerc_templogger_11",
+          "cerc_templogger_13"
+        ]
+      }
+    ],
+    "freq": "15min",
+    "agg": "min",
+    "how": "inner",
+    "out_columns": [
+      "zone_046_hw_valve",
+      "cerc_templogger_11",
+      "cerc_templogger_13"
+    ],
+    "target_units": {
+      "zone_046_hw_valve": "%",
+      "cerc_templogger_11": "°C",
+      "cerc_templogger_13": "°C"
+    }
+  },
+  "benchmark_version": "holdout_v2",
+  "shown_rows": [
+    0,
+    24,
+    48,
+    71,
+    95
+  ]
+}

@@ -1,0 +1,55 @@
+{
+ "source_files": [
+  "ashp_hw.csv",
+  "wifi.csv"
+ ],
+ "example_day": "2020-10-18",
+ "target_schema": [
+  {
+   "name": "timestamp",
+   "dtype": "string 'YYYY-MM-DD HH:MM:SS'"
+  },
+  {
+   "name": "aru_001_hwr_temp",
+   "dtype": "float",
+   "unit": "°F"
+  },
+  {
+   "name": "aru_001_hws_fr_gpm",
+   "dtype": "float",
+   "unit": "gpm"
+  },
+  {
+   "name": "wifi_fourth_south",
+   "dtype": "float",
+   "unit": "/"
+  },
+  {
+   "name": "wifi_third_south",
+   "dtype": "float",
+   "unit": "/"
+  }
+ ],
+ "n_example_day_target_rows": 288,
+ "n_example_day_source_rows": {
+  "ashp_hw.csv": 288,
+  "wifi.csv": 576
+ },
+ "source_blocks": {
+  "ashp_hw.csv": [
+   1,
+   1,
+   1,
+   1,
+   1
+  ],
+  "wifi.csv": [
+   1,
+   1,
+   1,
+   1,
+   1
+  ]
+ },
+ "note": "source_example/ holds only the source rows inside the time intervals of the shown target rows; source_blocks gives the sizes of the contiguous runs (shown as '...' between runs in the prompt)."
+}

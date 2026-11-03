@@ -1,0 +1,14 @@
+columns in scope: aru_001_cwr_temp, aru_001_cws_fr_gpm, rtu_001_ra_temp
+rtu=RTU01 :: columns: rtu_001_ra_temp
+unit=CFM :: columns: aru_001_cws_fr_gpm
+unit=°F :: columns: aru_001_cwr_temp, rtu_001_ra_temp
+sampling=1 min :: columns: rtu_001_ra_temp
+sampling=5 min :: columns: aru_001_cwr_temp, aru_001_cws_fr_gpm
+zone=Building :: columns: aru_001_cwr_temp, aru_001_cws_fr_gpm
+zone=RTU01 :: columns: rtu_001_ra_temp
+desc=Chilled water fow rate :: columns: aru_001_cws_fr_gpm
+desc=Chilled water return temperature :: columns: aru_001_cwr_temp
+desc=Roof Top Unit * return air temperature (*: 001, 002, 003, 004) :: columns: rtu_001_ra_temp
+class=Chilled_Water_Supply_Flow_Rate :: columns: aru_001_cws_fr_gpm
+class=Chilled_Water_Temperature_Sensor :: columns: aru_001_cwr_temp
+class=Return_Air_Temperature_Sensor :: columns: rtu_001_ra_temp

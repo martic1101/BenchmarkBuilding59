@@ -1,0 +1,165 @@
+{
+  "id": "T3-060",
+  "family": "T3",
+  "source_files": [
+    "ashp_meter.csv",
+    "rtu_oa_t.csv"
+  ],
+  "target_schema": [
+    {
+      "name": "timestamp",
+      "dtype": "string 'YYYY-MM-DD HH:MM:SS'",
+      "description": "start of interval"
+    },
+    {
+      "name": "aru_001_power_mbtuph",
+      "dtype": "float",
+      "unit": "mbtuph",
+      "description": "Heat meter for air source heat pump (mbtuph), 1-hour averages"
+    },
+    {
+      "name": "rtu_003_oa_temp",
+      "dtype": "float",
+      "unit": "°F",
+      "description": "Roof Top Unit * outdoor air temperature (*: 001, 002, 003, 004) (°F), 1-hour averages"
+    },
+    {
+      "name": "rtu_004_oa_temp",
+      "dtype": "float",
+      "unit": "°F",
+      "description": "Roof Top Unit * outdoor air temperature (*: 001, 002, 003, 004) (°F), 1-hour averages"
+    }
+  ],
+  "example_day": "2020-11-23",
+  "test_days": [
+    "2020-10-03",
+    "2020-10-04"
+  ],
+  "source_dates_example": {
+    "ashp_meter": [
+      "2020-11-23"
+    ],
+    "rtu_oa_t": [
+      "2020-11-22",
+      "2020-11-23"
+    ]
+  },
+  "source_dates_test": {
+    "ashp_meter": [
+      "2020-10-03",
+      "2020-10-04"
+    ],
+    "rtu_oa_t": [
+      "2020-10-02",
+      "2020-10-03",
+      "2020-10-04"
+    ]
+  },
+  "n_target_rows_example": 24,
+  "n_target_rows_test": 48,
+  "nl_instruction": "Join ashp_meter.csv, rtu_oa_t.csv on timestamp (inner join) after aggregating each to 1-hour averages; keep only aru_001_power_mbtuph, rtu_003_oa_temp, rtu_004_oa_temp. Timestamp = start of interval.",
+  "needs": [
+    "sampling_interval",
+    "time_alignment",
+    "join",
+    "aggregation"
+  ],
+  "knowledge": [
+    {
+      "kind": "sampling_interval",
+      "file": "ashp_meter.csv",
+      "value_min": 5.0,
+      "dict_freq": "5 min"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "ashp_meter.csv",
+      "column": "aru_001_power_mbtuph",
+      "description": "Heat meter for air source heat pump",
+      "quantity_kind": "thermal_power"
+    },
+    {
+      "kind": "unit",
+      "file": "ashp_meter.csv",
+      "column": "aru_001_power_mbtuph",
+      "true_unit": "mbtuph",
+      "dict_unit": "mbtuph"
+    },
+    {
+      "kind": "sampling_interval",
+      "file": "rtu_oa_t.csv",
+      "value_min": 1.0,
+      "dict_freq": "1 min"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "rtu_oa_t.csv",
+      "column": "rtu_003_oa_temp",
+      "description": "Roof Top Unit * outdoor air temperature (*: 001, 002, 003, 004)",
+      "quantity_kind": "temperature"
+    },
+    {
+      "kind": "unit",
+      "file": "rtu_oa_t.csv",
+      "column": "rtu_003_oa_temp",
+      "true_unit": "°F",
+      "dict_unit": "°F"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "rtu_oa_t.csv",
+      "column": "rtu_004_oa_temp",
+      "description": "Roof Top Unit * outdoor air temperature (*: 001, 002, 003, 004)",
+      "quantity_kind": "temperature"
+    },
+    {
+      "kind": "unit",
+      "file": "rtu_oa_t.csv",
+      "column": "rtu_004_oa_temp",
+      "true_unit": "°F",
+      "dict_unit": "°F"
+    }
+  ],
+  "discriminates_against": [
+    "outer_join",
+    "agg_max"
+  ],
+  "spec": {
+    "family": "T3",
+    "sources": [
+      {
+        "file": "ashp_meter",
+        "columns": [
+          "aru_001_power_mbtuph"
+        ]
+      },
+      {
+        "file": "rtu_oa_t",
+        "columns": [
+          "rtu_003_oa_temp",
+          "rtu_004_oa_temp"
+        ]
+      }
+    ],
+    "freq": "1h",
+    "agg": "mean",
+    "how": "inner",
+    "out_columns": [
+      "aru_001_power_mbtuph",
+      "rtu_003_oa_temp",
+      "rtu_004_oa_temp"
+    ],
+    "target_units": {
+      "aru_001_power_mbtuph": "mbtuph",
+      "rtu_003_oa_temp": "°F",
+      "rtu_004_oa_temp": "°F"
+    }
+  },
+  "shown_rows": [
+    0,
+    6,
+    12,
+    17,
+    23
+  ]
+}

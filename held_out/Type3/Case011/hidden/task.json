@@ -1,0 +1,164 @@
+{
+  "id": "T3-012",
+  "family": "T3",
+  "source_files": [
+    "occ.csv",
+    "rtu_oa_t.csv"
+  ],
+  "target_schema": [
+    {
+      "name": "timestamp",
+      "dtype": "string 'YYYY-MM-DD HH:MM:SS'",
+      "description": "start of interval"
+    },
+    {
+      "name": "occ_fourth_south",
+      "dtype": "float",
+      "unit": "/",
+      "description": "Occupant counts in the south half of forth floor (/), native interval (no aggregation)"
+    },
+    {
+      "name": "rtu_001_oa_temp",
+      "dtype": "float",
+      "unit": "°F",
+      "description": "Roof Top Unit * outdoor air temperature (*: 001, 002, 003, 004) (°F), native interval (no aggregation)"
+    },
+    {
+      "name": "rtu_002_oa_temp",
+      "dtype": "float",
+      "unit": "°F",
+      "description": "Roof Top Unit * outdoor air temperature (*: 001, 002, 003, 004) (°F), native interval (no aggregation)"
+    }
+  ],
+  "example_day": "2018-12-03",
+  "test_days": [
+    "2018-06-08",
+    "2018-06-09"
+  ],
+  "source_dates_example": {
+    "occ": [
+      "2018-12-03"
+    ],
+    "rtu_oa_t": [
+      "2018-12-02",
+      "2018-12-03"
+    ]
+  },
+  "source_dates_test": {
+    "occ": [
+      "2018-06-08",
+      "2018-06-09"
+    ],
+    "rtu_oa_t": [
+      "2018-06-07",
+      "2018-06-08",
+      "2018-06-09"
+    ]
+  },
+  "n_target_rows_example": 1440,
+  "n_target_rows_test": 2880,
+  "nl_instruction": "Join occ.csv, rtu_oa_t.csv on timestamp (inner join) at their native interval; keep only occ_fourth_south, rtu_001_oa_temp, rtu_002_oa_temp. Timestamp = start of interval.",
+  "needs": [
+    "sampling_interval",
+    "time_alignment",
+    "join"
+  ],
+  "knowledge": [
+    {
+      "kind": "sampling_interval",
+      "file": "occ.csv",
+      "value_min": 1.0,
+      "dict_freq": "1 min"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "occ.csv",
+      "column": "occ_fourth_south",
+      "description": "Occupant counts in the south half of forth floor",
+      "quantity_kind": "occupant_count"
+    },
+    {
+      "kind": "unit",
+      "file": "occ.csv",
+      "column": "occ_fourth_south",
+      "true_unit": "/",
+      "dict_unit": "/"
+    },
+    {
+      "kind": "sampling_interval",
+      "file": "rtu_oa_t.csv",
+      "value_min": 1.0,
+      "dict_freq": "1 min"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "rtu_oa_t.csv",
+      "column": "rtu_001_oa_temp",
+      "description": "Roof Top Unit * outdoor air temperature (*: 001, 002, 003, 004)",
+      "quantity_kind": "temperature"
+    },
+    {
+      "kind": "unit",
+      "file": "rtu_oa_t.csv",
+      "column": "rtu_001_oa_temp",
+      "true_unit": "°F",
+      "dict_unit": "°F"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "rtu_oa_t.csv",
+      "column": "rtu_002_oa_temp",
+      "description": "Roof Top Unit * outdoor air temperature (*: 001, 002, 003, 004)",
+      "quantity_kind": "temperature"
+    },
+    {
+      "kind": "unit",
+      "file": "rtu_oa_t.csv",
+      "column": "rtu_002_oa_temp",
+      "true_unit": "°F",
+      "dict_unit": "°F"
+    }
+  ],
+  "discriminates_against": [
+    "outer_join"
+  ],
+  "spec": {
+    "family": "T3",
+    "sources": [
+      {
+        "file": "occ",
+        "columns": [
+          "occ_fourth_south"
+        ]
+      },
+      {
+        "file": "rtu_oa_t",
+        "columns": [
+          "rtu_001_oa_temp",
+          "rtu_002_oa_temp"
+        ]
+      }
+    ],
+    "freq": null,
+    "agg": "mean",
+    "how": "inner",
+    "out_columns": [
+      "occ_fourth_south",
+      "rtu_001_oa_temp",
+      "rtu_002_oa_temp"
+    ],
+    "target_units": {
+      "occ_fourth_south": "/",
+      "rtu_001_oa_temp": "°F",
+      "rtu_002_oa_temp": "°F"
+    }
+  },
+  "benchmark_version": "holdout_v2",
+  "shown_rows": [
+    0,
+    360,
+    720,
+    1079,
+    1439
+  ]
+}

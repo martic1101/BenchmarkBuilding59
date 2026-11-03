@@ -1,0 +1,6 @@
+columns in scope: aru_001_hws_temp
+desc=Hot water supply temperature :: columns: ALL
+unit=°F :: columns: ALL
+sampling=5 min :: columns: ALL
+class=Hot_Water_Temperature_Sensor :: columns: ALL
+zone=Building :: columns: ALL

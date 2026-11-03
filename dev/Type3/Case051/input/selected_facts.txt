@@ -1,0 +1,11 @@
+columns in scope: zone_022_hw_valve, zone_048_temp
+sampling=1 min :: columns: ALL
+class=Zone_Air_Temperature_Sensor :: columns: zone_048_temp
+zone=zone_048 :: columns: zone_048_temp
+vav=UTF_G-3 :: columns: zone_048_temp
+rtu=RTU02 :: columns: zone_048_temp
+floor=Floor_S :: columns: zone_048_temp
+desc=Heating water valve position of Zone * :: columns: zone_022_hw_valve
+desc=Zone temperature of exterior zone :: columns: zone_048_temp
+unit=% :: columns: zone_022_hw_valve
+unit=°F :: columns: zone_048_temp

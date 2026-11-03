@@ -1,0 +1,45 @@
+{
+ "source_files": [
+  "ashp_meter.csv",
+  "zone_temp_sp_h.csv"
+ ],
+ "example_day": "2020-09-08",
+ "target_schema": [
+  {
+   "name": "timestamp",
+   "dtype": "string 'YYYY-MM-DD HH:MM:SS'"
+  },
+  {
+   "name": "aru_001_power_mbtuph",
+   "dtype": "float",
+   "unit": "mbtuph"
+  },
+  {
+   "name": "zone_048_heating_sp",
+   "dtype": "float",
+   "unit": "°F"
+  }
+ ],
+ "n_example_day_target_rows": 288,
+ "n_example_day_source_rows": {
+  "ashp_meter.csv": 288,
+  "zone_temp_sp_h.csv": 576
+ },
+ "source_blocks": {
+  "ashp_meter.csv": [
+   1,
+   1,
+   1,
+   1,
+   1
+  ],
+  "zone_temp_sp_h.csv": [
+   1,
+   1,
+   1,
+   1,
+   1
+  ]
+ },
+ "note": "source_example/ holds only the source rows inside the time intervals of the shown target rows; source_blocks gives the sizes of the contiguous runs (shown as '...' between runs in the prompt)."
+}

@@ -1,0 +1,50 @@
+{
+ "source_files": [
+  "rtu_oa_fr.csv",
+  "zone_co2.csv"
+ ],
+ "example_day": "2019-11-05",
+ "target_schema": [
+  {
+   "name": "timestamp",
+   "dtype": "string 'YYYY-MM-DD HH:MM:SS'"
+  },
+  {
+   "name": "rtu_001_oa_flow_tn",
+   "dtype": "float",
+   "unit": "CFM"
+  },
+  {
+   "name": "rtu_003_oa_flow_tn",
+   "dtype": "float",
+   "unit": "CFM"
+  },
+  {
+   "name": "zone_072_co2",
+   "dtype": "float",
+   "unit": "ppm"
+  }
+ ],
+ "n_example_day_target_rows": 1440,
+ "n_example_day_source_rows": {
+  "rtu_oa_fr.csv": 1440,
+  "zone_co2.csv": 2880
+ },
+ "source_blocks": {
+  "rtu_oa_fr.csv": [
+   1,
+   1,
+   1,
+   1,
+   1
+  ],
+  "zone_co2.csv": [
+   1,
+   1,
+   1,
+   1,
+   1
+  ]
+ },
+ "note": "source_example/ holds only the source rows inside the time intervals of the shown target rows; source_blocks gives the sizes of the contiguous runs (shown as '...' between runs in the prompt)."
+}

@@ -1,0 +1,12 @@
+columns in scope: air_temp_set_1, wifi_third_south
+floor=Building :: columns: wifi_third_south
+desc=Outdoor air temperature from sensor 1 :: columns: air_temp_set_1
+desc=Wifi connection counts in the south half of third floor :: columns: wifi_third_south
+unit=/ :: columns: wifi_third_south
+unit=°C :: columns: air_temp_set_1
+sampling=10 min :: columns: wifi_third_south
+sampling=15 min :: columns: air_temp_set_1
+class=Outdoor_Air_Temperature_Sensor :: columns: air_temp_set_1
+class=Wifi_AP :: columns: wifi_third_south
+zone=Building :: columns: air_temp_set_1
+zone=Floor_G :: columns: wifi_third_south

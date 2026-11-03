@@ -1,0 +1,164 @@
+{
+  "id": "T3-050",
+  "family": "T3",
+  "source_files": [
+    "rtu_oa_fr.csv",
+    "rtu_sa_p_sp.csv"
+  ],
+  "target_schema": [
+    {
+      "name": "timestamp",
+      "dtype": "string 'YYYY-MM-DD HH:MM:SS'",
+      "description": "start of interval"
+    },
+    {
+      "name": "rtu_001_oa_flow_tn",
+      "dtype": "float",
+      "unit": "CFM",
+      "description": "Roof Top Unit * outdoor air flow rate (*: 001, 002, 003, 004) (CFM), native interval (no aggregation)"
+    },
+    {
+      "name": "rtu_004_oa_flow_tn",
+      "dtype": "float",
+      "unit": "CFM",
+      "description": "Roof Top Unit * outdoor air flow rate (*: 001, 002, 003, 004) (CFM), native interval (no aggregation)"
+    },
+    {
+      "name": "rtu_004_pa_static_stpt_tn",
+      "dtype": "float",
+      "unit": "psi",
+      "description": "Roof Top Unit * air pressure static setpoint (*: 001, 002, 003, 004) (psi), native interval (no aggregation)"
+    }
+  ],
+  "example_day": "2018-12-08",
+  "test_days": [
+    "2020-06-10",
+    "2020-06-11"
+  ],
+  "source_dates_example": {
+    "rtu_oa_fr": [
+      "2018-12-08"
+    ],
+    "rtu_sa_p_sp": [
+      "2018-12-07",
+      "2018-12-08"
+    ]
+  },
+  "source_dates_test": {
+    "rtu_oa_fr": [
+      "2020-06-10",
+      "2020-06-11"
+    ],
+    "rtu_sa_p_sp": [
+      "2020-06-09",
+      "2020-06-10",
+      "2020-06-11"
+    ]
+  },
+  "n_target_rows_example": 1440,
+  "n_target_rows_test": 2880,
+  "nl_instruction": "Join rtu_oa_fr.csv, rtu_sa_p_sp.csv on timestamp (inner join) at their native interval; keep only rtu_001_oa_flow_tn, rtu_004_oa_flow_tn, rtu_004_pa_static_stpt_tn. Timestamp = start of interval.",
+  "needs": [
+    "sampling_interval",
+    "time_alignment",
+    "join"
+  ],
+  "knowledge": [
+    {
+      "kind": "sampling_interval",
+      "file": "rtu_oa_fr.csv",
+      "value_min": 1.0,
+      "dict_freq": "1 min"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "rtu_oa_fr.csv",
+      "column": "rtu_001_oa_flow_tn",
+      "description": "Roof Top Unit * outdoor air flow rate (*: 001, 002, 003, 004)",
+      "quantity_kind": "air_flow"
+    },
+    {
+      "kind": "unit",
+      "file": "rtu_oa_fr.csv",
+      "column": "rtu_001_oa_flow_tn",
+      "true_unit": "CFM",
+      "dict_unit": "CFM"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "rtu_oa_fr.csv",
+      "column": "rtu_004_oa_flow_tn",
+      "description": "Roof Top Unit * outdoor air flow rate (*: 001, 002, 003, 004)",
+      "quantity_kind": "air_flow"
+    },
+    {
+      "kind": "unit",
+      "file": "rtu_oa_fr.csv",
+      "column": "rtu_004_oa_flow_tn",
+      "true_unit": "CFM",
+      "dict_unit": "CFM"
+    },
+    {
+      "kind": "sampling_interval",
+      "file": "rtu_sa_p_sp.csv",
+      "value_min": 1.0,
+      "dict_freq": "1 min"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "rtu_sa_p_sp.csv",
+      "column": "rtu_004_pa_static_stpt_tn",
+      "description": "Roof Top Unit * air pressure static setpoint (*: 001, 002, 003, 004)",
+      "quantity_kind": "pressure_setpoint"
+    },
+    {
+      "kind": "unit",
+      "file": "rtu_sa_p_sp.csv",
+      "column": "rtu_004_pa_static_stpt_tn",
+      "true_unit": "psi",
+      "dict_unit": "psi"
+    }
+  ],
+  "discriminates_against": [
+    "outer_join"
+  ],
+  "spec": {
+    "family": "T3",
+    "sources": [
+      {
+        "file": "rtu_oa_fr",
+        "columns": [
+          "rtu_001_oa_flow_tn",
+          "rtu_004_oa_flow_tn"
+        ]
+      },
+      {
+        "file": "rtu_sa_p_sp",
+        "columns": [
+          "rtu_004_pa_static_stpt_tn"
+        ]
+      }
+    ],
+    "freq": null,
+    "agg": "mean",
+    "how": "inner",
+    "out_columns": [
+      "rtu_001_oa_flow_tn",
+      "rtu_004_oa_flow_tn",
+      "rtu_004_pa_static_stpt_tn"
+    ],
+    "target_units": {
+      "rtu_001_oa_flow_tn": "CFM",
+      "rtu_004_oa_flow_tn": "CFM",
+      "rtu_004_pa_static_stpt_tn": "psi"
+    }
+  },
+  "benchmark_version": "holdout_v2",
+  "shown_rows": [
+    0,
+    360,
+    720,
+    1079,
+    1439
+  ]
+}

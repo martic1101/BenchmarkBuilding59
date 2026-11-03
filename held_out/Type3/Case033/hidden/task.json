@@ -1,0 +1,144 @@
+{
+  "id": "T3-035",
+  "family": "T3",
+  "source_files": [
+    "ashp_cw.csv",
+    "rtu_plenum_p.csv"
+  ],
+  "target_schema": [
+    {
+      "name": "timestamp",
+      "dtype": "string 'YYYY-MM-DD HH:MM:SS'",
+      "description": "start of interval"
+    },
+    {
+      "name": "aru_001_cws_fr_gpm",
+      "dtype": "float",
+      "unit": "gpm",
+      "description": "Chilled water fow rate (gpm), 15-minute interval"
+    },
+    {
+      "name": "rtu_001_fltrd_lvl2_plenum_press_tn",
+      "dtype": "float",
+      "unit": "psi",
+      "description": "Roof Top Unit * plenum air pressure at floor ** (*: 001, 002, 003, 004; **: gnd_lvl, lvl2) (psi), 15-minute interval"
+    }
+  ],
+  "example_day": "2020-09-19",
+  "test_days": [
+    "2020-08-04",
+    "2020-08-05"
+  ],
+  "source_dates_example": {
+    "ashp_cw": [
+      "2020-09-19"
+    ],
+    "rtu_plenum_p": [
+      "2020-09-18",
+      "2020-09-19"
+    ]
+  },
+  "source_dates_test": {
+    "ashp_cw": [
+      "2020-08-04",
+      "2020-08-05"
+    ],
+    "rtu_plenum_p": [
+      "2020-08-03",
+      "2020-08-04",
+      "2020-08-05"
+    ]
+  },
+  "n_target_rows_example": 96,
+  "n_target_rows_test": 192,
+  "nl_instruction": "Join ashp_cw.csv, rtu_plenum_p.csv on timestamp (inner join) after aggregating each to 15-minute intervals using the maximum; keep only aru_001_cws_fr_gpm, rtu_001_fltrd_lvl2_plenum_press_tn. Timestamp = start of interval.",
+  "needs": [
+    "sampling_interval",
+    "time_alignment",
+    "join",
+    "aggregation"
+  ],
+  "knowledge": [
+    {
+      "kind": "sampling_interval",
+      "file": "ashp_cw.csv",
+      "value_min": 5.0,
+      "dict_freq": "5 min"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "ashp_cw.csv",
+      "column": "aru_001_cws_fr_gpm",
+      "description": "Chilled water fow rate",
+      "quantity_kind": "water_flow"
+    },
+    {
+      "kind": "unit",
+      "file": "ashp_cw.csv",
+      "column": "aru_001_cws_fr_gpm",
+      "true_unit": "gpm",
+      "dict_unit": "CFM"
+    },
+    {
+      "kind": "sampling_interval",
+      "file": "rtu_plenum_p.csv",
+      "value_min": 1.0,
+      "dict_freq": "1 min"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "rtu_plenum_p.csv",
+      "column": "rtu_001_fltrd_lvl2_plenum_press_tn",
+      "description": "Roof Top Unit * plenum air pressure at floor ** (*: 001, 002, 003, 004; **: gnd_lvl, lvl2)",
+      "quantity_kind": "pressure"
+    },
+    {
+      "kind": "unit",
+      "file": "rtu_plenum_p.csv",
+      "column": "rtu_001_fltrd_lvl2_plenum_press_tn",
+      "true_unit": "psi",
+      "dict_unit": "psi"
+    }
+  ],
+  "discriminates_against": [
+    "outer_join",
+    "agg_mean",
+    "agg_min"
+  ],
+  "spec": {
+    "family": "T3",
+    "sources": [
+      {
+        "file": "ashp_cw",
+        "columns": [
+          "aru_001_cws_fr_gpm"
+        ]
+      },
+      {
+        "file": "rtu_plenum_p",
+        "columns": [
+          "rtu_001_fltrd_lvl2_plenum_press_tn"
+        ]
+      }
+    ],
+    "freq": "15min",
+    "agg": "max",
+    "how": "inner",
+    "out_columns": [
+      "aru_001_cws_fr_gpm",
+      "rtu_001_fltrd_lvl2_plenum_press_tn"
+    ],
+    "target_units": {
+      "aru_001_cws_fr_gpm": "gpm",
+      "rtu_001_fltrd_lvl2_plenum_press_tn": "psi"
+    }
+  },
+  "benchmark_version": "holdout_v2",
+  "shown_rows": [
+    0,
+    24,
+    48,
+    71,
+    95
+  ]
+}

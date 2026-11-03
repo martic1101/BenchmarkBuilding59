@@ -1,0 +1,142 @@
+{
+  "id": "T3-024",
+  "family": "T3",
+  "source_files": [
+    "ashp_meter.csv",
+    "zone_temp_exterior.csv"
+  ],
+  "target_schema": [
+    {
+      "name": "timestamp",
+      "dtype": "string 'YYYY-MM-DD HH:MM:SS'",
+      "description": "start of interval"
+    },
+    {
+      "name": "aru_001_power_mbtuph",
+      "dtype": "float",
+      "unit": "mbtuph",
+      "description": "Heat meter for air source heat pump (mbtuph), 30-minute averages"
+    },
+    {
+      "name": "zone_044_temp",
+      "dtype": "float",
+      "unit": "°F",
+      "description": "Zone temperature of exterior zone (°F), 30-minute averages"
+    }
+  ],
+  "example_day": "2020-12-23",
+  "test_days": [
+    "2020-11-17",
+    "2020-11-18"
+  ],
+  "source_dates_example": {
+    "ashp_meter": [
+      "2020-12-23"
+    ],
+    "zone_temp_exterior": [
+      "2020-12-22",
+      "2020-12-23"
+    ]
+  },
+  "source_dates_test": {
+    "ashp_meter": [
+      "2020-11-17",
+      "2020-11-18"
+    ],
+    "zone_temp_exterior": [
+      "2020-11-16",
+      "2020-11-17",
+      "2020-11-18"
+    ]
+  },
+  "n_target_rows_example": 48,
+  "n_target_rows_test": 96,
+  "nl_instruction": "Join ashp_meter.csv, zone_temp_exterior.csv on timestamp (inner join) after aggregating each to 30-minute averages; keep only aru_001_power_mbtuph, zone_044_temp. Timestamp = start of interval.",
+  "needs": [
+    "sampling_interval",
+    "time_alignment",
+    "join",
+    "aggregation"
+  ],
+  "knowledge": [
+    {
+      "kind": "sampling_interval",
+      "file": "ashp_meter.csv",
+      "value_min": 5.0,
+      "dict_freq": "5 min"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "ashp_meter.csv",
+      "column": "aru_001_power_mbtuph",
+      "description": "Heat meter for air source heat pump",
+      "quantity_kind": "thermal_power"
+    },
+    {
+      "kind": "unit",
+      "file": "ashp_meter.csv",
+      "column": "aru_001_power_mbtuph",
+      "true_unit": "mbtuph",
+      "dict_unit": "mbtuph"
+    },
+    {
+      "kind": "sampling_interval",
+      "file": "zone_temp_exterior.csv",
+      "value_min": 1.0,
+      "dict_freq": "1 min"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "zone_temp_exterior.csv",
+      "column": "zone_044_temp",
+      "description": "Zone temperature of exterior zone",
+      "quantity_kind": "temperature"
+    },
+    {
+      "kind": "unit",
+      "file": "zone_temp_exterior.csv",
+      "column": "zone_044_temp",
+      "true_unit": "°F",
+      "dict_unit": "°F"
+    }
+  ],
+  "discriminates_against": [
+    "outer_join",
+    "agg_max"
+  ],
+  "spec": {
+    "family": "T3",
+    "sources": [
+      {
+        "file": "ashp_meter",
+        "columns": [
+          "aru_001_power_mbtuph"
+        ]
+      },
+      {
+        "file": "zone_temp_exterior",
+        "columns": [
+          "zone_044_temp"
+        ]
+      }
+    ],
+    "freq": "30min",
+    "agg": "mean",
+    "how": "inner",
+    "out_columns": [
+      "aru_001_power_mbtuph",
+      "zone_044_temp"
+    ],
+    "target_units": {
+      "aru_001_power_mbtuph": "mbtuph",
+      "zone_044_temp": "°F"
+    }
+  },
+  "shown_rows": [
+    0,
+    12,
+    24,
+    35,
+    47
+  ]
+}

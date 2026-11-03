@@ -1,0 +1,190 @@
+{
+  "id": "T3-042",
+  "family": "T3",
+  "source_files": [
+    "occ.csv",
+    "rtu_ra_t.csv"
+  ],
+  "target_schema": [
+    {
+      "name": "timestamp",
+      "dtype": "string 'YYYY-MM-DD HH:MM:SS'",
+      "description": "start of interval"
+    },
+    {
+      "name": "occ_fourth_south",
+      "dtype": "float",
+      "unit": "/",
+      "description": "Occupant counts in the south half of forth floor (/), 1-hour interval"
+    },
+    {
+      "name": "occ_third_south",
+      "dtype": "float",
+      "unit": "/",
+      "description": "Occupant counts in the south half of third floor (/), 1-hour interval"
+    },
+    {
+      "name": "rtu_002_ra_temp",
+      "dtype": "float",
+      "unit": "°F",
+      "description": "Roof Top Unit * return air temperature (*: 001, 002, 003, 004) (°F), 1-hour interval"
+    },
+    {
+      "name": "rtu_003_ra_temp",
+      "dtype": "float",
+      "unit": "°F",
+      "description": "Roof Top Unit * return air temperature (*: 001, 002, 003, 004) (°F), 1-hour interval"
+    }
+  ],
+  "example_day": "2018-06-30",
+  "test_days": [
+    "2019-01-31",
+    "2019-02-01"
+  ],
+  "source_dates_example": {
+    "occ": [
+      "2018-06-30"
+    ],
+    "rtu_ra_t": [
+      "2018-06-29",
+      "2018-06-30"
+    ]
+  },
+  "source_dates_test": {
+    "occ": [
+      "2019-01-31",
+      "2019-02-01"
+    ],
+    "rtu_ra_t": [
+      "2019-01-30",
+      "2019-01-31",
+      "2019-02-01"
+    ]
+  },
+  "n_target_rows_example": 24,
+  "n_target_rows_test": 48,
+  "nl_instruction": "Join occ.csv, rtu_ra_t.csv on timestamp (inner join) after aggregating each to 1-hour intervals using the maximum; keep only occ_fourth_south, occ_third_south, rtu_002_ra_temp, rtu_003_ra_temp. Timestamp = start of interval.",
+  "needs": [
+    "sampling_interval",
+    "time_alignment",
+    "join",
+    "aggregation"
+  ],
+  "knowledge": [
+    {
+      "kind": "sampling_interval",
+      "file": "occ.csv",
+      "value_min": 1.0,
+      "dict_freq": "1 min"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "occ.csv",
+      "column": "occ_fourth_south",
+      "description": "Occupant counts in the south half of forth floor",
+      "quantity_kind": "occupant_count"
+    },
+    {
+      "kind": "unit",
+      "file": "occ.csv",
+      "column": "occ_fourth_south",
+      "true_unit": "/",
+      "dict_unit": "/"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "occ.csv",
+      "column": "occ_third_south",
+      "description": "Occupant counts in the south half of third floor",
+      "quantity_kind": "occupant_count"
+    },
+    {
+      "kind": "unit",
+      "file": "occ.csv",
+      "column": "occ_third_south",
+      "true_unit": "/",
+      "dict_unit": "/"
+    },
+    {
+      "kind": "sampling_interval",
+      "file": "rtu_ra_t.csv",
+      "value_min": 1.0,
+      "dict_freq": "1 min"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "rtu_ra_t.csv",
+      "column": "rtu_002_ra_temp",
+      "description": "Roof Top Unit * return air temperature (*: 001, 002, 003, 004)",
+      "quantity_kind": "temperature"
+    },
+    {
+      "kind": "unit",
+      "file": "rtu_ra_t.csv",
+      "column": "rtu_002_ra_temp",
+      "true_unit": "°F",
+      "dict_unit": "°F"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "rtu_ra_t.csv",
+      "column": "rtu_003_ra_temp",
+      "description": "Roof Top Unit * return air temperature (*: 001, 002, 003, 004)",
+      "quantity_kind": "temperature"
+    },
+    {
+      "kind": "unit",
+      "file": "rtu_ra_t.csv",
+      "column": "rtu_003_ra_temp",
+      "true_unit": "°F",
+      "dict_unit": "°F"
+    }
+  ],
+  "discriminates_against": [
+    "outer_join",
+    "agg_mean",
+    "agg_min"
+  ],
+  "spec": {
+    "family": "T3",
+    "sources": [
+      {
+        "file": "occ",
+        "columns": [
+          "occ_fourth_south",
+          "occ_third_south"
+        ]
+      },
+      {
+        "file": "rtu_ra_t",
+        "columns": [
+          "rtu_002_ra_temp",
+          "rtu_003_ra_temp"
+        ]
+      }
+    ],
+    "freq": "1h",
+    "agg": "max",
+    "how": "inner",
+    "out_columns": [
+      "occ_fourth_south",
+      "occ_third_south",
+      "rtu_002_ra_temp",
+      "rtu_003_ra_temp"
+    ],
+    "target_units": {
+      "occ_fourth_south": "/",
+      "occ_third_south": "/",
+      "rtu_002_ra_temp": "°F",
+      "rtu_003_ra_temp": "°F"
+    }
+  },
+  "benchmark_version": "holdout_v2",
+  "shown_rows": [
+    0,
+    6,
+    12,
+    17,
+    23
+  ]
+}

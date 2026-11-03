@@ -1,0 +1,167 @@
+{
+  "id": "T3-001",
+  "family": "T3",
+  "source_files": [
+    "wifi.csv",
+    "zone_temp_sp_h.csv"
+  ],
+  "target_schema": [
+    {
+      "name": "timestamp",
+      "dtype": "string 'YYYY-MM-DD HH:MM:SS'",
+      "description": "start of interval"
+    },
+    {
+      "name": "wifi_first_south",
+      "dtype": "float",
+      "unit": "/",
+      "description": "Wifi connection counts in the south half of first floor (/), 1-hour interval"
+    },
+    {
+      "name": "wifi_second_south",
+      "dtype": "float",
+      "unit": "/",
+      "description": "Wifi connection counts in the south half of second floor (/), 1-hour interval"
+    },
+    {
+      "name": "zone_047_heating_sp",
+      "dtype": "float",
+      "unit": "°F",
+      "description": "Heating temperature setpoint of Zone * (°F), 1-hour interval"
+    }
+  ],
+  "example_day": "2020-08-17",
+  "test_days": [
+    "2020-05-24",
+    "2020-05-25"
+  ],
+  "source_dates_example": {
+    "wifi": [
+      "2020-08-17"
+    ],
+    "zone_temp_sp_h": [
+      "2020-08-16",
+      "2020-08-17"
+    ]
+  },
+  "source_dates_test": {
+    "wifi": [
+      "2020-05-24",
+      "2020-05-25"
+    ],
+    "zone_temp_sp_h": [
+      "2020-05-23",
+      "2020-05-24",
+      "2020-05-25"
+    ]
+  },
+  "n_target_rows_example": 24,
+  "n_target_rows_test": 48,
+  "nl_instruction": "Join wifi.csv, zone_temp_sp_h.csv on timestamp (inner join) after aggregating each to 1-hour intervals using the maximum; keep only wifi_first_south, wifi_second_south, zone_047_heating_sp. Timestamp = start of interval.",
+  "needs": [
+    "sampling_interval",
+    "time_alignment",
+    "join",
+    "aggregation"
+  ],
+  "knowledge": [
+    {
+      "kind": "sampling_interval",
+      "file": "wifi.csv",
+      "value_min": 5.0,
+      "dict_freq": "10 min"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "wifi.csv",
+      "column": "wifi_first_south",
+      "description": "Wifi connection counts in the south half of first floor",
+      "quantity_kind": "wifi_connection_count"
+    },
+    {
+      "kind": "unit",
+      "file": "wifi.csv",
+      "column": "wifi_first_south",
+      "true_unit": "/",
+      "dict_unit": "/"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "wifi.csv",
+      "column": "wifi_second_south",
+      "description": "Wifi connection counts in the south half of second floor",
+      "quantity_kind": "wifi_connection_count"
+    },
+    {
+      "kind": "unit",
+      "file": "wifi.csv",
+      "column": "wifi_second_south",
+      "true_unit": "/",
+      "dict_unit": "/"
+    },
+    {
+      "kind": "sampling_interval",
+      "file": "zone_temp_sp_h.csv",
+      "value_min": 5.0,
+      "dict_freq": "5 min"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "zone_temp_sp_h.csv",
+      "column": "zone_047_heating_sp",
+      "description": "Heating temperature setpoint of Zone *",
+      "quantity_kind": "temperature_setpoint"
+    },
+    {
+      "kind": "unit",
+      "file": "zone_temp_sp_h.csv",
+      "column": "zone_047_heating_sp",
+      "true_unit": "°F",
+      "dict_unit": "°F"
+    }
+  ],
+  "discriminates_against": [
+    "outer_join",
+    "agg_mean",
+    "agg_min"
+  ],
+  "spec": {
+    "family": "T3",
+    "sources": [
+      {
+        "file": "wifi",
+        "columns": [
+          "wifi_first_south",
+          "wifi_second_south"
+        ]
+      },
+      {
+        "file": "zone_temp_sp_h",
+        "columns": [
+          "zone_047_heating_sp"
+        ]
+      }
+    ],
+    "freq": "1h",
+    "agg": "max",
+    "how": "inner",
+    "out_columns": [
+      "wifi_first_south",
+      "wifi_second_south",
+      "zone_047_heating_sp"
+    ],
+    "target_units": {
+      "wifi_first_south": "/",
+      "wifi_second_south": "/",
+      "zone_047_heating_sp": "°F"
+    }
+  },
+  "benchmark_version": "holdout_v2",
+  "shown_rows": [
+    0,
+    6,
+    12,
+    17,
+    23
+  ]
+}

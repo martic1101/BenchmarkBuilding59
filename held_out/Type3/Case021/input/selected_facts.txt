@@ -1,0 +1,15 @@
+columns in scope: rtu_002_econ_stpt_tn, rtu_003_oa_temp, zone_037_heating_sp
+unit=°F :: columns: ALL
+vav=UTF_2-17 :: columns: zone_037_heating_sp
+floor=Floor_G :: columns: zone_037_heating_sp
+sampling=1 min :: columns: rtu_002_econ_stpt_tn, rtu_003_oa_temp
+sampling=5 min :: columns: zone_037_heating_sp
+class=Economizer_Setpoint :: columns: rtu_002_econ_stpt_tn
+class=Heating_Temperature_Setpoint :: columns: zone_037_heating_sp
+zone=RTU02 :: columns: rtu_002_econ_stpt_tn
+zone=zone_037 :: columns: zone_037_heating_sp
+rtu=RTU02 :: columns: rtu_002_econ_stpt_tn
+rtu=RTU04 :: columns: zone_037_heating_sp
+desc=Heating temperature setpoint of Zone * :: columns: zone_037_heating_sp
+desc=Roof Top Unit * economizer setpoint (*: 001, 002, 003, 004) :: columns: rtu_002_econ_stpt_tn
+desc=Roof Top Unit * outdoor air temperature (*: 001, 002, 003, 004) :: columns: rtu_003_oa_temp

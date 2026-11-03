@@ -1,0 +1,45 @@
+{
+ "source_files": [
+  "rtu_sa_fr.csv",
+  "zone_temp_interior.csv"
+ ],
+ "example_day": "2019-03-31",
+ "target_schema": [
+  {
+   "name": "timestamp",
+   "dtype": "string 'YYYY-MM-DD HH:MM:SS'"
+  },
+  {
+   "name": "rtu_003_fltrd_sa_flow_tn",
+   "dtype": "float",
+   "unit": "CFM"
+  },
+  {
+   "name": "cerc_templogger_5",
+   "dtype": "float",
+   "unit": "°C"
+  }
+ ],
+ "n_example_day_target_rows": 24,
+ "n_example_day_source_rows": {
+  "rtu_sa_fr.csv": 1440,
+  "zone_temp_interior.csv": 288
+ },
+ "source_blocks": {
+  "rtu_sa_fr.csv": [
+   60,
+   60,
+   60,
+   60,
+   60
+  ],
+  "zone_temp_interior.csv": [
+   6,
+   6,
+   6,
+   6,
+   6
+  ]
+ },
+ "note": "source_example/ holds only the source rows inside the time intervals of the shown target rows; source_blocks gives the sizes of the contiguous runs (shown as '...' between runs in the prompt)."
+}

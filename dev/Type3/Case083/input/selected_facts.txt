@@ -1,0 +1,12 @@
+columns in scope: rtu_002_sa_temp, solar_radiation_set_1
+rtu=RTU02 :: columns: rtu_002_sa_temp
+desc=Outdoor solar radiation from sensor 1 :: columns: solar_radiation_set_1
+desc=Roof Top Unit * supply air temperature (*: 001, 002, 003, 004) :: columns: rtu_002_sa_temp
+unit=W/m2 :: columns: solar_radiation_set_1
+unit=°F :: columns: rtu_002_sa_temp
+sampling=1 min :: columns: rtu_002_sa_temp
+sampling=15 min :: columns: solar_radiation_set_1
+class=Solar_Radiance_Sensor :: columns: solar_radiation_set_1
+class=Supply_Air_Temperature_Sensor :: columns: rtu_002_sa_temp
+zone=Building :: columns: solar_radiation_set_1
+zone=RTU02 :: columns: rtu_002_sa_temp

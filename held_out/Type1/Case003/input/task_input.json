@@ -1,0 +1,31 @@
+{
+ "source_files": [
+  "ashp_cw.csv"
+ ],
+ "example_day": "2020-09-20",
+ "target_schema": [
+  {
+   "name": "timestamp",
+   "dtype": "string 'YYYY-MM-DD HH:MM:SS'"
+  },
+  {
+   "name": "aru_001_cwr_temp",
+   "dtype": "float",
+   "unit": "°F"
+  }
+ ],
+ "n_example_day_target_rows": 48,
+ "n_example_day_source_rows": {
+  "ashp_cw.csv": 288
+ },
+ "source_blocks": {
+  "ashp_cw.csv": [
+   6,
+   6,
+   6,
+   6,
+   6
+  ]
+ },
+ "note": "source_example/ holds only the source rows inside the time intervals of the shown target rows; source_blocks gives the sizes of the contiguous runs (shown as '...' between runs in the prompt)."
+}

@@ -1,0 +1,91 @@
+{
+  "id": "T1-006",
+  "family": "T1",
+  "source_files": [
+    "ashp_cw.csv"
+  ],
+  "target_schema": [
+    {
+      "name": "timestamp",
+      "dtype": "string 'YYYY-MM-DD HH:MM:SS'",
+      "description": "start of interval"
+    },
+    {
+      "name": "aru_001_cws_temp",
+      "dtype": "float",
+      "unit": "°F",
+      "description": "Chilled water supply temperature (°F), 1-hour interval"
+    }
+  ],
+  "example_day": "2020-10-10",
+  "test_days": [
+    "2020-09-01",
+    "2020-09-02"
+  ],
+  "source_dates_example": {
+    "ashp_cw": [
+      "2020-10-10"
+    ]
+  },
+  "source_dates_test": {
+    "ashp_cw": [
+      "2020-09-01",
+      "2020-09-02"
+    ]
+  },
+  "n_target_rows_example": 24,
+  "n_target_rows_test": 48,
+  "nl_instruction": "Aggregate aru_001_cws_temp from ashp_cw.csv to 1-hour intervals using the minimum. Timestamp = start of interval.",
+  "needs": [
+    "aggregation",
+    "sampling_interval"
+  ],
+  "knowledge": [
+    {
+      "kind": "sampling_interval",
+      "file": "ashp_cw.csv",
+      "value_min": 5.0,
+      "dict_freq": "5 min"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "ashp_cw.csv",
+      "column": "aru_001_cws_temp",
+      "description": "Chilled water supply temperature",
+      "quantity_kind": "temperature"
+    },
+    {
+      "kind": "unit",
+      "file": "ashp_cw.csv",
+      "column": "aru_001_cws_temp",
+      "true_unit": "°F",
+      "dict_unit": "°F"
+    }
+  ],
+  "discriminates_against": [
+    "agg_mean",
+    "agg_max"
+  ],
+  "spec": {
+    "family": "T1",
+    "file": "ashp_cw",
+    "columns": [
+      "aru_001_cws_temp"
+    ],
+    "freq": "1h",
+    "agg": "min",
+    "out_columns": [
+      "aru_001_cws_temp"
+    ],
+    "target_units": {
+      "aru_001_cws_temp": "°F"
+    }
+  },
+  "shown_rows": [
+    0,
+    1,
+    2,
+    6,
+    12
+  ]
+}

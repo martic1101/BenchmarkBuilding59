@@ -1,0 +1,25 @@
+columns in scope: rtu_001_fltrd_gnd_lvl_plenum_press_tn, wifi_fourth_south, wifi_second_south, zone_028_co2, zone_052_co2
+sampling=1 min :: columns: rtu_001_fltrd_gnd_lvl_plenum_press_tn, zone_028_co2, zone_052_co2
+sampling=10 min :: columns: wifi_fourth_south, wifi_second_south
+vav=UTF_2-12 :: columns: zone_028_co2
+vav=UTF_2-25 :: columns: zone_052_co2
+unit=/ :: columns: wifi_fourth_south, wifi_second_south
+unit=ppm :: columns: zone_028_co2, zone_052_co2
+unit=psi :: columns: rtu_001_fltrd_gnd_lvl_plenum_press_tn
+class=CO2_Sensor :: columns: zone_028_co2, zone_052_co2
+class=Underfloor_Air_Plenum_Static_Pressure_Sensor :: columns: rtu_001_fltrd_gnd_lvl_plenum_press_tn
+class=Wifi_AP :: columns: wifi_fourth_south
+rtu=RTU01 :: columns: rtu_001_fltrd_gnd_lvl_plenum_press_tn
+rtu=RTU02 :: columns: zone_052_co2
+rtu=RTU03 :: columns: zone_028_co2
+floor=Building :: columns: wifi_fourth_south
+floor=Floor_G :: columns: zone_028_co2
+floor=Floor_S :: columns: zone_052_co2
+desc=CO2 concentration of each zone :: columns: zone_028_co2, zone_052_co2
+desc=Roof Top Unit * plenum air pressure at floor ** (*: 001, 002, 003, 004; **: gnd_lvl, lvl2) :: columns: rtu_001_fltrd_gnd_lvl_plenum_press_tn
+desc=Wifi connection counts in the south half of forth floor :: columns: wifi_fourth_south
+desc=Wifi connection counts in the south half of second floor :: columns: wifi_second_south
+zone=Floor_S :: columns: wifi_fourth_south
+zone=RTU01 :: columns: rtu_001_fltrd_gnd_lvl_plenum_press_tn
+zone=zone_028 :: columns: zone_028_co2
+zone=zone_052 :: columns: zone_052_co2

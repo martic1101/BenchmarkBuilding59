@@ -1,0 +1,7 @@
+columns in scope: aru_001_power_mbtuph, rtu_004_fltrd_sa_flow_tn
+desc=Heat meter for air source heat pump :: columns: aru_001_power_mbtuph
+desc=Roof Top Unit * filtered supply air flow rate (*: 001, 002, 003, 004) :: columns: rtu_004_fltrd_sa_flow_tn
+unit=CFM :: columns: rtu_004_fltrd_sa_flow_tn
+unit=mbtuph :: columns: aru_001_power_mbtuph
+sampling=1 min :: columns: rtu_004_fltrd_sa_flow_tn
+sampling=5 min :: columns: aru_001_power_mbtuph

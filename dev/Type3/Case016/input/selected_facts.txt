@@ -1,0 +1,18 @@
+columns in scope: air_temp_set_1, rtu_001_oa_flow_tn, wifi_third_south
+rtu=RTU01 :: columns: rtu_001_oa_flow_tn
+floor=Building :: columns: wifi_third_south
+desc=Outdoor air temperature from sensor 1 :: columns: air_temp_set_1
+desc=Roof Top Unit * outdoor air flow rate (*: 001, 002, 003, 004) :: columns: rtu_001_oa_flow_tn
+desc=Wifi connection counts in the south half of third floor :: columns: wifi_third_south
+unit=/ :: columns: wifi_third_south
+unit=CFM :: columns: rtu_001_oa_flow_tn
+unit=°C :: columns: air_temp_set_1
+sampling=1 min :: columns: rtu_001_oa_flow_tn
+sampling=10 min :: columns: wifi_third_south
+sampling=15 min :: columns: air_temp_set_1
+class=Outdoor_Air_Flow_Rate :: columns: rtu_001_oa_flow_tn
+class=Outdoor_Air_Temperature_Sensor :: columns: air_temp_set_1
+class=Wifi_AP :: columns: wifi_third_south
+zone=Building :: columns: air_temp_set_1
+zone=Floor_G :: columns: wifi_third_south
+zone=RTU01 :: columns: rtu_001_oa_flow_tn

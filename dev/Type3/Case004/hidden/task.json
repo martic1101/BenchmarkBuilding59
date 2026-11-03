@@ -1,0 +1,165 @@
+{
+  "id": "T3-005",
+  "family": "T3",
+  "source_files": [
+    "ashp_cw.csv",
+    "rtu_oa_damper.csv"
+  ],
+  "target_schema": [
+    {
+      "name": "timestamp",
+      "dtype": "string 'YYYY-MM-DD HH:MM:SS'",
+      "description": "start of interval"
+    },
+    {
+      "name": "aru_001_cwr_temp",
+      "dtype": "float",
+      "unit": "°F",
+      "description": "Chilled water return temperature (°F), 1-hour averages"
+    },
+    {
+      "name": "rtu_003_oadmpr_pct",
+      "dtype": "float",
+      "unit": "%",
+      "description": "Roof Top Unit * outdoor air damper position (*: 001, 002, 003, 004) (%), 1-hour averages"
+    },
+    {
+      "name": "rtu_004_oadmpr_pct",
+      "dtype": "float",
+      "unit": "%",
+      "description": "Roof Top Unit * outdoor air damper position (*: 001, 002, 003, 004) (%), 1-hour averages"
+    }
+  ],
+  "example_day": "2020-10-14",
+  "test_days": [
+    "2020-12-14",
+    "2020-12-15"
+  ],
+  "source_dates_example": {
+    "ashp_cw": [
+      "2020-10-14"
+    ],
+    "rtu_oa_damper": [
+      "2020-10-13",
+      "2020-10-14"
+    ]
+  },
+  "source_dates_test": {
+    "ashp_cw": [
+      "2020-12-14",
+      "2020-12-15"
+    ],
+    "rtu_oa_damper": [
+      "2020-12-13",
+      "2020-12-14",
+      "2020-12-15"
+    ]
+  },
+  "n_target_rows_example": 24,
+  "n_target_rows_test": 48,
+  "nl_instruction": "Join ashp_cw.csv, rtu_oa_damper.csv on timestamp (inner join) after aggregating each to 1-hour averages; keep only aru_001_cwr_temp, rtu_003_oadmpr_pct, rtu_004_oadmpr_pct. Timestamp = start of interval.",
+  "needs": [
+    "sampling_interval",
+    "time_alignment",
+    "join",
+    "aggregation"
+  ],
+  "knowledge": [
+    {
+      "kind": "sampling_interval",
+      "file": "ashp_cw.csv",
+      "value_min": 5.0,
+      "dict_freq": "5 min"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "ashp_cw.csv",
+      "column": "aru_001_cwr_temp",
+      "description": "Chilled water return temperature",
+      "quantity_kind": "temperature"
+    },
+    {
+      "kind": "unit",
+      "file": "ashp_cw.csv",
+      "column": "aru_001_cwr_temp",
+      "true_unit": "°F",
+      "dict_unit": "°F"
+    },
+    {
+      "kind": "sampling_interval",
+      "file": "rtu_oa_damper.csv",
+      "value_min": 1.0,
+      "dict_freq": "1 min"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "rtu_oa_damper.csv",
+      "column": "rtu_003_oadmpr_pct",
+      "description": "Roof Top Unit * outdoor air damper position (*: 001, 002, 003, 004)",
+      "quantity_kind": "damper_position"
+    },
+    {
+      "kind": "unit",
+      "file": "rtu_oa_damper.csv",
+      "column": "rtu_003_oadmpr_pct",
+      "true_unit": "%",
+      "dict_unit": "%"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "rtu_oa_damper.csv",
+      "column": "rtu_004_oadmpr_pct",
+      "description": "Roof Top Unit * outdoor air damper position (*: 001, 002, 003, 004)",
+      "quantity_kind": "damper_position"
+    },
+    {
+      "kind": "unit",
+      "file": "rtu_oa_damper.csv",
+      "column": "rtu_004_oadmpr_pct",
+      "true_unit": "%",
+      "dict_unit": "%"
+    }
+  ],
+  "discriminates_against": [
+    "outer_join",
+    "agg_max"
+  ],
+  "spec": {
+    "family": "T3",
+    "sources": [
+      {
+        "file": "ashp_cw",
+        "columns": [
+          "aru_001_cwr_temp"
+        ]
+      },
+      {
+        "file": "rtu_oa_damper",
+        "columns": [
+          "rtu_003_oadmpr_pct",
+          "rtu_004_oadmpr_pct"
+        ]
+      }
+    ],
+    "freq": "1h",
+    "agg": "mean",
+    "how": "inner",
+    "out_columns": [
+      "aru_001_cwr_temp",
+      "rtu_003_oadmpr_pct",
+      "rtu_004_oadmpr_pct"
+    ],
+    "target_units": {
+      "aru_001_cwr_temp": "°F",
+      "rtu_003_oadmpr_pct": "%",
+      "rtu_004_oadmpr_pct": "%"
+    }
+  },
+  "shown_rows": [
+    0,
+    6,
+    12,
+    17,
+    23
+  ]
+}

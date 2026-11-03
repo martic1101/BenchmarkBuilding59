@@ -1,0 +1,10 @@
+columns in scope: lig_S, mels_N, rtu_002_sat_sp_tn, rtu_004_sat_sp_tn
+class=Building_Electrical_Meter :: columns: lig_S, mels_N
+zone=Building :: columns: lig_S, mels_N
+unit=kW :: columns: lig_S, mels_N
+unit=°F :: columns: rtu_002_sat_sp_tn, rtu_004_sat_sp_tn
+sampling=1 min :: columns: rtu_002_sat_sp_tn, rtu_004_sat_sp_tn
+sampling=15 min :: columns: lig_S, mels_N
+desc=Lighting load for the South Wing :: columns: lig_S
+desc=Miscellaneous electric load for the North Wing :: columns: mels_N
+desc=Roof Top Unit * supply air temperature setpoint (*: 001, 002, 003, 004) :: columns: rtu_002_sat_sp_tn, rtu_004_sat_sp_tn

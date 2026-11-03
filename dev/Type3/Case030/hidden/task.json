@@ -1,0 +1,207 @@
+{
+  "id": "T3-031",
+  "family": "T3",
+  "source_files": [
+    "occ.csv",
+    "rtu_oa_t.csv",
+    "zone_temp_sp_h.csv"
+  ],
+  "target_schema": [
+    {
+      "name": "timestamp",
+      "dtype": "string 'YYYY-MM-DD HH:MM:SS'",
+      "description": "start of interval"
+    },
+    {
+      "name": "occ_fourth_south",
+      "dtype": "float",
+      "unit": "/",
+      "description": "Occupant counts in the south half of forth floor (/), 30-minute averages"
+    },
+    {
+      "name": "occ_third_south",
+      "dtype": "float",
+      "unit": "/",
+      "description": "Occupant counts in the south half of third floor (/), 30-minute averages"
+    },
+    {
+      "name": "rtu_003_oa_temp",
+      "dtype": "float",
+      "unit": "°F",
+      "description": "Roof Top Unit * outdoor air temperature (*: 001, 002, 003, 004) (°F), 30-minute averages"
+    },
+    {
+      "name": "zone_069_heating_sp",
+      "dtype": "float",
+      "unit": "°F",
+      "description": "Heating temperature setpoint of Zone * (°F), 30-minute averages"
+    }
+  ],
+  "example_day": "2019-02-10",
+  "test_days": [
+    "2018-12-08",
+    "2018-12-09"
+  ],
+  "source_dates_example": {
+    "occ": [
+      "2019-02-10"
+    ],
+    "rtu_oa_t": [
+      "2019-02-10"
+    ],
+    "zone_temp_sp_h": [
+      "2019-02-09",
+      "2019-02-10"
+    ]
+  },
+  "source_dates_test": {
+    "occ": [
+      "2018-12-08",
+      "2018-12-09"
+    ],
+    "rtu_oa_t": [
+      "2018-12-08",
+      "2018-12-09"
+    ],
+    "zone_temp_sp_h": [
+      "2018-12-07",
+      "2018-12-08",
+      "2018-12-09"
+    ]
+  },
+  "n_target_rows_example": 48,
+  "n_target_rows_test": 96,
+  "nl_instruction": "Join occ.csv, rtu_oa_t.csv, zone_temp_sp_h.csv on timestamp (inner join) after aggregating each to 30-minute averages; keep only occ_fourth_south, occ_third_south, rtu_003_oa_temp, zone_069_heating_sp. Timestamp = start of interval.",
+  "needs": [
+    "sampling_interval",
+    "time_alignment",
+    "join",
+    "aggregation"
+  ],
+  "knowledge": [
+    {
+      "kind": "sampling_interval",
+      "file": "occ.csv",
+      "value_min": 1.0,
+      "dict_freq": "1 min"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "occ.csv",
+      "column": "occ_fourth_south",
+      "description": "Occupant counts in the south half of forth floor",
+      "quantity_kind": "occupant_count"
+    },
+    {
+      "kind": "unit",
+      "file": "occ.csv",
+      "column": "occ_fourth_south",
+      "true_unit": "/",
+      "dict_unit": "/"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "occ.csv",
+      "column": "occ_third_south",
+      "description": "Occupant counts in the south half of third floor",
+      "quantity_kind": "occupant_count"
+    },
+    {
+      "kind": "unit",
+      "file": "occ.csv",
+      "column": "occ_third_south",
+      "true_unit": "/",
+      "dict_unit": "/"
+    },
+    {
+      "kind": "sampling_interval",
+      "file": "rtu_oa_t.csv",
+      "value_min": 1.0,
+      "dict_freq": "1 min"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "rtu_oa_t.csv",
+      "column": "rtu_003_oa_temp",
+      "description": "Roof Top Unit * outdoor air temperature (*: 001, 002, 003, 004)",
+      "quantity_kind": "temperature"
+    },
+    {
+      "kind": "unit",
+      "file": "rtu_oa_t.csv",
+      "column": "rtu_003_oa_temp",
+      "true_unit": "°F",
+      "dict_unit": "°F"
+    },
+    {
+      "kind": "sampling_interval",
+      "file": "zone_temp_sp_h.csv",
+      "value_min": 5.0,
+      "dict_freq": "5 min"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "zone_temp_sp_h.csv",
+      "column": "zone_069_heating_sp",
+      "description": "Heating temperature setpoint of Zone *",
+      "quantity_kind": "temperature_setpoint"
+    },
+    {
+      "kind": "unit",
+      "file": "zone_temp_sp_h.csv",
+      "column": "zone_069_heating_sp",
+      "true_unit": "°F",
+      "dict_unit": "°F"
+    }
+  ],
+  "discriminates_against": [
+    "outer_join",
+    "agg_max"
+  ],
+  "spec": {
+    "family": "T3",
+    "sources": [
+      {
+        "file": "occ",
+        "columns": [
+          "occ_fourth_south",
+          "occ_third_south"
+        ]
+      },
+      {
+        "file": "rtu_oa_t",
+        "columns": [
+          "rtu_003_oa_temp"
+        ]
+      },
+      {
+        "file": "zone_temp_sp_h",
+        "columns": [
+          "zone_069_heating_sp"
+        ]
+      }
+    ],
+    "freq": "30min",
+    "agg": "mean",
+    "how": "inner",
+    "out_columns": [
+      "occ_fourth_south",
+      "occ_third_south",
+      "rtu_003_oa_temp",
+      "zone_069_heating_sp"
+    ],
+    "target_units": {
+      "occ_fourth_south": "/",
+      "occ_third_south": "/",
+      "rtu_003_oa_temp": "°F",
+      "zone_069_heating_sp": "°F"
+    }
+  },
+  "shown_rows": [
+    0,
+    12,
+    24,
+    35,
+    47
+  ]
+}

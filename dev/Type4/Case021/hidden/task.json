@@ -1,0 +1,346 @@
+{
+  "id": "T4-023",
+  "family": "T4",
+  "source_files": [
+    "zone_co2.csv"
+  ],
+  "target_schema": [
+    {
+      "name": "timestamp",
+      "dtype": "string 'YYYY-MM-DD HH:MM:SS'",
+      "description": "start of interval"
+    },
+    {
+      "name": "Floor_G",
+      "dtype": "float",
+      "unit": "ppm",
+      "description": "CO2 concentration of each zone aggregated over all zones belonging to Floor_G (ppm), 1-hour interval"
+    },
+    {
+      "name": "Floor_S",
+      "dtype": "float",
+      "unit": "ppm",
+      "description": "CO2 concentration of each zone aggregated over all zones belonging to Floor_S (ppm), 1-hour interval"
+    }
+  ],
+  "example_day": "2020-05-28",
+  "test_days": [
+    "2019-10-21",
+    "2019-10-22"
+  ],
+  "source_dates_example": {
+    "zone_co2": [
+      "2020-05-28"
+    ]
+  },
+  "source_dates_test": {
+    "zone_co2": [
+      "2019-10-21",
+      "2019-10-22"
+    ]
+  },
+  "n_target_rows_example": 24,
+  "n_target_rows_test": 48,
+  "nl_instruction": "For each floor, compute the average over its zones of the 1-hour average of each zone column in zone_co2.csv. One output column per group (Floor_G, Floor_S). Timestamp = start of interval.",
+  "needs": [
+    "topology",
+    "aggregation"
+  ],
+  "knowledge": [
+    {
+      "kind": "sampling_interval",
+      "file": "zone_co2.csv",
+      "value_min": 1.0,
+      "dict_freq": "1 min"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "zone_co2.csv",
+      "column": "zone_022_co2",
+      "description": "CO2 concentration of each zone",
+      "quantity_kind": "co2_concentration"
+    },
+    {
+      "kind": "unit",
+      "file": "zone_co2.csv",
+      "column": "zone_022_co2",
+      "true_unit": "ppm",
+      "dict_unit": "ppm"
+    },
+    {
+      "kind": "membership",
+      "file": "zone_co2.csv",
+      "column": "zone_022_co2",
+      "group": "Floor_G",
+      "relation": "zone isPartOf floor",
+      "brick_point": "zone_022_co2"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "zone_co2.csv",
+      "column": "zone_028_co2",
+      "description": "CO2 concentration of each zone",
+      "quantity_kind": "co2_concentration"
+    },
+    {
+      "kind": "unit",
+      "file": "zone_co2.csv",
+      "column": "zone_028_co2",
+      "true_unit": "ppm",
+      "dict_unit": "ppm"
+    },
+    {
+      "kind": "membership",
+      "file": "zone_co2.csv",
+      "column": "zone_028_co2",
+      "group": "Floor_G",
+      "relation": "zone isPartOf floor",
+      "brick_point": "zone_028_co2"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "zone_co2.csv",
+      "column": "zone_033_co2",
+      "description": "CO2 concentration of each zone",
+      "quantity_kind": "co2_concentration"
+    },
+    {
+      "kind": "unit",
+      "file": "zone_co2.csv",
+      "column": "zone_033_co2",
+      "true_unit": "ppm",
+      "dict_unit": "ppm"
+    },
+    {
+      "kind": "membership",
+      "file": "zone_co2.csv",
+      "column": "zone_033_co2",
+      "group": "Floor_G",
+      "relation": "zone isPartOf floor",
+      "brick_point": "zone_033_co2"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "zone_co2.csv",
+      "column": "zone_040_co2",
+      "description": "CO2 concentration of each zone",
+      "quantity_kind": "co2_concentration"
+    },
+    {
+      "kind": "unit",
+      "file": "zone_co2.csv",
+      "column": "zone_040_co2",
+      "true_unit": "ppm",
+      "dict_unit": "ppm"
+    },
+    {
+      "kind": "membership",
+      "file": "zone_co2.csv",
+      "column": "zone_040_co2",
+      "group": "Floor_G",
+      "relation": "zone isPartOf floor",
+      "brick_point": "zone_040_co2"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "zone_co2.csv",
+      "column": "zone_044_co2",
+      "description": "CO2 concentration of each zone",
+      "quantity_kind": "co2_concentration"
+    },
+    {
+      "kind": "unit",
+      "file": "zone_co2.csv",
+      "column": "zone_044_co2",
+      "true_unit": "ppm",
+      "dict_unit": "ppm"
+    },
+    {
+      "kind": "membership",
+      "file": "zone_co2.csv",
+      "column": "zone_044_co2",
+      "group": "Floor_G",
+      "relation": "zone isPartOf floor",
+      "brick_point": "zone_044_co2"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "zone_co2.csv",
+      "column": "zone_045_co2",
+      "description": "CO2 concentration of each zone",
+      "quantity_kind": "co2_concentration"
+    },
+    {
+      "kind": "unit",
+      "file": "zone_co2.csv",
+      "column": "zone_045_co2",
+      "true_unit": "ppm",
+      "dict_unit": "ppm"
+    },
+    {
+      "kind": "membership",
+      "file": "zone_co2.csv",
+      "column": "zone_045_co2",
+      "group": "Floor_G",
+      "relation": "zone isPartOf floor",
+      "brick_point": "zone_045_co2"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "zone_co2.csv",
+      "column": "zone_052_co2",
+      "description": "CO2 concentration of each zone",
+      "quantity_kind": "co2_concentration"
+    },
+    {
+      "kind": "unit",
+      "file": "zone_co2.csv",
+      "column": "zone_052_co2",
+      "true_unit": "ppm",
+      "dict_unit": "ppm"
+    },
+    {
+      "kind": "membership",
+      "file": "zone_co2.csv",
+      "column": "zone_052_co2",
+      "group": "Floor_S",
+      "relation": "zone isPartOf floor",
+      "brick_point": "zone_052_co2"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "zone_co2.csv",
+      "column": "zone_058_co2",
+      "description": "CO2 concentration of each zone",
+      "quantity_kind": "co2_concentration"
+    },
+    {
+      "kind": "unit",
+      "file": "zone_co2.csv",
+      "column": "zone_058_co2",
+      "true_unit": "ppm",
+      "dict_unit": "ppm"
+    },
+    {
+      "kind": "membership",
+      "file": "zone_co2.csv",
+      "column": "zone_058_co2",
+      "group": "Floor_S",
+      "relation": "zone isPartOf floor",
+      "brick_point": "zone_058_co2"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "zone_co2.csv",
+      "column": "zone_062_co2",
+      "description": "CO2 concentration of each zone",
+      "quantity_kind": "co2_concentration"
+    },
+    {
+      "kind": "unit",
+      "file": "zone_co2.csv",
+      "column": "zone_062_co2",
+      "true_unit": "ppm",
+      "dict_unit": "ppm"
+    },
+    {
+      "kind": "membership",
+      "file": "zone_co2.csv",
+      "column": "zone_062_co2",
+      "group": "Floor_S",
+      "relation": "zone isPartOf floor",
+      "brick_point": "zone_062_co2"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "zone_co2.csv",
+      "column": "zone_068_co2",
+      "description": "CO2 concentration of each zone",
+      "quantity_kind": "co2_concentration"
+    },
+    {
+      "kind": "unit",
+      "file": "zone_co2.csv",
+      "column": "zone_068_co2",
+      "true_unit": "ppm",
+      "dict_unit": "ppm"
+    },
+    {
+      "kind": "membership",
+      "file": "zone_co2.csv",
+      "column": "zone_068_co2",
+      "group": "Floor_S",
+      "relation": "zone isPartOf floor",
+      "brick_point": "zone_068_co2"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "zone_co2.csv",
+      "column": "zone_072_co2",
+      "description": "CO2 concentration of each zone",
+      "quantity_kind": "co2_concentration"
+    },
+    {
+      "kind": "unit",
+      "file": "zone_co2.csv",
+      "column": "zone_072_co2",
+      "true_unit": "ppm",
+      "dict_unit": "ppm"
+    },
+    {
+      "kind": "membership",
+      "file": "zone_co2.csv",
+      "column": "zone_072_co2",
+      "group": "Floor_S",
+      "relation": "zone isPartOf floor",
+      "brick_point": "zone_072_co2"
+    }
+  ],
+  "discriminates_against": [
+    "agg_swap",
+    "space_agg_swap",
+    "shuffled_membership_0",
+    "shuffled_membership_1",
+    "shuffled_membership_2"
+  ],
+  "spec": {
+    "family": "T4",
+    "file": "zone_co2",
+    "group_by": "floor",
+    "groups": {
+      "Floor_G": [
+        "zone_022_co2",
+        "zone_028_co2",
+        "zone_033_co2",
+        "zone_040_co2",
+        "zone_044_co2",
+        "zone_045_co2"
+      ],
+      "Floor_S": [
+        "zone_052_co2",
+        "zone_058_co2",
+        "zone_062_co2",
+        "zone_068_co2",
+        "zone_072_co2"
+      ]
+    },
+    "freq": "1h",
+    "agg_time": "mean",
+    "agg_space": "mean",
+    "out_columns": [
+      "Floor_G",
+      "Floor_S"
+    ],
+    "target_units": {
+      "Floor_G": "ppm",
+      "Floor_S": "ppm"
+    }
+  },
+  "shown_rows": [
+    0,
+    6,
+    12,
+    17,
+    23
+  ]
+}

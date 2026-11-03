@@ -1,0 +1,232 @@
+{
+  "id": "T3-017",
+  "family": "T3",
+  "source_files": [
+    "rtu_ma_t.csv",
+    "site_weather.csv",
+    "uft_hw_valve.csv"
+  ],
+  "target_schema": [
+    {
+      "name": "timestamp",
+      "dtype": "string 'YYYY-MM-DD HH:MM:SS'",
+      "description": "start of interval"
+    },
+    {
+      "name": "rtu_001_ma_temp",
+      "dtype": "float",
+      "unit": "°F",
+      "description": "Roof Top Unit * mixed air temperature (*: 001, 002, 003, 004) (°F), 15-minute interval"
+    },
+    {
+      "name": "rtu_004_ma_temp",
+      "dtype": "float",
+      "unit": "°F",
+      "description": "Roof Top Unit * mixed air temperature (*: 001, 002, 003, 004) (°F), 15-minute interval"
+    },
+    {
+      "name": "air_temp_set_2",
+      "dtype": "float",
+      "unit": "°C",
+      "description": "Outdoor air temperature from sensor 2 (°C), 15-minute interval"
+    },
+    {
+      "name": "dew_point_temperature_set_1d",
+      "dtype": "float",
+      "unit": "°C",
+      "description": "Outdoor air dew temperature of sensor 2 (°C), 15-minute interval"
+    },
+    {
+      "name": "zone_018_hw_valve",
+      "dtype": "float",
+      "unit": "%",
+      "description": "Heating water valve position of Zone * (%), 15-minute interval"
+    }
+  ],
+  "example_day": "2019-06-09",
+  "test_days": [
+    "2019-07-20",
+    "2019-07-21"
+  ],
+  "source_dates_example": {
+    "rtu_ma_t": [
+      "2019-06-09"
+    ],
+    "site_weather": [
+      "2019-06-09"
+    ],
+    "uft_hw_valve": [
+      "2019-06-08",
+      "2019-06-09"
+    ]
+  },
+  "source_dates_test": {
+    "rtu_ma_t": [
+      "2019-07-20",
+      "2019-07-21"
+    ],
+    "site_weather": [
+      "2019-07-20",
+      "2019-07-21"
+    ],
+    "uft_hw_valve": [
+      "2019-07-19",
+      "2019-07-20",
+      "2019-07-21"
+    ]
+  },
+  "n_target_rows_example": 96,
+  "n_target_rows_test": 192,
+  "nl_instruction": "Join rtu_ma_t.csv, site_weather.csv, uft_hw_valve.csv on timestamp (inner join) after aggregating each to 15-minute intervals using the average; keep only rtu_001_ma_temp, rtu_004_ma_temp, air_temp_set_2, dew_point_temperature_set_1d, zone_018_hw_valve. Timestamp = start of interval.",
+  "needs": [
+    "sampling_interval",
+    "time_alignment",
+    "join",
+    "aggregation"
+  ],
+  "knowledge": [
+    {
+      "kind": "sampling_interval",
+      "file": "rtu_ma_t.csv",
+      "value_min": 1.0,
+      "dict_freq": "1 min"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "rtu_ma_t.csv",
+      "column": "rtu_001_ma_temp",
+      "description": "Roof Top Unit * mixed air temperature (*: 001, 002, 003, 004)",
+      "quantity_kind": "temperature"
+    },
+    {
+      "kind": "unit",
+      "file": "rtu_ma_t.csv",
+      "column": "rtu_001_ma_temp",
+      "true_unit": "°F",
+      "dict_unit": "°F"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "rtu_ma_t.csv",
+      "column": "rtu_004_ma_temp",
+      "description": "Roof Top Unit * mixed air temperature (*: 001, 002, 003, 004)",
+      "quantity_kind": "temperature"
+    },
+    {
+      "kind": "unit",
+      "file": "rtu_ma_t.csv",
+      "column": "rtu_004_ma_temp",
+      "true_unit": "°F",
+      "dict_unit": "°F"
+    },
+    {
+      "kind": "sampling_interval",
+      "file": "site_weather.csv",
+      "value_min": 15.0,
+      "dict_freq": "15 min"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "site_weather.csv",
+      "column": "air_temp_set_2",
+      "description": "Outdoor air temperature from sensor 2",
+      "quantity_kind": "temperature"
+    },
+    {
+      "kind": "unit",
+      "file": "site_weather.csv",
+      "column": "air_temp_set_2",
+      "true_unit": "°C",
+      "dict_unit": "°C"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "site_weather.csv",
+      "column": "dew_point_temperature_set_1d",
+      "description": "Outdoor air dew temperature of sensor 2",
+      "quantity_kind": "temperature"
+    },
+    {
+      "kind": "unit",
+      "file": "site_weather.csv",
+      "column": "dew_point_temperature_set_1d",
+      "true_unit": "°C",
+      "dict_unit": "°C"
+    },
+    {
+      "kind": "sampling_interval",
+      "file": "uft_hw_valve.csv",
+      "value_min": 1.0,
+      "dict_freq": "1 min"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "uft_hw_valve.csv",
+      "column": "zone_018_hw_valve",
+      "description": "Heating water valve position of Zone *",
+      "quantity_kind": "valve_position"
+    },
+    {
+      "kind": "unit",
+      "file": "uft_hw_valve.csv",
+      "column": "zone_018_hw_valve",
+      "true_unit": "%",
+      "dict_unit": "%"
+    }
+  ],
+  "discriminates_against": [
+    "outer_join",
+    "agg_max",
+    "agg_min"
+  ],
+  "spec": {
+    "family": "T3",
+    "sources": [
+      {
+        "file": "rtu_ma_t",
+        "columns": [
+          "rtu_001_ma_temp",
+          "rtu_004_ma_temp"
+        ]
+      },
+      {
+        "file": "site_weather",
+        "columns": [
+          "air_temp_set_2",
+          "dew_point_temperature_set_1d"
+        ]
+      },
+      {
+        "file": "uft_hw_valve",
+        "columns": [
+          "zone_018_hw_valve"
+        ]
+      }
+    ],
+    "freq": "15min",
+    "agg": "mean",
+    "how": "inner",
+    "out_columns": [
+      "rtu_001_ma_temp",
+      "rtu_004_ma_temp",
+      "air_temp_set_2",
+      "dew_point_temperature_set_1d",
+      "zone_018_hw_valve"
+    ],
+    "target_units": {
+      "rtu_001_ma_temp": "°F",
+      "rtu_004_ma_temp": "°F",
+      "air_temp_set_2": "°C",
+      "dew_point_temperature_set_1d": "°C",
+      "zone_018_hw_valve": "%"
+    }
+  },
+  "benchmark_version": "holdout_v2",
+  "shown_rows": [
+    0,
+    1,
+    24,
+    48,
+    71
+  ]
+}

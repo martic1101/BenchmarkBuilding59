@@ -1,0 +1,69 @@
+{
+ "source_files": [
+  "occ.csv",
+  "rtu_sa_p_sp.csv",
+  "zone_temp_exterior.csv"
+ ],
+ "example_day": "2018-11-29",
+ "target_schema": [
+  {
+   "name": "timestamp",
+   "dtype": "string 'YYYY-MM-DD HH:MM:SS'"
+  },
+  {
+   "name": "occ_fourth_south",
+   "dtype": "float",
+   "unit": "/"
+  },
+  {
+   "name": "rtu_001_pa_static_stpt_tn",
+   "dtype": "float",
+   "unit": "inH2O (suspected)"
+  },
+  {
+   "name": "rtu_004_pa_static_stpt_tn",
+   "dtype": "float",
+   "unit": "inH2O (suspected)"
+  },
+  {
+   "name": "zone_023_temp",
+   "dtype": "float",
+   "unit": "°F"
+  },
+  {
+   "name": "zone_061_temp",
+   "dtype": "float",
+   "unit": "°F"
+  }
+ ],
+ "n_example_day_target_rows": 48,
+ "n_example_day_source_rows": {
+  "occ.csv": 1440,
+  "rtu_sa_p_sp.csv": 1440,
+  "zone_temp_exterior.csv": 2880
+ },
+ "source_blocks": {
+  "occ.csv": [
+   30,
+   30,
+   30,
+   30,
+   30
+  ],
+  "rtu_sa_p_sp.csv": [
+   30,
+   30,
+   30,
+   30,
+   30
+  ],
+  "zone_temp_exterior.csv": [
+   30,
+   30,
+   30,
+   30,
+   30
+  ]
+ },
+ "note": "source_example/ holds only the source rows inside the time intervals of the shown target rows; source_blocks gives the sizes of the contiguous runs (shown as '...' between runs in the prompt)."
+}

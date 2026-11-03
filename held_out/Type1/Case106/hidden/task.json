@@ -1,0 +1,138 @@
+{
+  "id": "T1-120",
+  "family": "T1",
+  "source_files": [
+    "uft_hw_valve.csv"
+  ],
+  "target_schema": [
+    {
+      "name": "timestamp",
+      "dtype": "string 'YYYY-MM-DD HH:MM:SS'",
+      "description": "start of interval"
+    },
+    {
+      "name": "zone_027_hw_valve",
+      "dtype": "float",
+      "unit": "%",
+      "description": "Heating water valve position of Zone * (%), 1-hour interval"
+    },
+    {
+      "name": "zone_036_hw_valve",
+      "dtype": "float",
+      "unit": "%",
+      "description": "Heating water valve position of Zone * (%), 1-hour interval"
+    },
+    {
+      "name": "zone_054_hw_valve",
+      "dtype": "float",
+      "unit": "%",
+      "description": "Heating water valve position of Zone * (%), 1-hour interval"
+    }
+  ],
+  "example_day": "2018-11-27",
+  "test_days": [
+    "2018-10-05",
+    "2018-10-06"
+  ],
+  "source_dates_example": {
+    "uft_hw_valve": [
+      "2018-11-27"
+    ]
+  },
+  "source_dates_test": {
+    "uft_hw_valve": [
+      "2018-10-05",
+      "2018-10-06"
+    ]
+  },
+  "n_target_rows_example": 24,
+  "n_target_rows_test": 48,
+  "nl_instruction": "Aggregate zone_027_hw_valve, zone_036_hw_valve, zone_054_hw_valve from uft_hw_valve.csv to 1-hour intervals using the minimum. Timestamp = start of interval.",
+  "needs": [
+    "aggregation",
+    "sampling_interval"
+  ],
+  "knowledge": [
+    {
+      "kind": "sampling_interval",
+      "file": "uft_hw_valve.csv",
+      "value_min": 1.0,
+      "dict_freq": "1 min"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "uft_hw_valve.csv",
+      "column": "zone_027_hw_valve",
+      "description": "Heating water valve position of Zone *",
+      "quantity_kind": "valve_position"
+    },
+    {
+      "kind": "unit",
+      "file": "uft_hw_valve.csv",
+      "column": "zone_027_hw_valve",
+      "true_unit": "%",
+      "dict_unit": "%"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "uft_hw_valve.csv",
+      "column": "zone_036_hw_valve",
+      "description": "Heating water valve position of Zone *",
+      "quantity_kind": "valve_position"
+    },
+    {
+      "kind": "unit",
+      "file": "uft_hw_valve.csv",
+      "column": "zone_036_hw_valve",
+      "true_unit": "%",
+      "dict_unit": "%"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "uft_hw_valve.csv",
+      "column": "zone_054_hw_valve",
+      "description": "Heating water valve position of Zone *",
+      "quantity_kind": "valve_position"
+    },
+    {
+      "kind": "unit",
+      "file": "uft_hw_valve.csv",
+      "column": "zone_054_hw_valve",
+      "true_unit": "%",
+      "dict_unit": "%"
+    }
+  ],
+  "discriminates_against": [
+    "agg_mean",
+    "agg_max"
+  ],
+  "spec": {
+    "family": "T1",
+    "file": "uft_hw_valve",
+    "columns": [
+      "zone_027_hw_valve",
+      "zone_036_hw_valve",
+      "zone_054_hw_valve"
+    ],
+    "freq": "1h",
+    "agg": "min",
+    "out_columns": [
+      "zone_027_hw_valve",
+      "zone_036_hw_valve",
+      "zone_054_hw_valve"
+    ],
+    "target_units": {
+      "zone_027_hw_valve": "%",
+      "zone_036_hw_valve": "%",
+      "zone_054_hw_valve": "%"
+    }
+  },
+  "benchmark_version": "holdout_v2",
+  "shown_rows": [
+    0,
+    1,
+    4,
+    6,
+    12
+  ]
+}

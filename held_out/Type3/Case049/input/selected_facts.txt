@@ -1,0 +1,13 @@
+columns in scope: rtu_001_oa_flow_tn, rtu_003_oa_flow_tn, wifi_first_south, wifi_second_south
+class=Outdoor_Air_Flow_Rate :: columns: rtu_001_oa_flow_tn, rtu_003_oa_flow_tn
+unit=/ :: columns: wifi_first_south, wifi_second_south
+unit=CFM :: columns: rtu_001_oa_flow_tn, rtu_003_oa_flow_tn
+sampling=1 min :: columns: rtu_001_oa_flow_tn, rtu_003_oa_flow_tn
+sampling=10 min :: columns: wifi_first_south, wifi_second_south
+zone=RTU01 :: columns: rtu_001_oa_flow_tn
+zone=RTU03 :: columns: rtu_003_oa_flow_tn
+rtu=RTU01 :: columns: rtu_001_oa_flow_tn
+rtu=RTU03 :: columns: rtu_003_oa_flow_tn
+desc=Roof Top Unit * outdoor air flow rate (*: 001, 002, 003, 004) :: columns: rtu_001_oa_flow_tn, rtu_003_oa_flow_tn
+desc=Wifi connection counts in the south half of first floor :: columns: wifi_first_south
+desc=Wifi connection counts in the south half of second floor :: columns: wifi_second_south

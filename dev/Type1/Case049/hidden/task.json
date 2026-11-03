@@ -1,0 +1,91 @@
+{
+  "id": "T1-055",
+  "family": "T1",
+  "source_files": [
+    "rtu_oa_fr.csv"
+  ],
+  "target_schema": [
+    {
+      "name": "timestamp",
+      "dtype": "string 'YYYY-MM-DD HH:MM:SS'",
+      "description": "start of interval"
+    },
+    {
+      "name": "rtu_001_oa_flow_tn",
+      "dtype": "float",
+      "unit": "CFM",
+      "description": "Roof Top Unit * outdoor air flow rate (*: 001, 002, 003, 004) (CFM), 30-minute interval"
+    }
+  ],
+  "example_day": "2020-05-16",
+  "test_days": [
+    "2018-03-02",
+    "2018-03-03"
+  ],
+  "source_dates_example": {
+    "rtu_oa_fr": [
+      "2020-05-16"
+    ]
+  },
+  "source_dates_test": {
+    "rtu_oa_fr": [
+      "2018-03-02",
+      "2018-03-03"
+    ]
+  },
+  "n_target_rows_example": 48,
+  "n_target_rows_test": 96,
+  "nl_instruction": "Aggregate rtu_001_oa_flow_tn from rtu_oa_fr.csv to 30-minute intervals using the average. Timestamp = start of interval.",
+  "needs": [
+    "aggregation",
+    "sampling_interval"
+  ],
+  "knowledge": [
+    {
+      "kind": "sampling_interval",
+      "file": "rtu_oa_fr.csv",
+      "value_min": 1.0,
+      "dict_freq": "1 min"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "rtu_oa_fr.csv",
+      "column": "rtu_001_oa_flow_tn",
+      "description": "Roof Top Unit * outdoor air flow rate (*: 001, 002, 003, 004)",
+      "quantity_kind": "air_flow"
+    },
+    {
+      "kind": "unit",
+      "file": "rtu_oa_fr.csv",
+      "column": "rtu_001_oa_flow_tn",
+      "true_unit": "CFM",
+      "dict_unit": "CFM"
+    }
+  ],
+  "discriminates_against": [
+    "agg_max",
+    "agg_min"
+  ],
+  "spec": {
+    "family": "T1",
+    "file": "rtu_oa_fr",
+    "columns": [
+      "rtu_001_oa_flow_tn"
+    ],
+    "freq": "30min",
+    "agg": "mean",
+    "out_columns": [
+      "rtu_001_oa_flow_tn"
+    ],
+    "target_units": {
+      "rtu_001_oa_flow_tn": "CFM"
+    }
+  },
+  "shown_rows": [
+    0,
+    12,
+    24,
+    35,
+    47
+  ]
+}

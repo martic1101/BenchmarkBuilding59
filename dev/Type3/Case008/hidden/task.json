@@ -1,0 +1,142 @@
+{
+  "id": "T3-009",
+  "family": "T3",
+  "source_files": [
+    "ele.csv",
+    "wifi.csv"
+  ],
+  "target_schema": [
+    {
+      "name": "timestamp",
+      "dtype": "string 'YYYY-MM-DD HH:MM:SS'",
+      "description": "start of interval"
+    },
+    {
+      "name": "lig_S",
+      "dtype": "float",
+      "unit": "kW",
+      "description": "Lighting load for the South Wing (kW), 1-hour averages"
+    },
+    {
+      "name": "wifi_second_south",
+      "dtype": "float",
+      "unit": "/",
+      "description": "Wifi connection counts in the south half of second floor (/), 1-hour averages"
+    }
+  ],
+  "example_day": "2020-11-27",
+  "test_days": [
+    "2020-05-16",
+    "2020-05-17"
+  ],
+  "source_dates_example": {
+    "ele": [
+      "2020-11-27"
+    ],
+    "wifi": [
+      "2020-11-26",
+      "2020-11-27"
+    ]
+  },
+  "source_dates_test": {
+    "ele": [
+      "2020-05-16",
+      "2020-05-17"
+    ],
+    "wifi": [
+      "2020-05-15",
+      "2020-05-16",
+      "2020-05-17"
+    ]
+  },
+  "n_target_rows_example": 24,
+  "n_target_rows_test": 48,
+  "nl_instruction": "Join ele.csv, wifi.csv on timestamp (inner join) after aggregating each to 1-hour averages; keep only lig_S, wifi_second_south. Timestamp = start of interval.",
+  "needs": [
+    "sampling_interval",
+    "time_alignment",
+    "join",
+    "aggregation"
+  ],
+  "knowledge": [
+    {
+      "kind": "sampling_interval",
+      "file": "ele.csv",
+      "value_min": 15.0,
+      "dict_freq": "15 min"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "ele.csv",
+      "column": "lig_S",
+      "description": "Lighting load for the South Wing",
+      "quantity_kind": "electric_power"
+    },
+    {
+      "kind": "unit",
+      "file": "ele.csv",
+      "column": "lig_S",
+      "true_unit": "kW",
+      "dict_unit": "kW"
+    },
+    {
+      "kind": "sampling_interval",
+      "file": "wifi.csv",
+      "value_min": 5.0,
+      "dict_freq": "10 min"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "wifi.csv",
+      "column": "wifi_second_south",
+      "description": "Wifi connection counts in the south half of second floor",
+      "quantity_kind": "wifi_connection_count"
+    },
+    {
+      "kind": "unit",
+      "file": "wifi.csv",
+      "column": "wifi_second_south",
+      "true_unit": "/",
+      "dict_unit": "/"
+    }
+  ],
+  "discriminates_against": [
+    "outer_join",
+    "agg_max"
+  ],
+  "spec": {
+    "family": "T3",
+    "sources": [
+      {
+        "file": "ele",
+        "columns": [
+          "lig_S"
+        ]
+      },
+      {
+        "file": "wifi",
+        "columns": [
+          "wifi_second_south"
+        ]
+      }
+    ],
+    "freq": "1h",
+    "agg": "mean",
+    "how": "inner",
+    "out_columns": [
+      "lig_S",
+      "wifi_second_south"
+    ],
+    "target_units": {
+      "lig_S": "kW",
+      "wifi_second_south": "/"
+    }
+  },
+  "shown_rows": [
+    0,
+    6,
+    12,
+    17,
+    23
+  ]
+}

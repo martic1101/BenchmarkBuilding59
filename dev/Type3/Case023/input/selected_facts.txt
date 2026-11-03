@@ -1,0 +1,12 @@
+columns in scope: aru_001_power_mbtuph, zone_044_temp
+class=Zone_Air_Temperature_Sensor :: columns: zone_044_temp
+zone=zone_044 :: columns: zone_044_temp
+vav=UTF_2-24 :: columns: zone_044_temp
+rtu=RTU03 :: columns: zone_044_temp
+floor=Floor_G :: columns: zone_044_temp
+desc=Heat meter for air source heat pump :: columns: aru_001_power_mbtuph
+desc=Zone temperature of exterior zone :: columns: zone_044_temp
+unit=mbtuph :: columns: aru_001_power_mbtuph
+unit=°F :: columns: zone_044_temp
+sampling=1 min :: columns: zone_044_temp
+sampling=5 min :: columns: aru_001_power_mbtuph

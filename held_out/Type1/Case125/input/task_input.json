@@ -1,0 +1,31 @@
+{
+ "source_files": [
+  "zone_temp_interior.csv"
+ ],
+ "example_day": "2019-02-02",
+ "target_schema": [
+  {
+   "name": "timestamp",
+   "dtype": "string 'YYYY-MM-DD HH:MM:SS'"
+  },
+  {
+   "name": "cerc_templogger_4",
+   "dtype": "float",
+   "unit": "°C"
+  }
+ ],
+ "n_example_day_target_rows": 48,
+ "n_example_day_source_rows": {
+  "zone_temp_interior.csv": 144
+ },
+ "source_blocks": {
+  "zone_temp_interior.csv": [
+   3,
+   3,
+   3,
+   3,
+   3
+  ]
+ },
+ "note": "source_example/ holds only the source rows inside the time intervals of the shown target rows; source_blocks gives the sizes of the contiguous runs (shown as '...' between runs in the prompt)."
+}

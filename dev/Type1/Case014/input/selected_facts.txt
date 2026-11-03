@@ -1,0 +1,4 @@
+columns in scope: aru_001_power_mbtuph
+desc=Heat meter for air source heat pump :: columns: ALL
+unit=mbtuph :: columns: ALL
+sampling=5 min :: columns: ALL

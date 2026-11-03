@@ -1,0 +1,366 @@
+{
+  "id": "T4-018",
+  "family": "T4",
+  "source_files": [
+    "zone_co2.csv"
+  ],
+  "target_schema": [
+    {
+      "name": "timestamp",
+      "dtype": "string 'YYYY-MM-DD HH:MM:SS'",
+      "description": "start of interval"
+    },
+    {
+      "name": "RTU01",
+      "dtype": "float",
+      "unit": "ppm",
+      "description": "CO2 concentration of each zone aggregated over all zones belonging to RTU01 (ppm), 30-minute interval"
+    },
+    {
+      "name": "RTU02",
+      "dtype": "float",
+      "unit": "ppm",
+      "description": "CO2 concentration of each zone aggregated over all zones belonging to RTU02 (ppm), 30-minute interval"
+    },
+    {
+      "name": "RTU03",
+      "dtype": "float",
+      "unit": "ppm",
+      "description": "CO2 concentration of each zone aggregated over all zones belonging to RTU03 (ppm), 30-minute interval"
+    },
+    {
+      "name": "RTU04",
+      "dtype": "float",
+      "unit": "ppm",
+      "description": "CO2 concentration of each zone aggregated over all zones belonging to RTU04 (ppm), 30-minute interval"
+    }
+  ],
+  "example_day": "2020-06-18",
+  "test_days": [
+    "2019-11-18",
+    "2019-11-19"
+  ],
+  "source_dates_example": {
+    "zone_co2": [
+      "2020-06-18"
+    ]
+  },
+  "source_dates_test": {
+    "zone_co2": [
+      "2019-11-18",
+      "2019-11-19"
+    ]
+  },
+  "n_target_rows_example": 48,
+  "n_target_rows_test": 96,
+  "nl_instruction": "For each rooftop unit (RTU) serving the zones, compute the maximum over its zones of the 30-minute maximum of each zone column in zone_co2.csv. One output column per group (RTU01, RTU02, RTU03, RTU04). Timestamp = start of interval.",
+  "needs": [
+    "topology",
+    "aggregation"
+  ],
+  "knowledge": [
+    {
+      "kind": "sampling_interval",
+      "file": "zone_co2.csv",
+      "value_min": 1.0,
+      "dict_freq": "1 min"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "zone_co2.csv",
+      "column": "zone_022_co2",
+      "description": "CO2 concentration of each zone",
+      "quantity_kind": "co2_concentration"
+    },
+    {
+      "kind": "unit",
+      "file": "zone_co2.csv",
+      "column": "zone_022_co2",
+      "true_unit": "ppm",
+      "dict_unit": "ppm"
+    },
+    {
+      "kind": "membership",
+      "file": "zone_co2.csv",
+      "column": "zone_022_co2",
+      "group": "RTU01",
+      "relation": "zone -> VAV -> RTU",
+      "brick_point": "zone_022_co2"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "zone_co2.csv",
+      "column": "zone_045_co2",
+      "description": "CO2 concentration of each zone",
+      "quantity_kind": "co2_concentration"
+    },
+    {
+      "kind": "unit",
+      "file": "zone_co2.csv",
+      "column": "zone_045_co2",
+      "true_unit": "ppm",
+      "dict_unit": "ppm"
+    },
+    {
+      "kind": "membership",
+      "file": "zone_co2.csv",
+      "column": "zone_045_co2",
+      "group": "RTU02",
+      "relation": "zone -> VAV -> RTU",
+      "brick_point": "zone_045_co2"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "zone_co2.csv",
+      "column": "zone_052_co2",
+      "description": "CO2 concentration of each zone",
+      "quantity_kind": "co2_concentration"
+    },
+    {
+      "kind": "unit",
+      "file": "zone_co2.csv",
+      "column": "zone_052_co2",
+      "true_unit": "ppm",
+      "dict_unit": "ppm"
+    },
+    {
+      "kind": "membership",
+      "file": "zone_co2.csv",
+      "column": "zone_052_co2",
+      "group": "RTU02",
+      "relation": "zone -> VAV -> RTU",
+      "brick_point": "zone_052_co2"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "zone_co2.csv",
+      "column": "zone_028_co2",
+      "description": "CO2 concentration of each zone",
+      "quantity_kind": "co2_concentration"
+    },
+    {
+      "kind": "unit",
+      "file": "zone_co2.csv",
+      "column": "zone_028_co2",
+      "true_unit": "ppm",
+      "dict_unit": "ppm"
+    },
+    {
+      "kind": "membership",
+      "file": "zone_co2.csv",
+      "column": "zone_028_co2",
+      "group": "RTU03",
+      "relation": "zone -> VAV -> RTU",
+      "brick_point": "zone_028_co2"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "zone_co2.csv",
+      "column": "zone_033_co2",
+      "description": "CO2 concentration of each zone",
+      "quantity_kind": "co2_concentration"
+    },
+    {
+      "kind": "unit",
+      "file": "zone_co2.csv",
+      "column": "zone_033_co2",
+      "true_unit": "ppm",
+      "dict_unit": "ppm"
+    },
+    {
+      "kind": "membership",
+      "file": "zone_co2.csv",
+      "column": "zone_033_co2",
+      "group": "RTU03",
+      "relation": "zone -> VAV -> RTU",
+      "brick_point": "zone_033_co2"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "zone_co2.csv",
+      "column": "zone_044_co2",
+      "description": "CO2 concentration of each zone",
+      "quantity_kind": "co2_concentration"
+    },
+    {
+      "kind": "unit",
+      "file": "zone_co2.csv",
+      "column": "zone_044_co2",
+      "true_unit": "ppm",
+      "dict_unit": "ppm"
+    },
+    {
+      "kind": "membership",
+      "file": "zone_co2.csv",
+      "column": "zone_044_co2",
+      "group": "RTU03",
+      "relation": "zone -> VAV -> RTU",
+      "brick_point": "zone_044_co2"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "zone_co2.csv",
+      "column": "zone_058_co2",
+      "description": "CO2 concentration of each zone",
+      "quantity_kind": "co2_concentration"
+    },
+    {
+      "kind": "unit",
+      "file": "zone_co2.csv",
+      "column": "zone_058_co2",
+      "true_unit": "ppm",
+      "dict_unit": "ppm"
+    },
+    {
+      "kind": "membership",
+      "file": "zone_co2.csv",
+      "column": "zone_058_co2",
+      "group": "RTU03",
+      "relation": "zone -> VAV -> RTU",
+      "brick_point": "zone_058_co2"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "zone_co2.csv",
+      "column": "zone_062_co2",
+      "description": "CO2 concentration of each zone",
+      "quantity_kind": "co2_concentration"
+    },
+    {
+      "kind": "unit",
+      "file": "zone_co2.csv",
+      "column": "zone_062_co2",
+      "true_unit": "ppm",
+      "dict_unit": "ppm"
+    },
+    {
+      "kind": "membership",
+      "file": "zone_co2.csv",
+      "column": "zone_062_co2",
+      "group": "RTU03",
+      "relation": "zone -> VAV -> RTU",
+      "brick_point": "zone_062_co2"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "zone_co2.csv",
+      "column": "zone_072_co2",
+      "description": "CO2 concentration of each zone",
+      "quantity_kind": "co2_concentration"
+    },
+    {
+      "kind": "unit",
+      "file": "zone_co2.csv",
+      "column": "zone_072_co2",
+      "true_unit": "ppm",
+      "dict_unit": "ppm"
+    },
+    {
+      "kind": "membership",
+      "file": "zone_co2.csv",
+      "column": "zone_072_co2",
+      "group": "RTU03",
+      "relation": "zone -> VAV -> RTU",
+      "brick_point": "zone_072_co2"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "zone_co2.csv",
+      "column": "zone_040_co2",
+      "description": "CO2 concentration of each zone",
+      "quantity_kind": "co2_concentration"
+    },
+    {
+      "kind": "unit",
+      "file": "zone_co2.csv",
+      "column": "zone_040_co2",
+      "true_unit": "ppm",
+      "dict_unit": "ppm"
+    },
+    {
+      "kind": "membership",
+      "file": "zone_co2.csv",
+      "column": "zone_040_co2",
+      "group": "RTU04",
+      "relation": "zone -> VAV -> RTU",
+      "brick_point": "zone_040_co2"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "zone_co2.csv",
+      "column": "zone_068_co2",
+      "description": "CO2 concentration of each zone",
+      "quantity_kind": "co2_concentration"
+    },
+    {
+      "kind": "unit",
+      "file": "zone_co2.csv",
+      "column": "zone_068_co2",
+      "true_unit": "ppm",
+      "dict_unit": "ppm"
+    },
+    {
+      "kind": "membership",
+      "file": "zone_co2.csv",
+      "column": "zone_068_co2",
+      "group": "RTU04",
+      "relation": "zone -> VAV -> RTU",
+      "brick_point": "zone_068_co2"
+    }
+  ],
+  "discriminates_against": [
+    "agg_swap",
+    "space_agg_swap",
+    "shuffled_membership_0",
+    "shuffled_membership_1",
+    "shuffled_membership_2"
+  ],
+  "spec": {
+    "family": "T4",
+    "file": "zone_co2",
+    "group_by": "rtu",
+    "groups": {
+      "RTU01": [
+        "zone_022_co2"
+      ],
+      "RTU02": [
+        "zone_045_co2",
+        "zone_052_co2"
+      ],
+      "RTU03": [
+        "zone_028_co2",
+        "zone_033_co2",
+        "zone_044_co2",
+        "zone_058_co2",
+        "zone_062_co2",
+        "zone_072_co2"
+      ],
+      "RTU04": [
+        "zone_040_co2",
+        "zone_068_co2"
+      ]
+    },
+    "freq": "30min",
+    "agg_time": "max",
+    "agg_space": "max",
+    "out_columns": [
+      "RTU01",
+      "RTU02",
+      "RTU03",
+      "RTU04"
+    ],
+    "target_units": {
+      "RTU01": "ppm",
+      "RTU02": "ppm",
+      "RTU03": "ppm",
+      "RTU04": "ppm"
+    }
+  },
+  "shown_rows": [
+    0,
+    12,
+    24,
+    35,
+    47
+  ]
+}

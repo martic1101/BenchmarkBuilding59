@@ -1,0 +1,21 @@
+columns in scope: aru_001_hwr_temp, aru_001_hws_fr_gpm, cerc_templogger_16, cerc_templogger_3, wifi_third_south
+sampling=10 min :: columns: cerc_templogger_16, cerc_templogger_3, wifi_third_south
+sampling=5 min :: columns: aru_001_hwr_temp, aru_001_hws_fr_gpm
+unit=/ :: columns: wifi_third_south
+unit=CFM :: columns: aru_001_hws_fr_gpm
+unit=°F :: columns: aru_001_hwr_temp, cerc_templogger_16, cerc_templogger_3
+floor=Building :: columns: wifi_third_south
+floor=Floor_G :: columns: cerc_templogger_3
+floor=Floor_S :: columns: cerc_templogger_16
+desc=Hot water fow rate :: columns: aru_001_hws_fr_gpm
+desc=Hot water return temperature :: columns: aru_001_hwr_temp
+desc=Wifi connection counts in the south half of third floor :: columns: wifi_third_south
+desc=Zone temperature of interior zone :: columns: cerc_templogger_16, cerc_templogger_3
+class=Hot_Water_Supply_Flow_Rate :: columns: aru_001_hws_fr_gpm
+class=Hot_Water_Temperature_Sensor :: columns: aru_001_hwr_temp
+class=Wifi_AP :: columns: wifi_third_south
+class=Zone_Air_Temperature_Sensor :: columns: cerc_templogger_16, cerc_templogger_3
+zone=Building :: columns: aru_001_hwr_temp, aru_001_hws_fr_gpm
+zone=Floor_G :: columns: wifi_third_south
+zone=zone_cerc_16 :: columns: cerc_templogger_16
+zone=zone_cerc_3 :: columns: cerc_templogger_3

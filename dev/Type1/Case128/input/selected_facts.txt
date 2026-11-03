@@ -1,0 +1,9 @@
+columns in scope: zone_035_cooling_sp
+desc=Cooling temperature setpoint of Zone * :: columns: ALL
+unit=°F :: columns: ALL
+sampling=5 min :: columns: ALL
+class=Cooling_Temperature_Setpoint :: columns: ALL
+zone=zone_035 :: columns: ALL
+vav=UTF_2-15 :: columns: ALL
+rtu=RTU03 :: columns: ALL
+floor=Floor_G :: columns: ALL

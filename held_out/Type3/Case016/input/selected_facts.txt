@@ -1,0 +1,17 @@
+columns in scope: air_temp_set_2, dew_point_temperature_set_1d, rtu_001_ma_temp, rtu_004_ma_temp, zone_018_hw_valve
+sampling=1 min :: columns: rtu_001_ma_temp, rtu_004_ma_temp, zone_018_hw_valve
+sampling=15 min :: columns: air_temp_set_2, dew_point_temperature_set_1d
+class=Mixed_Air_Temperature_Sensor :: columns: rtu_001_ma_temp, rtu_004_ma_temp
+class=Outdoor_Air_Temperature_Sensor :: columns: air_temp_set_2
+rtu=RTU01 :: columns: rtu_001_ma_temp
+rtu=RTU04 :: columns: rtu_004_ma_temp
+unit=% :: columns: zone_018_hw_valve
+unit=°C :: columns: air_temp_set_2, dew_point_temperature_set_1d
+unit=°F :: columns: rtu_001_ma_temp, rtu_004_ma_temp
+zone=Building :: columns: air_temp_set_2
+zone=RTU01 :: columns: rtu_001_ma_temp
+zone=RTU04 :: columns: rtu_004_ma_temp
+desc=Heating water valve position of Zone * :: columns: zone_018_hw_valve
+desc=Outdoor air dew temperature of sensor 2 :: columns: dew_point_temperature_set_1d
+desc=Outdoor air temperature from sensor 2 :: columns: air_temp_set_2
+desc=Roof Top Unit * mixed air temperature (*: 001, 002, 003, 004) :: columns: rtu_001_ma_temp, rtu_004_ma_temp

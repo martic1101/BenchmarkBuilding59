@@ -1,0 +1,15 @@
+columns in scope: zone_021_cooling_sp, zone_043_cooling_sp, zone_057_cooling_sp
+desc=Cooling temperature setpoint of Zone * :: columns: ALL
+unit=°F :: columns: ALL
+sampling=5 min :: columns: ALL
+class=Cooling_Temperature_Setpoint :: columns: ALL
+rtu=RTU01 :: columns: zone_021_cooling_sp
+rtu=RTU03 :: columns: zone_043_cooling_sp, zone_057_cooling_sp
+floor=Floor_G :: columns: zone_021_cooling_sp, zone_043_cooling_sp
+floor=Floor_S :: columns: zone_057_cooling_sp
+zone=zone_021 :: columns: zone_021_cooling_sp
+zone=zone_043 :: columns: zone_043_cooling_sp
+zone=zone_057 :: columns: zone_057_cooling_sp
+vav=UTF_2-23 :: columns: zone_043_cooling_sp
+vav=UTF_2-5 :: columns: zone_021_cooling_sp
+vav=UTF_G-11 :: columns: zone_057_cooling_sp

@@ -1,0 +1,16 @@
+columns in scope: rtu_001_ra_temp, rtu_001_sat_sp_tn, rtu_003_ra_temp, zone_028_co2
+sampling=1 min :: columns: ALL
+vav=UTF_2-12 :: columns: zone_028_co2
+floor=Floor_G :: columns: zone_028_co2
+unit=ppm :: columns: zone_028_co2
+unit=°F :: columns: rtu_001_ra_temp, rtu_001_sat_sp_tn, rtu_003_ra_temp
+class=CO2_Sensor :: columns: zone_028_co2
+class=Return_Air_Temperature_Sensor :: columns: rtu_001_ra_temp, rtu_003_ra_temp
+rtu=RTU01 :: columns: rtu_001_ra_temp
+rtu=RTU03 :: columns: rtu_003_ra_temp, zone_028_co2
+desc=CO2 concentration of each zone :: columns: zone_028_co2
+desc=Roof Top Unit * return air temperature (*: 001, 002, 003, 004) :: columns: rtu_001_ra_temp, rtu_003_ra_temp
+desc=Roof Top Unit * supply air temperature setpoint (*: 001, 002, 003, 004) :: columns: rtu_001_sat_sp_tn
+zone=RTU01 :: columns: rtu_001_ra_temp
+zone=RTU03 :: columns: rtu_003_ra_temp
+zone=zone_028 :: columns: zone_028_co2

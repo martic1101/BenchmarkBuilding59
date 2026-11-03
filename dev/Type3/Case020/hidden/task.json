@@ -1,0 +1,230 @@
+{
+  "id": "T3-021",
+  "family": "T3",
+  "source_files": [
+    "ashp_cw.csv",
+    "ele.csv",
+    "rtu_oa_damper.csv"
+  ],
+  "target_schema": [
+    {
+      "name": "timestamp",
+      "dtype": "string 'YYYY-MM-DD HH:MM:SS'",
+      "description": "start of interval"
+    },
+    {
+      "name": "aru_001_cws_temp",
+      "dtype": "float",
+      "unit": "°F",
+      "description": "Chilled water supply temperature (°F), 15-minute averages"
+    },
+    {
+      "name": "hvac_N",
+      "dtype": "float",
+      "unit": "kW",
+      "description": "Heating Ventilation and Air Conditioning load for the Nouth Wing (kW), 15-minute averages"
+    },
+    {
+      "name": "mels_S",
+      "dtype": "float",
+      "unit": "kW",
+      "description": "Miscellaneous electric load for the South Wing (kW), 15-minute averages"
+    },
+    {
+      "name": "rtu_002_oadmpr_pct",
+      "dtype": "float",
+      "unit": "%",
+      "description": "Roof Top Unit * outdoor air damper position (*: 001, 002, 003, 004) (%), 15-minute averages"
+    },
+    {
+      "name": "rtu_003_oadmpr_pct",
+      "dtype": "float",
+      "unit": "%",
+      "description": "Roof Top Unit * outdoor air damper position (*: 001, 002, 003, 004) (%), 15-minute averages"
+    }
+  ],
+  "example_day": "2020-09-10",
+  "test_days": [
+    "2020-10-26",
+    "2020-10-27"
+  ],
+  "source_dates_example": {
+    "ashp_cw": [
+      "2020-09-10"
+    ],
+    "ele": [
+      "2020-09-10"
+    ],
+    "rtu_oa_damper": [
+      "2020-09-09",
+      "2020-09-10"
+    ]
+  },
+  "source_dates_test": {
+    "ashp_cw": [
+      "2020-10-26",
+      "2020-10-27"
+    ],
+    "ele": [
+      "2020-10-26",
+      "2020-10-27"
+    ],
+    "rtu_oa_damper": [
+      "2020-10-25",
+      "2020-10-26",
+      "2020-10-27"
+    ]
+  },
+  "n_target_rows_example": 96,
+  "n_target_rows_test": 192,
+  "nl_instruction": "Join ashp_cw.csv, ele.csv, rtu_oa_damper.csv on timestamp (inner join) after aggregating each to 15-minute averages; keep only aru_001_cws_temp, hvac_N, mels_S, rtu_002_oadmpr_pct, rtu_003_oadmpr_pct. Timestamp = start of interval.",
+  "needs": [
+    "sampling_interval",
+    "time_alignment",
+    "join",
+    "aggregation"
+  ],
+  "knowledge": [
+    {
+      "kind": "sampling_interval",
+      "file": "ashp_cw.csv",
+      "value_min": 5.0,
+      "dict_freq": "5 min"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "ashp_cw.csv",
+      "column": "aru_001_cws_temp",
+      "description": "Chilled water supply temperature",
+      "quantity_kind": "temperature"
+    },
+    {
+      "kind": "unit",
+      "file": "ashp_cw.csv",
+      "column": "aru_001_cws_temp",
+      "true_unit": "°F",
+      "dict_unit": "°F"
+    },
+    {
+      "kind": "sampling_interval",
+      "file": "ele.csv",
+      "value_min": 15.0,
+      "dict_freq": "15 min"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "ele.csv",
+      "column": "hvac_N",
+      "description": "Heating Ventilation and Air Conditioning load for the Nouth Wing",
+      "quantity_kind": "electric_power"
+    },
+    {
+      "kind": "unit",
+      "file": "ele.csv",
+      "column": "hvac_N",
+      "true_unit": "kW",
+      "dict_unit": "kW"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "ele.csv",
+      "column": "mels_S",
+      "description": "Miscellaneous electric load for the South Wing",
+      "quantity_kind": "electric_power"
+    },
+    {
+      "kind": "unit",
+      "file": "ele.csv",
+      "column": "mels_S",
+      "true_unit": "kW",
+      "dict_unit": "kW"
+    },
+    {
+      "kind": "sampling_interval",
+      "file": "rtu_oa_damper.csv",
+      "value_min": 1.0,
+      "dict_freq": "1 min"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "rtu_oa_damper.csv",
+      "column": "rtu_002_oadmpr_pct",
+      "description": "Roof Top Unit * outdoor air damper position (*: 001, 002, 003, 004)",
+      "quantity_kind": "damper_position"
+    },
+    {
+      "kind": "unit",
+      "file": "rtu_oa_damper.csv",
+      "column": "rtu_002_oadmpr_pct",
+      "true_unit": "%",
+      "dict_unit": "%"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "rtu_oa_damper.csv",
+      "column": "rtu_003_oadmpr_pct",
+      "description": "Roof Top Unit * outdoor air damper position (*: 001, 002, 003, 004)",
+      "quantity_kind": "damper_position"
+    },
+    {
+      "kind": "unit",
+      "file": "rtu_oa_damper.csv",
+      "column": "rtu_003_oadmpr_pct",
+      "true_unit": "%",
+      "dict_unit": "%"
+    }
+  ],
+  "discriminates_against": [
+    "outer_join",
+    "agg_max"
+  ],
+  "spec": {
+    "family": "T3",
+    "sources": [
+      {
+        "file": "ashp_cw",
+        "columns": [
+          "aru_001_cws_temp"
+        ]
+      },
+      {
+        "file": "ele",
+        "columns": [
+          "hvac_N",
+          "mels_S"
+        ]
+      },
+      {
+        "file": "rtu_oa_damper",
+        "columns": [
+          "rtu_002_oadmpr_pct",
+          "rtu_003_oadmpr_pct"
+        ]
+      }
+    ],
+    "freq": "15min",
+    "agg": "mean",
+    "how": "inner",
+    "out_columns": [
+      "aru_001_cws_temp",
+      "hvac_N",
+      "mels_S",
+      "rtu_002_oadmpr_pct",
+      "rtu_003_oadmpr_pct"
+    ],
+    "target_units": {
+      "aru_001_cws_temp": "°F",
+      "hvac_N": "kW",
+      "mels_S": "kW",
+      "rtu_002_oadmpr_pct": "%",
+      "rtu_003_oadmpr_pct": "%"
+    }
+  },
+  "shown_rows": [
+    0,
+    24,
+    48,
+    71,
+    95
+  ]
+}

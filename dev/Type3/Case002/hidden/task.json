@@ -1,0 +1,165 @@
+{
+  "id": "T3-003",
+  "family": "T3",
+  "source_files": [
+    "rtu_ra_t.csv",
+    "zone_temp_exterior.csv"
+  ],
+  "target_schema": [
+    {
+      "name": "timestamp",
+      "dtype": "string 'YYYY-MM-DD HH:MM:SS'",
+      "description": "start of interval"
+    },
+    {
+      "name": "rtu_001_ra_temp",
+      "dtype": "float",
+      "unit": "°F",
+      "description": "Roof Top Unit * return air temperature (*: 001, 002, 003, 004) (°F), 15-minute averages"
+    },
+    {
+      "name": "rtu_002_ra_temp",
+      "dtype": "float",
+      "unit": "°F",
+      "description": "Roof Top Unit * return air temperature (*: 001, 002, 003, 004) (°F), 15-minute averages"
+    },
+    {
+      "name": "zone_045_temp",
+      "dtype": "float",
+      "unit": "°F",
+      "description": "Zone temperature of exterior zone (°F), 15-minute averages"
+    }
+  ],
+  "example_day": "2019-03-24",
+  "test_days": [
+    "2018-12-03",
+    "2018-12-04"
+  ],
+  "source_dates_example": {
+    "rtu_ra_t": [
+      "2019-03-24"
+    ],
+    "zone_temp_exterior": [
+      "2019-03-23",
+      "2019-03-24"
+    ]
+  },
+  "source_dates_test": {
+    "rtu_ra_t": [
+      "2018-12-03",
+      "2018-12-04"
+    ],
+    "zone_temp_exterior": [
+      "2018-12-02",
+      "2018-12-03",
+      "2018-12-04"
+    ]
+  },
+  "n_target_rows_example": 96,
+  "n_target_rows_test": 192,
+  "nl_instruction": "Join rtu_ra_t.csv, zone_temp_exterior.csv on timestamp (inner join) after aggregating each to 15-minute averages; keep only rtu_001_ra_temp, rtu_002_ra_temp, zone_045_temp. Timestamp = start of interval.",
+  "needs": [
+    "sampling_interval",
+    "time_alignment",
+    "join",
+    "aggregation"
+  ],
+  "knowledge": [
+    {
+      "kind": "sampling_interval",
+      "file": "rtu_ra_t.csv",
+      "value_min": 1.0,
+      "dict_freq": "1 min"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "rtu_ra_t.csv",
+      "column": "rtu_001_ra_temp",
+      "description": "Roof Top Unit * return air temperature (*: 001, 002, 003, 004)",
+      "quantity_kind": "temperature"
+    },
+    {
+      "kind": "unit",
+      "file": "rtu_ra_t.csv",
+      "column": "rtu_001_ra_temp",
+      "true_unit": "°F",
+      "dict_unit": "°F"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "rtu_ra_t.csv",
+      "column": "rtu_002_ra_temp",
+      "description": "Roof Top Unit * return air temperature (*: 001, 002, 003, 004)",
+      "quantity_kind": "temperature"
+    },
+    {
+      "kind": "unit",
+      "file": "rtu_ra_t.csv",
+      "column": "rtu_002_ra_temp",
+      "true_unit": "°F",
+      "dict_unit": "°F"
+    },
+    {
+      "kind": "sampling_interval",
+      "file": "zone_temp_exterior.csv",
+      "value_min": 1.0,
+      "dict_freq": "1 min"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "zone_temp_exterior.csv",
+      "column": "zone_045_temp",
+      "description": "Zone temperature of exterior zone",
+      "quantity_kind": "temperature"
+    },
+    {
+      "kind": "unit",
+      "file": "zone_temp_exterior.csv",
+      "column": "zone_045_temp",
+      "true_unit": "°F",
+      "dict_unit": "°F"
+    }
+  ],
+  "discriminates_against": [
+    "outer_join",
+    "agg_max"
+  ],
+  "spec": {
+    "family": "T3",
+    "sources": [
+      {
+        "file": "rtu_ra_t",
+        "columns": [
+          "rtu_001_ra_temp",
+          "rtu_002_ra_temp"
+        ]
+      },
+      {
+        "file": "zone_temp_exterior",
+        "columns": [
+          "zone_045_temp"
+        ]
+      }
+    ],
+    "freq": "15min",
+    "agg": "mean",
+    "how": "inner",
+    "out_columns": [
+      "rtu_001_ra_temp",
+      "rtu_002_ra_temp",
+      "zone_045_temp"
+    ],
+    "target_units": {
+      "rtu_001_ra_temp": "°F",
+      "rtu_002_ra_temp": "°F",
+      "zone_045_temp": "°F"
+    }
+  },
+  "shown_rows": [
+    0,
+    24,
+    48,
+    71,
+    95
+  ]
+}

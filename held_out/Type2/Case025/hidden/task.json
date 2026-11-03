@@ -1,0 +1,130 @@
+{
+  "id": "T2-032",
+  "family": "T2",
+  "source_files": [
+    "site_weather.csv"
+  ],
+  "target_schema": [
+    {
+      "name": "timestamp",
+      "dtype": "string 'YYYY-MM-DD HH:MM:SS'",
+      "description": "start of interval"
+    },
+    {
+      "name": "air_temp_set_1_f",
+      "dtype": "float",
+      "unit": "°F",
+      "description": "Outdoor air temperature from sensor 1 (°F), 1-hour interval"
+    },
+    {
+      "name": "air_temp_set_2_f",
+      "dtype": "float",
+      "unit": "°F",
+      "description": "Outdoor air temperature from sensor 2 (°F), 1-hour interval"
+    }
+  ],
+  "example_day": "2018-02-11",
+  "test_days": [
+    "2019-06-02",
+    "2019-06-03"
+  ],
+  "source_dates_example": {
+    "site_weather": [
+      "2018-02-11"
+    ]
+  },
+  "source_dates_test": {
+    "site_weather": [
+      "2019-06-02",
+      "2019-06-03"
+    ]
+  },
+  "n_target_rows_example": 24,
+  "n_target_rows_test": 48,
+  "nl_instruction": "Aggregate air_temp_set_1, air_temp_set_2 from site_weather.csv to 1-hour averages and convert °C to °F. Timestamp = start of interval.",
+  "needs": [
+    "unit",
+    "conversion",
+    "aggregation"
+  ],
+  "knowledge": [
+    {
+      "kind": "sampling_interval",
+      "file": "site_weather.csv",
+      "value_min": 15.0,
+      "dict_freq": "15 min"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "site_weather.csv",
+      "column": "air_temp_set_1",
+      "description": "Outdoor air temperature from sensor 1",
+      "quantity_kind": "temperature"
+    },
+    {
+      "kind": "unit",
+      "file": "site_weather.csv",
+      "column": "air_temp_set_1",
+      "true_unit": "°C",
+      "dict_unit": "°C"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "site_weather.csv",
+      "column": "air_temp_set_2",
+      "description": "Outdoor air temperature from sensor 2",
+      "quantity_kind": "temperature"
+    },
+    {
+      "kind": "unit",
+      "file": "site_weather.csv",
+      "column": "air_temp_set_2",
+      "true_unit": "°C",
+      "dict_unit": "°C"
+    }
+  ],
+  "discriminates_against": [
+    "agg_max",
+    "no_or_wrong_conversion"
+  ],
+  "spec": {
+    "family": "T2",
+    "file": "site_weather",
+    "columns": [
+      "air_temp_set_1",
+      "air_temp_set_2"
+    ],
+    "freq": "1h",
+    "agg": "mean",
+    "conversion": "C_to_F",
+    "rename": {
+      "air_temp_set_1": "air_temp_set_1_f",
+      "air_temp_set_2": "air_temp_set_2_f"
+    },
+    "out_columns": [
+      "air_temp_set_1_f",
+      "air_temp_set_2_f"
+    ],
+    "target_units": {
+      "air_temp_set_1_f": "°F",
+      "air_temp_set_2_f": "°F"
+    },
+    "conflict_note": null,
+    "source_units": {
+      "air_temp_set_1": "°C",
+      "air_temp_set_2": "°C"
+    },
+    "dict_units": {
+      "air_temp_set_1": "°C",
+      "air_temp_set_2": "°C"
+    }
+  },
+  "benchmark_version": "holdout_v2",
+  "shown_rows": [
+    0,
+    6,
+    12,
+    17,
+    23
+  ]
+}

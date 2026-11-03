@@ -1,0 +1,92 @@
+{
+  "id": "T1-141",
+  "family": "T1",
+  "source_files": [
+    "zone_temp_interior.csv"
+  ],
+  "target_schema": [
+    {
+      "name": "timestamp",
+      "dtype": "string 'YYYY-MM-DD HH:MM:SS'",
+      "description": "start of interval"
+    },
+    {
+      "name": "cerc_templogger_12",
+      "dtype": "float",
+      "unit": "°C",
+      "description": "Zone temperature of interior zone (°C), 30-minute interval"
+    }
+  ],
+  "example_day": "2020-03-24",
+  "test_days": [
+    "2018-11-24",
+    "2018-11-25"
+  ],
+  "source_dates_example": {
+    "zone_temp_interior": [
+      "2020-03-24"
+    ]
+  },
+  "source_dates_test": {
+    "zone_temp_interior": [
+      "2018-11-24",
+      "2018-11-25"
+    ]
+  },
+  "n_target_rows_example": 48,
+  "n_target_rows_test": 96,
+  "nl_instruction": "Aggregate cerc_templogger_12 from zone_temp_interior.csv to 30-minute intervals using the minimum. Timestamp = start of interval.",
+  "needs": [
+    "aggregation",
+    "sampling_interval"
+  ],
+  "knowledge": [
+    {
+      "kind": "sampling_interval",
+      "file": "zone_temp_interior.csv",
+      "value_min": 10.0,
+      "dict_freq": "10 min"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "zone_temp_interior.csv",
+      "column": "cerc_templogger_12",
+      "description": "Zone temperature of interior zone",
+      "quantity_kind": "temperature"
+    },
+    {
+      "kind": "unit",
+      "file": "zone_temp_interior.csv",
+      "column": "cerc_templogger_12",
+      "true_unit": "°C",
+      "dict_unit": "°F"
+    }
+  ],
+  "discriminates_against": [
+    "agg_mean",
+    "agg_max"
+  ],
+  "spec": {
+    "family": "T1",
+    "file": "zone_temp_interior",
+    "columns": [
+      "cerc_templogger_12"
+    ],
+    "freq": "30min",
+    "agg": "min",
+    "out_columns": [
+      "cerc_templogger_12"
+    ],
+    "target_units": {
+      "cerc_templogger_12": "°C"
+    }
+  },
+  "benchmark_version": "holdout_v2",
+  "shown_rows": [
+    0,
+    1,
+    12,
+    24,
+    35
+  ]
+}

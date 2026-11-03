@@ -1,0 +1,137 @@
+{
+  "id": "T1-062",
+  "family": "T1",
+  "source_files": [
+    "rtu_oa_t.csv"
+  ],
+  "target_schema": [
+    {
+      "name": "timestamp",
+      "dtype": "string 'YYYY-MM-DD HH:MM:SS'",
+      "description": "start of interval"
+    },
+    {
+      "name": "rtu_001_oa_temp",
+      "dtype": "float",
+      "unit": "°F",
+      "description": "Roof Top Unit * outdoor air temperature (*: 001, 002, 003, 004) (°F), 30-minute interval"
+    },
+    {
+      "name": "rtu_003_oa_temp",
+      "dtype": "float",
+      "unit": "°F",
+      "description": "Roof Top Unit * outdoor air temperature (*: 001, 002, 003, 004) (°F), 30-minute interval"
+    },
+    {
+      "name": "rtu_004_oa_temp",
+      "dtype": "float",
+      "unit": "°F",
+      "description": "Roof Top Unit * outdoor air temperature (*: 001, 002, 003, 004) (°F), 30-minute interval"
+    }
+  ],
+  "example_day": "2020-02-26",
+  "test_days": [
+    "2018-03-11",
+    "2018-03-12"
+  ],
+  "source_dates_example": {
+    "rtu_oa_t": [
+      "2020-02-26"
+    ]
+  },
+  "source_dates_test": {
+    "rtu_oa_t": [
+      "2018-03-11",
+      "2018-03-12"
+    ]
+  },
+  "n_target_rows_example": 48,
+  "n_target_rows_test": 96,
+  "nl_instruction": "Aggregate rtu_001_oa_temp, rtu_003_oa_temp, rtu_004_oa_temp from rtu_oa_t.csv to 30-minute intervals using the maximum. Timestamp = start of interval.",
+  "needs": [
+    "aggregation",
+    "sampling_interval"
+  ],
+  "knowledge": [
+    {
+      "kind": "sampling_interval",
+      "file": "rtu_oa_t.csv",
+      "value_min": 1.0,
+      "dict_freq": "1 min"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "rtu_oa_t.csv",
+      "column": "rtu_001_oa_temp",
+      "description": "Roof Top Unit * outdoor air temperature (*: 001, 002, 003, 004)",
+      "quantity_kind": "temperature"
+    },
+    {
+      "kind": "unit",
+      "file": "rtu_oa_t.csv",
+      "column": "rtu_001_oa_temp",
+      "true_unit": "°F",
+      "dict_unit": "°F"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "rtu_oa_t.csv",
+      "column": "rtu_003_oa_temp",
+      "description": "Roof Top Unit * outdoor air temperature (*: 001, 002, 003, 004)",
+      "quantity_kind": "temperature"
+    },
+    {
+      "kind": "unit",
+      "file": "rtu_oa_t.csv",
+      "column": "rtu_003_oa_temp",
+      "true_unit": "°F",
+      "dict_unit": "°F"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "rtu_oa_t.csv",
+      "column": "rtu_004_oa_temp",
+      "description": "Roof Top Unit * outdoor air temperature (*: 001, 002, 003, 004)",
+      "quantity_kind": "temperature"
+    },
+    {
+      "kind": "unit",
+      "file": "rtu_oa_t.csv",
+      "column": "rtu_004_oa_temp",
+      "true_unit": "°F",
+      "dict_unit": "°F"
+    }
+  ],
+  "discriminates_against": [
+    "agg_mean",
+    "agg_min"
+  ],
+  "spec": {
+    "family": "T1",
+    "file": "rtu_oa_t",
+    "columns": [
+      "rtu_001_oa_temp",
+      "rtu_003_oa_temp",
+      "rtu_004_oa_temp"
+    ],
+    "freq": "30min",
+    "agg": "max",
+    "out_columns": [
+      "rtu_001_oa_temp",
+      "rtu_003_oa_temp",
+      "rtu_004_oa_temp"
+    ],
+    "target_units": {
+      "rtu_001_oa_temp": "°F",
+      "rtu_003_oa_temp": "°F",
+      "rtu_004_oa_temp": "°F"
+    }
+  },
+  "shown_rows": [
+    0,
+    12,
+    24,
+    35,
+    47
+  ]
+}

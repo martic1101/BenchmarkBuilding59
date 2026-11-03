@@ -1,0 +1,64 @@
+{
+ "source_files": [
+  "ele.csv",
+  "rtu_plenum_p.csv",
+  "zone_co2.csv"
+ ],
+ "example_day": "2019-11-14",
+ "target_schema": [
+  {
+   "name": "timestamp",
+   "dtype": "string 'YYYY-MM-DD HH:MM:SS'"
+  },
+  {
+   "name": "mels_S",
+   "dtype": "float",
+   "unit": "kW"
+  },
+  {
+   "name": "rtu_004_fltrd_gnd_lvl_plenum_press_tn",
+   "dtype": "float",
+   "unit": "psi"
+  },
+  {
+   "name": "zone_044_co2",
+   "dtype": "float",
+   "unit": "ppm"
+  },
+  {
+   "name": "zone_052_co2",
+   "dtype": "float",
+   "unit": "ppm"
+  }
+ ],
+ "n_example_day_target_rows": 96,
+ "n_example_day_source_rows": {
+  "ele.csv": 96,
+  "rtu_plenum_p.csv": 1440,
+  "zone_co2.csv": 2880
+ },
+ "source_blocks": {
+  "ele.csv": [
+   1,
+   1,
+   1,
+   1,
+   1
+  ],
+  "rtu_plenum_p.csv": [
+   15,
+   15,
+   15,
+   15,
+   15
+  ],
+  "zone_co2.csv": [
+   15,
+   15,
+   15,
+   15,
+   15
+  ]
+ },
+ "note": "source_example/ holds only the source rows inside the time intervals of the shown target rows; source_blocks gives the sizes of the contiguous runs (shown as '...' between runs in the prompt)."
+}

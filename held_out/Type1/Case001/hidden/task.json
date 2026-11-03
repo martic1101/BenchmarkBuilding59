@@ -1,0 +1,92 @@
+{
+  "id": "T1-001",
+  "family": "T1",
+  "source_files": [
+    "ashp_cw.csv"
+  ],
+  "target_schema": [
+    {
+      "name": "timestamp",
+      "dtype": "string 'YYYY-MM-DD HH:MM:SS'",
+      "description": "start of interval"
+    },
+    {
+      "name": "aru_001_cwr_temp",
+      "dtype": "float",
+      "unit": "°F",
+      "description": "Chilled water return temperature (°F), 30-minute interval"
+    }
+  ],
+  "example_day": "2020-10-19",
+  "test_days": [
+    "2020-08-04",
+    "2020-08-05"
+  ],
+  "source_dates_example": {
+    "ashp_cw": [
+      "2020-10-19"
+    ]
+  },
+  "source_dates_test": {
+    "ashp_cw": [
+      "2020-08-04",
+      "2020-08-05"
+    ]
+  },
+  "n_target_rows_example": 48,
+  "n_target_rows_test": 96,
+  "nl_instruction": "Aggregate aru_001_cwr_temp from ashp_cw.csv to 30-minute intervals using the average. Timestamp = start of interval.",
+  "needs": [
+    "aggregation",
+    "sampling_interval"
+  ],
+  "knowledge": [
+    {
+      "kind": "sampling_interval",
+      "file": "ashp_cw.csv",
+      "value_min": 5.0,
+      "dict_freq": "5 min"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "ashp_cw.csv",
+      "column": "aru_001_cwr_temp",
+      "description": "Chilled water return temperature",
+      "quantity_kind": "temperature"
+    },
+    {
+      "kind": "unit",
+      "file": "ashp_cw.csv",
+      "column": "aru_001_cwr_temp",
+      "true_unit": "°F",
+      "dict_unit": "°F"
+    }
+  ],
+  "discriminates_against": [
+    "agg_max",
+    "agg_min"
+  ],
+  "spec": {
+    "family": "T1",
+    "file": "ashp_cw",
+    "columns": [
+      "aru_001_cwr_temp"
+    ],
+    "freq": "30min",
+    "agg": "mean",
+    "out_columns": [
+      "aru_001_cwr_temp"
+    ],
+    "target_units": {
+      "aru_001_cwr_temp": "°F"
+    }
+  },
+  "benchmark_version": "holdout_v2",
+  "shown_rows": [
+    0,
+    12,
+    24,
+    35,
+    47
+  ]
+}

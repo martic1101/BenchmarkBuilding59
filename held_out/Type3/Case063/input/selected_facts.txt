@@ -1,0 +1,22 @@
+columns in scope: aru_001_power_mbtuph, wifi_fourth_south, wifi_third_south, zone_028_co2, zone_033_co2
+rtu=RTU03 :: columns: zone_028_co2, zone_033_co2
+class=CO2_Sensor :: columns: zone_028_co2, zone_033_co2
+class=Wifi_AP :: columns: wifi_fourth_south, wifi_third_south
+vav=UTF_2-12 :: columns: zone_028_co2
+vav=UTF_2-14 :: columns: zone_033_co2
+floor=Building :: columns: wifi_fourth_south, wifi_third_south
+floor=Floor_G :: columns: zone_028_co2, zone_033_co2
+unit=/ :: columns: wifi_fourth_south, wifi_third_south
+unit=mbtuph :: columns: aru_001_power_mbtuph
+unit=ppm :: columns: zone_028_co2, zone_033_co2
+sampling=1 min :: columns: zone_028_co2, zone_033_co2
+sampling=10 min :: columns: wifi_fourth_south, wifi_third_south
+sampling=5 min :: columns: aru_001_power_mbtuph
+desc=CO2 concentration of each zone :: columns: zone_028_co2, zone_033_co2
+desc=Heat meter for air source heat pump :: columns: aru_001_power_mbtuph
+desc=Wifi connection counts in the south half of forth floor :: columns: wifi_fourth_south
+desc=Wifi connection counts in the south half of third floor :: columns: wifi_third_south
+zone=Floor_G :: columns: wifi_third_south
+zone=Floor_S :: columns: wifi_fourth_south
+zone=zone_028 :: columns: zone_028_co2
+zone=zone_033 :: columns: zone_033_co2

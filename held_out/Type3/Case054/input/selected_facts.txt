@@ -1,0 +1,14 @@
+columns in scope: mels_S, zone_030_temp
+vav=UTF_2-13B :: columns: zone_030_temp
+rtu=RTU03 :: columns: zone_030_temp
+floor=Floor_G :: columns: zone_030_temp
+desc=Miscellaneous electric load for the South Wing :: columns: mels_S
+desc=Zone temperature of exterior zone :: columns: zone_030_temp
+unit=kW :: columns: mels_S
+unit=°F :: columns: zone_030_temp
+sampling=1 min :: columns: zone_030_temp
+sampling=15 min :: columns: mels_S
+class=Building_Electrical_Meter :: columns: mels_S
+class=Zone_Air_Temperature_Sensor :: columns: zone_030_temp
+zone=Building :: columns: mels_S
+zone=zone_030 :: columns: zone_030_temp

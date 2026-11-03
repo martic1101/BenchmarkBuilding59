@@ -1,0 +1,105 @@
+{
+  "id": "T2-025",
+  "family": "T2",
+  "source_files": [
+    "ashp_meter.csv"
+  ],
+  "target_schema": [
+    {
+      "name": "timestamp",
+      "dtype": "string 'YYYY-MM-DD HH:MM:SS'",
+      "description": "start of interval"
+    },
+    {
+      "name": "aru_001_power_mbtuph_kbtu",
+      "dtype": "float",
+      "unit": "kBtu",
+      "description": "Heat meter for air source heat pump (kBtu), 30-minute interval"
+    }
+  ],
+  "example_day": "2020-11-15",
+  "test_days": [
+    "2020-12-16",
+    "2020-12-17"
+  ],
+  "source_dates_example": {
+    "ashp_meter": [
+      "2020-11-15"
+    ]
+  },
+  "source_dates_test": {
+    "ashp_meter": [
+      "2020-12-16",
+      "2020-12-17"
+    ]
+  },
+  "n_target_rows_example": 48,
+  "n_target_rows_test": 96,
+  "nl_instruction": "Aggregate aru_001_power_mbtuph from ashp_meter.csv to 30-minute averages and convert average power to energy per interval (kBtu). Timestamp = start of interval.",
+  "needs": [
+    "unit",
+    "conversion",
+    "aggregation",
+    "power_vs_energy"
+  ],
+  "knowledge": [
+    {
+      "kind": "sampling_interval",
+      "file": "ashp_meter.csv",
+      "value_min": 5.0,
+      "dict_freq": "5 min"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "ashp_meter.csv",
+      "column": "aru_001_power_mbtuph",
+      "description": "Heat meter for air source heat pump",
+      "quantity_kind": "thermal_power"
+    },
+    {
+      "kind": "unit",
+      "file": "ashp_meter.csv",
+      "column": "aru_001_power_mbtuph",
+      "true_unit": "mbtuph",
+      "dict_unit": "mbtuph"
+    }
+  ],
+  "discriminates_against": [
+    "agg_max",
+    "no_or_wrong_conversion"
+  ],
+  "spec": {
+    "family": "T2",
+    "file": "ashp_meter",
+    "columns": [
+      "aru_001_power_mbtuph"
+    ],
+    "freq": "30min",
+    "agg": "mean",
+    "conversion": "power_to_energy",
+    "rename": {
+      "aru_001_power_mbtuph": "aru_001_power_mbtuph_kbtu"
+    },
+    "out_columns": [
+      "aru_001_power_mbtuph_kbtu"
+    ],
+    "target_units": {
+      "aru_001_power_mbtuph_kbtu": "kBtu"
+    },
+    "conflict_note": null,
+    "source_units": {
+      "aru_001_power_mbtuph": "mbtuph"
+    },
+    "dict_units": {
+      "aru_001_power_mbtuph": "mbtuph"
+    }
+  },
+  "benchmark_version": "holdout_v2",
+  "shown_rows": [
+    0,
+    12,
+    24,
+    35,
+    47
+  ]
+}

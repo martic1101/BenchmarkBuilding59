@@ -1,0 +1,10 @@
+columns in scope: rtu_004_sa_temp, wifi_second_south
+class=Supply_Air_Temperature_Sensor :: columns: rtu_004_sa_temp
+zone=RTU04 :: columns: rtu_004_sa_temp
+rtu=RTU04 :: columns: rtu_004_sa_temp
+desc=Roof Top Unit * supply air temperature (*: 001, 002, 003, 004) :: columns: rtu_004_sa_temp
+desc=Wifi connection counts in the south half of second floor :: columns: wifi_second_south
+unit=/ :: columns: wifi_second_south
+unit=°F :: columns: rtu_004_sa_temp
+sampling=1 min :: columns: rtu_004_sa_temp
+sampling=10 min :: columns: wifi_second_south

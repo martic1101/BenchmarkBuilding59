@@ -1,0 +1,17 @@
+columns in scope: rtu_003_econ_stpt_tn, zone_024_fan_spd, zone_049_fan_spd
+sampling=1 min :: columns: ALL
+desc=Roof Top Unit * economizer setpoint (*: 001, 002, 003, 004) :: columns: rtu_003_econ_stpt_tn
+desc=Supply air fan speed of Zone * :: columns: zone_024_fan_spd, zone_049_fan_spd
+unit=% :: columns: zone_024_fan_spd, zone_049_fan_spd
+unit=°F :: columns: rtu_003_econ_stpt_tn
+class=Economizer_Setpoint :: columns: rtu_003_econ_stpt_tn
+class=Supply_Air_Flow_Sensor :: columns: zone_024_fan_spd, zone_049_fan_spd
+vav=UTF_2-8 :: columns: zone_024_fan_spd
+vav=UTF_G-4A :: columns: zone_049_fan_spd
+rtu=RTU01 :: columns: zone_024_fan_spd
+rtu=RTU03 :: columns: rtu_003_econ_stpt_tn, zone_049_fan_spd
+floor=Floor_G :: columns: zone_024_fan_spd
+floor=Floor_S :: columns: zone_049_fan_spd
+zone=RTU03 :: columns: rtu_003_econ_stpt_tn
+zone=zone_024 :: columns: zone_024_fan_spd
+zone=zone_049 :: columns: zone_049_fan_spd

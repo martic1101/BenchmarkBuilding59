@@ -1,0 +1,11 @@
+columns in scope: cerc_templogger_11, cerc_templogger_13, zone_046_hw_valve
+class=Zone_Air_Temperature_Sensor :: columns: cerc_templogger_11, cerc_templogger_13
+floor=Floor_S :: columns: cerc_templogger_11, cerc_templogger_13
+desc=Heating water valve position of Zone * :: columns: zone_046_hw_valve
+desc=Zone temperature of interior zone :: columns: cerc_templogger_11, cerc_templogger_13
+unit=% :: columns: zone_046_hw_valve
+unit=°F :: columns: cerc_templogger_11, cerc_templogger_13
+sampling=1 min :: columns: zone_046_hw_valve
+sampling=10 min :: columns: cerc_templogger_11, cerc_templogger_13
+zone=zone_cerc_11 :: columns: cerc_templogger_11
+zone=zone_cerc_13 :: columns: cerc_templogger_13

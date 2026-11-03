@@ -1,0 +1,186 @@
+{
+  "id": "T3-073",
+  "family": "T3",
+  "source_files": [
+    "rtu_econ_sp.csv",
+    "rtu_sa_t.csv",
+    "site_weather.csv"
+  ],
+  "target_schema": [
+    {
+      "name": "timestamp",
+      "dtype": "string 'YYYY-MM-DD HH:MM:SS'",
+      "description": "start of interval"
+    },
+    {
+      "name": "rtu_003_econ_stpt_tn",
+      "dtype": "float",
+      "unit": "°F",
+      "description": "Roof Top Unit * economizer setpoint (*: 001, 002, 003, 004) (°F), 1-hour interval"
+    },
+    {
+      "name": "rtu_004_sa_temp",
+      "dtype": "float",
+      "unit": "°F",
+      "description": "Roof Top Unit * supply air temperature (*: 001, 002, 003, 004) (°F), 1-hour interval"
+    },
+    {
+      "name": "air_temp_set_2",
+      "dtype": "float",
+      "unit": "°C",
+      "description": "Outdoor air temperature from sensor 2 (°C), 1-hour interval"
+    }
+  ],
+  "example_day": "2020-01-15",
+  "test_days": [
+    "2020-11-30",
+    "2020-12-01"
+  ],
+  "source_dates_example": {
+    "rtu_econ_sp": [
+      "2020-01-15"
+    ],
+    "rtu_sa_t": [
+      "2020-01-15"
+    ],
+    "site_weather": [
+      "2020-01-14",
+      "2020-01-15"
+    ]
+  },
+  "source_dates_test": {
+    "rtu_econ_sp": [
+      "2020-11-30",
+      "2020-12-01"
+    ],
+    "rtu_sa_t": [
+      "2020-11-30",
+      "2020-12-01"
+    ],
+    "site_weather": [
+      "2020-11-29",
+      "2020-11-30",
+      "2020-12-01"
+    ]
+  },
+  "n_target_rows_example": 24,
+  "n_target_rows_test": 48,
+  "nl_instruction": "Join rtu_econ_sp.csv, rtu_sa_t.csv, site_weather.csv on timestamp (inner join) after aggregating each to 1-hour intervals using the average; keep only rtu_003_econ_stpt_tn, rtu_004_sa_temp, air_temp_set_2. Timestamp = start of interval.",
+  "needs": [
+    "sampling_interval",
+    "time_alignment",
+    "join",
+    "aggregation"
+  ],
+  "knowledge": [
+    {
+      "kind": "sampling_interval",
+      "file": "rtu_econ_sp.csv",
+      "value_min": 1.0,
+      "dict_freq": "1 min"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "rtu_econ_sp.csv",
+      "column": "rtu_003_econ_stpt_tn",
+      "description": "Roof Top Unit * economizer setpoint (*: 001, 002, 003, 004)",
+      "quantity_kind": "temperature_setpoint"
+    },
+    {
+      "kind": "unit",
+      "file": "rtu_econ_sp.csv",
+      "column": "rtu_003_econ_stpt_tn",
+      "true_unit": "°F",
+      "dict_unit": "°F"
+    },
+    {
+      "kind": "sampling_interval",
+      "file": "rtu_sa_t.csv",
+      "value_min": 1.0,
+      "dict_freq": "1 min"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "rtu_sa_t.csv",
+      "column": "rtu_004_sa_temp",
+      "description": "Roof Top Unit * supply air temperature (*: 001, 002, 003, 004)",
+      "quantity_kind": "temperature"
+    },
+    {
+      "kind": "unit",
+      "file": "rtu_sa_t.csv",
+      "column": "rtu_004_sa_temp",
+      "true_unit": "°F",
+      "dict_unit": "°F"
+    },
+    {
+      "kind": "sampling_interval",
+      "file": "site_weather.csv",
+      "value_min": 15.0,
+      "dict_freq": "15 min"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "site_weather.csv",
+      "column": "air_temp_set_2",
+      "description": "Outdoor air temperature from sensor 2",
+      "quantity_kind": "temperature"
+    },
+    {
+      "kind": "unit",
+      "file": "site_weather.csv",
+      "column": "air_temp_set_2",
+      "true_unit": "°C",
+      "dict_unit": "°C"
+    }
+  ],
+  "discriminates_against": [
+    "outer_join",
+    "agg_max",
+    "agg_min"
+  ],
+  "spec": {
+    "family": "T3",
+    "sources": [
+      {
+        "file": "rtu_econ_sp",
+        "columns": [
+          "rtu_003_econ_stpt_tn"
+        ]
+      },
+      {
+        "file": "rtu_sa_t",
+        "columns": [
+          "rtu_004_sa_temp"
+        ]
+      },
+      {
+        "file": "site_weather",
+        "columns": [
+          "air_temp_set_2"
+        ]
+      }
+    ],
+    "freq": "1h",
+    "agg": "mean",
+    "how": "inner",
+    "out_columns": [
+      "rtu_003_econ_stpt_tn",
+      "rtu_004_sa_temp",
+      "air_temp_set_2"
+    ],
+    "target_units": {
+      "rtu_003_econ_stpt_tn": "°F",
+      "rtu_004_sa_temp": "°F",
+      "air_temp_set_2": "°C"
+    }
+  },
+  "benchmark_version": "holdout_v2",
+  "shown_rows": [
+    0,
+    6,
+    12,
+    17,
+    23
+  ]
+}

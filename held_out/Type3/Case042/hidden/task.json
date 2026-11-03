@@ -1,0 +1,232 @@
+{
+  "id": "T3-045",
+  "family": "T3",
+  "source_files": [
+    "rtu_econ_sp.csv",
+    "rtu_oa_t.csv",
+    "rtu_sa_fr.csv"
+  ],
+  "target_schema": [
+    {
+      "name": "timestamp",
+      "dtype": "string 'YYYY-MM-DD HH:MM:SS'",
+      "description": "start of interval"
+    },
+    {
+      "name": "rtu_001_econ_stpt_tn",
+      "dtype": "float",
+      "unit": "°F",
+      "description": "Roof Top Unit * economizer setpoint (*: 001, 002, 003, 004) (°F), 1-hour interval"
+    },
+    {
+      "name": "rtu_003_econ_stpt_tn",
+      "dtype": "float",
+      "unit": "°F",
+      "description": "Roof Top Unit * economizer setpoint (*: 001, 002, 003, 004) (°F), 1-hour interval"
+    },
+    {
+      "name": "rtu_003_oa_temp",
+      "dtype": "float",
+      "unit": "°F",
+      "description": "Roof Top Unit * outdoor air temperature (*: 001, 002, 003, 004) (°F), 1-hour interval"
+    },
+    {
+      "name": "rtu_001_fltrd_sa_flow_tn",
+      "dtype": "float",
+      "unit": "CFM",
+      "description": "Roof Top Unit * filtered supply air flow rate (*: 001, 002, 003, 004) (CFM), 1-hour interval"
+    },
+    {
+      "name": "rtu_004_fltrd_sa_flow_tn",
+      "dtype": "float",
+      "unit": "CFM",
+      "description": "Roof Top Unit * filtered supply air flow rate (*: 001, 002, 003, 004) (CFM), 1-hour interval"
+    }
+  ],
+  "example_day": "2019-04-07",
+  "test_days": [
+    "2019-12-06",
+    "2019-12-07"
+  ],
+  "source_dates_example": {
+    "rtu_econ_sp": [
+      "2019-04-07"
+    ],
+    "rtu_oa_t": [
+      "2019-04-07"
+    ],
+    "rtu_sa_fr": [
+      "2019-04-06",
+      "2019-04-07"
+    ]
+  },
+  "source_dates_test": {
+    "rtu_econ_sp": [
+      "2019-12-06",
+      "2019-12-07"
+    ],
+    "rtu_oa_t": [
+      "2019-12-06",
+      "2019-12-07"
+    ],
+    "rtu_sa_fr": [
+      "2019-12-05",
+      "2019-12-06",
+      "2019-12-07"
+    ]
+  },
+  "n_target_rows_example": 24,
+  "n_target_rows_test": 48,
+  "nl_instruction": "Join rtu_econ_sp.csv, rtu_oa_t.csv, rtu_sa_fr.csv on timestamp (inner join) after aggregating each to 1-hour intervals using the average; keep only rtu_001_econ_stpt_tn, rtu_003_econ_stpt_tn, rtu_003_oa_temp, rtu_001_fltrd_sa_flow_tn, rtu_004_fltrd_sa_flow_tn. Timestamp = start of interval.",
+  "needs": [
+    "sampling_interval",
+    "time_alignment",
+    "join",
+    "aggregation"
+  ],
+  "knowledge": [
+    {
+      "kind": "sampling_interval",
+      "file": "rtu_econ_sp.csv",
+      "value_min": 1.0,
+      "dict_freq": "1 min"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "rtu_econ_sp.csv",
+      "column": "rtu_001_econ_stpt_tn",
+      "description": "Roof Top Unit * economizer setpoint (*: 001, 002, 003, 004)",
+      "quantity_kind": "temperature_setpoint"
+    },
+    {
+      "kind": "unit",
+      "file": "rtu_econ_sp.csv",
+      "column": "rtu_001_econ_stpt_tn",
+      "true_unit": "°F",
+      "dict_unit": "°F"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "rtu_econ_sp.csv",
+      "column": "rtu_003_econ_stpt_tn",
+      "description": "Roof Top Unit * economizer setpoint (*: 001, 002, 003, 004)",
+      "quantity_kind": "temperature_setpoint"
+    },
+    {
+      "kind": "unit",
+      "file": "rtu_econ_sp.csv",
+      "column": "rtu_003_econ_stpt_tn",
+      "true_unit": "°F",
+      "dict_unit": "°F"
+    },
+    {
+      "kind": "sampling_interval",
+      "file": "rtu_oa_t.csv",
+      "value_min": 1.0,
+      "dict_freq": "1 min"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "rtu_oa_t.csv",
+      "column": "rtu_003_oa_temp",
+      "description": "Roof Top Unit * outdoor air temperature (*: 001, 002, 003, 004)",
+      "quantity_kind": "temperature"
+    },
+    {
+      "kind": "unit",
+      "file": "rtu_oa_t.csv",
+      "column": "rtu_003_oa_temp",
+      "true_unit": "°F",
+      "dict_unit": "°F"
+    },
+    {
+      "kind": "sampling_interval",
+      "file": "rtu_sa_fr.csv",
+      "value_min": 1.0,
+      "dict_freq": "1 min"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "rtu_sa_fr.csv",
+      "column": "rtu_001_fltrd_sa_flow_tn",
+      "description": "Roof Top Unit * filtered supply air flow rate (*: 001, 002, 003, 004)",
+      "quantity_kind": "air_flow"
+    },
+    {
+      "kind": "unit",
+      "file": "rtu_sa_fr.csv",
+      "column": "rtu_001_fltrd_sa_flow_tn",
+      "true_unit": "CFM",
+      "dict_unit": "CFM"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "rtu_sa_fr.csv",
+      "column": "rtu_004_fltrd_sa_flow_tn",
+      "description": "Roof Top Unit * filtered supply air flow rate (*: 001, 002, 003, 004)",
+      "quantity_kind": "air_flow"
+    },
+    {
+      "kind": "unit",
+      "file": "rtu_sa_fr.csv",
+      "column": "rtu_004_fltrd_sa_flow_tn",
+      "true_unit": "CFM",
+      "dict_unit": "CFM"
+    }
+  ],
+  "discriminates_against": [
+    "outer_join",
+    "agg_max",
+    "agg_min"
+  ],
+  "spec": {
+    "family": "T3",
+    "sources": [
+      {
+        "file": "rtu_econ_sp",
+        "columns": [
+          "rtu_001_econ_stpt_tn",
+          "rtu_003_econ_stpt_tn"
+        ]
+      },
+      {
+        "file": "rtu_oa_t",
+        "columns": [
+          "rtu_003_oa_temp"
+        ]
+      },
+      {
+        "file": "rtu_sa_fr",
+        "columns": [
+          "rtu_001_fltrd_sa_flow_tn",
+          "rtu_004_fltrd_sa_flow_tn"
+        ]
+      }
+    ],
+    "freq": "1h",
+    "agg": "mean",
+    "how": "inner",
+    "out_columns": [
+      "rtu_001_econ_stpt_tn",
+      "rtu_003_econ_stpt_tn",
+      "rtu_003_oa_temp",
+      "rtu_001_fltrd_sa_flow_tn",
+      "rtu_004_fltrd_sa_flow_tn"
+    ],
+    "target_units": {
+      "rtu_001_econ_stpt_tn": "°F",
+      "rtu_003_econ_stpt_tn": "°F",
+      "rtu_003_oa_temp": "°F",
+      "rtu_001_fltrd_sa_flow_tn": "CFM",
+      "rtu_004_fltrd_sa_flow_tn": "CFM"
+    }
+  },
+  "benchmark_version": "holdout_v2",
+  "shown_rows": [
+    0,
+    6,
+    12,
+    17,
+    23
+  ]
+}

@@ -1,0 +1,15 @@
+columns in scope: occ_fourth_south, rtu_001_ma_temp, rtu_001_sat_sp_tn, rtu_002_ma_temp
+sampling=1 min :: columns: ALL
+floor=Building :: columns: occ_fourth_south
+unit=/ :: columns: occ_fourth_south
+unit=°F :: columns: rtu_001_ma_temp, rtu_001_sat_sp_tn, rtu_002_ma_temp
+class=Mixed_Air_Temperature_Sensor :: columns: rtu_001_ma_temp, rtu_002_ma_temp
+class=Occupant_Count :: columns: occ_fourth_south
+rtu=RTU01 :: columns: rtu_001_ma_temp
+rtu=RTU02 :: columns: rtu_002_ma_temp
+desc=Occupant counts in the south half of forth floor :: columns: occ_fourth_south
+desc=Roof Top Unit * mixed air temperature (*: 001, 002, 003, 004) :: columns: rtu_001_ma_temp, rtu_002_ma_temp
+desc=Roof Top Unit * supply air temperature setpoint (*: 001, 002, 003, 004) :: columns: rtu_001_sat_sp_tn
+zone=Floor_S :: columns: occ_fourth_south
+zone=RTU01 :: columns: rtu_001_ma_temp
+zone=RTU02 :: columns: rtu_002_ma_temp

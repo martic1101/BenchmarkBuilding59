@@ -1,0 +1,144 @@
+{
+  "id": "T3-049",
+  "family": "T3",
+  "source_files": [
+    "rtu_oa_damper.csv",
+    "uft_hw_valve.csv"
+  ],
+  "target_schema": [
+    {
+      "name": "timestamp",
+      "dtype": "string 'YYYY-MM-DD HH:MM:SS'",
+      "description": "start of interval"
+    },
+    {
+      "name": "rtu_003_oadmpr_pct",
+      "dtype": "float",
+      "unit": "%",
+      "description": "Roof Top Unit * outdoor air damper position (*: 001, 002, 003, 004) (%), 15-minute interval"
+    },
+    {
+      "name": "zone_040_hw_valve",
+      "dtype": "float",
+      "unit": "%",
+      "description": "Heating water valve position of Zone * (%), 15-minute interval"
+    }
+  ],
+  "example_day": "2018-06-13",
+  "test_days": [
+    "2019-09-20",
+    "2019-09-21"
+  ],
+  "source_dates_example": {
+    "rtu_oa_damper": [
+      "2018-06-13"
+    ],
+    "uft_hw_valve": [
+      "2018-06-12",
+      "2018-06-13"
+    ]
+  },
+  "source_dates_test": {
+    "rtu_oa_damper": [
+      "2019-09-20",
+      "2019-09-21"
+    ],
+    "uft_hw_valve": [
+      "2019-09-19",
+      "2019-09-20",
+      "2019-09-21"
+    ]
+  },
+  "n_target_rows_example": 96,
+  "n_target_rows_test": 192,
+  "nl_instruction": "Join rtu_oa_damper.csv, uft_hw_valve.csv on timestamp (inner join) after aggregating each to 15-minute intervals using the minimum; keep only rtu_003_oadmpr_pct, zone_040_hw_valve. Timestamp = start of interval.",
+  "needs": [
+    "sampling_interval",
+    "time_alignment",
+    "join",
+    "aggregation"
+  ],
+  "knowledge": [
+    {
+      "kind": "sampling_interval",
+      "file": "rtu_oa_damper.csv",
+      "value_min": 1.0,
+      "dict_freq": "1 min"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "rtu_oa_damper.csv",
+      "column": "rtu_003_oadmpr_pct",
+      "description": "Roof Top Unit * outdoor air damper position (*: 001, 002, 003, 004)",
+      "quantity_kind": "damper_position"
+    },
+    {
+      "kind": "unit",
+      "file": "rtu_oa_damper.csv",
+      "column": "rtu_003_oadmpr_pct",
+      "true_unit": "%",
+      "dict_unit": "%"
+    },
+    {
+      "kind": "sampling_interval",
+      "file": "uft_hw_valve.csv",
+      "value_min": 1.0,
+      "dict_freq": "1 min"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "uft_hw_valve.csv",
+      "column": "zone_040_hw_valve",
+      "description": "Heating water valve position of Zone *",
+      "quantity_kind": "valve_position"
+    },
+    {
+      "kind": "unit",
+      "file": "uft_hw_valve.csv",
+      "column": "zone_040_hw_valve",
+      "true_unit": "%",
+      "dict_unit": "%"
+    }
+  ],
+  "discriminates_against": [
+    "outer_join",
+    "agg_mean",
+    "agg_max"
+  ],
+  "spec": {
+    "family": "T3",
+    "sources": [
+      {
+        "file": "rtu_oa_damper",
+        "columns": [
+          "rtu_003_oadmpr_pct"
+        ]
+      },
+      {
+        "file": "uft_hw_valve",
+        "columns": [
+          "zone_040_hw_valve"
+        ]
+      }
+    ],
+    "freq": "15min",
+    "agg": "min",
+    "how": "inner",
+    "out_columns": [
+      "rtu_003_oadmpr_pct",
+      "zone_040_hw_valve"
+    ],
+    "target_units": {
+      "rtu_003_oadmpr_pct": "%",
+      "zone_040_hw_valve": "%"
+    }
+  },
+  "benchmark_version": "holdout_v2",
+  "shown_rows": [
+    0,
+    11,
+    24,
+    48,
+    71
+  ]
+}

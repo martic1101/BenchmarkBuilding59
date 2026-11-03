@@ -1,0 +1,207 @@
+{
+  "id": "T3-068",
+  "family": "T3",
+  "source_files": [
+    "ashp_meter.csv",
+    "ele.csv",
+    "rtu_oa_damper.csv"
+  ],
+  "target_schema": [
+    {
+      "name": "timestamp",
+      "dtype": "string 'YYYY-MM-DD HH:MM:SS'",
+      "description": "start of interval"
+    },
+    {
+      "name": "aru_001_power_mbtuph",
+      "dtype": "float",
+      "unit": "mbtuph",
+      "description": "Heat meter for air source heat pump (mbtuph), 15-minute averages"
+    },
+    {
+      "name": "hvac_N",
+      "dtype": "float",
+      "unit": "kW",
+      "description": "Heating Ventilation and Air Conditioning load for the Nouth Wing (kW), 15-minute averages"
+    },
+    {
+      "name": "hvac_S",
+      "dtype": "float",
+      "unit": "kW",
+      "description": "Heating Ventilation and Air Conditioning load for the Sorth Wing (kW), 15-minute averages"
+    },
+    {
+      "name": "rtu_001_oadmpr_pct",
+      "dtype": "float",
+      "unit": "%",
+      "description": "Roof Top Unit * outdoor air damper position (*: 001, 002, 003, 004) (%), 15-minute averages"
+    }
+  ],
+  "example_day": "2020-11-20",
+  "test_days": [
+    "2020-10-15",
+    "2020-10-16"
+  ],
+  "source_dates_example": {
+    "ashp_meter": [
+      "2020-11-20"
+    ],
+    "ele": [
+      "2020-11-20"
+    ],
+    "rtu_oa_damper": [
+      "2020-11-19",
+      "2020-11-20"
+    ]
+  },
+  "source_dates_test": {
+    "ashp_meter": [
+      "2020-10-15",
+      "2020-10-16"
+    ],
+    "ele": [
+      "2020-10-15",
+      "2020-10-16"
+    ],
+    "rtu_oa_damper": [
+      "2020-10-14",
+      "2020-10-15",
+      "2020-10-16"
+    ]
+  },
+  "n_target_rows_example": 96,
+  "n_target_rows_test": 192,
+  "nl_instruction": "Join ashp_meter.csv, ele.csv, rtu_oa_damper.csv on timestamp (inner join) after aggregating each to 15-minute averages; keep only aru_001_power_mbtuph, hvac_N, hvac_S, rtu_001_oadmpr_pct. Timestamp = start of interval.",
+  "needs": [
+    "sampling_interval",
+    "time_alignment",
+    "join",
+    "aggregation"
+  ],
+  "knowledge": [
+    {
+      "kind": "sampling_interval",
+      "file": "ashp_meter.csv",
+      "value_min": 5.0,
+      "dict_freq": "5 min"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "ashp_meter.csv",
+      "column": "aru_001_power_mbtuph",
+      "description": "Heat meter for air source heat pump",
+      "quantity_kind": "thermal_power"
+    },
+    {
+      "kind": "unit",
+      "file": "ashp_meter.csv",
+      "column": "aru_001_power_mbtuph",
+      "true_unit": "mbtuph",
+      "dict_unit": "mbtuph"
+    },
+    {
+      "kind": "sampling_interval",
+      "file": "ele.csv",
+      "value_min": 15.0,
+      "dict_freq": "15 min"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "ele.csv",
+      "column": "hvac_N",
+      "description": "Heating Ventilation and Air Conditioning load for the Nouth Wing",
+      "quantity_kind": "electric_power"
+    },
+    {
+      "kind": "unit",
+      "file": "ele.csv",
+      "column": "hvac_N",
+      "true_unit": "kW",
+      "dict_unit": "kW"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "ele.csv",
+      "column": "hvac_S",
+      "description": "Heating Ventilation and Air Conditioning load for the Sorth Wing",
+      "quantity_kind": "electric_power"
+    },
+    {
+      "kind": "unit",
+      "file": "ele.csv",
+      "column": "hvac_S",
+      "true_unit": "kW",
+      "dict_unit": "kW"
+    },
+    {
+      "kind": "sampling_interval",
+      "file": "rtu_oa_damper.csv",
+      "value_min": 1.0,
+      "dict_freq": "1 min"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "rtu_oa_damper.csv",
+      "column": "rtu_001_oadmpr_pct",
+      "description": "Roof Top Unit * outdoor air damper position (*: 001, 002, 003, 004)",
+      "quantity_kind": "damper_position"
+    },
+    {
+      "kind": "unit",
+      "file": "rtu_oa_damper.csv",
+      "column": "rtu_001_oadmpr_pct",
+      "true_unit": "%",
+      "dict_unit": "%"
+    }
+  ],
+  "discriminates_against": [
+    "outer_join",
+    "agg_max"
+  ],
+  "spec": {
+    "family": "T3",
+    "sources": [
+      {
+        "file": "ashp_meter",
+        "columns": [
+          "aru_001_power_mbtuph"
+        ]
+      },
+      {
+        "file": "ele",
+        "columns": [
+          "hvac_N",
+          "hvac_S"
+        ]
+      },
+      {
+        "file": "rtu_oa_damper",
+        "columns": [
+          "rtu_001_oadmpr_pct"
+        ]
+      }
+    ],
+    "freq": "15min",
+    "agg": "mean",
+    "how": "inner",
+    "out_columns": [
+      "aru_001_power_mbtuph",
+      "hvac_N",
+      "hvac_S",
+      "rtu_001_oadmpr_pct"
+    ],
+    "target_units": {
+      "aru_001_power_mbtuph": "mbtuph",
+      "hvac_N": "kW",
+      "hvac_S": "kW",
+      "rtu_001_oadmpr_pct": "%"
+    }
+  },
+  "shown_rows": [
+    0,
+    24,
+    48,
+    71,
+    95
+  ]
+}

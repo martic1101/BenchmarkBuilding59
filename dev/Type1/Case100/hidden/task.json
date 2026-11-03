@@ -1,0 +1,114 @@
+{
+  "id": "T1-118",
+  "family": "T1",
+  "source_files": [
+    "uft_hw_valve.csv"
+  ],
+  "target_schema": [
+    {
+      "name": "timestamp",
+      "dtype": "string 'YYYY-MM-DD HH:MM:SS'",
+      "description": "start of interval"
+    },
+    {
+      "name": "zone_024_hw_valve",
+      "dtype": "float",
+      "unit": "%",
+      "description": "Heating water valve position of Zone * (%), 1-hour interval"
+    },
+    {
+      "name": "zone_072_hw_valve",
+      "dtype": "float",
+      "unit": "%",
+      "description": "Heating water valve position of Zone * (%), 1-hour interval"
+    }
+  ],
+  "example_day": "2018-10-28",
+  "test_days": [
+    "2019-05-26",
+    "2019-05-27"
+  ],
+  "source_dates_example": {
+    "uft_hw_valve": [
+      "2018-10-28"
+    ]
+  },
+  "source_dates_test": {
+    "uft_hw_valve": [
+      "2019-05-26",
+      "2019-05-27"
+    ]
+  },
+  "n_target_rows_example": 24,
+  "n_target_rows_test": 48,
+  "nl_instruction": "Aggregate zone_024_hw_valve, zone_072_hw_valve from uft_hw_valve.csv to 1-hour intervals using the average. Timestamp = start of interval.",
+  "needs": [
+    "aggregation",
+    "sampling_interval"
+  ],
+  "knowledge": [
+    {
+      "kind": "sampling_interval",
+      "file": "uft_hw_valve.csv",
+      "value_min": 1.0,
+      "dict_freq": "1 min"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "uft_hw_valve.csv",
+      "column": "zone_024_hw_valve",
+      "description": "Heating water valve position of Zone *",
+      "quantity_kind": "valve_position"
+    },
+    {
+      "kind": "unit",
+      "file": "uft_hw_valve.csv",
+      "column": "zone_024_hw_valve",
+      "true_unit": "%",
+      "dict_unit": "%"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "uft_hw_valve.csv",
+      "column": "zone_072_hw_valve",
+      "description": "Heating water valve position of Zone *",
+      "quantity_kind": "valve_position"
+    },
+    {
+      "kind": "unit",
+      "file": "uft_hw_valve.csv",
+      "column": "zone_072_hw_valve",
+      "true_unit": "%",
+      "dict_unit": "%"
+    }
+  ],
+  "discriminates_against": [
+    "agg_max",
+    "agg_min"
+  ],
+  "spec": {
+    "family": "T1",
+    "file": "uft_hw_valve",
+    "columns": [
+      "zone_024_hw_valve",
+      "zone_072_hw_valve"
+    ],
+    "freq": "1h",
+    "agg": "mean",
+    "out_columns": [
+      "zone_024_hw_valve",
+      "zone_072_hw_valve"
+    ],
+    "target_units": {
+      "zone_024_hw_valve": "%",
+      "zone_072_hw_valve": "%"
+    }
+  },
+  "shown_rows": [
+    0,
+    2,
+    6,
+    12,
+    17
+  ]
+}

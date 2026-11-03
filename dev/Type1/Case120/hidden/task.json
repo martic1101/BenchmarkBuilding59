@@ -1,0 +1,91 @@
+{
+  "id": "T1-139",
+  "family": "T1",
+  "source_files": [
+    "zone_temp_interior.csv"
+  ],
+  "target_schema": [
+    {
+      "name": "timestamp",
+      "dtype": "string 'YYYY-MM-DD HH:MM:SS'",
+      "description": "start of interval"
+    },
+    {
+      "name": "cerc_templogger_14",
+      "dtype": "float",
+      "unit": "°C",
+      "description": "Zone temperature of interior zone (°C), 30-minute interval"
+    }
+  ],
+  "example_day": "2019-07-06",
+  "test_days": [
+    "2019-04-19",
+    "2019-04-20"
+  ],
+  "source_dates_example": {
+    "zone_temp_interior": [
+      "2019-07-06"
+    ]
+  },
+  "source_dates_test": {
+    "zone_temp_interior": [
+      "2019-04-19",
+      "2019-04-20"
+    ]
+  },
+  "n_target_rows_example": 48,
+  "n_target_rows_test": 96,
+  "nl_instruction": "Aggregate cerc_templogger_14 from zone_temp_interior.csv to 30-minute intervals using the average. Timestamp = start of interval.",
+  "needs": [
+    "aggregation",
+    "sampling_interval"
+  ],
+  "knowledge": [
+    {
+      "kind": "sampling_interval",
+      "file": "zone_temp_interior.csv",
+      "value_min": 10.0,
+      "dict_freq": "10 min"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "zone_temp_interior.csv",
+      "column": "cerc_templogger_14",
+      "description": "Zone temperature of interior zone",
+      "quantity_kind": "temperature"
+    },
+    {
+      "kind": "unit",
+      "file": "zone_temp_interior.csv",
+      "column": "cerc_templogger_14",
+      "true_unit": "°C",
+      "dict_unit": "°F"
+    }
+  ],
+  "discriminates_against": [
+    "agg_max",
+    "agg_min"
+  ],
+  "spec": {
+    "family": "T1",
+    "file": "zone_temp_interior",
+    "columns": [
+      "cerc_templogger_14"
+    ],
+    "freq": "30min",
+    "agg": "mean",
+    "out_columns": [
+      "cerc_templogger_14"
+    ],
+    "target_units": {
+      "cerc_templogger_14": "°C"
+    }
+  },
+  "shown_rows": [
+    0,
+    1,
+    12,
+    24,
+    35
+  ]
+}

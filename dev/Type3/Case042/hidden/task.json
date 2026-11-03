@@ -1,0 +1,188 @@
+{
+  "id": "T3-044",
+  "family": "T3",
+  "source_files": [
+    "rtu_econ_sp.csv",
+    "zone_co2.csv"
+  ],
+  "target_schema": [
+    {
+      "name": "timestamp",
+      "dtype": "string 'YYYY-MM-DD HH:MM:SS'",
+      "description": "start of interval"
+    },
+    {
+      "name": "rtu_003_econ_stpt_tn",
+      "dtype": "float",
+      "unit": "°F",
+      "description": "Roof Top Unit * economizer setpoint (*: 001, 002, 003, 004) (°F), 1-hour averages"
+    },
+    {
+      "name": "rtu_004_econ_stpt_tn",
+      "dtype": "float",
+      "unit": "°F",
+      "description": "Roof Top Unit * economizer setpoint (*: 001, 002, 003, 004) (°F), 1-hour averages"
+    },
+    {
+      "name": "zone_022_co2",
+      "dtype": "float",
+      "unit": "ppm",
+      "description": "CO2 concentration of each zone (ppm), 1-hour averages"
+    },
+    {
+      "name": "zone_062_co2",
+      "dtype": "float",
+      "unit": "ppm",
+      "description": "CO2 concentration of each zone (ppm), 1-hour averages"
+    }
+  ],
+  "example_day": "2020-11-08",
+  "test_days": [
+    "2019-09-03",
+    "2019-09-04"
+  ],
+  "source_dates_example": {
+    "rtu_econ_sp": [
+      "2020-11-08"
+    ],
+    "zone_co2": [
+      "2020-11-07",
+      "2020-11-08"
+    ]
+  },
+  "source_dates_test": {
+    "rtu_econ_sp": [
+      "2019-09-03",
+      "2019-09-04"
+    ],
+    "zone_co2": [
+      "2019-09-02",
+      "2019-09-03",
+      "2019-09-04"
+    ]
+  },
+  "n_target_rows_example": 24,
+  "n_target_rows_test": 48,
+  "nl_instruction": "Join rtu_econ_sp.csv, zone_co2.csv on timestamp (inner join) after aggregating each to 1-hour averages; keep only rtu_003_econ_stpt_tn, rtu_004_econ_stpt_tn, zone_022_co2, zone_062_co2. Timestamp = start of interval.",
+  "needs": [
+    "sampling_interval",
+    "time_alignment",
+    "join",
+    "aggregation"
+  ],
+  "knowledge": [
+    {
+      "kind": "sampling_interval",
+      "file": "rtu_econ_sp.csv",
+      "value_min": 1.0,
+      "dict_freq": "1 min"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "rtu_econ_sp.csv",
+      "column": "rtu_003_econ_stpt_tn",
+      "description": "Roof Top Unit * economizer setpoint (*: 001, 002, 003, 004)",
+      "quantity_kind": "temperature_setpoint"
+    },
+    {
+      "kind": "unit",
+      "file": "rtu_econ_sp.csv",
+      "column": "rtu_003_econ_stpt_tn",
+      "true_unit": "°F",
+      "dict_unit": "°F"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "rtu_econ_sp.csv",
+      "column": "rtu_004_econ_stpt_tn",
+      "description": "Roof Top Unit * economizer setpoint (*: 001, 002, 003, 004)",
+      "quantity_kind": "temperature_setpoint"
+    },
+    {
+      "kind": "unit",
+      "file": "rtu_econ_sp.csv",
+      "column": "rtu_004_econ_stpt_tn",
+      "true_unit": "°F",
+      "dict_unit": "°F"
+    },
+    {
+      "kind": "sampling_interval",
+      "file": "zone_co2.csv",
+      "value_min": 1.0,
+      "dict_freq": "1 min"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "zone_co2.csv",
+      "column": "zone_022_co2",
+      "description": "CO2 concentration of each zone",
+      "quantity_kind": "co2_concentration"
+    },
+    {
+      "kind": "unit",
+      "file": "zone_co2.csv",
+      "column": "zone_022_co2",
+      "true_unit": "ppm",
+      "dict_unit": "ppm"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "zone_co2.csv",
+      "column": "zone_062_co2",
+      "description": "CO2 concentration of each zone",
+      "quantity_kind": "co2_concentration"
+    },
+    {
+      "kind": "unit",
+      "file": "zone_co2.csv",
+      "column": "zone_062_co2",
+      "true_unit": "ppm",
+      "dict_unit": "ppm"
+    }
+  ],
+  "discriminates_against": [
+    "outer_join",
+    "agg_max"
+  ],
+  "spec": {
+    "family": "T3",
+    "sources": [
+      {
+        "file": "rtu_econ_sp",
+        "columns": [
+          "rtu_003_econ_stpt_tn",
+          "rtu_004_econ_stpt_tn"
+        ]
+      },
+      {
+        "file": "zone_co2",
+        "columns": [
+          "zone_022_co2",
+          "zone_062_co2"
+        ]
+      }
+    ],
+    "freq": "1h",
+    "agg": "mean",
+    "how": "inner",
+    "out_columns": [
+      "rtu_003_econ_stpt_tn",
+      "rtu_004_econ_stpt_tn",
+      "zone_022_co2",
+      "zone_062_co2"
+    ],
+    "target_units": {
+      "rtu_003_econ_stpt_tn": "°F",
+      "rtu_004_econ_stpt_tn": "°F",
+      "zone_022_co2": "ppm",
+      "zone_062_co2": "ppm"
+    }
+  },
+  "shown_rows": [
+    0,
+    6,
+    12,
+    17,
+    23
+  ]
+}

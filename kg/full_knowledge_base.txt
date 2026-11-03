@@ -1,0 +1,446 @@
+File ele.csv. Column mels_S. Miscellaneous electric load for the South Wing. Category: Energy use data. Number of data points: 1. Unit: kW. Sampling frequency: 15 min. Missing rate of raw data: 0.32920657113717056. Available period: 2018-2020 (default 3 years).
+File ele.csv. Column mels_N. Miscellaneous electric load for the North Wing. Category: Energy use data. Number of data points: 1. Unit: kW. Sampling frequency: 15 min. Missing rate of raw data: 0.19687564443251993. Available period: 2018-2020 (default 3 years).
+File ele.csv. Column lig_S +. Lighting load for the South Wing. Category: Energy use data. Number of data points: 1. Unit: kW. Sampling frequency: 15 min. Missing rate of raw data: 0.18165896940360587. Available period: 2018-2020 (default 3 years).
+File ele.csv. Column hvac_S. Heating Ventilation and Air Conditioning load for the Sorth Wing. Category: Energy use data. Number of data points: 1. Unit: kW. Sampling frequency: 15 min. Missing rate of raw data: 0.08100638516126434. Available period: 2018-2020 (default 3 years).
+File ele.csv. Column hvac_N. Heating Ventilation and Air Conditioning load for the Nouth Wing. Category: Energy use data. Number of data points: 1. Unit: kW. Sampling frequency: 15 min. Missing rate of raw data: 0.08105390771420433. Available period: 2018-2020 (default 3 years).
+File site_weather.csv. Column air_temp_set_1. Outdoor air temperature from sensor 1. Category: Outdoor environmental data. Number of data points: 1. Unit: °C. Sampling frequency: 15 min. Missing rate of raw data: 0.0034404915478121927. Available period: 2018-2020 (default 3 years).
+File site_weather.csv. Column air_temp_set_2. Outdoor air temperature from sensor 2. Category: Outdoor environmental data. Number of data points: 1. Unit: °C. Sampling frequency: 15 min. Missing rate of raw data: 0.004647506806839521. Available period: 2018-2020 (default 3 years).
+File site_weather.csv. Column dew_point_temperature. Outdoor air dew temperature of sensor 2. Category: Outdoor environmental data. Number of data points: 1. Unit: °C. Sampling frequency: 15 min. Missing rate of raw data: 0.011043721960897335. Available period: 2018-2020 (default 3 years).
+File site_weather.csv. Column relative_humidity_set_1. Outdoor air relative humidity from sensor 1. Category: Outdoor environmental data. Number of data points: 1. Unit: %. Sampling frequency: 15 min. Missing rate of raw data: 0.009104881013868051. Available period: 2018-2020 (default 3 years).
+File site_weather.csv. Column solar_radiation_set_1. Outdoor solar radiation from sensor 1. Category: Outdoor environmental data. Number of data points: 1. Unit: W/m2. Sampling frequency: 15 min. Missing rate of raw data: 0.009332978795315316. Available period: 2018-2020 (default 3 years).
+File zone_temp_sp_c.csv. Column zone_*_cooling_sp. Cooling temperature setpoint of Zone *. Category: Indoor environmental data. Number of data points: 41. Unit: °F. Sampling frequency: 5 min. Missing rate of raw data: 0.05-0.07. Available period: Sep 2018 -- Dec 2020.
+File zone_temp_sp_h.csv. Column zone_*_heating_sp. Heating temperature setpoint of Zone *. Category: Indoor environmental data. Number of data points: 41. Unit: °F. Sampling frequency: 5 min. Missing rate of raw data: 0.05-0.06. Available period: 2018-2020 (default 3 years).
+File zone_temp_interior.csv. Column cerc_templogger_*. Zone temperature of interior zone. Category: Indoor environmental data. Number of data points: 16. Unit: °F. Sampling frequency: 10 min. Missing rate of raw data: 0.01-0.21. Available period: Feb 2018 -- Dec 2020.
+File zone_temp_exterior.csv. Column zone_*_temp. Zone temperature of exterior zone. Category: Indoor environmental data. Number of data points: 51. Unit: °F. Sampling frequency: 1 min. Missing rate of raw data: 0.15-0.20. Available period: 2018-2020 (default 3 years).
+File zone_co2.csv. Column zone_*_co2. CO2 concentration of each zone. Category: Indoor environmental data. Number of data points: 13. Unit: ppm. Sampling frequency: 1 min. Missing rate of raw data: 0-0.1. Available period: Aug -- Dec 2019, Apr -- Dec 2020.
+File hp_hws_temp.csv. Column hp_hws_temp. Heat pump heating water supply temperature. Category: HVAC operational data. Number of data points: 1. Unit: °F. Sampling frequency: 1 min. Missing rate of raw data: 0.13839127858602. Available period: 2018-2020 (default 3 years).
+File rtu_sa_t_sp.csv. Column rtu_*_sat_sp_tn. Roof Top Unit * supply air temperature setpoint (*: 001, 002, 003, 004). Category: HVAC operational data. Number of data points: 4. Unit: °F. Sampling frequency: 1 min. Missing rate of raw data: 0.15. Available period: 2018-2020 (default 3 years).
+File rtu_sa_t.csv. Column rtu_*_sa_temp. Roof Top Unit * supply air temperature (*: 001, 002, 003, 004). Category: HVAC operational data. Number of data points: 4. Unit: °F. Sampling frequency: 1 min. Missing rate of raw data: 0.14. Available period: 2018-2020 (default 3 years).
+File rtu_ra_t.csv. Column rtu_*_ra_temp. Roof Top Unit * return air temperature (*: 001, 002, 003, 004). Category: HVAC operational data. Number of data points: 4. Unit: °F. Sampling frequency: 1 min. Missing rate of raw data: 0.14. Available period: 2018-2020 (default 3 years).
+File rtu_ma_t.csv. Column rtu_*_ma_temp. Roof Top Unit * mixed air temperature (*: 001, 002, 003, 004). Category: HVAC operational data. Number of data points: 4. Unit: °F. Sampling frequency: 1 min. Missing rate of raw data: 0.14. Available period: 2018-2020 (default 3 years).
+File rtu_oa_t.csv. Column rtu_*_oa_temp. Roof Top Unit * outdoor air temperature (*: 001, 002, 003, 004). Category: HVAC operational data. Number of data points: 4. Unit: °F. Sampling frequency: 1 min. Missing rate of raw data: 0.14. Available period: 2018-2020 (default 3 years).
+File rtu_sa_fr.csv. Column rtu_*_fltrd_sa_flow_tn. Roof Top Unit * filtered supply air flow rate (*: 001, 002, 003, 004). Category: HVAC operational data. Number of data points: 4. Unit: CFM. Sampling frequency: 1 min. Missing rate of raw data: 0.14. Available period: 2018-2020 (default 3 years).
+File rtu_oa_fr.csv. Column rtu_*_oa_flow_tn. Roof Top Unit * outdoor air flow rate (*: 001, 002, 003, 004). Category: HVAC operational data. Number of data points: 4. Unit: CFM. Sampling frequency: 1 min. Missing rate of raw data: 0.02. Available period: Apr -- Dec 2020.
+File rtu_oa_damper.csv. Column rtu_*_oadmpr_pct. Roof Top Unit * outdoor air damper position (*: 001, 002, 003, 004). Category: HVAC operational data. Number of data points: 4. Unit: %. Sampling frequency: 1 min. Missing rate of raw data: 0.15. Available period: 2018-2020 (default 3 years).
+File rtu_econ_sp.csv. Column rtu_*_econ_stpt_tn. Roof Top Unit * economizer setpoint (*: 001, 002, 003, 004). Category: HVAC operational data. Number of data points: 4. Unit: °F. Sampling frequency: 1 min. Missing rate of raw data: 0.14. Available period: 2018-2020 (default 3 years).
+File rtu_sa_p_sp.csv. Column rtu_*_pa_static_stpt_tn. Roof Top Unit * air pressure static setpoint (*: 001, 002, 003, 004). Category: HVAC operational data. Number of data points: 4. Unit: psi. Sampling frequency: 1 min. Missing rate of raw data: 0.15. Available period: 2018-2020 (default 3 years).
+File rtu_plenum_p.csv. Column rtu_*_fltrd_**_plenum_press_tn. Roof Top Unit * plenum air pressure at floor ** (*: 001, 002, 003, 004; **: gnd_lvl, lvl2). Category: HVAC operational data. Number of data points: 8. Unit: psi. Sampling frequency: 1 min. Missing rate of raw data: 0.14. Available period: 2018-2020 (default 3 years).
+File rtu_fan_spd.csv. Column rtu_*_sf_vfd_spd_fbk_tn. Roof Top Unit * supply fan speed (*: 001, 002, 003, 004). Category: HVAC operational data. Number of data points: 4. Unit: %. Sampling frequency: 1 min. Missing rate of raw data: 0.14. Available period: 2018-2020 (default 3 years).
+File rtu_fan_spd.csv. Column rtu_*_rf_vfd_spd_fbk_tn. Roof Top Unit * return fan speed (*: 001, 002, 003, 004). Category: HVAC operational data. Number of data points: 4. Unit: %. Sampling frequency: 1 min. Missing rate of raw data: 0.14. Available period: 2018-2020 (default 3 years).
+File ashp_meter.csv. Column aru_001_power_mbtuph. Heat meter for air source heat pump. Category: HVAC operational data. Number of data points: 1. Unit: mbtuph. Sampling frequency: 5 min. Missing rate of raw data: 0.29. Available period: Aug -- Dec 2020.
+File ashp_cw.csv. Column aru_001_cws_temp. Chilled water supply temperature. Category: HVAC operational data. Number of data points: 1. Unit: °F. Sampling frequency: 5 min. Missing rate of raw data: 0.01. Available period: 2018-2020 (default 3 years).
+File ashp_cw.csv. Column aru_001_cwr_temp. Chilled water return temperature. Category: HVAC operational data. Number of data points: 1. Unit: °F. Sampling frequency: 5 min. Missing rate of raw data: 0.009390845630869279. Available period: 2018-2020 (default 3 years).
+File ashp_cw.csv. Column aru_001_cws_fr_gpm. Chilled water fow rate. Category: HVAC operational data. Number of data points: 1. Unit: CFM. Sampling frequency: 5 min. Missing rate of raw data: 0.02. Available period: 2018-2020 (default 3 years).
+File ashp_hw.csv. Column aru_001_hws_temp. Hot water supply temperature. Category: HVAC operational data. Number of data points: 1. Unit: °F. Sampling frequency: 5 min. Missing rate of raw data: 0.16. Available period: Oct 2019 -- Dec 2020.
+File ashp_hw.csv. Column aru_001_hwr_temp. Hot water return temperature. Category: HVAC operational data. Number of data points: 1. Unit: °F. Sampling frequency: 5 min. Missing rate of raw data: 0.16. Available period: 2018-2020 (default 3 years).
+File ashp_hw.csv. Column aru_001_hws_fr_gpm. Hot water fow rate. Category: HVAC operational data. Number of data points: 1. Unit: CFM. Sampling frequency: 5 min. Missing rate of raw data: 0.0135. Available period: 2018-2020 (default 3 years).
+File uft_fan_spd.csv. Column zone_*_fan_spd. Supply air fan speed of Zone * . Category: HVAC operational data. Number of data points: 44. Unit: %. Sampling frequency: 1 min. Missing rate of raw data: 0.15-0.23. Available period: 2018-2020 (default 3 years).
+File uft_hw_valve.csv. Column zone_*_hw_valve. Heating water valve position of Zone * . Category: HVAC operational data. Number of data points: 51. Unit: %. Sampling frequency: 1 min. Missing rate of raw data: 0.15-0.25. Available period: 2018-2020 (default 3 years).
+File occ.csv. Column occ_third_south. Occupant counts in the south half of third floor. Category: Occupant data. Number of data points: 1. Unit: /. Sampling frequency: 1 min. Missing rate of raw data: 0.0004. Available period: May 2018 -- Feb 2019.
+File occ.csv. Column occ_fourth_south. Occupant counts in the south half of forth floor. Category: Occupant data. Number of data points: 1. Unit: /. Sampling frequency: 1 min. Missing rate of raw data: 0.0004. Available period: 2018-2020 (default 3 years).
+File wifi.csv. Column wifi_first_south. Wifi connection counts in the south half of first floor. Category: Occupant data. Number of data points: 1. Unit: /. Sampling frequency: 10 min. Missing rate of raw data: 0. Available period: May -- July 2018, Feb -- Dec 2020.
+File wifi.csv. Column wifi_second_south. Wifi connection counts in the south half of second floor. Category: Occupant data. Number of data points: 1. Unit: /. Sampling frequency: 10 min. Missing rate of raw data: 0. Available period: 2018-2020 (default 3 years).
+File wifi.csv. Column wifi_third_south. Wifi connection counts in the south half of third floor. Category: Occupant data. Number of data points: 1. Unit: /. Sampling frequency: 10 min. Missing rate of raw data: 0. Available period: 2018-2020 (default 3 years).
+File wifi.csv. Column wifi_fourth_south. Wifi connection counts in the south half of forth floor. Category: Occupant data. Number of data points: 1. Unit: /. Sampling frequency: 10 min. Missing rate of raw data: 0. Available period: 2018-2020 (default 3 years).
+Brick entity Building is a Building (Building). hasPart Floor_G, Floor_S; hasPoint air_temp_set_1, air_temp_set_2, aru_001_cwr_temp, aru_001_cws_fr_gpm, aru_001_cws_temp, aru_001_hwr_temp, aru_001_hws_fr_gpm, aru_001_hws_temp, hvac_N, hvac_S, lig_S_+, mels_N, mels_S, relative_humidity_set_1, solar_radiation_set_1.
+Brick entity Floor_G is a Floor (Floor). hasPart zone_016, zone_017, zone_018, zone_019, zone_021, zone_022, zone_023, zone_024, zone_025, zone_026, zone_027, zone_028, zone_030, zone_032, zone_033, zone_035, zone_036, zone_037, zone_038, zone_039, zone_040, zone_041, zone_042, zone_043, zone_044, zone_045, zone_cerc_1, zone_cerc_2, zone_cerc_3, zone_cerc_4, zone_cerc_5, zone_cerc_6, zone_cerc_7, zone_cerc_8; hasPoint occ_third_south, wifi_third_south; isPartOf Building.
+Brick entity Floor_S is a Floor (Floor). hasPart zone_046, zone_047, zone_048, zone_049, zone_051, zone_052, zone_053, zone_054, zone_055, zone_056, zone_057, zone_058, zone_059, zone_061, zone_062, zone_063, zone_064, zone_065, zone_066, zone_067, zone_068, zone_069, zone_070, zone_071, zone_072, zone_cerc_10, zone_cerc_11, zone_cerc_12, zone_cerc_13, zone_cerc_14, zone_cerc_15, zone_cerc_16, zone_cerc_9; hasPoint occ_forth_south, wifi_fourth_south; isPartOf Building.
+Brick entity RTU01 is a Rooftop Unit (Rooftop_Unit). feeds RTU01_Zone, UTF_2-1, UTF_2-2, UTF_2-5, UTF_2-6, UTF_2-7, UTF_2-8, UTF_G-1, UTF_G-2, UTF_G-5, UTF_G-7, UTF_G-8; hasPoint rtu_001_econ_stpt_tn, rtu_001_fltrd_gnd_plenum_press_tn, rtu_001_fltrd_lvl2_plenum_press_tn, rtu_001_ma_temp, rtu_001_oa_damper, rtu_001_oa_fr, rtu_001_pa_static_stpt_tn, rtu_001_ra_temp, rtu_001_rf_vfd_spd_fbk_tn, rtu_001_sa_temp, rtu_001_sf_vfd_spd_fbk_tn.
+Brick entity RTU01_Zone is a HVAC Zone (HVAC_Zone). isFedBy RTU01; isLocationOf zone_016, zone_017, zone_021, zone_022, zone_023, zone_024, zone_046, zone_047, zone_051, zone_053, zone_054.
+Brick entity RTU02 is a Rooftop Unit (Rooftop_Unit). feeds RTU02_Zone, UTF_2-10, UTF_2-25, UTF_2-3, UTF_2-4B, UTF_2-9, UTF_G-10, UTF_G-14, UTF_G-3, UTF_G-9; hasPoint rtu_002_fltrd_gnd_plenum_press_tn, rtu_002_fltrd_lvl2_plenum_press_tn, rtu_002_ma_temp, rtu_002_oa_damper, rtu_002_oa_fr, rtu_002_pa_static_stpt_tn, rtu_002_ra_temp, rtu_002_rf_vfd_spd_fbk_tn, rtu_002_sa_temp, rtu_002_sf_vfd_spd_fbk_tn, rtu_021_econ_stpt_tn.
+Brick entity RTU02_Zone is a HVAC Zone (HVAC_Zone). isFedBy RTU02; isLocationOf zone_018, zone_019, zone_025, zone_026, zone_045, zone_048, zone_052, zone_055, zone_056, zone_061.
+Brick entity RTU03 is a Rooftop Unit (Rooftop_Unit). feeds RTU03_Zone, UTF_2-11, UTF_2-12, UTF_2-13B, UTF_2-13D, UTF_2-14, UTF_2-15, UTF_2-16, UTF_2-23, UTF_2-24, UTF_G-11, UTF_G-12, UTF_G-13A, UTF_G-15, UTF_G-16, UTF_G-17, UTF_G-24, UTF_G-25, UTF_G-4A; hasPoint rtu_003_econ_stpt_tn, rtu_003_fltrd_gnd_plenum_press_tn, rtu_003_fltrd_lvl2_plenum_press_tn, rtu_003_ma_temp, rtu_003_oa_damper, rtu_003_oa_fr, rtu_003_pa_static_stpt_tn, rtu_003_ra_temp, rtu_003_rf_vfd_spd_fbk_tn, rtu_003_sa_temp, rtu_003_sf_vfd_spd_fbk_tn.
+Brick entity RTU03_Zone is a HVAC Zone (HVAC_Zone). isFedBy RTU03; isLocationOf zone_027, zone_028, zone_030, zone_032, zone_033, zone_035, zone_036, zone_043, zone_044, zone_049, zone_057, zone_058, zone_059, zone_062, zone_063, zone_064, zone_071, zone_072.
+Brick entity RTU04 is a Rooftop Unit (Rooftop_Unit). feeds RTU04_Zone, UTF_2-17, UTF_2-18, UTF_2-19, UTF_2-20, UTF_2-21, UTF_2-22, UTF_G-18, UTF_G-19, UTF_G-20, UTF_G-21, UTF_G-22, UTF_G-23; hasPoint rtu_004_econ_stpt_tn, rtu_004_fltrd_gnd_plenum_press_tn, rtu_004_fltrd_lvl2_plenum_press_tn, rtu_004_ma_temp, rtu_004_oa_damper, rtu_004_oa_fr, rtu_004_pa_static_stpt_tn, rtu_004_ra_temp, rtu_004_rf_vfd_spd_fbk_tn, rtu_004_sa_temp, rtu_004_sf_vfd_spd_fbk_tn.
+Brick entity RTU04_Zone is a HVAC Zone (HVAC_Zone). isFedBy RTU04; isLocationOf zone_037, zone_038, zone_039, zone_040, zone_041, zone_042, zone_065, zone_066, zone_067, zone_068, zone_069, zone_070.
+Brick entity UTF_2-1 is a VAV (VAV). feeds zone_016; isFedBy RTU01.
+Brick entity UTF_2-10 is a VAV (VAV). feeds zone_026; isFedBy RTU02.
+Brick entity UTF_2-11 is a VAV (VAV). feeds zone_027; isFedBy RTU03.
+Brick entity UTF_2-12 is a VAV (VAV). feeds zone_028; isFedBy RTU03.
+Brick entity UTF_2-13B is a VAV (VAV). feeds zone_030; isFedBy RTU03.
+Brick entity UTF_2-13D is a VAV (VAV). feeds zone_032; isFedBy RTU03.
+Brick entity UTF_2-14 is a VAV (VAV). feeds zone_033; isFedBy RTU03.
+Brick entity UTF_2-15 is a VAV (VAV). feeds zone_035; isFedBy RTU03.
+Brick entity UTF_2-16 is a VAV (VAV). feeds zone_036; isFedBy RTU03.
+Brick entity UTF_2-17 is a VAV (VAV). feeds zone_037; isFedBy RTU04.
+Brick entity UTF_2-18 is a VAV (VAV). feeds zone_038; isFedBy RTU04.
+Brick entity UTF_2-19 is a VAV (VAV). feeds zone_039; isFedBy RTU04.
+Brick entity UTF_2-2 is a VAV (VAV). feeds zone_017; isFedBy RTU01.
+Brick entity UTF_2-20 is a VAV (VAV). feeds zone_040; isFedBy RTU04.
+Brick entity UTF_2-21 is a VAV (VAV). feeds zone_041; isFedBy RTU04.
+Brick entity UTF_2-22 is a VAV (VAV). feeds zone_042; isFedBy RTU04.
+Brick entity UTF_2-23 is a VAV (VAV). feeds zone_043; isFedBy RTU03.
+Brick entity UTF_2-24 is a VAV (VAV). feeds zone_044; isFedBy RTU03.
+Brick entity UTF_2-25 is a VAV (VAV). feeds zone_045, zone_052; isFedBy RTU02.
+Brick entity UTF_2-3 is a VAV (VAV). feeds zone_018; isFedBy RTU02.
+Brick entity UTF_2-4B is a VAV (VAV). feeds zone_019; isFedBy RTU02.
+Brick entity UTF_2-5 is a VAV (VAV). feeds zone_021; isFedBy RTU01.
+Brick entity UTF_2-6 is a VAV (VAV). feeds zone_022; isFedBy RTU01.
+Brick entity UTF_2-7 is a VAV (VAV). feeds zone_023; isFedBy RTU01.
+Brick entity UTF_2-8 is a VAV (VAV). feeds zone_024; isFedBy RTU01.
+Brick entity UTF_2-9 is a VAV (VAV). feeds zone_025; isFedBy RTU02.
+Brick entity UTF_G-1 is a VAV (VAV). feeds zone_046; isFedBy RTU01.
+Brick entity UTF_G-10 is a VAV (VAV). feeds zone_056; isFedBy RTU02.
+Brick entity UTF_G-11 is a VAV (VAV). feeds zone_057; isFedBy RTU03.
+Brick entity UTF_G-12 is a VAV (VAV). feeds zone_058; isFedBy RTU03.
+Brick entity UTF_G-13A is a VAV (VAV). feeds zone_059; isFedBy RTU03.
+Brick entity UTF_G-14 is a VAV (VAV). feeds zone_061; isFedBy RTU02.
+Brick entity UTF_G-15 is a VAV (VAV). feeds zone_062; isFedBy RTU03.
+Brick entity UTF_G-16 is a VAV (VAV). feeds zone_063; isFedBy RTU03.
+Brick entity UTF_G-17 is a VAV (VAV). feeds zone_064; isFedBy RTU03.
+Brick entity UTF_G-18 is a VAV (VAV). feeds zone_065; isFedBy RTU04.
+Brick entity UTF_G-19 is a VAV (VAV). feeds zone_066; isFedBy RTU04.
+Brick entity UTF_G-2 is a VAV (VAV). feeds zone_047; isFedBy RTU01.
+Brick entity UTF_G-20 is a VAV (VAV). feeds zone_067; isFedBy RTU04.
+Brick entity UTF_G-21 is a VAV (VAV). feeds zone_068; isFedBy RTU04.
+Brick entity UTF_G-22 is a VAV (VAV). feeds zone_069; isFedBy RTU04.
+Brick entity UTF_G-23 is a VAV (VAV). feeds zone_070; isFedBy RTU04.
+Brick entity UTF_G-24 is a VAV (VAV). feeds zone_071; isFedBy RTU03.
+Brick entity UTF_G-25 is a VAV (VAV). feeds zone_072; isFedBy RTU03.
+Brick entity UTF_G-3 is a VAV (VAV). feeds zone_048; isFedBy RTU02.
+Brick entity UTF_G-4A is a VAV (VAV). feeds zone_049; isFedBy RTU03.
+Brick entity UTF_G-5 is a VAV (VAV). feeds zone_051; isFedBy RTU01.
+Brick entity UTF_G-7 is a VAV (VAV). feeds zone_053; isFedBy RTU01.
+Brick entity UTF_G-8 is a VAV (VAV). feeds zone_054; isFedBy RTU01.
+Brick entity UTF_G-9 is a VAV (VAV). feeds zone_055; isFedBy RTU02.
+Brick entity air_temp_set_1 is a Outdoor Air Temperature Sensor (Outdoor_Air_Temperature_Sensor). isPointOf Building.
+Brick entity air_temp_set_2 is a Outdoor Air Temperature Sensor (Outdoor_Air_Temperature_Sensor). isPointOf Building.
+Brick entity aru_001_cwr_temp is a Chilled Water Temperature Sensor (Chilled_Water_Temperature_Sensor). isPointOf Building.
+Brick entity aru_001_cws_fr_gpm is a Chilled Water Supply Flow Rate (Chilled_Water_Supply_Flow_Rate). isPointOf Building.
+Brick entity aru_001_cws_temp is a Chilled Water Temperature Sensor (Chilled_Water_Temperature_Sensor). isPointOf Building.
+Brick entity aru_001_hwr_temp is a Hot Water Temperature Sensor (Hot_Water_Temperature_Sensor). isPointOf Building.
+Brick entity aru_001_hws_fr_gpm is a Hot Water Supply Flow Rate (Hot_Water_Supply_Flow_Rate). isPointOf Building.
+Brick entity aru_001_hws_temp is a Hot Water Temperature Sensor (Hot_Water_Temperature_Sensor). isPointOf Building.
+Brick entity cerc_templogger_1 is a Zone Air Temperature Sensor (Zone_Air_Temperature_Sensor). isPointOf zone_cerc_1.
+Brick entity cerc_templogger_10 is a Zone Air Temperature Sensor (Zone_Air_Temperature_Sensor). isPointOf zone_cerc_10.
+Brick entity cerc_templogger_11 is a Zone Air Temperature Sensor (Zone_Air_Temperature_Sensor). isPointOf zone_cerc_11.
+Brick entity cerc_templogger_12 is a Zone Air Temperature Sensor (Zone_Air_Temperature_Sensor). isPointOf zone_cerc_12.
+Brick entity cerc_templogger_13 is a Zone Air Temperature Sensor (Zone_Air_Temperature_Sensor). isPointOf zone_cerc_13.
+Brick entity cerc_templogger_14 is a Zone Air Temperature Sensor (Zone_Air_Temperature_Sensor). isPointOf zone_cerc_14.
+Brick entity cerc_templogger_15 is a Zone Air Temperature Sensor (Zone_Air_Temperature_Sensor). isPointOf zone_cerc_15.
+Brick entity cerc_templogger_16 is a Zone Air Temperature Sensor (Zone_Air_Temperature_Sensor). isPointOf zone_cerc_16.
+Brick entity cerc_templogger_2 is a Zone Air Temperature Sensor (Zone_Air_Temperature_Sensor). isPointOf zone_cerc_2.
+Brick entity cerc_templogger_3 is a Zone Air Temperature Sensor (Zone_Air_Temperature_Sensor). isPointOf zone_cerc_3.
+Brick entity cerc_templogger_4 is a Zone Air Temperature Sensor (Zone_Air_Temperature_Sensor). isPointOf zone_cerc_4.
+Brick entity cerc_templogger_5 is a Zone Air Temperature Sensor (Zone_Air_Temperature_Sensor). isPointOf zone_cerc_5.
+Brick entity cerc_templogger_6 is a Zone Air Temperature Sensor (Zone_Air_Temperature_Sensor). isPointOf zone_cerc_6.
+Brick entity cerc_templogger_7 is a Zone Air Temperature Sensor (Zone_Air_Temperature_Sensor). isPointOf zone_cerc_7.
+Brick entity cerc_templogger_8 is a Zone Air Temperature Sensor (Zone_Air_Temperature_Sensor). isPointOf zone_cerc_8.
+Brick entity cerc_templogger_9 is a Zone Air Temperature Sensor (Zone_Air_Temperature_Sensor). isPointOf zone_cerc_9.
+Brick entity hvac_N is a Building Electrical Meter (Building_Electrical_Meter). isPointOf Building.
+Brick entity hvac_S is a Building Electrical Meter (Building_Electrical_Meter). isPointOf Building.
+Brick entity lig_S_+ is a Building Electrical Meter (Building_Electrical_Meter). isPointOf Building.
+Brick entity mels_N is a Building Electrical Meter (Building_Electrical_Meter). isPointOf Building.
+Brick entity mels_S is a Building Electrical Meter (Building_Electrical_Meter). isPointOf Building.
+Brick entity occ_forth_south is a Occupant Count (Occupant_Count). isPointOf Floor_S.
+Brick entity occ_third_south is a Occupant Count (Occupant_Count). isPointOf Floor_G.
+Brick entity relative_humidity_set_1 is a Outdoor Air Humidity Sensor (Outdoor_Air_Humidity_Sensor). isPointOf Building.
+Brick entity rtu_001_econ_stpt_tn is a Economizer Setpoint (Economizer_Setpoint). isPointOf RTU01.
+Brick entity rtu_001_fltrd_gnd_plenum_press_tn is a Underfloor Air Plenum Static Pressure Sensor (Underfloor_Air_Plenum_Static_Pressure_Sensor). isPointOf RTU01.
+Brick entity rtu_001_fltrd_lvl2_plenum_press_tn is a Underfloor Air Plenum Static Pressure Sensor (Underfloor_Air_Plenum_Static_Pressure_Sensor). isPointOf RTU01.
+Brick entity rtu_001_ma_temp is a Mixed Air Temperature Sensor (Mixed_Air_Temperature_Sensor). isPointOf RTU01.
+Brick entity rtu_001_oa_damper is a Outdoor Air Damper (Outdoor_Air_Damper). isPointOf RTU01.
+Brick entity rtu_001_oa_fr is a Outdoor Air Flow Rate (Outdoor_Air_Flow_Rate). isPointOf RTU01.
+Brick entity rtu_001_pa_static_stpt_tn is a Supply Air Static Pressure Setpoint (Supply_Air_Static_Pressure_Setpoint). isPointOf RTU01.
+Brick entity rtu_001_ra_temp is a Return Air Temperature Sensor (Return_Air_Temperature_Sensor). isPointOf RTU01.
+Brick entity rtu_001_rf_vfd_spd_fbk_tn is a Return Air Fan Speed (Return_Air_Fan_Speed). isPointOf RTU01.
+Brick entity rtu_001_sa_temp is a Supply Air Temperature Sensor (Supply_Air_Temperature_Sensor). isPointOf RTU01.
+Brick entity rtu_001_sf_vfd_spd_fbk_tn is a Supply Air Fan Speed (Supply_Air_Fan_Speed). isPointOf RTU01.
+Brick entity rtu_002_fltrd_gnd_plenum_press_tn is a Underfloor Air Plenum Static Pressure Sensor (Underfloor_Air_Plenum_Static_Pressure_Sensor). isPointOf RTU02.
+Brick entity rtu_002_fltrd_lvl2_plenum_press_tn is a Underfloor Air Plenum Static Pressure Sensor (Underfloor_Air_Plenum_Static_Pressure_Sensor). isPointOf RTU02.
+Brick entity rtu_002_ma_temp is a Mixed Air Temperature Sensor (Mixed_Air_Temperature_Sensor). isPointOf RTU02.
+Brick entity rtu_002_oa_damper is a Outdoor Air Damper (Outdoor_Air_Damper). isPointOf RTU02.
+Brick entity rtu_002_oa_fr is a Outdoor Air Flow Rate (Outdoor_Air_Flow_Rate). isPointOf RTU02.
+Brick entity rtu_002_pa_static_stpt_tn is a Supply Air Static Pressure Setpoint (Supply_Air_Static_Pressure_Setpoint). isPointOf RTU02.
+Brick entity rtu_002_ra_temp is a Return Air Temperature Sensor (Return_Air_Temperature_Sensor). isPointOf RTU02.
+Brick entity rtu_002_rf_vfd_spd_fbk_tn is a Return Air Fan Speed (Return_Air_Fan_Speed). isPointOf RTU02.
+Brick entity rtu_002_sa_temp is a Supply Air Temperature Sensor (Supply_Air_Temperature_Sensor). isPointOf RTU02.
+Brick entity rtu_002_sf_vfd_spd_fbk_tn is a Supply Air Fan Speed (Supply_Air_Fan_Speed). isPointOf RTU02.
+Brick entity rtu_003_econ_stpt_tn is a Economizer Setpoint (Economizer_Setpoint). isPointOf RTU03.
+Brick entity rtu_003_fltrd_gnd_plenum_press_tn is a Underfloor Air Plenum Static Pressure Sensor (Underfloor_Air_Plenum_Static_Pressure_Sensor). isPointOf RTU03.
+Brick entity rtu_003_fltrd_lvl2_plenum_press_tn is a Underfloor Air Plenum Static Pressure Sensor (Underfloor_Air_Plenum_Static_Pressure_Sensor). isPointOf RTU03.
+Brick entity rtu_003_ma_temp is a Mixed Air Temperature Sensor (Mixed_Air_Temperature_Sensor). isPointOf RTU03.
+Brick entity rtu_003_oa_damper is a Outdoor Air Damper (Outdoor_Air_Damper). isPointOf RTU03.
+Brick entity rtu_003_oa_fr is a Outdoor Air Flow Rate (Outdoor_Air_Flow_Rate). isPointOf RTU03.
+Brick entity rtu_003_pa_static_stpt_tn is a Supply Air Static Pressure Setpoint (Supply_Air_Static_Pressure_Setpoint). isPointOf RTU03.
+Brick entity rtu_003_ra_temp is a Return Air Temperature Sensor (Return_Air_Temperature_Sensor). isPointOf RTU03.
+Brick entity rtu_003_rf_vfd_spd_fbk_tn is a Return Air Fan Speed (Return_Air_Fan_Speed). isPointOf RTU03.
+Brick entity rtu_003_sa_temp is a Supply Air Temperature Sensor (Supply_Air_Temperature_Sensor). isPointOf RTU03.
+Brick entity rtu_003_sf_vfd_spd_fbk_tn is a Supply Air Fan Speed (Supply_Air_Fan_Speed). isPointOf RTU03.
+Brick entity rtu_004_econ_stpt_tn is a Economizer Setpoint (Economizer_Setpoint). isPointOf RTU04.
+Brick entity rtu_004_fltrd_gnd_plenum_press_tn is a Underfloor Air Plenum Static Pressure Sensor (Underfloor_Air_Plenum_Static_Pressure_Sensor). isPointOf RTU04.
+Brick entity rtu_004_fltrd_lvl2_plenum_press_tn is a Underfloor Air Plenum Static Pressure Sensor (Underfloor_Air_Plenum_Static_Pressure_Sensor). isPointOf RTU04.
+Brick entity rtu_004_ma_temp is a Mixed Air Temperature Sensor (Mixed_Air_Temperature_Sensor). isPointOf RTU04.
+Brick entity rtu_004_oa_damper is a Outdoor Air Damper (Outdoor_Air_Damper). isPointOf RTU04.
+Brick entity rtu_004_oa_fr is a Outdoor Air Flow Rate (Outdoor_Air_Flow_Rate). isPointOf RTU04.
+Brick entity rtu_004_pa_static_stpt_tn is a Supply Air Static Pressure Setpoint (Supply_Air_Static_Pressure_Setpoint). isPointOf RTU04.
+Brick entity rtu_004_ra_temp is a Return Air Temperature Sensor (Return_Air_Temperature_Sensor). isPointOf RTU04.
+Brick entity rtu_004_rf_vfd_spd_fbk_tn is a Return Air Fan Speed (Return_Air_Fan_Speed). isPointOf RTU04.
+Brick entity rtu_004_sa_temp is a Supply Air Temperature Sensor (Supply_Air_Temperature_Sensor). isPointOf RTU04.
+Brick entity rtu_004_sf_vfd_spd_fbk_tn is a Supply Air Fan Speed (Supply_Air_Fan_Speed). isPointOf RTU04.
+Brick entity rtu_021_econ_stpt_tn is a Economizer Setpoint (Economizer_Setpoint). isPointOf RTU02.
+Brick entity solar_radiation_set_1 is a Solar Radiance Sensor (Solar_Radiance_Sensor). isPointOf Building.
+Brick entity wifi_fourth_south is a Wifi AP (Wifi_AP). isPointOf Floor_S.
+Brick entity wifi_third_south is a Wifi AP (Wifi_AP). isPointOf Floor_G.
+Brick entity zone_016 is a Zone (Zone). hasLocation RTU01_Zone; hasPoint zone_016_cooling_sp, zone_016_fan_spd, zone_016_heating_sp, zone_016_temp; isFedBy UTF_2-1; isPartOf Floor_G.
+Brick entity zone_016_cooling_sp is a Cooling Temperature Setpoint (Cooling_Temperature_Setpoint). isPointOf zone_016.
+Brick entity zone_016_fan_spd is a Supply Air Flow Sensor (Supply_Air_Flow_Sensor). isPointOf zone_016.
+Brick entity zone_016_heating_sp is a Heating Temperature Setpoint (Heating_Temperature_Setpoint). isPointOf zone_016.
+Brick entity zone_016_temp is a Zone Air Temperature Sensor (Zone_Air_Temperature_Sensor). isPointOf zone_016.
+Brick entity zone_017 is a Zone (Zone). hasLocation RTU01_Zone; hasPoint zone_017_cooling_sp, zone_017_fan_spd, zone_017_heating_sp, zone_017_temp; isFedBy UTF_2-2; isPartOf Floor_G.
+Brick entity zone_017_cooling_sp is a Cooling Temperature Setpoint (Cooling_Temperature_Setpoint). isPointOf zone_017.
+Brick entity zone_017_fan_spd is a Supply Air Flow Sensor (Supply_Air_Flow_Sensor). isPointOf zone_017.
+Brick entity zone_017_heating_sp is a Heating Temperature Setpoint (Heating_Temperature_Setpoint). isPointOf zone_017.
+Brick entity zone_017_temp is a Zone Air Temperature Sensor (Zone_Air_Temperature_Sensor). isPointOf zone_017.
+Brick entity zone_018 is a Zone (Zone). hasLocation RTU02_Zone; hasPoint zone_018_cooling_sp, zone_018_fan_spd, zone_018_heating_sp, zone_018_temp; isFedBy UTF_2-3; isPartOf Floor_G.
+Brick entity zone_018_cooling_sp is a Cooling Temperature Setpoint (Cooling_Temperature_Setpoint). isPointOf zone_018.
+Brick entity zone_018_fan_spd is a Supply Air Flow Sensor (Supply_Air_Flow_Sensor). isPointOf zone_018.
+Brick entity zone_018_heating_sp is a Heating Temperature Setpoint (Heating_Temperature_Setpoint). isPointOf zone_018.
+Brick entity zone_018_temp is a Zone Air Temperature Sensor (Zone_Air_Temperature_Sensor). isPointOf zone_018.
+Brick entity zone_019 is a Zone (Zone). hasLocation RTU02_Zone; hasPoint zone_019_cooling_sp, zone_019_fan_spd, zone_019_heating_sp, zone_019_temp; isFedBy UTF_2-4B; isPartOf Floor_G.
+Brick entity zone_019_cooling_sp is a Cooling Temperature Setpoint (Cooling_Temperature_Setpoint). isPointOf zone_019.
+Brick entity zone_019_fan_spd is a Supply Air Flow Sensor (Supply_Air_Flow_Sensor). isPointOf zone_019.
+Brick entity zone_019_heating_sp is a Heating Temperature Setpoint (Heating_Temperature_Setpoint). isPointOf zone_019.
+Brick entity zone_019_temp is a Zone Air Temperature Sensor (Zone_Air_Temperature_Sensor). isPointOf zone_019.
+Brick entity zone_021 is a Zone (Zone). hasLocation RTU01_Zone; hasPoint zone_021_cooling_sp, zone_021_fan_spd, zone_021_heating_sp, zone_021_temp; isFedBy UTF_2-5; isPartOf Floor_G.
+Brick entity zone_021_cooling_sp is a Cooling Temperature Setpoint (Cooling_Temperature_Setpoint). isPointOf zone_021.
+Brick entity zone_021_fan_spd is a Supply Air Flow Sensor (Supply_Air_Flow_Sensor). isPointOf zone_021.
+Brick entity zone_021_heating_sp is a Heating Temperature Setpoint (Heating_Temperature_Setpoint). isPointOf zone_021.
+Brick entity zone_021_temp is a Zone Air Temperature Sensor (Zone_Air_Temperature_Sensor). isPointOf zone_021.
+Brick entity zone_022 is a Zone (Zone). hasLocation RTU01_Zone; hasPoint zone_022_co2, zone_022_fan_spd, zone_022_temp; isFedBy UTF_2-6; isPartOf Floor_G.
+Brick entity zone_022_co2 is a CO2 Sensor (CO2_Sensor). isPointOf zone_022.
+Brick entity zone_022_fan_spd is a Supply Air Flow Sensor (Supply_Air_Flow_Sensor). isPointOf zone_022.
+Brick entity zone_022_temp is a Zone Air Temperature Sensor (Zone_Air_Temperature_Sensor). isPointOf zone_022.
+Brick entity zone_023 is a Zone (Zone). hasLocation RTU01_Zone; hasPoint zone_023_cooling_sp, zone_023_fan_spd, zone_023_heating_sp, zone_023_temp; isFedBy UTF_2-7; isPartOf Floor_G.
+Brick entity zone_023_cooling_sp is a Cooling Temperature Setpoint (Cooling_Temperature_Setpoint). isPointOf zone_023.
+Brick entity zone_023_fan_spd is a Supply Air Flow Sensor (Supply_Air_Flow_Sensor). isPointOf zone_023.
+Brick entity zone_023_heating_sp is a Heating Temperature Setpoint (Heating_Temperature_Setpoint). isPointOf zone_023.
+Brick entity zone_023_temp is a Zone Air Temperature Sensor (Zone_Air_Temperature_Sensor). isPointOf zone_023.
+Brick entity zone_024 is a Zone (Zone). hasLocation RTU01_Zone; hasPoint zone_024_cooling_sp, zone_024_fan_spd, zone_024_heating_sp, zone_024_temp; isFedBy UTF_2-8; isPartOf Floor_G.
+Brick entity zone_024_cooling_sp is a Cooling Temperature Setpoint (Cooling_Temperature_Setpoint). isPointOf zone_024.
+Brick entity zone_024_fan_spd is a Supply Air Flow Sensor (Supply_Air_Flow_Sensor). isPointOf zone_024.
+Brick entity zone_024_heating_sp is a Heating Temperature Setpoint (Heating_Temperature_Setpoint). isPointOf zone_024.
+Brick entity zone_024_temp is a Zone Air Temperature Sensor (Zone_Air_Temperature_Sensor). isPointOf zone_024.
+Brick entity zone_025 is a Zone (Zone). hasLocation RTU02_Zone; hasPoint zone_025_cooling_sp, zone_025_fan_spd, zone_025_heating_sp, zone_025_temp; isFedBy UTF_2-9; isPartOf Floor_G.
+Brick entity zone_025_cooling_sp is a Cooling Temperature Setpoint (Cooling_Temperature_Setpoint). isPointOf zone_025.
+Brick entity zone_025_fan_spd is a Supply Air Flow Sensor (Supply_Air_Flow_Sensor). isPointOf zone_025.
+Brick entity zone_025_heating_sp is a Heating Temperature Setpoint (Heating_Temperature_Setpoint). isPointOf zone_025.
+Brick entity zone_025_temp is a Zone Air Temperature Sensor (Zone_Air_Temperature_Sensor). isPointOf zone_025.
+Brick entity zone_026 is a Zone (Zone). hasLocation RTU02_Zone; hasPoint zone_026_cooling_sp, zone_026_fan_spd, zone_026_heating_sp, zone_026_temp; isFedBy UTF_2-10; isPartOf Floor_G.
+Brick entity zone_026_cooling_sp is a Cooling Temperature Setpoint (Cooling_Temperature_Setpoint). isPointOf zone_026.
+Brick entity zone_026_fan_spd is a Supply Air Flow Sensor (Supply_Air_Flow_Sensor). isPointOf zone_026.
+Brick entity zone_026_heating_sp is a Heating Temperature Setpoint (Heating_Temperature_Setpoint). isPointOf zone_026.
+Brick entity zone_026_temp is a Zone Air Temperature Sensor (Zone_Air_Temperature_Sensor). isPointOf zone_026.
+Brick entity zone_027 is a Zone (Zone). hasLocation RTU03_Zone; hasPoint zone_027_cooling_sp, zone_027_fan_spd, zone_027_heating_sp, zone_027_temp; isFedBy UTF_2-11; isPartOf Floor_G.
+Brick entity zone_027_cooling_sp is a Cooling Temperature Setpoint (Cooling_Temperature_Setpoint). isPointOf zone_027.
+Brick entity zone_027_fan_spd is a Supply Air Flow Sensor (Supply_Air_Flow_Sensor). isPointOf zone_027.
+Brick entity zone_027_heating_sp is a Heating Temperature Setpoint (Heating_Temperature_Setpoint). isPointOf zone_027.
+Brick entity zone_027_temp is a Zone Air Temperature Sensor (Zone_Air_Temperature_Sensor). isPointOf zone_027.
+Brick entity zone_028 is a Zone (Zone). hasLocation RTU03_Zone; hasPoint zone_028_co2, zone_028_fan_spd, zone_028_temp; isFedBy UTF_2-12; isPartOf Floor_G.
+Brick entity zone_028_co2 is a CO2 Sensor (CO2_Sensor). isPointOf zone_028.
+Brick entity zone_028_fan_spd is a Supply Air Flow Sensor (Supply_Air_Flow_Sensor). isPointOf zone_028.
+Brick entity zone_028_temp is a Zone Air Temperature Sensor (Zone_Air_Temperature_Sensor). isPointOf zone_028.
+Brick entity zone_030 is a Zone (Zone). hasLocation RTU03_Zone; hasPoint zone_030_cooling_sp, zone_030_fan_spd, zone_030_heating_sp, zone_030_temp; isFedBy UTF_2-13B; isPartOf Floor_G.
+Brick entity zone_030_cooling_sp is a Cooling Temperature Setpoint (Cooling_Temperature_Setpoint). isPointOf zone_030.
+Brick entity zone_030_fan_spd is a Supply Air Flow Sensor (Supply_Air_Flow_Sensor). isPointOf zone_030.
+Brick entity zone_030_heating_sp is a Heating Temperature Setpoint (Heating_Temperature_Setpoint). isPointOf zone_030.
+Brick entity zone_030_temp is a Zone Air Temperature Sensor (Zone_Air_Temperature_Sensor). isPointOf zone_030.
+Brick entity zone_032 is a Zone (Zone). hasLocation RTU03_Zone; hasPoint zone_032_cooling_sp, zone_032_fan_spd, zone_032_heating_sp, zone_032_temp; isFedBy UTF_2-13D; isPartOf Floor_G.
+Brick entity zone_032_cooling_sp is a Cooling Temperature Setpoint (Cooling_Temperature_Setpoint). isPointOf zone_032.
+Brick entity zone_032_fan_spd is a Supply Air Flow Sensor (Supply_Air_Flow_Sensor). isPointOf zone_032.
+Brick entity zone_032_heating_sp is a Heating Temperature Setpoint (Heating_Temperature_Setpoint). isPointOf zone_032.
+Brick entity zone_032_temp is a Zone Air Temperature Sensor (Zone_Air_Temperature_Sensor). isPointOf zone_032.
+Brick entity zone_033 is a Zone (Zone). hasLocation RTU03_Zone; hasPoint zone_033_co2, zone_033_fan_spd, zone_033_temp; isFedBy UTF_2-14; isPartOf Floor_G.
+Brick entity zone_033_co2 is a CO2 Sensor (CO2_Sensor). isPointOf zone_033.
+Brick entity zone_033_fan_spd is a Supply Air Flow Sensor (Supply_Air_Flow_Sensor). isPointOf zone_033.
+Brick entity zone_033_temp is a Zone Air Temperature Sensor (Zone_Air_Temperature_Sensor). isPointOf zone_033.
+Brick entity zone_035 is a Zone (Zone). hasLocation RTU03_Zone; hasPoint zone_035_cooling_sp, zone_035_fan_spd, zone_035_heating_sp, zone_035_temp; isFedBy UTF_2-15; isPartOf Floor_G.
+Brick entity zone_035_cooling_sp is a Cooling Temperature Setpoint (Cooling_Temperature_Setpoint). isPointOf zone_035.
+Brick entity zone_035_fan_spd is a Supply Air Flow Sensor (Supply_Air_Flow_Sensor). isPointOf zone_035.
+Brick entity zone_035_heating_sp is a Heating Temperature Setpoint (Heating_Temperature_Setpoint). isPointOf zone_035.
+Brick entity zone_035_temp is a Zone Air Temperature Sensor (Zone_Air_Temperature_Sensor). isPointOf zone_035.
+Brick entity zone_036 is a Zone (Zone). hasLocation RTU03_Zone; hasPoint zone_036_cooling_sp, zone_036_fan_spd, zone_036_heating_sp, zone_036_temp; isFedBy UTF_2-16; isPartOf Floor_G.
+Brick entity zone_036_cooling_sp is a Cooling Temperature Setpoint (Cooling_Temperature_Setpoint). isPointOf zone_036.
+Brick entity zone_036_fan_spd is a Supply Air Flow Sensor (Supply_Air_Flow_Sensor). isPointOf zone_036.
+Brick entity zone_036_heating_sp is a Heating Temperature Setpoint (Heating_Temperature_Setpoint). isPointOf zone_036.
+Brick entity zone_036_temp is a Zone Air Temperature Sensor (Zone_Air_Temperature_Sensor). isPointOf zone_036.
+Brick entity zone_037 is a Zone (Zone). hasLocation RTU04_Zone; hasPoint zone_037_cooling_sp, zone_037_fan_spd, zone_037_heating_sp, zone_037_temp; isFedBy UTF_2-17; isPartOf Floor_G.
+Brick entity zone_037_cooling_sp is a Cooling Temperature Setpoint (Cooling_Temperature_Setpoint). isPointOf zone_037.
+Brick entity zone_037_fan_spd is a Supply Air Flow Sensor (Supply_Air_Flow_Sensor). isPointOf zone_037.
+Brick entity zone_037_heating_sp is a Heating Temperature Setpoint (Heating_Temperature_Setpoint). isPointOf zone_037.
+Brick entity zone_037_temp is a Zone Air Temperature Sensor (Zone_Air_Temperature_Sensor). isPointOf zone_037.
+Brick entity zone_038 is a Zone (Zone). hasLocation RTU04_Zone; hasPoint zone_038_cooling_sp, zone_038_fan_spd, zone_038_heating_sp, zone_038_temp; isFedBy UTF_2-18; isPartOf Floor_G.
+Brick entity zone_038_cooling_sp is a Cooling Temperature Setpoint (Cooling_Temperature_Setpoint). isPointOf zone_038.
+Brick entity zone_038_fan_spd is a Supply Air Flow Sensor (Supply_Air_Flow_Sensor). isPointOf zone_038.
+Brick entity zone_038_heating_sp is a Heating Temperature Setpoint (Heating_Temperature_Setpoint). isPointOf zone_038.
+Brick entity zone_038_temp is a Zone Air Temperature Sensor (Zone_Air_Temperature_Sensor). isPointOf zone_038.
+Brick entity zone_039 is a Zone (Zone). hasLocation RTU04_Zone; hasPoint zone_039_cooling_sp, zone_039_fan_spd, zone_039_heating_sp, zone_039_temp; isFedBy UTF_2-19; isPartOf Floor_G.
+Brick entity zone_039_cooling_sp is a Cooling Temperature Setpoint (Cooling_Temperature_Setpoint). isPointOf zone_039.
+Brick entity zone_039_fan_spd is a Supply Air Flow Sensor (Supply_Air_Flow_Sensor). isPointOf zone_039.
+Brick entity zone_039_heating_sp is a Heating Temperature Setpoint (Heating_Temperature_Setpoint). isPointOf zone_039.
+Brick entity zone_039_temp is a Zone Air Temperature Sensor (Zone_Air_Temperature_Sensor). isPointOf zone_039.
+Brick entity zone_040 is a Zone (Zone). hasLocation RTU04_Zone; hasPoint zone_040_co2, zone_040_fan_spd, zone_040_temp; isFedBy UTF_2-20; isPartOf Floor_G.
+Brick entity zone_040_co2 is a CO2 Sensor (CO2_Sensor). isPointOf zone_040.
+Brick entity zone_040_fan_spd is a Supply Air Flow Sensor (Supply_Air_Flow_Sensor). isPointOf zone_040.
+Brick entity zone_040_temp is a Zone Air Temperature Sensor (Zone_Air_Temperature_Sensor). isPointOf zone_040.
+Brick entity zone_041 is a Zone (Zone). hasLocation RTU04_Zone; hasPoint zone_041_cooling_sp, zone_041_fan_spd, zone_041_heating_sp, zone_041_temp; isFedBy UTF_2-21; isPartOf Floor_G.
+Brick entity zone_041_cooling_sp is a Cooling Temperature Setpoint (Cooling_Temperature_Setpoint). isPointOf zone_041.
+Brick entity zone_041_fan_spd is a Supply Air Flow Sensor (Supply_Air_Flow_Sensor). isPointOf zone_041.
+Brick entity zone_041_heating_sp is a Heating Temperature Setpoint (Heating_Temperature_Setpoint). isPointOf zone_041.
+Brick entity zone_041_temp is a Zone Air Temperature Sensor (Zone_Air_Temperature_Sensor). isPointOf zone_041.
+Brick entity zone_042 is a Zone (Zone). hasLocation RTU04_Zone; hasPoint zone_042_cooling_sp, zone_042_fan_spd, zone_042_heating_sp, zone_042_temp; isFedBy UTF_2-22; isPartOf Floor_G.
+Brick entity zone_042_cooling_sp is a Cooling Temperature Setpoint (Cooling_Temperature_Setpoint). isPointOf zone_042.
+Brick entity zone_042_fan_spd is a Supply Air Flow Sensor (Supply_Air_Flow_Sensor). isPointOf zone_042.
+Brick entity zone_042_heating_sp is a Heating Temperature Setpoint (Heating_Temperature_Setpoint). isPointOf zone_042.
+Brick entity zone_042_temp is a Zone Air Temperature Sensor (Zone_Air_Temperature_Sensor). isPointOf zone_042.
+Brick entity zone_043 is a Zone (Zone). hasLocation RTU03_Zone; hasPoint zone_043_cooling_sp, zone_043_fan_spd, zone_043_heating_sp, zone_043_temp; isFedBy UTF_2-23; isPartOf Floor_G.
+Brick entity zone_043_cooling_sp is a Cooling Temperature Setpoint (Cooling_Temperature_Setpoint). isPointOf zone_043.
+Brick entity zone_043_fan_spd is a Supply Air Flow Sensor (Supply_Air_Flow_Sensor). isPointOf zone_043.
+Brick entity zone_043_heating_sp is a Heating Temperature Setpoint (Heating_Temperature_Setpoint). isPointOf zone_043.
+Brick entity zone_043_temp is a Zone Air Temperature Sensor (Zone_Air_Temperature_Sensor). isPointOf zone_043.
+Brick entity zone_044 is a Zone (Zone). hasLocation RTU03_Zone; hasPoint zone_044_co2, zone_044_fan_spd, zone_044_temp; isFedBy UTF_2-24; isPartOf Floor_G.
+Brick entity zone_044_co2 is a CO2 Sensor (CO2_Sensor). isPointOf zone_044.
+Brick entity zone_044_fan_spd is a Supply Air Flow Sensor (Supply_Air_Flow_Sensor). isPointOf zone_044.
+Brick entity zone_044_temp is a Zone Air Temperature Sensor (Zone_Air_Temperature_Sensor). isPointOf zone_044.
+Brick entity zone_045 is a Zone (Zone). hasLocation RTU02_Zone; hasPoint zone_045_co2, zone_045_fan_spd, zone_045_temp; isFedBy UTF_2-25; isPartOf Floor_G.
+Brick entity zone_045_co2 is a CO2 Sensor (CO2_Sensor). isPointOf zone_045.
+Brick entity zone_045_fan_spd is a Supply Air Flow Sensor (Supply_Air_Flow_Sensor). isPointOf zone_045.
+Brick entity zone_045_temp is a Zone Air Temperature Sensor (Zone_Air_Temperature_Sensor). isPointOf zone_045.
+Brick entity zone_046 is a Zone (Zone). hasLocation RTU01_Zone; hasPoint zone_046_cooling_sp, zone_046_fan_spd, zone_046_heating_sp, zone_046_temp; isFedBy UTF_G-1; isPartOf Floor_S.
+Brick entity zone_046_cooling_sp is a Cooling Temperature Setpoint (Cooling_Temperature_Setpoint). isPointOf zone_046.
+Brick entity zone_046_fan_spd is a Supply Air Flow Sensor (Supply_Air_Flow_Sensor). isPointOf zone_046.
+Brick entity zone_046_heating_sp is a Heating Temperature Setpoint (Heating_Temperature_Setpoint). isPointOf zone_046.
+Brick entity zone_046_temp is a Zone Air Temperature Sensor (Zone_Air_Temperature_Sensor). isPointOf zone_046.
+Brick entity zone_047 is a Zone (Zone). hasLocation RTU01_Zone; hasPoint zone_047_cooling_sp, zone_047_fan_spd, zone_047_heating_sp, zone_047_temp; isFedBy UTF_G-2; isPartOf Floor_S.
+Brick entity zone_047_cooling_sp is a Cooling Temperature Setpoint (Cooling_Temperature_Setpoint). isPointOf zone_047.
+Brick entity zone_047_fan_spd is a Supply Air Flow Sensor (Supply_Air_Flow_Sensor). isPointOf zone_047.
+Brick entity zone_047_heating_sp is a Heating Temperature Setpoint (Heating_Temperature_Setpoint). isPointOf zone_047.
+Brick entity zone_047_temp is a Zone Air Temperature Sensor (Zone_Air_Temperature_Sensor). isPointOf zone_047.
+Brick entity zone_048 is a Zone (Zone). hasLocation RTU02_Zone; hasPoint zone_048_cooling_sp, zone_048_fan_spd, zone_048_heating_sp, zone_048_temp; isFedBy UTF_G-3; isPartOf Floor_S.
+Brick entity zone_048_cooling_sp is a Cooling Temperature Setpoint (Cooling_Temperature_Setpoint). isPointOf zone_048.
+Brick entity zone_048_fan_spd is a Supply Air Flow Sensor (Supply_Air_Flow_Sensor). isPointOf zone_048.
+Brick entity zone_048_heating_sp is a Heating Temperature Setpoint (Heating_Temperature_Setpoint). isPointOf zone_048.
+Brick entity zone_048_temp is a Zone Air Temperature Sensor (Zone_Air_Temperature_Sensor). isPointOf zone_048.
+Brick entity zone_049 is a Zone (Zone). hasLocation RTU03_Zone; hasPoint zone_049_cooling_sp, zone_049_fan_spd, zone_049_heating_sp, zone_049_temp; isFedBy UTF_G-4A; isPartOf Floor_S.
+Brick entity zone_049_cooling_sp is a Cooling Temperature Setpoint (Cooling_Temperature_Setpoint). isPointOf zone_049.
+Brick entity zone_049_fan_spd is a Supply Air Flow Sensor (Supply_Air_Flow_Sensor). isPointOf zone_049.
+Brick entity zone_049_heating_sp is a Heating Temperature Setpoint (Heating_Temperature_Setpoint). isPointOf zone_049.
+Brick entity zone_049_temp is a Zone Air Temperature Sensor (Zone_Air_Temperature_Sensor). isPointOf zone_049.
+Brick entity zone_051 is a Zone (Zone). hasLocation RTU01_Zone; hasPoint zone_051_cooling_sp, zone_051_fan_spd, zone_051_heating_sp, zone_051_temp; isFedBy UTF_G-5; isPartOf Floor_S.
+Brick entity zone_051_cooling_sp is a Cooling Temperature Setpoint (Cooling_Temperature_Setpoint). isPointOf zone_051.
+Brick entity zone_051_fan_spd is a Supply Air Flow Sensor (Supply_Air_Flow_Sensor). isPointOf zone_051.
+Brick entity zone_051_heating_sp is a Heating Temperature Setpoint (Heating_Temperature_Setpoint). isPointOf zone_051.
+Brick entity zone_051_temp is a Zone Air Temperature Sensor (Zone_Air_Temperature_Sensor). isPointOf zone_051.
+Brick entity zone_052 is a Zone (Zone). hasLocation RTU02_Zone; hasPoint zone_052_co2, zone_052_fan_spd, zone_052_temp; isFedBy UTF_2-25; isPartOf Floor_S.
+Brick entity zone_052_co2 is a CO2 Sensor (CO2_Sensor). isPointOf zone_052.
+Brick entity zone_052_fan_spd is a Supply Air Flow Sensor (Supply_Air_Flow_Sensor). isPointOf zone_052.
+Brick entity zone_052_temp is a Zone Air Temperature Sensor (Zone_Air_Temperature_Sensor). isPointOf zone_052.
+Brick entity zone_053 is a Zone (Zone). hasLocation RTU01_Zone; hasPoint zone_053_cooling_sp, zone_053_fan_spd, zone_053_heating_sp, zone_053_temp; isFedBy UTF_G-7; isPartOf Floor_S.
+Brick entity zone_053_cooling_sp is a Cooling Temperature Setpoint (Cooling_Temperature_Setpoint). isPointOf zone_053.
+Brick entity zone_053_fan_spd is a Supply Air Flow Sensor (Supply_Air_Flow_Sensor). isPointOf zone_053.
+Brick entity zone_053_heating_sp is a Heating Temperature Setpoint (Heating_Temperature_Setpoint). isPointOf zone_053.
+Brick entity zone_053_temp is a Zone Air Temperature Sensor (Zone_Air_Temperature_Sensor). isPointOf zone_053.
+Brick entity zone_054 is a Zone (Zone). hasLocation RTU01_Zone; hasPoint zone_054_cooling_sp, zone_054_fan_spd, zone_054_heating_sp, zone_054_temp; isFedBy UTF_G-8; isPartOf Floor_S.
+Brick entity zone_054_cooling_sp is a Cooling Temperature Setpoint (Cooling_Temperature_Setpoint). isPointOf zone_054.
+Brick entity zone_054_fan_spd is a Supply Air Flow Sensor (Supply_Air_Flow_Sensor). isPointOf zone_054.
+Brick entity zone_054_heating_sp is a Heating Temperature Setpoint (Heating_Temperature_Setpoint). isPointOf zone_054.
+Brick entity zone_054_temp is a Zone Air Temperature Sensor (Zone_Air_Temperature_Sensor). isPointOf zone_054.
+Brick entity zone_055 is a Zone (Zone). hasLocation RTU02_Zone; hasPoint zone_055_cooling_sp, zone_055_fan_spd, zone_055_heating_sp, zone_055_temp; isFedBy UTF_G-9; isPartOf Floor_S.
+Brick entity zone_055_cooling_sp is a Cooling Temperature Setpoint (Cooling_Temperature_Setpoint). isPointOf zone_055.
+Brick entity zone_055_fan_spd is a Supply Air Flow Sensor (Supply_Air_Flow_Sensor). isPointOf zone_055.
+Brick entity zone_055_heating_sp is a Heating Temperature Setpoint (Heating_Temperature_Setpoint). isPointOf zone_055.
+Brick entity zone_055_temp is a Zone Air Temperature Sensor (Zone_Air_Temperature_Sensor). isPointOf zone_055.
+Brick entity zone_056 is a Zone (Zone). hasLocation RTU02_Zone; hasPoint zone_056_cooling_sp, zone_056_fan_spd, zone_056_heating_sp, zone_056_temp; isFedBy UTF_G-10; isPartOf Floor_S.
+Brick entity zone_056_cooling_sp is a Cooling Temperature Setpoint (Cooling_Temperature_Setpoint). isPointOf zone_056.
+Brick entity zone_056_fan_spd is a Supply Air Flow Sensor (Supply_Air_Flow_Sensor). isPointOf zone_056.
+Brick entity zone_056_heating_sp is a Heating Temperature Setpoint (Heating_Temperature_Setpoint). isPointOf zone_056.
+Brick entity zone_056_temp is a Zone Air Temperature Sensor (Zone_Air_Temperature_Sensor). isPointOf zone_056.
+Brick entity zone_057 is a Zone (Zone). hasLocation RTU03_Zone; hasPoint zone_057_cooling_sp, zone_057_fan_spd, zone_057_heating_sp, zone_057_temp; isFedBy UTF_G-11; isPartOf Floor_S.
+Brick entity zone_057_cooling_sp is a Cooling Temperature Setpoint (Cooling_Temperature_Setpoint). isPointOf zone_057.
+Brick entity zone_057_fan_spd is a Supply Air Flow Sensor (Supply_Air_Flow_Sensor). isPointOf zone_057.
+Brick entity zone_057_heating_sp is a Heating Temperature Setpoint (Heating_Temperature_Setpoint). isPointOf zone_057.
+Brick entity zone_057_temp is a Zone Air Temperature Sensor (Zone_Air_Temperature_Sensor). isPointOf zone_057.
+Brick entity zone_058 is a Zone (Zone). hasLocation RTU03_Zone; hasPoint zone_058_co2, zone_058_fan_spd, zone_058_temp; isFedBy UTF_G-12; isPartOf Floor_S.
+Brick entity zone_058_co2 is a CO2 Sensor (CO2_Sensor). isPointOf zone_058.
+Brick entity zone_058_fan_spd is a Supply Air Flow Sensor (Supply_Air_Flow_Sensor). isPointOf zone_058.
+Brick entity zone_058_temp is a Zone Air Temperature Sensor (Zone_Air_Temperature_Sensor). isPointOf zone_058.
+Brick entity zone_059 is a Zone (Zone). hasLocation RTU03_Zone; hasPoint zone_059_cooling_sp, zone_059_fan_spd, zone_059_heating_sp, zone_059_temp; isFedBy UTF_G-13A; isPartOf Floor_S.
+Brick entity zone_059_cooling_sp is a Cooling Temperature Setpoint (Cooling_Temperature_Setpoint). isPointOf zone_059.
+Brick entity zone_059_fan_spd is a Supply Air Flow Sensor (Supply_Air_Flow_Sensor). isPointOf zone_059.
+Brick entity zone_059_heating_sp is a Heating Temperature Setpoint (Heating_Temperature_Setpoint). isPointOf zone_059.
+Brick entity zone_059_temp is a Zone Air Temperature Sensor (Zone_Air_Temperature_Sensor). isPointOf zone_059.
+Brick entity zone_061 is a Zone (Zone). hasLocation RTU02_Zone; hasPoint zone_061_cooling_sp, zone_061_fan_spd, zone_061_heating_sp, zone_061_temp; isFedBy UTF_G-14; isPartOf Floor_S.
+Brick entity zone_061_cooling_sp is a Cooling Temperature Setpoint (Cooling_Temperature_Setpoint). isPointOf zone_061.
+Brick entity zone_061_fan_spd is a Supply Air Flow Sensor (Supply_Air_Flow_Sensor). isPointOf zone_061.
+Brick entity zone_061_heating_sp is a Heating Temperature Setpoint (Heating_Temperature_Setpoint). isPointOf zone_061.
+Brick entity zone_061_temp is a Zone Air Temperature Sensor (Zone_Air_Temperature_Sensor). isPointOf zone_061.
+Brick entity zone_062 is a Zone (Zone). hasLocation RTU03_Zone; hasPoint zone_062_co2, zone_062_cooling_sp, zone_062_fan_spd, zone_062_heating_sp, zone_062_temp; isFedBy UTF_G-15; isPartOf Floor_S.
+Brick entity zone_062_co2 is a CO2 Sensor (CO2_Sensor). isPointOf zone_062.
+Brick entity zone_062_cooling_sp is a Cooling Temperature Setpoint (Cooling_Temperature_Setpoint). isPointOf zone_062.
+Brick entity zone_062_fan_spd is a Supply Air Flow Sensor (Supply_Air_Flow_Sensor). isPointOf zone_062.
+Brick entity zone_062_heating_sp is a Heating Temperature Setpoint (Heating_Temperature_Setpoint). isPointOf zone_062.
+Brick entity zone_062_temp is a Zone Air Temperature Sensor (Zone_Air_Temperature_Sensor). isPointOf zone_062.
+Brick entity zone_063 is a Zone (Zone). hasLocation RTU03_Zone; hasPoint zone_063_cooling_sp, zone_063_fan_spd, zone_063_heating_sp, zone_063_temp; isFedBy UTF_G-16; isPartOf Floor_S.
+Brick entity zone_063_cooling_sp is a Cooling Temperature Setpoint (Cooling_Temperature_Setpoint). isPointOf zone_063.
+Brick entity zone_063_fan_spd is a Supply Air Flow Sensor (Supply_Air_Flow_Sensor). isPointOf zone_063.
+Brick entity zone_063_heating_sp is a Heating Temperature Setpoint (Heating_Temperature_Setpoint). isPointOf zone_063.
+Brick entity zone_063_temp is a Zone Air Temperature Sensor (Zone_Air_Temperature_Sensor). isPointOf zone_063.
+Brick entity zone_064 is a Zone (Zone). hasLocation RTU03_Zone; hasPoint zone_064_cooling_sp, zone_064_fan_spd, zone_064_heating_sp, zone_064_temp; isFedBy UTF_G-17; isPartOf Floor_S.
+Brick entity zone_064_cooling_sp is a Cooling Temperature Setpoint (Cooling_Temperature_Setpoint). isPointOf zone_064.
+Brick entity zone_064_fan_spd is a Supply Air Flow Sensor (Supply_Air_Flow_Sensor). isPointOf zone_064.
+Brick entity zone_064_heating_sp is a Heating Temperature Setpoint (Heating_Temperature_Setpoint). isPointOf zone_064.
+Brick entity zone_064_temp is a Zone Air Temperature Sensor (Zone_Air_Temperature_Sensor). isPointOf zone_064.
+Brick entity zone_065 is a Zone (Zone). hasLocation RTU04_Zone; hasPoint zone_065_cooling_sp, zone_065_fan_spd, zone_065_heating_sp, zone_065_temp; isFedBy UTF_G-18; isPartOf Floor_S.
+Brick entity zone_065_cooling_sp is a Cooling Temperature Setpoint (Cooling_Temperature_Setpoint). isPointOf zone_065.
+Brick entity zone_065_fan_spd is a Supply Air Flow Sensor (Supply_Air_Flow_Sensor). isPointOf zone_065.
+Brick entity zone_065_heating_sp is a Heating Temperature Setpoint (Heating_Temperature_Setpoint). isPointOf zone_065.
+Brick entity zone_065_temp is a Zone Air Temperature Sensor (Zone_Air_Temperature_Sensor). isPointOf zone_065.
+Brick entity zone_066 is a Zone (Zone). hasLocation RTU04_Zone; hasPoint zone_066_cooling_sp, zone_066_fan_spd, zone_066_heating_sp, zone_066_temp; isFedBy UTF_G-19; isPartOf Floor_S.
+Brick entity zone_066_cooling_sp is a Cooling Temperature Setpoint (Cooling_Temperature_Setpoint). isPointOf zone_066.
+Brick entity zone_066_fan_spd is a Supply Air Flow Sensor (Supply_Air_Flow_Sensor). isPointOf zone_066.
+Brick entity zone_066_heating_sp is a Heating Temperature Setpoint (Heating_Temperature_Setpoint). isPointOf zone_066.
+Brick entity zone_066_temp is a Zone Air Temperature Sensor (Zone_Air_Temperature_Sensor). isPointOf zone_066.
+Brick entity zone_067 is a Zone (Zone). hasLocation RTU04_Zone; hasPoint zone_067_cooling_sp, zone_067_fan_spd, zone_067_heating_sp, zone_067_temp; isFedBy UTF_G-20; isPartOf Floor_S.
+Brick entity zone_067_cooling_sp is a Cooling Temperature Setpoint (Cooling_Temperature_Setpoint). isPointOf zone_067.
+Brick entity zone_067_fan_spd is a Supply Air Flow Sensor (Supply_Air_Flow_Sensor). isPointOf zone_067.
+Brick entity zone_067_heating_sp is a Heating Temperature Setpoint (Heating_Temperature_Setpoint). isPointOf zone_067.
+Brick entity zone_067_temp is a Zone Air Temperature Sensor (Zone_Air_Temperature_Sensor). isPointOf zone_067.
+Brick entity zone_068 is a Zone (Zone). hasLocation RTU04_Zone; hasPoint zone_068_co2, zone_068_fan_spd, zone_068_temp; isFedBy UTF_G-21; isPartOf Floor_S.
+Brick entity zone_068_co2 is a CO2 Sensor (CO2_Sensor). isPointOf zone_068.
+Brick entity zone_068_fan_spd is a Supply Air Flow Sensor (Supply_Air_Flow_Sensor). isPointOf zone_068.
+Brick entity zone_068_temp is a Zone Air Temperature Sensor (Zone_Air_Temperature_Sensor). isPointOf zone_068.
+Brick entity zone_069 is a Zone (Zone). hasLocation RTU04_Zone; hasPoint zone_069_cooling_sp, zone_069_fan_spd, zone_069_heating_sp, zone_069_temp; isFedBy UTF_G-22; isPartOf Floor_S.
+Brick entity zone_069_cooling_sp is a Cooling Temperature Setpoint (Cooling_Temperature_Setpoint). isPointOf zone_069.
+Brick entity zone_069_fan_spd is a Supply Air Flow Sensor (Supply_Air_Flow_Sensor). isPointOf zone_069.
+Brick entity zone_069_heating_sp is a Heating Temperature Setpoint (Heating_Temperature_Setpoint). isPointOf zone_069.
+Brick entity zone_069_temp is a Zone Air Temperature Sensor (Zone_Air_Temperature_Sensor). isPointOf zone_069.
+Brick entity zone_070 is a Zone (Zone). hasLocation RTU04_Zone; hasPoint zone_070_cooling_sp, zone_070_fan_spd, zone_070_heating_sp, zone_070_temp; isFedBy UTF_G-23; isPartOf Floor_S.
+Brick entity zone_070_cooling_sp is a Cooling Temperature Setpoint (Cooling_Temperature_Setpoint). isPointOf zone_070.
+Brick entity zone_070_fan_spd is a Supply Air Flow Sensor (Supply_Air_Flow_Sensor). isPointOf zone_070.
+Brick entity zone_070_heating_sp is a Heating Temperature Setpoint (Heating_Temperature_Setpoint). isPointOf zone_070.
+Brick entity zone_070_temp is a Zone Air Temperature Sensor (Zone_Air_Temperature_Sensor). isPointOf zone_070.
+Brick entity zone_071 is a Zone (Zone). hasLocation RTU03_Zone; hasPoint zone_071_cooling_sp, zone_071_fan_spd, zone_071_heating_sp, zone_071_temp; isFedBy UTF_G-24; isPartOf Floor_S.
+Brick entity zone_071_cooling_sp is a Cooling Temperature Setpoint (Cooling_Temperature_Setpoint). isPointOf zone_071.
+Brick entity zone_071_fan_spd is a Supply Air Flow Sensor (Supply_Air_Flow_Sensor). isPointOf zone_071.
+Brick entity zone_071_heating_sp is a Heating Temperature Setpoint (Heating_Temperature_Setpoint). isPointOf zone_071.
+Brick entity zone_071_temp is a Zone Air Temperature Sensor (Zone_Air_Temperature_Sensor). isPointOf zone_071.
+Brick entity zone_072 is a Zone (Zone). hasLocation RTU03_Zone; hasPoint zone_072_co2, zone_072_fan_spd, zone_072_temp; isFedBy UTF_G-25; isPartOf Floor_S.
+Brick entity zone_072_co2 is a CO2 Sensor (CO2_Sensor). isPointOf zone_072.
+Brick entity zone_072_fan_spd is a Supply Air Flow Sensor (Supply_Air_Flow_Sensor). isPointOf zone_072.
+Brick entity zone_072_temp is a Zone Air Temperature Sensor (Zone_Air_Temperature_Sensor). isPointOf zone_072.
+Brick entity zone_cerc_1 is a Zone (Zone). hasPoint cerc_templogger_1; isPartOf Floor_G.
+Brick entity zone_cerc_10 is a Zone (Zone). hasPoint cerc_templogger_10; isPartOf Floor_S.
+Brick entity zone_cerc_11 is a Zone (Zone). hasPoint cerc_templogger_11; isPartOf Floor_S.
+Brick entity zone_cerc_12 is a Zone (Zone). hasPoint cerc_templogger_12; isPartOf Floor_S.
+Brick entity zone_cerc_13 is a Zone (Zone). hasPoint cerc_templogger_13; isPartOf Floor_S.
+Brick entity zone_cerc_14 is a Zone (Zone). hasPoint cerc_templogger_14; isPartOf Floor_S.
+Brick entity zone_cerc_15 is a Zone (Zone). hasPoint cerc_templogger_15; isPartOf Floor_S.
+Brick entity zone_cerc_16 is a Zone (Zone). hasPoint cerc_templogger_16; isPartOf Floor_S.
+Brick entity zone_cerc_2 is a Zone (Zone). hasPoint cerc_templogger_2; isPartOf Floor_G.
+Brick entity zone_cerc_3 is a Zone (Zone). hasPoint cerc_templogger_3; isPartOf Floor_G.
+Brick entity zone_cerc_4 is a Zone (Zone). hasPoint cerc_templogger_4; isPartOf Floor_G.
+Brick entity zone_cerc_5 is a Zone (Zone). hasPoint cerc_templogger_5; isPartOf Floor_G.
+Brick entity zone_cerc_6 is a Zone (Zone). hasPoint cerc_templogger_6; isPartOf Floor_G.
+Brick entity zone_cerc_7 is a Zone (Zone). hasPoint cerc_templogger_7; isPartOf Floor_G.
+Brick entity zone_cerc_8 is a Zone (Zone). hasPoint cerc_templogger_8; isPartOf Floor_G.
+Brick entity zone_cerc_9 is a Zone (Zone). hasPoint cerc_templogger_9; isPartOf Floor_S.

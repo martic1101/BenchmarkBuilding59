@@ -1,0 +1,7 @@
+columns in scope: hvac_N, hvac_S
+unit=kW :: columns: ALL
+sampling=15 min :: columns: ALL
+class=Building_Electrical_Meter :: columns: ALL
+zone=Building :: columns: ALL
+desc=Heating Ventilation and Air Conditioning load for the Nouth Wing :: columns: hvac_N
+desc=Heating Ventilation and Air Conditioning load for the Sorth Wing :: columns: hvac_S

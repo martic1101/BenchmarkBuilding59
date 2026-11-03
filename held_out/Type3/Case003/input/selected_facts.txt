@@ -1,0 +1,17 @@
+columns in scope: mels_N, zone_030_heating_sp, zone_064_heating_sp
+rtu=RTU03 :: columns: zone_030_heating_sp, zone_064_heating_sp
+desc=Heating temperature setpoint of Zone * :: columns: zone_030_heating_sp, zone_064_heating_sp
+desc=Miscellaneous electric load for the North Wing :: columns: mels_N
+unit=kW :: columns: mels_N
+unit=°F :: columns: zone_030_heating_sp, zone_064_heating_sp
+sampling=15 min :: columns: mels_N
+sampling=5 min :: columns: zone_030_heating_sp, zone_064_heating_sp
+class=Building_Electrical_Meter :: columns: mels_N
+class=Heating_Temperature_Setpoint :: columns: zone_030_heating_sp, zone_064_heating_sp
+vav=UTF_2-13B :: columns: zone_030_heating_sp
+vav=UTF_G-17 :: columns: zone_064_heating_sp
+floor=Floor_G :: columns: zone_030_heating_sp
+floor=Floor_S :: columns: zone_064_heating_sp
+zone=Building :: columns: mels_N
+zone=zone_030 :: columns: zone_030_heating_sp
+zone=zone_064 :: columns: zone_064_heating_sp

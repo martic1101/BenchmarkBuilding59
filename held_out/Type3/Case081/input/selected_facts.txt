@@ -1,0 +1,22 @@
+columns in scope: rtu_002_ra_temp, rtu_003_ra_temp, rtu_004_sa_temp, zone_049_cooling_sp, zone_054_cooling_sp
+unit=°F :: columns: ALL
+floor=Floor_S :: columns: zone_049_cooling_sp, zone_054_cooling_sp
+sampling=1 min :: columns: rtu_002_ra_temp, rtu_003_ra_temp, rtu_004_sa_temp
+sampling=5 min :: columns: zone_049_cooling_sp, zone_054_cooling_sp
+vav=UTF_G-4A :: columns: zone_049_cooling_sp
+vav=UTF_G-8 :: columns: zone_054_cooling_sp
+desc=Cooling temperature setpoint of Zone * :: columns: zone_049_cooling_sp, zone_054_cooling_sp
+desc=Roof Top Unit * return air temperature (*: 001, 002, 003, 004) :: columns: rtu_002_ra_temp, rtu_003_ra_temp
+desc=Roof Top Unit * supply air temperature (*: 001, 002, 003, 004) :: columns: rtu_004_sa_temp
+class=Cooling_Temperature_Setpoint :: columns: zone_049_cooling_sp, zone_054_cooling_sp
+class=Return_Air_Temperature_Sensor :: columns: rtu_002_ra_temp, rtu_003_ra_temp
+class=Supply_Air_Temperature_Sensor :: columns: rtu_004_sa_temp
+rtu=RTU01 :: columns: zone_054_cooling_sp
+rtu=RTU02 :: columns: rtu_002_ra_temp
+rtu=RTU03 :: columns: rtu_003_ra_temp, zone_049_cooling_sp
+rtu=RTU04 :: columns: rtu_004_sa_temp
+zone=RTU02 :: columns: rtu_002_ra_temp
+zone=RTU03 :: columns: rtu_003_ra_temp
+zone=RTU04 :: columns: rtu_004_sa_temp
+zone=zone_049 :: columns: zone_049_cooling_sp
+zone=zone_054 :: columns: zone_054_cooling_sp

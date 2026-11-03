@@ -1,0 +1,45 @@
+{
+ "source_files": [
+  "uft_hw_valve.csv",
+  "zone_temp_exterior.csv"
+ ],
+ "example_day": "2019-07-25",
+ "target_schema": [
+  {
+   "name": "timestamp",
+   "dtype": "string 'YYYY-MM-DD HH:MM:SS'"
+  },
+  {
+   "name": "zone_022_hw_valve",
+   "dtype": "float",
+   "unit": "%"
+  },
+  {
+   "name": "zone_048_temp",
+   "dtype": "float",
+   "unit": "°F"
+  }
+ ],
+ "n_example_day_target_rows": 96,
+ "n_example_day_source_rows": {
+  "uft_hw_valve.csv": 1440,
+  "zone_temp_exterior.csv": 2880
+ },
+ "source_blocks": {
+  "uft_hw_valve.csv": [
+   15,
+   15,
+   15,
+   15,
+   15
+  ],
+  "zone_temp_exterior.csv": [
+   15,
+   15,
+   15,
+   15,
+   15
+  ]
+ },
+ "note": "source_example/ holds only the source rows inside the time intervals of the shown target rows; source_blocks gives the sizes of the contiguous runs (shown as '...' between runs in the prompt)."
+}

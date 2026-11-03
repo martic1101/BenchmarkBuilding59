@@ -1,0 +1,50 @@
+{
+ "source_files": [
+  "ashp_hw.csv",
+  "rtu_oa_t.csv"
+ ],
+ "example_day": "2020-09-16",
+ "target_schema": [
+  {
+   "name": "timestamp",
+   "dtype": "string 'YYYY-MM-DD HH:MM:SS'"
+  },
+  {
+   "name": "aru_001_hws_fr_gpm",
+   "dtype": "float",
+   "unit": "gpm"
+  },
+  {
+   "name": "rtu_001_oa_temp",
+   "dtype": "float",
+   "unit": "°F"
+  },
+  {
+   "name": "rtu_002_oa_temp",
+   "dtype": "float",
+   "unit": "°F"
+  }
+ ],
+ "n_example_day_target_rows": 24,
+ "n_example_day_source_rows": {
+  "ashp_hw.csv": 288,
+  "rtu_oa_t.csv": 2880
+ },
+ "source_blocks": {
+  "ashp_hw.csv": [
+   12,
+   12,
+   12,
+   12,
+   12
+  ],
+  "rtu_oa_t.csv": [
+   60,
+   60,
+   60,
+   60,
+   60
+  ]
+ },
+ "note": "source_example/ holds only the source rows inside the time intervals of the shown target rows; source_blocks gives the sizes of the contiguous runs (shown as '...' between runs in the prompt)."
+}

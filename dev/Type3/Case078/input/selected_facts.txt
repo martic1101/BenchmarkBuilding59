@@ -1,0 +1,21 @@
+columns in scope: cerc_templogger_5, rtu_001_oa_flow_tn, rtu_002_oa_flow_tn, zone_054_fan_spd
+vav=UTF_G-8 :: columns: zone_054_fan_spd
+sampling=1 min :: columns: rtu_001_oa_flow_tn, rtu_002_oa_flow_tn, zone_054_fan_spd
+sampling=10 min :: columns: cerc_templogger_5
+rtu=RTU01 :: columns: rtu_001_oa_flow_tn, zone_054_fan_spd
+rtu=RTU02 :: columns: rtu_002_oa_flow_tn
+floor=Floor_G :: columns: cerc_templogger_5
+floor=Floor_S :: columns: zone_054_fan_spd
+desc=Roof Top Unit * outdoor air flow rate (*: 001, 002, 003, 004) :: columns: rtu_001_oa_flow_tn, rtu_002_oa_flow_tn
+desc=Supply air fan speed of Zone * :: columns: zone_054_fan_spd
+desc=Zone temperature of interior zone :: columns: cerc_templogger_5
+unit=% :: columns: zone_054_fan_spd
+unit=CFM :: columns: rtu_001_oa_flow_tn, rtu_002_oa_flow_tn
+unit=°F :: columns: cerc_templogger_5
+class=Outdoor_Air_Flow_Rate :: columns: rtu_001_oa_flow_tn, rtu_002_oa_flow_tn
+class=Supply_Air_Flow_Sensor :: columns: zone_054_fan_spd
+class=Zone_Air_Temperature_Sensor :: columns: cerc_templogger_5
+zone=RTU01 :: columns: rtu_001_oa_flow_tn
+zone=RTU02 :: columns: rtu_002_oa_flow_tn
+zone=zone_054 :: columns: zone_054_fan_spd
+zone=zone_cerc_5 :: columns: cerc_templogger_5

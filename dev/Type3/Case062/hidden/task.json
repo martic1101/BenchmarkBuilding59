@@ -1,0 +1,207 @@
+{
+  "id": "T3-064",
+  "family": "T3",
+  "source_files": [
+    "occ.csv",
+    "uft_fan_spd.csv",
+    "zone_temp_interior.csv"
+  ],
+  "target_schema": [
+    {
+      "name": "timestamp",
+      "dtype": "string 'YYYY-MM-DD HH:MM:SS'",
+      "description": "start of interval"
+    },
+    {
+      "name": "occ_fourth_south",
+      "dtype": "float",
+      "unit": "/",
+      "description": "Occupant counts in the south half of forth floor (/), 15-minute averages"
+    },
+    {
+      "name": "occ_third_south",
+      "dtype": "float",
+      "unit": "/",
+      "description": "Occupant counts in the south half of third floor (/), 15-minute averages"
+    },
+    {
+      "name": "zone_056_fan_spd",
+      "dtype": "float",
+      "unit": "%",
+      "description": "Supply air fan speed of Zone * (%), 15-minute averages"
+    },
+    {
+      "name": "cerc_templogger_8",
+      "dtype": "float",
+      "unit": "°C",
+      "description": "Zone temperature of interior zone (°C), 15-minute averages"
+    }
+  ],
+  "example_day": "2018-12-08",
+  "test_days": [
+    "2018-10-21",
+    "2018-10-22"
+  ],
+  "source_dates_example": {
+    "occ": [
+      "2018-12-08"
+    ],
+    "uft_fan_spd": [
+      "2018-12-08"
+    ],
+    "zone_temp_interior": [
+      "2018-12-07",
+      "2018-12-08"
+    ]
+  },
+  "source_dates_test": {
+    "occ": [
+      "2018-10-21",
+      "2018-10-22"
+    ],
+    "uft_fan_spd": [
+      "2018-10-21",
+      "2018-10-22"
+    ],
+    "zone_temp_interior": [
+      "2018-10-20",
+      "2018-10-21",
+      "2018-10-22"
+    ]
+  },
+  "n_target_rows_example": 96,
+  "n_target_rows_test": 192,
+  "nl_instruction": "Join occ.csv, uft_fan_spd.csv, zone_temp_interior.csv on timestamp (inner join) after aggregating each to 15-minute averages; keep only occ_fourth_south, occ_third_south, zone_056_fan_spd, cerc_templogger_8. Timestamp = start of interval.",
+  "needs": [
+    "sampling_interval",
+    "time_alignment",
+    "join",
+    "aggregation"
+  ],
+  "knowledge": [
+    {
+      "kind": "sampling_interval",
+      "file": "occ.csv",
+      "value_min": 1.0,
+      "dict_freq": "1 min"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "occ.csv",
+      "column": "occ_fourth_south",
+      "description": "Occupant counts in the south half of forth floor",
+      "quantity_kind": "occupant_count"
+    },
+    {
+      "kind": "unit",
+      "file": "occ.csv",
+      "column": "occ_fourth_south",
+      "true_unit": "/",
+      "dict_unit": "/"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "occ.csv",
+      "column": "occ_third_south",
+      "description": "Occupant counts in the south half of third floor",
+      "quantity_kind": "occupant_count"
+    },
+    {
+      "kind": "unit",
+      "file": "occ.csv",
+      "column": "occ_third_south",
+      "true_unit": "/",
+      "dict_unit": "/"
+    },
+    {
+      "kind": "sampling_interval",
+      "file": "uft_fan_spd.csv",
+      "value_min": 1.0,
+      "dict_freq": "1 min"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "uft_fan_spd.csv",
+      "column": "zone_056_fan_spd",
+      "description": "Supply air fan speed of Zone *",
+      "quantity_kind": "fan_speed"
+    },
+    {
+      "kind": "unit",
+      "file": "uft_fan_spd.csv",
+      "column": "zone_056_fan_spd",
+      "true_unit": "%",
+      "dict_unit": "%"
+    },
+    {
+      "kind": "sampling_interval",
+      "file": "zone_temp_interior.csv",
+      "value_min": 10.0,
+      "dict_freq": "10 min"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "zone_temp_interior.csv",
+      "column": "cerc_templogger_8",
+      "description": "Zone temperature of interior zone",
+      "quantity_kind": "temperature"
+    },
+    {
+      "kind": "unit",
+      "file": "zone_temp_interior.csv",
+      "column": "cerc_templogger_8",
+      "true_unit": "°C",
+      "dict_unit": "°F"
+    }
+  ],
+  "discriminates_against": [
+    "outer_join",
+    "agg_max"
+  ],
+  "spec": {
+    "family": "T3",
+    "sources": [
+      {
+        "file": "occ",
+        "columns": [
+          "occ_fourth_south",
+          "occ_third_south"
+        ]
+      },
+      {
+        "file": "uft_fan_spd",
+        "columns": [
+          "zone_056_fan_spd"
+        ]
+      },
+      {
+        "file": "zone_temp_interior",
+        "columns": [
+          "cerc_templogger_8"
+        ]
+      }
+    ],
+    "freq": "15min",
+    "agg": "mean",
+    "how": "inner",
+    "out_columns": [
+      "occ_fourth_south",
+      "occ_third_south",
+      "zone_056_fan_spd",
+      "cerc_templogger_8"
+    ],
+    "target_units": {
+      "occ_fourth_south": "/",
+      "occ_third_south": "/",
+      "zone_056_fan_spd": "%",
+      "cerc_templogger_8": "°C"
+    }
+  },
+  "shown_rows": [
+    0,
+    24,
+    48,
+    71,
+    95
+  ]
+}

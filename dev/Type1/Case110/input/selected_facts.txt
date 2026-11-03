@@ -1,0 +1,15 @@
+columns in scope: zone_022_co2, zone_033_co2, zone_058_co2
+desc=CO2 concentration of each zone :: columns: ALL
+unit=ppm :: columns: ALL
+sampling=1 min :: columns: ALL
+class=CO2_Sensor :: columns: ALL
+rtu=RTU01 :: columns: zone_022_co2
+rtu=RTU03 :: columns: zone_033_co2, zone_058_co2
+floor=Floor_G :: columns: zone_022_co2, zone_033_co2
+floor=Floor_S :: columns: zone_058_co2
+zone=zone_022 :: columns: zone_022_co2
+zone=zone_033 :: columns: zone_033_co2
+zone=zone_058 :: columns: zone_058_co2
+vav=UTF_2-14 :: columns: zone_033_co2
+vav=UTF_2-6 :: columns: zone_022_co2
+vav=UTF_G-12 :: columns: zone_058_co2

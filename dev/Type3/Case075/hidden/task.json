@@ -1,0 +1,188 @@
+{
+  "id": "T3-079",
+  "family": "T3",
+  "source_files": [
+    "rtu_ra_t.csv",
+    "rtu_sa_fr.csv"
+  ],
+  "target_schema": [
+    {
+      "name": "timestamp",
+      "dtype": "string 'YYYY-MM-DD HH:MM:SS'",
+      "description": "start of interval"
+    },
+    {
+      "name": "rtu_001_ra_temp",
+      "dtype": "float",
+      "unit": "°F",
+      "description": "Roof Top Unit * return air temperature (*: 001, 002, 003, 004) (°F), 30-minute averages"
+    },
+    {
+      "name": "rtu_004_ra_temp",
+      "dtype": "float",
+      "unit": "°F",
+      "description": "Roof Top Unit * return air temperature (*: 001, 002, 003, 004) (°F), 30-minute averages"
+    },
+    {
+      "name": "rtu_001_fltrd_sa_flow_tn",
+      "dtype": "float",
+      "unit": "CFM",
+      "description": "Roof Top Unit * filtered supply air flow rate (*: 001, 002, 003, 004) (CFM), 30-minute averages"
+    },
+    {
+      "name": "rtu_003_fltrd_sa_flow_tn",
+      "dtype": "float",
+      "unit": "CFM",
+      "description": "Roof Top Unit * filtered supply air flow rate (*: 001, 002, 003, 004) (CFM), 30-minute averages"
+    }
+  ],
+  "example_day": "2019-10-03",
+  "test_days": [
+    "2020-11-07",
+    "2020-11-08"
+  ],
+  "source_dates_example": {
+    "rtu_ra_t": [
+      "2019-10-03"
+    ],
+    "rtu_sa_fr": [
+      "2019-10-02",
+      "2019-10-03"
+    ]
+  },
+  "source_dates_test": {
+    "rtu_ra_t": [
+      "2020-11-07",
+      "2020-11-08"
+    ],
+    "rtu_sa_fr": [
+      "2020-11-06",
+      "2020-11-07",
+      "2020-11-08"
+    ]
+  },
+  "n_target_rows_example": 48,
+  "n_target_rows_test": 96,
+  "nl_instruction": "Join rtu_ra_t.csv, rtu_sa_fr.csv on timestamp (inner join) after aggregating each to 30-minute averages; keep only rtu_001_ra_temp, rtu_004_ra_temp, rtu_001_fltrd_sa_flow_tn, rtu_003_fltrd_sa_flow_tn. Timestamp = start of interval.",
+  "needs": [
+    "sampling_interval",
+    "time_alignment",
+    "join",
+    "aggregation"
+  ],
+  "knowledge": [
+    {
+      "kind": "sampling_interval",
+      "file": "rtu_ra_t.csv",
+      "value_min": 1.0,
+      "dict_freq": "1 min"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "rtu_ra_t.csv",
+      "column": "rtu_001_ra_temp",
+      "description": "Roof Top Unit * return air temperature (*: 001, 002, 003, 004)",
+      "quantity_kind": "temperature"
+    },
+    {
+      "kind": "unit",
+      "file": "rtu_ra_t.csv",
+      "column": "rtu_001_ra_temp",
+      "true_unit": "°F",
+      "dict_unit": "°F"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "rtu_ra_t.csv",
+      "column": "rtu_004_ra_temp",
+      "description": "Roof Top Unit * return air temperature (*: 001, 002, 003, 004)",
+      "quantity_kind": "temperature"
+    },
+    {
+      "kind": "unit",
+      "file": "rtu_ra_t.csv",
+      "column": "rtu_004_ra_temp",
+      "true_unit": "°F",
+      "dict_unit": "°F"
+    },
+    {
+      "kind": "sampling_interval",
+      "file": "rtu_sa_fr.csv",
+      "value_min": 1.0,
+      "dict_freq": "1 min"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "rtu_sa_fr.csv",
+      "column": "rtu_001_fltrd_sa_flow_tn",
+      "description": "Roof Top Unit * filtered supply air flow rate (*: 001, 002, 003, 004)",
+      "quantity_kind": "air_flow"
+    },
+    {
+      "kind": "unit",
+      "file": "rtu_sa_fr.csv",
+      "column": "rtu_001_fltrd_sa_flow_tn",
+      "true_unit": "CFM",
+      "dict_unit": "CFM"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "rtu_sa_fr.csv",
+      "column": "rtu_003_fltrd_sa_flow_tn",
+      "description": "Roof Top Unit * filtered supply air flow rate (*: 001, 002, 003, 004)",
+      "quantity_kind": "air_flow"
+    },
+    {
+      "kind": "unit",
+      "file": "rtu_sa_fr.csv",
+      "column": "rtu_003_fltrd_sa_flow_tn",
+      "true_unit": "CFM",
+      "dict_unit": "CFM"
+    }
+  ],
+  "discriminates_against": [
+    "outer_join",
+    "agg_max"
+  ],
+  "spec": {
+    "family": "T3",
+    "sources": [
+      {
+        "file": "rtu_ra_t",
+        "columns": [
+          "rtu_001_ra_temp",
+          "rtu_004_ra_temp"
+        ]
+      },
+      {
+        "file": "rtu_sa_fr",
+        "columns": [
+          "rtu_001_fltrd_sa_flow_tn",
+          "rtu_003_fltrd_sa_flow_tn"
+        ]
+      }
+    ],
+    "freq": "30min",
+    "agg": "mean",
+    "how": "inner",
+    "out_columns": [
+      "rtu_001_ra_temp",
+      "rtu_004_ra_temp",
+      "rtu_001_fltrd_sa_flow_tn",
+      "rtu_003_fltrd_sa_flow_tn"
+    ],
+    "target_units": {
+      "rtu_001_ra_temp": "°F",
+      "rtu_004_ra_temp": "°F",
+      "rtu_001_fltrd_sa_flow_tn": "CFM",
+      "rtu_003_fltrd_sa_flow_tn": "CFM"
+    }
+  },
+  "shown_rows": [
+    0,
+    12,
+    24,
+    35,
+    47
+  ]
+}

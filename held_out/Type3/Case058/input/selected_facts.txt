@@ -1,0 +1,16 @@
+columns in scope: aru_001_cws_temp, zone_033_temp, zone_042_temp
+unit=°F :: columns: ALL
+floor=Floor_G :: columns: zone_033_temp, zone_042_temp
+desc=Chilled water supply temperature :: columns: aru_001_cws_temp
+desc=Zone temperature of exterior zone :: columns: zone_033_temp, zone_042_temp
+sampling=1 min :: columns: zone_033_temp, zone_042_temp
+sampling=5 min :: columns: aru_001_cws_temp
+class=Chilled_Water_Temperature_Sensor :: columns: aru_001_cws_temp
+class=Zone_Air_Temperature_Sensor :: columns: zone_033_temp, zone_042_temp
+vav=UTF_2-14 :: columns: zone_033_temp
+vav=UTF_2-22 :: columns: zone_042_temp
+rtu=RTU03 :: columns: zone_033_temp
+rtu=RTU04 :: columns: zone_042_temp
+zone=Building :: columns: aru_001_cws_temp
+zone=zone_033 :: columns: zone_033_temp
+zone=zone_042 :: columns: zone_042_temp

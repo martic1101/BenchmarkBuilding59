@@ -1,0 +1,19 @@
+columns in scope: rtu_003_econ_stpt_tn, rtu_004_econ_stpt_tn, zone_022_co2, zone_062_co2
+sampling=1 min :: columns: ALL
+desc=CO2 concentration of each zone :: columns: zone_022_co2, zone_062_co2
+desc=Roof Top Unit * economizer setpoint (*: 001, 002, 003, 004) :: columns: rtu_003_econ_stpt_tn, rtu_004_econ_stpt_tn
+unit=ppm :: columns: zone_022_co2, zone_062_co2
+unit=°F :: columns: rtu_003_econ_stpt_tn, rtu_004_econ_stpt_tn
+class=CO2_Sensor :: columns: zone_022_co2, zone_062_co2
+class=Economizer_Setpoint :: columns: rtu_003_econ_stpt_tn, rtu_004_econ_stpt_tn
+vav=UTF_2-6 :: columns: zone_022_co2
+vav=UTF_G-15 :: columns: zone_062_co2
+floor=Floor_G :: columns: zone_022_co2
+floor=Floor_S :: columns: zone_062_co2
+rtu=RTU01 :: columns: zone_022_co2
+rtu=RTU03 :: columns: rtu_003_econ_stpt_tn, zone_062_co2
+rtu=RTU04 :: columns: rtu_004_econ_stpt_tn
+zone=RTU03 :: columns: rtu_003_econ_stpt_tn
+zone=RTU04 :: columns: rtu_004_econ_stpt_tn
+zone=zone_022 :: columns: zone_022_co2
+zone=zone_062 :: columns: zone_062_co2

@@ -1,0 +1,14 @@
+columns in scope: rtu_002_fltrd_sa_flow_tn, rtu_002_pa_static_stpt_tn, rtu_002_ra_temp, rtu_003_pa_static_stpt_tn, rtu_004_fltrd_sa_flow_tn
+sampling=1 min :: columns: ALL
+class=Return_Air_Temperature_Sensor :: columns: rtu_002_ra_temp
+class=Supply_Air_Static_Pressure_Setpoint :: columns: rtu_002_pa_static_stpt_tn, rtu_003_pa_static_stpt_tn
+zone=RTU02 :: columns: rtu_002_pa_static_stpt_tn, rtu_002_ra_temp
+zone=RTU03 :: columns: rtu_003_pa_static_stpt_tn
+rtu=RTU02 :: columns: rtu_002_pa_static_stpt_tn, rtu_002_ra_temp
+rtu=RTU03 :: columns: rtu_003_pa_static_stpt_tn
+desc=Roof Top Unit * air pressure static setpoint (*: 001, 002, 003, 004) :: columns: rtu_002_pa_static_stpt_tn, rtu_003_pa_static_stpt_tn
+desc=Roof Top Unit * filtered supply air flow rate (*: 001, 002, 003, 004) :: columns: rtu_002_fltrd_sa_flow_tn, rtu_004_fltrd_sa_flow_tn
+desc=Roof Top Unit * return air temperature (*: 001, 002, 003, 004) :: columns: rtu_002_ra_temp
+unit=CFM :: columns: rtu_002_fltrd_sa_flow_tn, rtu_004_fltrd_sa_flow_tn
+unit=psi :: columns: rtu_002_pa_static_stpt_tn, rtu_003_pa_static_stpt_tn
+unit=°F :: columns: rtu_002_ra_temp

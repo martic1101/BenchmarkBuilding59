@@ -1,0 +1,50 @@
+{
+ "source_files": [
+  "site_weather.csv",
+  "wifi.csv"
+ ],
+ "example_day": "2020-09-02",
+ "target_schema": [
+  {
+   "name": "timestamp",
+   "dtype": "string 'YYYY-MM-DD HH:MM:SS'"
+  },
+  {
+   "name": "dew_point_temperature_set_1d",
+   "dtype": "float",
+   "unit": "°C"
+  },
+  {
+   "name": "relative_humidity_set_1",
+   "dtype": "float",
+   "unit": "%"
+  },
+  {
+   "name": "wifi_third_south",
+   "dtype": "float",
+   "unit": "/"
+  }
+ ],
+ "n_example_day_target_rows": 24,
+ "n_example_day_source_rows": {
+  "site_weather.csv": 96,
+  "wifi.csv": 576
+ },
+ "source_blocks": {
+  "site_weather.csv": [
+   4,
+   4,
+   4,
+   4,
+   4
+  ],
+  "wifi.csv": [
+   12,
+   12,
+   12,
+   12,
+   12
+  ]
+ },
+ "note": "source_example/ holds only the source rows inside the time intervals of the shown target rows; source_blocks gives the sizes of the contiguous runs (shown as '...' between runs in the prompt)."
+}

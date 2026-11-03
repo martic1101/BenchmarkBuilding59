@@ -1,0 +1,165 @@
+{
+  "id": "T3-025",
+  "family": "T3",
+  "source_files": [
+    "occ.csv",
+    "rtu_fan_spd.csv"
+  ],
+  "target_schema": [
+    {
+      "name": "timestamp",
+      "dtype": "string 'YYYY-MM-DD HH:MM:SS'",
+      "description": "start of interval"
+    },
+    {
+      "name": "occ_third_south",
+      "dtype": "float",
+      "unit": "/",
+      "description": "Occupant counts in the south half of third floor (/), 15-minute averages"
+    },
+    {
+      "name": "rtu_003_rf_vfd_spd_fbk_tn",
+      "dtype": "float",
+      "unit": "%",
+      "description": "Roof Top Unit * return fan speed (*: 001, 002, 003, 004) (%), 15-minute averages"
+    },
+    {
+      "name": "rtu_004_sf_vfd_spd_fbk_tn",
+      "dtype": "float",
+      "unit": "%",
+      "description": "Roof Top Unit * supply fan speed (*: 001, 002, 003, 004) (%), 15-minute averages"
+    }
+  ],
+  "example_day": "2018-06-11",
+  "test_days": [
+    "2019-01-16",
+    "2019-01-17"
+  ],
+  "source_dates_example": {
+    "occ": [
+      "2018-06-11"
+    ],
+    "rtu_fan_spd": [
+      "2018-06-10",
+      "2018-06-11"
+    ]
+  },
+  "source_dates_test": {
+    "occ": [
+      "2019-01-16",
+      "2019-01-17"
+    ],
+    "rtu_fan_spd": [
+      "2019-01-15",
+      "2019-01-16",
+      "2019-01-17"
+    ]
+  },
+  "n_target_rows_example": 96,
+  "n_target_rows_test": 192,
+  "nl_instruction": "Join occ.csv, rtu_fan_spd.csv on timestamp (inner join) after aggregating each to 15-minute averages; keep only occ_third_south, rtu_003_rf_vfd_spd_fbk_tn, rtu_004_sf_vfd_spd_fbk_tn. Timestamp = start of interval.",
+  "needs": [
+    "sampling_interval",
+    "time_alignment",
+    "join",
+    "aggregation"
+  ],
+  "knowledge": [
+    {
+      "kind": "sampling_interval",
+      "file": "occ.csv",
+      "value_min": 1.0,
+      "dict_freq": "1 min"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "occ.csv",
+      "column": "occ_third_south",
+      "description": "Occupant counts in the south half of third floor",
+      "quantity_kind": "occupant_count"
+    },
+    {
+      "kind": "unit",
+      "file": "occ.csv",
+      "column": "occ_third_south",
+      "true_unit": "/",
+      "dict_unit": "/"
+    },
+    {
+      "kind": "sampling_interval",
+      "file": "rtu_fan_spd.csv",
+      "value_min": 1.0,
+      "dict_freq": "1 min"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "rtu_fan_spd.csv",
+      "column": "rtu_003_rf_vfd_spd_fbk_tn",
+      "description": "Roof Top Unit * return fan speed (*: 001, 002, 003, 004)",
+      "quantity_kind": "fan_speed"
+    },
+    {
+      "kind": "unit",
+      "file": "rtu_fan_spd.csv",
+      "column": "rtu_003_rf_vfd_spd_fbk_tn",
+      "true_unit": "%",
+      "dict_unit": "%"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "rtu_fan_spd.csv",
+      "column": "rtu_004_sf_vfd_spd_fbk_tn",
+      "description": "Roof Top Unit * supply fan speed (*: 001, 002, 003, 004)",
+      "quantity_kind": "fan_speed"
+    },
+    {
+      "kind": "unit",
+      "file": "rtu_fan_spd.csv",
+      "column": "rtu_004_sf_vfd_spd_fbk_tn",
+      "true_unit": "%",
+      "dict_unit": "%"
+    }
+  ],
+  "discriminates_against": [
+    "outer_join",
+    "agg_max"
+  ],
+  "spec": {
+    "family": "T3",
+    "sources": [
+      {
+        "file": "occ",
+        "columns": [
+          "occ_third_south"
+        ]
+      },
+      {
+        "file": "rtu_fan_spd",
+        "columns": [
+          "rtu_003_rf_vfd_spd_fbk_tn",
+          "rtu_004_sf_vfd_spd_fbk_tn"
+        ]
+      }
+    ],
+    "freq": "15min",
+    "agg": "mean",
+    "how": "inner",
+    "out_columns": [
+      "occ_third_south",
+      "rtu_003_rf_vfd_spd_fbk_tn",
+      "rtu_004_sf_vfd_spd_fbk_tn"
+    ],
+    "target_units": {
+      "occ_third_south": "/",
+      "rtu_003_rf_vfd_spd_fbk_tn": "%",
+      "rtu_004_sf_vfd_spd_fbk_tn": "%"
+    }
+  },
+  "shown_rows": [
+    0,
+    24,
+    48,
+    71,
+    95
+  ]
+}

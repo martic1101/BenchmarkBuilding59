@@ -1,0 +1,14 @@
+columns in scope: aru_001_hws_temp, rtu_001_oa_flow_tn, rtu_004_oa_flow_tn
+desc=Hot water supply temperature :: columns: aru_001_hws_temp
+desc=Roof Top Unit * outdoor air flow rate (*: 001, 002, 003, 004) :: columns: rtu_001_oa_flow_tn, rtu_004_oa_flow_tn
+unit=CFM :: columns: rtu_001_oa_flow_tn, rtu_004_oa_flow_tn
+unit=°F :: columns: aru_001_hws_temp
+sampling=1 min :: columns: rtu_001_oa_flow_tn, rtu_004_oa_flow_tn
+sampling=5 min :: columns: aru_001_hws_temp
+class=Hot_Water_Temperature_Sensor :: columns: aru_001_hws_temp
+class=Outdoor_Air_Flow_Rate :: columns: rtu_001_oa_flow_tn, rtu_004_oa_flow_tn
+rtu=RTU01 :: columns: rtu_001_oa_flow_tn
+rtu=RTU04 :: columns: rtu_004_oa_flow_tn
+zone=Building :: columns: aru_001_hws_temp
+zone=RTU01 :: columns: rtu_001_oa_flow_tn
+zone=RTU04 :: columns: rtu_004_oa_flow_tn

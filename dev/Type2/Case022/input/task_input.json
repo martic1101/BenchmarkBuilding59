@@ -1,0 +1,36 @@
+{
+ "source_files": [
+  "rtu_sa_fr.csv"
+ ],
+ "example_day": "2019-08-05",
+ "target_schema": [
+  {
+   "name": "timestamp",
+   "dtype": "string 'YYYY-MM-DD HH:MM:SS'"
+  },
+  {
+   "name": "rtu_002_fltrd_sa_flow_tn_m3h",
+   "dtype": "float",
+   "unit": "m3/h"
+  },
+  {
+   "name": "rtu_004_fltrd_sa_flow_tn_m3h",
+   "dtype": "float",
+   "unit": "m3/h"
+  }
+ ],
+ "n_example_day_target_rows": 48,
+ "n_example_day_source_rows": {
+  "rtu_sa_fr.csv": 1440
+ },
+ "source_blocks": {
+  "rtu_sa_fr.csv": [
+   30,
+   30,
+   30,
+   30,
+   30
+  ]
+ },
+ "note": "source_example/ holds only the source rows inside the time intervals of the shown target rows; source_blocks gives the sizes of the contiguous runs (shown as '...' between runs in the prompt)."
+}

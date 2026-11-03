@@ -1,0 +1,232 @@
+{
+  "id": "T3-074",
+  "family": "T3",
+  "source_files": [
+    "ele.csv",
+    "rtu_oa_t.csv",
+    "rtu_plenum_p.csv"
+  ],
+  "target_schema": [
+    {
+      "name": "timestamp",
+      "dtype": "string 'YYYY-MM-DD HH:MM:SS'",
+      "description": "start of interval"
+    },
+    {
+      "name": "hvac_N",
+      "dtype": "float",
+      "unit": "kW",
+      "description": "Heating Ventilation and Air Conditioning load for the Nouth Wing (kW), 15-minute interval"
+    },
+    {
+      "name": "lig_S",
+      "dtype": "float",
+      "unit": "kW",
+      "description": "Lighting load for the South Wing (kW), 15-minute interval"
+    },
+    {
+      "name": "rtu_002_oa_temp",
+      "dtype": "float",
+      "unit": "°F",
+      "description": "Roof Top Unit * outdoor air temperature (*: 001, 002, 003, 004) (°F), 15-minute interval"
+    },
+    {
+      "name": "rtu_004_oa_temp",
+      "dtype": "float",
+      "unit": "°F",
+      "description": "Roof Top Unit * outdoor air temperature (*: 001, 002, 003, 004) (°F), 15-minute interval"
+    },
+    {
+      "name": "rtu_002_fltrd_gnd_lvl_plenum_press_tn",
+      "dtype": "float",
+      "unit": "psi",
+      "description": "Roof Top Unit * plenum air pressure at floor ** (*: 001, 002, 003, 004; **: gnd_lvl, lvl2) (psi), 15-minute interval"
+    }
+  ],
+  "example_day": "2020-08-03",
+  "test_days": [
+    "2020-06-22",
+    "2020-06-23"
+  ],
+  "source_dates_example": {
+    "ele": [
+      "2020-08-03"
+    ],
+    "rtu_oa_t": [
+      "2020-08-03"
+    ],
+    "rtu_plenum_p": [
+      "2020-08-02",
+      "2020-08-03"
+    ]
+  },
+  "source_dates_test": {
+    "ele": [
+      "2020-06-22",
+      "2020-06-23"
+    ],
+    "rtu_oa_t": [
+      "2020-06-22",
+      "2020-06-23"
+    ],
+    "rtu_plenum_p": [
+      "2020-06-21",
+      "2020-06-22",
+      "2020-06-23"
+    ]
+  },
+  "n_target_rows_example": 96,
+  "n_target_rows_test": 192,
+  "nl_instruction": "Join ele.csv, rtu_oa_t.csv, rtu_plenum_p.csv on timestamp (inner join) after aggregating each to 15-minute intervals using the average; keep only hvac_N, lig_S, rtu_002_oa_temp, rtu_004_oa_temp, rtu_002_fltrd_gnd_lvl_plenum_press_tn. Timestamp = start of interval.",
+  "needs": [
+    "sampling_interval",
+    "time_alignment",
+    "join",
+    "aggregation"
+  ],
+  "knowledge": [
+    {
+      "kind": "sampling_interval",
+      "file": "ele.csv",
+      "value_min": 15.0,
+      "dict_freq": "15 min"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "ele.csv",
+      "column": "hvac_N",
+      "description": "Heating Ventilation and Air Conditioning load for the Nouth Wing",
+      "quantity_kind": "electric_power"
+    },
+    {
+      "kind": "unit",
+      "file": "ele.csv",
+      "column": "hvac_N",
+      "true_unit": "kW",
+      "dict_unit": "kW"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "ele.csv",
+      "column": "lig_S",
+      "description": "Lighting load for the South Wing",
+      "quantity_kind": "electric_power"
+    },
+    {
+      "kind": "unit",
+      "file": "ele.csv",
+      "column": "lig_S",
+      "true_unit": "kW",
+      "dict_unit": "kW"
+    },
+    {
+      "kind": "sampling_interval",
+      "file": "rtu_oa_t.csv",
+      "value_min": 1.0,
+      "dict_freq": "1 min"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "rtu_oa_t.csv",
+      "column": "rtu_002_oa_temp",
+      "description": "Roof Top Unit * outdoor air temperature (*: 001, 002, 003, 004)",
+      "quantity_kind": "temperature"
+    },
+    {
+      "kind": "unit",
+      "file": "rtu_oa_t.csv",
+      "column": "rtu_002_oa_temp",
+      "true_unit": "°F",
+      "dict_unit": "°F"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "rtu_oa_t.csv",
+      "column": "rtu_004_oa_temp",
+      "description": "Roof Top Unit * outdoor air temperature (*: 001, 002, 003, 004)",
+      "quantity_kind": "temperature"
+    },
+    {
+      "kind": "unit",
+      "file": "rtu_oa_t.csv",
+      "column": "rtu_004_oa_temp",
+      "true_unit": "°F",
+      "dict_unit": "°F"
+    },
+    {
+      "kind": "sampling_interval",
+      "file": "rtu_plenum_p.csv",
+      "value_min": 1.0,
+      "dict_freq": "1 min"
+    },
+    {
+      "kind": "column_semantics",
+      "file": "rtu_plenum_p.csv",
+      "column": "rtu_002_fltrd_gnd_lvl_plenum_press_tn",
+      "description": "Roof Top Unit * plenum air pressure at floor ** (*: 001, 002, 003, 004; **: gnd_lvl, lvl2)",
+      "quantity_kind": "pressure"
+    },
+    {
+      "kind": "unit",
+      "file": "rtu_plenum_p.csv",
+      "column": "rtu_002_fltrd_gnd_lvl_plenum_press_tn",
+      "true_unit": "psi",
+      "dict_unit": "psi"
+    }
+  ],
+  "discriminates_against": [
+    "outer_join",
+    "agg_max",
+    "agg_min"
+  ],
+  "spec": {
+    "family": "T3",
+    "sources": [
+      {
+        "file": "ele",
+        "columns": [
+          "hvac_N",
+          "lig_S"
+        ]
+      },
+      {
+        "file": "rtu_oa_t",
+        "columns": [
+          "rtu_002_oa_temp",
+          "rtu_004_oa_temp"
+        ]
+      },
+      {
+        "file": "rtu_plenum_p",
+        "columns": [
+          "rtu_002_fltrd_gnd_lvl_plenum_press_tn"
+        ]
+      }
+    ],
+    "freq": "15min",
+    "agg": "mean",
+    "how": "inner",
+    "out_columns": [
+      "hvac_N",
+      "lig_S",
+      "rtu_002_oa_temp",
+      "rtu_004_oa_temp",
+      "rtu_002_fltrd_gnd_lvl_plenum_press_tn"
+    ],
+    "target_units": {
+      "hvac_N": "kW",
+      "lig_S": "kW",
+      "rtu_002_oa_temp": "°F",
+      "rtu_004_oa_temp": "°F",
+      "rtu_002_fltrd_gnd_lvl_plenum_press_tn": "psi"
+    }
+  },
+  "benchmark_version": "holdout_v2",
+  "shown_rows": [
+    0,
+    24,
+    48,
+    71,
+    95
+  ]
+}

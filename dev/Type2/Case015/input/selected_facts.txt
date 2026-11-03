@@ -1,0 +1,7 @@
+columns in scope: aru_001_cwr_temp, aru_001_cws_temp
+unit=°F :: columns: ALL
+sampling=5 min :: columns: ALL
+class=Chilled_Water_Temperature_Sensor :: columns: ALL
+zone=Building :: columns: ALL
+desc=Chilled water return temperature :: columns: aru_001_cwr_temp
+desc=Chilled water supply temperature :: columns: aru_001_cws_temp
