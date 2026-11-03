@@ -49,6 +49,15 @@ class BatchEvaluationTests(unittest.TestCase):
         self.assertEqual(result["mean_value_accuracy"], 0)
         self.assertEqual(result["cases"][1]["prediction_status"], "unreadable")
 
+    def test_per_type_breakdown(self):
+        self.predict(self.paths[0], self.table)
+        result = evaluate_batch(self.root, self.predictions, "held_out")
+        self.assertEqual(set(result["by_type"]), {"Type1"})
+        self.assertEqual(result["by_type"]["Type1"]["n_cases"], 2)
+        self.assertEqual(result["by_type"]["Type1"]["exact_match_rate"], 0.5)
+        result = evaluate_batch(self.root, self.predictions, "dev")
+        self.assertEqual(result["by_type"]["Type2"]["n_passed"], 0)
+
     def test_type_and_split_filter(self):
         self.predict(self.paths[2], self.table)
         result = evaluate_batch(self.root, self.predictions, "dev", "Type2")

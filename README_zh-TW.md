@@ -67,7 +67,7 @@ python -m pip install -r requirements.txt
 python evaluator/evaluate_batch.py --predictions predictions --split held_out --type Type4 --out results/type4.json
 ```
 
-拿掉 `--type Type4` 可評估整個 split。缺交、無法讀取或無法解析的預測以零分計入，分母固定為所選題目總數。輸出包括通過率、每題平均欄位正確率、每題平均數值正確率；完整 JSON 也包含逐題結果。
+拿掉 `--type Type4` 可評估整個 split。缺交、無法讀取或無法解析的預測以零分計入，分母固定為所選題目總數。輸出包括通過率、每題平均欄位正確率、每題平均數值正確率，以及這三項依題型分開的結果（`by_type`）；完整 JSON 也包含逐題結果。
 
 `exact_match` 要求欄位集合與時間戳完全一致、所有數值在 `1e-6 + 1e-3 × |標準答案|` 容差內。欄位順序和時間格式的輸出契約另行報告，詳見評估規格。
 

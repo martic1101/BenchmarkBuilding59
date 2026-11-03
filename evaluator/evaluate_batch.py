@@ -42,19 +42,22 @@ def evaluate_batch(root, predictions, split="held_out", task_type=None):
         result = grade(raw, target)
         if status == "unreadable":
             result["reason"] = read_error
-        result.update(case=case["path"], prediction_status=status)
+        result.update(case=case["path"], type=case["type"], prediction_status=status)
         results.append(result)
+    by_type = {t: _summary([r for r in results if r["type"] == t])
+               for t in sorted({r["type"] for r in results})}
+    return {"split": split, "type": task_type or "all", **_summary(results), "by_type": by_type, "cases": results}
+
+
+def _summary(results):
     n = len(results)
     return {
-        "split": split,
-        "type": task_type or "all",
         "n_cases": n,
         "n_provided": sum(r["prediction_status"] == "provided" for r in results),
         "n_passed": sum(r["exact_match"] for r in results),
         "exact_match_rate": sum(r["exact_match"] for r in results) / n,
         "mean_column_accuracy": sum(r["column_accuracy"] for r in results) / n,
         "mean_value_accuracy": sum(r["value_accuracy"] for r in results) / n,
-        "cases": results,
     }
 
 

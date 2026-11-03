@@ -1,6 +1,6 @@
 # Evaluation protocol — Building 59 by-target transformation benchmark
 
-Version 1.0 (2026-10-31). Applies to `Building59-Benchmark-v2/`. Implemented by `evaluator/evaluate.py`
+Version 1.0 (2026-10-31). Applies to this repository (exported from `Building59-Benchmark-v2/`). Implemented by `evaluator/evaluate.py`
 (grading) and `runners/build_prompt.py` (model input). The pass/fail rule is identical to the evaluator used for
 all experiments reported so far (`eval_v3.1`), so earlier results stay comparable.
 Paths under `src/` and `results/` refer to the research code, which is not part of this repository.

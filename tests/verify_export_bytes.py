@@ -1,7 +1,7 @@
 """Compare raw Git blobs with the prepared v2 export, including line endings.
 
-Excludes only the export's root README.md (edited for publication) and
-.export_complete (not published). Uses git cat-file without checkout filters.
+Excludes the export's root README.md (edited for publication), .export_complete (not published),
+and .git/ and .gitattributes if the export directory is itself a Git checkout. Uses git cat-file without checkout filters.
 """
 import argparse
 import json
@@ -28,7 +28,8 @@ def verify_export(repo, source, ref='HEAD', index=False):
             raise ValueError('Index contains unmerged entries')
         entries[path.decode('utf-8')] = fields[1] if index else fields[2]
     files = sorted(p for p in source.rglob('*') if p.is_file()
-                   and p.relative_to(source).as_posix() not in {'README.md', '.export_complete'})
+                   and '.git' not in p.relative_to(source).parts
+                   and p.relative_to(source).as_posix() not in {'README.md', '.export_complete', '.gitattributes'})
     if not files:
         raise ValueError('No export files found')
     missing, mismatches, newline_only = [], [], []

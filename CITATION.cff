@@ -1,0 +1,61 @@
+cff-version: 1.2.0
+message: "If you use this benchmark, please cite it as below, and also cite the original Building 59 dataset (see references)."
+title: "Building 59 Data Transformation Benchmark"
+type: dataset
+version: 1.0.0
+date-released: 2026-11-02
+authors:
+  - alias: martic1101
+repository-code: "https://github.com/martic1101/BenchmarkBuilding59"
+license:
+  - CC-BY-4.0
+  - MIT
+abstract: >-
+  601 by-target data transformation cases built from the LBNL Building 59 dataset and its Brick model.
+  From a sample of source data and five rows of the target table, a system must produce a program that
+  converts unseen days of the source data into the target table. Includes the prompt builder and evaluator.
+keywords:
+  - benchmark
+  - data transformation
+  - programming by example
+  - knowledge graph
+  - Brick schema
+  - building data
+references:
+  - type: data
+    title: "A three-year building operational performance dataset for informing energy efficiency"
+    authors:
+      - family-names: Hong
+        given-names: Tianzhen
+      - family-names: Luo
+        given-names: Na
+      - family-names: Blum
+        given-names: David
+      - family-names: Wang
+        given-names: Zhe
+    year: 2022
+    publisher:
+      name: Dryad
+    doi: 10.7941/D1N33Q
+  - type: article
+    title: "A three-year dataset supporting research on building energy management and occupancy analytics"
+    authors:
+      - family-names: Luo
+        given-names: Na
+      - family-names: Wang
+        given-names: Zhe
+      - family-names: Blum
+        given-names: David
+      - family-names: Weyandt
+        given-names: Christopher
+      - family-names: Bourassa
+        given-names: Norman
+      - family-names: Piette
+        given-names: Mary Ann
+      - family-names: Hong
+        given-names: Tianzhen
+    journal: "Scientific Data"
+    volume: 9
+    start: 156
+    year: 2022
+    doi: 10.1038/s41597-022-01257-x

@@ -8,15 +8,20 @@ Building 59 dataset (CSV sensor files, data dictionary, Brick model).
 
 ```
 BenchmarkBuilding59/
-├── README.md
+├── README.md / README_zh-TW.md
 ├── evaluation_protocol.md     splits, model input, comparison rules, metrics, checks  ← read this first
+├── VALIDATION.md              publication checks and how to rerun them
+├── CITATION.cff               how to cite this benchmark
+├── requirements.txt           pandas, numpy
 ├── manifest.csv               case folder ↔ original task id
 ├── dev/TypeN/CaseNNN/         293 development cases
 ├── held_out/TypeN/CaseNNN/    308 held-out cases (main experiment Q1 = held_out/Type4, 60 cases)
 │     └── input/  hidden/      what the model gets  |  grader / researcher only
 ├── kg/                        full_knowledge_base.txt (full_kb condition), source_docs.jsonl
 ├── runners/build_prompt.py    builds the model prompt from input/ only
-└── evaluator/evaluate.py      grades a prediction against hidden/ground_truth.csv
+├── evaluator/evaluate.py      grades a prediction against hidden/ground_truth.csv
+├── evaluator/evaluate_batch.py grades a folder of predictions (overall and per type)
+└── tests/                     batch-evaluator tests, byte check against the export
 ```
 
 | Type | Task | dev | held_out |
@@ -70,7 +75,7 @@ python evaluator/evaluate_batch.py --predictions predictions --split held_out --
 ```
 
 Omit `--type` to grade the entire split. The report includes exact-match rate, mean per-case column accuracy,
-mean per-case value accuracy, and per-case scores. Missing, unreadable or unparseable predictions score zero
+mean per-case value accuracy, the same three scores for each type (`by_type`), and per-case scores. Missing, unreadable or unparseable predictions score zero
 and remain in the denominator. This command only reads CSVs and does not execute submitted code.
 
 Only `input/` may be given to a model. Results that used anything in `hidden/` are not comparable.
