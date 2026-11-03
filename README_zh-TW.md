@@ -38,7 +38,7 @@ python -m pip install -r requirements.txt
    python runners/build_prompt.py held_out/Type4/Case001 none
    ```
 
-   支援 `none`、`full_kb`、`selected_facts` 三種知識條件。`selected_facts` 是人工挑選正確事實的 oracle 上限，不代表真實檢索器結果。請分開報告各條件。
+   支援 `none`、`full_kb`、`selected_facts` 三種知識條件。`selected_facts` 是由程式自動取出題目所用欄位的全部相關事實，作為知識選取的 oracle 上限，不代表真實檢索器結果。請分開報告各條件。
 3. 將提示詞交給自己的模型或系統，將回覆中的 Python 程式存為 `my_solution.py`（去除 Markdown 程式碼圍欄）。程式介面為：
 
    ```python

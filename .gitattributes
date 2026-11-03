@@ -1,7 +1,2 @@
-* text=auto
-*.csv text eol=lf
-*.json text eol=lf
-*.jsonl text eol=lf
-*.py text eol=lf
-*.md text eol=lf
-*.txt text eol=lf
+# Preserve exact file bytes, including mixed or CRLF line endings.
+* -text
